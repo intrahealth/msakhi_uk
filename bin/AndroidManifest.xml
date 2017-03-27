@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.microware.intrahealth"
+    android:versionCode="8"
+    android:versionName="5.0.4" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="23" />
+
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+    <application
+        android:name="com.microware.intrahealth.Global"
+        android:allowBackup="true"
+        android:icon="@drawable/msakhi_logo"
+        android:label="@string/app_name"
+        android:theme="@style/MyTheme"
+        android:largeHeap="true" >
+        <activity
+            android:name="com.microware.intrahealth.Login"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.Delivery"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.ImunizationChildList"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.ListViewActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.Immunization_Entry"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.Dashboard_Activity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.Deathform"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.MigrationForm"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.Synchronization"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.Family_Activity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.AncQuestionAdapter"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.AncQuestionActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.Report_Module"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.Reportindicator_Hnbclist"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.ReportIndicator_anmList"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.ReportIndicatorListHH"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.ReportIndicator_ashaList"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.Reportindicator_anmHnbclist"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.AshaDashboardList"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.ReportIndicator_anmListHH"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.AshaListForAnm"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.AshaDashboardListHH"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.AshaDashboardListHnbc"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.FamilyDetails"
+            android:label="@string/FamilyDetails"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.Household_Activity"
+            android:label="@string/HouseholdDetails"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.Survey_Activity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.Intrahealth_Tab_Activity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.PncWomenList"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.homevisitanc1"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.homevisitanc2"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.homevisitanc4"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.homevisit3"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.MCH_Dashboard"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.AncActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.HomeVisitPnc"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.childActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.PNC_homeVisit"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.Anc"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.PregnantWomen"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.PregWomenList"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.newbornGrid"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.ImmunizationQuestionActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.WomenListHH"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.NewChildActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.HomeVisit"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.pregnantWomen_homeVisit"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.HomeVisitDashboard"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.ImmunizationCounselling"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.ImmunizationDashboard"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.FP_AA"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.FP_MemberVisit"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.FP_Follwup"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.Anc_duelist"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.AncVisit_List"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+           android:name="com.microware.intrahealth.Incentives"
+           android:screenOrientation="portrait" >
+       </activity>
+       <activity
+           android:name="com.microware.intrahealth.VHND"
+           android:screenOrientation="portrait" >
+       </activity>
+       <activity
+           android:name="com.microware.intrahealth.VHND_Record"
+           android:screenOrientation="portrait" >
+       </activity>
+       <activity
+           android:name="com.microware.intrahealth.VHND_Performance"
+           android:screenOrientation="portrait" >
+       </activity>
+       <activity
+           android:name="com.microware.intrahealth.VHND_DueList"
+           android:screenOrientation="portrait" >
+       </activity>
+    </application>
+
+    <meta-data
+        android:name="com.google.android.gms.version"
+        android:value="@integer/google_play_services_version" />
+    <meta-data
+        android:name="com.google.android.gms.analytics.globalConfigResource"
+        android:resource="@xml/global_tracker" />
+
+</manifest>

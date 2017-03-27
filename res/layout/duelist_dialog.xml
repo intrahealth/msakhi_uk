@@ -1,0 +1,303 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shadow"
+    android:orientation="vertical" >
+
+    <!-- layout title -->
+
+    <LinearLayout
+        android:layout_width="550dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/txt_dialog_title"
+            style="@style/SimpleTextblack"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="@string/msakhinotification"
+            android:textAppearance="?android:attr/textAppearance" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/Black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_dialog_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:orientation="vertical" >
+
+        <TableRow
+            android:id="@+id/tbl1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                style="@style/SimpleText"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1" />
+
+            <Button
+                android:id="@+id/btn_noofHBNC"
+                style="@style/Button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:gravity="center"
+                android:text="@string/noofHBNC"
+                android:textAppearance="?android:attr/textAppearanceButton"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv1"
+                style="@style/Button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".2"
+                android:background="@drawable/textsheet"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/SimpleText"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tbl2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                style="@style/SimpleText"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1" />
+
+            <Button
+                android:id="@+id/btn_noofdeliveries"
+                style="@style/Button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:gravity="center"
+                android:text="@string/noofdeliveries"
+                android:textAppearance="?android:attr/textAppearanceButton"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv2"
+                style="@style/Button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".2"
+                android:background="@drawable/textsheet"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/SimpleText"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tbl3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                style="@style/SimpleText"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1" />
+
+            <Button
+                android:id="@+id/btn_noofanccheckup"
+                style="@style/Button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:gravity="center"
+                android:text="@string/noofanccheckup"
+                android:textAppearance="?android:attr/textAppearanceButton"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv3"
+                style="@style/Button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".2"
+                android:background="@drawable/textsheet"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/SimpleText"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tbl4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                style="@style/SimpleText"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1" />
+
+            <Button
+                android:id="@+id/btn_noofancvisit"
+                style="@style/Button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:gravity="center"
+                android:text="@string/noofancvisit"
+                android:textAppearance="?android:attr/textAppearanceButton"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv4"
+                style="@style/Button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".2"
+                android:background="@drawable/textsheet"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/SimpleText"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tbl5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                style="@style/SimpleText"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1" />
+
+            <Button
+                android:id="@+id/btn_nooffamilyplanning"
+                style="@style/Button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:gravity="center"
+                android:text="@string/nooffamilyplanning"
+                android:textAppearance="?android:attr/textAppearanceButton"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv5"
+                style="@style/Button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".2"
+                android:background="@drawable/textsheet"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/SimpleText"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tbl6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:visibility="gone" >
+
+            <TextView
+                style="@style/SimpleText"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1" />
+
+            <Button
+                android:id="@+id/btn_VHNDDate"
+                style="@style/Button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:gravity="center"
+                android:text="@string/VHNDDate"
+                android:textAppearance="?android:attr/textAppearanceButton"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv6"
+                style="@style/Button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".2"
+                android:background="@drawable/textsheet"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/SimpleText"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1" />
+        </TableRow>
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+    </LinearLayout>
+
+</LinearLayout>

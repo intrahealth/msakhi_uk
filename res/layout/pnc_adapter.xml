@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TableRow
+        android:id="@+id/GridRow"
+        android:layout_width="fill_parent"
+        android:layout_height="55dp" >
+
+        <TextView
+            android:id="@+id/tvQuestions"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:textColor="@color/Black"
+            android:gravity="center" />
+
+       
+    </TableRow>
+<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+<LinearLayout 
+        android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+       
+          
+
+                <RadioGroup
+                    android:id="@+id/rdgrp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+                </RadioGroup>
+          
+
+            <TableRow
+                android:id="@+id/tblrdgrp2"
+                style="@style/CustomTheme"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:visibility="gone"
+               >
+
+                <TextView
+                    android:id="@+id/tv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="5dp"
+                    android:text="Date"
+                      android:layout_weight="1"
+                    android:textColor="@color/Black"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tvdate"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="5dp"
+                        android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:textColor="@color/Black"
+                    android:textSize="17sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblrdgrptime"
+                style="@style/CustomTheme"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                 
+               >
+
+                <TextView
+                    android:id="@+id/tvtm"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="5dp"
+                    android:text="Time"
+                    android:textColor="@color/Black"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tvtime"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="5dp"
+                    android:background="@drawable/textbox"
+                    android:textColor="@color/Black"
+                    android:textSize="17sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblrdgrp3"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:visibility="gone"
+              >
+
+                <TextView
+                    android:id="@+id/tvQuestions2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="5dp"
+                    android:layout_weight="1"
+                  
+                    android:textColor="@color/Black"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/etans"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:background="@drawable/textbox"
+                    android:inputType="numberDecimal"
+                    android:maxLength="10"
+                    />
+            </TableRow>
+
+            <TextView
+                android:id="@+id/ansfield"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/ans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+            
+            <TextView 
+                android:visibility="gone"
+                android:id="@+id/ansy"
+                android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <TextView 
+                android:visibility="gone"
+                android:id="@+id/ansn"
+                android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            
+           
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

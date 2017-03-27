@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="70dp" >
+
+        <TextView
+            android:id="@+id/SlNo"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".3"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/Black"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/Activities"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/confirmingHIVTest"
+            android:textColor="@color/Black"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/Count"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".7"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="22"
+            android:textColor="@color/Black"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/Amount"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.2"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="1000"
+            android:textColor="@color/Black"
+            android:textSize="14dp" />
+    </TableRow>
+
+</LinearLayout>
