@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\libs\ksoap2-android-assembly-3.0.0-jar-with-dependencies.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="224c93f1824fa17b96db7250c2e5e2703d45e052">
+        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\2\ksoap2-android-assembly-3.0.0-jar-with-dependencies_e1c7505a1d23d863d8e2f8a0abc04269f818ab78\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\libs\libGoogleAnalyticsV2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6c48a1a1621e55c66fa6a381642916385c9dd781">
+        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\2\libGoogleAnalyticsV2_54b493a812e45c44b1ea4318da4e6887889554e4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_b98aed7e273712d29d873d756fe729cfe8a37962\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\libs\android-support-design.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\2\android-support-design_18c02d0c99145dc343d8cda9fcdbc6d2d85ec8f9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\libs\httpclient-4.2.5.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="666e26e76f2e87d84e4f16acb546481ae1b8e9a6">
+        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\2\httpclient-4.2.5_46a5acb7bf8ee9201534611a093383ab301ae62d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\modules-2\files-2.1\com.itextpdf.tool\xmlworker\5.5.11\9c943d762b71143823d83cfea65b4a42fa3a4889\xmlworker-5.5.11.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9c943d762b71143823d83cfea65b4a42fa3a4889">
+        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\10\xmlworker-5.5.11_d2d2061f732443252231263628cce8ca4769faa5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\libs\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="14d500eeb7128db6c0f9b55f166c42eacf00f3b6">
+        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\2\classes_2c62a1a59eb395b009b55be3c2c1c2f6ea9b9f88\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\libs\cardview-v7-21.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7d2525cba8ed61fff102977caed964fc22061e34">
+        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\2\cardview-v7-21.0.0_751924e8a46b0f0b8d42de8f54e5b5d3b09c7208\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\modules-2\files-2.1\com.itextpdf\itextpdf\5.5.11\4c66347f10e9dbf062a086e1223a0d0a9eeb3677\itextpdf-5.5.11.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4c66347f10e9dbf062a086e1223a0d0a9eeb3677">
+        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\10\itextpdf-5.5.11_edcb8741f1ee104de7b1093ef279b3640fafdda8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\libs\httpcore-4.2.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5e92ec56abe188b865642a14e1a037c1253fc42e">
+        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\2\httpcore-4.2.3_5b7c384bdc82b6b9847c576326fd7bd07a7db516\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.android\build-cache\de7fbe6d3d80b080d7dc2611e4ca1b4a071ab767\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2c65b8d0dc69307b0f1f268a0c13fed95c43632c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\libs\java-json.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="edad9c5de6fb8df07c535a47045956026011ffa3">
+        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\2\java-json_2938350a1e72d0609e15ac1dd5364acf974c8368\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c2d8d0ffd05293461f566f8e6c23195300876649">
+        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_c63ff6a2be69304b3d0e58b80d502aa90ebfda2d\classes.dex" />
+    </item>
+
+</items>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="10dp" />
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="50dp" >
+
+        <TextView
+            android:id="@+id/tv_ashaname"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textsheet"
+            android:gravity="center"
+            android:text="@string/AshaName"
+            android:textColor="@color/White" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".2" />
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:text="@string/SelectMonth" />
+
+        <Spinner
+            android:id="@+id/SpinMonth"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:background="@drawable/textbox" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".2" />
+    </TableRow>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="5dp" />
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="50dp" >
+
+        <TextView
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".5"
+            android:background="@drawable/textsheet"
+            android:gravity="center"
+            android:text="@string/SLNo"
+            android:textColor="@color/White" />
+
+        <TextView
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="2.2"
+            android:background="@drawable/textsheet"
+            android:gravity="center"
+            android:text="@string/Activities"
+            android:textColor="@color/White" />
+
+        <TextView
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".5"
+            android:background="@drawable/textsheet"
+            android:gravity="center"
+            android:text="@string/Count"
+            android:textColor="@color/White" />
+
+        <TextView
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textsheet"
+            android:gravity="center"
+            android:text="@string/Amount"
+            android:textColor="@color/White" />
+    </TableRow>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="600dp"
+            android:layout_margin="3dp"
+            android:orientation="vertical"
+            android:scrollbars="vertical" >
+
+            <GridView
+                android:id="@+id/VHND_rcrd_grid"
+                android:layout_width="fill_parent"
+                android:layout_height="400dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:numColumns="1"
+                android:scrollbarFadeDuration="0"
+                android:scrollbarStyle="insideOverlay"
+                android:scrollbars="vertical"
+                android:smoothScrollbar="true" >
+            </GridView>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    style="@style/SimpleTextblack"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="@string/familyplaning" 
+                    android:textSize="24dp"/>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" >
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/WomenName" />
+
+                    <TextView
+                        android:id="@+id/tv_WomenName"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/textbox"
+                        android:hint="@string/WomenName"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapSentences"
+                        android:maxLength="50" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" >
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/husbandname" />
+
+                    <TextView
+                        android:id="@+id/tv_husbandname"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/textbox"
+                        android:hint="@string/husbandname"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapSentences"
+                        android:maxLength="50" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" >
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/Previousadvice" />
+
+                    <TextView
+                        android:id="@+id/tv_Previousadvice"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/textbox"
+                        android:hint="@string/Previousadvice"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapSentences"
+                        android:maxLength="50" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" >
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/Currentadvice" />
+
+                    <TextView
+                        android:id="@+id/tv_Currentadvice"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/textbox"
+                        android:hint="@string/Currentadvice"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapSentences"
+                        android:maxLength="50" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone" >
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+
+                    <TextView
+                        android:layout_width="10dp"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/Red" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/edd" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <EditText
+                        android:id="@+id/spinASHAname"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_weight=".9"
+                        android:background="@drawable/textbox"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapSentences"
+                        android:maxLength="50" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" >
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/MethodAdopted" />
+
+                    <Spinner
+                        android:id="@+id/spin_MethodAdopted"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/textbox"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapSentences"
+                        android:maxLength="50" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" >
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/DateAvailable" />
+
+                    <Spinner
+                        android:id="@+id/spin_DateAvailable"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/textbox"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapSentences"
+                        android:maxLength="50" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" >
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/methodadopteddate" />
+
+                    <TextView
+                        android:id="@+id/tv_methodadopteddate"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/textbox"
+                        android:hint="@string/methodadopteddate"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapSentences"
+                        android:maxLength="50" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tbl_DateAvailable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" 
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:text="@string/Year" />
+
+                    <EditText
+                        android:id="@+id/et_Year"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight=".5"
+                        android:background="@drawable/textbox"
+                        android:hint="@string/Year"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:text="@string/Month" />
+
+                    <EditText
+                        android:id="@+id/et_Month"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight=".5"
+                        android:background="@drawable/textbox"
+                        android:hint="@string/Month"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="2" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" >
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/Pregnant" />
+
+                    <Spinner
+                        android:id="@+id/spin_Pregnant"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/textbox"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapSentences"
+                        android:maxLength="50" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" >
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/Pregnanttest" />
+
+                    <Spinner
+                        android:id="@+id/spin_Pregnanttest"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/textbox"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapSentences"
+                        android:maxLength="50" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp" >
+
+                    <TextView
+                        android:id="@+id/checkup"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical" />
+
+                    <Button
+                        android:id="@+id/btnSave"
+                        style="@style/ButtonText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_bg_custom"
+                        android:text="@string/save" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

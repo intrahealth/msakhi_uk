@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:orientation="vertical" >
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="5dp" >
+
+        <TextView
+            android:id="@+id/visits"
+            style="@style/SimpleText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/select" />
+    </TableRow>
+
+    <GridView
+        android:id="@+id/pastillnessgridview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+     
+        android:background="@drawable/grid_back"
+        android:numColumns="2"
+        android:padding="5dp" >
+    </GridView>
+
+    <!--
+                 <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="200dp" />
+    -->
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:paddingBottom="5dp" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_weight=".1" />
+
+        <Button
+            android:id="@+id/btnAdd"
+            style="@style/ButtonText"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/btn_bg_custom"
+            android:text="@string/set" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_weight=".2" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            style="@style/ButtonText"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/btn_bg_custom"
+            android:text="@string/cancel" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_weight=".1" />
+    </TableRow>
+
+</LinearLayout>

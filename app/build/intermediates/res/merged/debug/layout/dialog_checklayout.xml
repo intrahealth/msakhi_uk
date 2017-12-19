@@ -1,0 +1,97 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shadow"
+    android:orientation="vertical" >
+
+    <!-- layout title -->
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/txt_dialog_title"
+            style="@style/SimpleTextblack"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textAppearance="?android:attr/textAppearance" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/Black" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_alert_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+         android:gravity="center_vertical"
+        android:padding="8dp" >
+
+        <TextView
+            android:id="@+id/txt_alert_message"
+            style="@style/SimpleTextblack"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearance"
+            android:textColor="@color/appblue" />
+    </RelativeLayout>
+
+    <!-- layout dialog buttons -->
+
+    <LinearLayout
+        android:id="@+id/layout_dialog_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="4dp"
+        android:orientation="horizontal" >
+        
+        <TextView
+          android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"  />
+
+        <Button
+            android:id="@+id/btn_yes"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:text="@string/yes"
+            android:textAppearance="?android:attr/textAppearanceButton"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+        
+        <TextView
+          android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"  />
+        
+         <Button
+            android:id="@+id/btn_no"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:text="@string/no"
+            android:textAppearance="?android:attr/textAppearanceButton"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+         <TextView
+          android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"  />
+    </LinearLayout>
+
+</LinearLayout>

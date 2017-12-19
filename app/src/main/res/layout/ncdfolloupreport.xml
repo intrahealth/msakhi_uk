@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:keepScreenOn="true"
+    android:orientation="vertical" >
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="22dp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1"
+            android:visibility="invisible" />
+
+        <TextView
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:gravity="center_vertical"
+            android:text="@string/NCD_SCREENING"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1"
+            android:visibility="invisible" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".5"
+            android:background="@drawable/skyblueheet"
+            android:text="@string/srno" />
+
+        <TextView
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/skyblueheet"
+            android:text="@string/Date" />
+
+        <TextView
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/skyblueheet"
+            android:text="@string/bsl" />
+
+        <TextView
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/skyblueheet"
+            android:text="@string/bp1" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tbl_Row"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp" >
+
+        <TextView
+            android:id="@+id/tv1"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".5"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv2"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv3"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv4"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center" />
+    </TableRow>
+    <TableRow
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1"
+            android:visibility="invisible" />
+
+        <TextView
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:gravity="center_vertical"
+            android:text="@string/follow_up"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1"
+            android:visibility="invisible" />
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/tvbaby_name"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".5"
+            android:background="@drawable/textsheet"
+            android:text="@string/srno"
+            android:textColor="@color/White" />
+
+        <TextView
+            android:id="@+id/pwname"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textsheet"
+            android:text="@string/Date"
+            android:textColor="@color/White" />
+
+        <TextView
+            android:id="@+id/tvbaby_age"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textsheet"
+            android:text="@string/bsl"
+            android:textColor="@color/White" />
+
+        <TextView
+            android:id="@+id/tvHBNCvisit"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textsheet"
+            android:text="@string/bp1"
+            android:textColor="@color/White" />
+    </TableRow>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="vertical" >
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <GridView
+                android:id="@+id/gridfolloup"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:scrollbarFadeDuration="0"
+                android:scrollbarStyle="insideOverlay"
+                android:scrollbars="vertical"
+                android:smoothScrollbar="true" >
+            </GridView>
+        </TableRow>
+    </ScrollView>
+
+</LinearLayout>

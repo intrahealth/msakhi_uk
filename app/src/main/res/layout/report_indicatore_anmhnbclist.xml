@@ -1,0 +1,2676 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".01"
+            android:background="@color/PowderBlue"/>
+
+        <TextView
+            style="@style/SimpleTextblack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1.3"
+            android:text="@string/newbornreport"
+            android:background="@color/PowderBlue"
+            android:paddingTop="5dp"
+            android:textSize="22dp" />
+
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".01"
+            android:background="@color/PowderBlue"/>
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1" />
+
+        <Spinner
+            android:id="@+id/spinfilter"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:imeOptions="actionNext"
+            android:inputType="textCapSentences"
+            android:maxLength="50"
+            android:visibility="invisible"/>
+        
+        <Button
+            android:id="@+id/btndetails"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="@string/ashadetails" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1" />
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/sVillage" />
+
+        <Spinner
+            android:id="@+id/spinVillageName"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:imeOptions="actionNext"
+            android:inputType="textCapSentences"
+            android:maxLength="50" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1" />
+    </TableRow>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="3.2"
+                    android:background="@color/LightBlue"
+                    android:gravity="center_vertical"
+                    android:text="@string/totalchild" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+
+                    android:id="@+id/textView12"
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dp"
+
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:text="@string/m" />
+
+                <TextView
+                    android:id="@+id/tv_malechildren"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".6"
+                    android:background="@drawable/textbox"
+                    android:gravity="center_vertical"
+                    android:hint="@string/male" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+
+
+                    android:id="@+id/textView7"
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dp"
+
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:text="@string/f" />
+
+                <TextView
+                    android:id="@+id/tv_femalechildren"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".6"
+                    android:background="@drawable/textbox"
+                    android:gravity="center_vertical"
+                    android:hint="@string/female" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+
+                    android:id="@+id/textView15"
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight=".5"
+                    android:gravity="center"
+                    android:text="@string/Total" />
+
+                <TextView
+                    android:id="@+id/tv_totalchildren"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".5"
+                    android:background="@drawable/textbox"
+                    android:gravity="center_vertical"
+                    android:hint="@string/Total" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="3.2"
+                    android:background="@color/LightBlue"
+                    android:gravity="center_vertical"
+                    android:text="@string/textview2" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    android:id="@+id/tv_totalhhmale"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:gravity="center_vertical"
+                    android:hint="@string/male" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    android:id="@+id/tv_totalhhfemale"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:gravity="center_vertical"
+                    android:hint="@string/female" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    android:id="@+id/textview2"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:gravity="center_vertical"
+                    android:hint="@string/Total" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <LinearLayout
+                android:id="@+id/ll_jhhide"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/Homedelivery" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+
+
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+
+                        android:layout_weight="0.4"
+                        android:gravity="center"
+                        android:text="@string/m" />
+
+                    <TextView
+                        android:id="@+id/tv_Homedeliverymale"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".6"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical"
+                        android:hint="@string/male" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+
+
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+
+                        android:layout_weight="0.4"
+                        android:gravity="center"
+                        android:text="@string/f" />
+
+                    <TextView
+                        android:id="@+id/tv_Homedeliveryfemale"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".6"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical"
+                        android:hint="@string/female" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+
+
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:text="@string/Total" />
+
+                    <TextView
+                        android:id="@+id/tv_Homedeliverytotal"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical"
+                        android:hint="@string/Total" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/InstitutionalDelivery" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.4"
+                        android:gravity="center"
+                        android:text="@string/m" />
+
+                    <TextView
+                        android:id="@+id/tv_InstitutionalDeliverymale"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".6"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical"
+                        android:hint="@string/male" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.4"
+                        android:gravity="center"
+                        android:text="@string/f" />
+
+
+                    <TextView
+                        android:id="@+id/tv_InstitutionalDeliveryfemale"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".6"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical"
+                        android:hint="@string/female" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:text="@string/Total" />
+
+
+                    <TextView
+                        android:id="@+id/tv_InstitutionalDeliverytotal"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical"
+                        android:hint="@string/Total" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                    <TextView
+                        android:id="@+id/textView36"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/Birthweight" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.4"
+                        android:gravity="center"
+                        android:text="@string/m" />
+
+
+                    <TextView
+                        android:id="@+id/tv_Birthweightmale"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".6"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical"
+                        android:hint="@string/male" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.4"
+                        android:gravity="center"
+                        android:text="@string/f" />
+
+
+                    <TextView
+                        android:id="@+id/tv_Birthweightfemale"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".6"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical"
+                        android:hint="@string/female" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:text="@string/Total" />
+
+
+                    <TextView
+                        android:id="@+id/tv_Birthweighttotal"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical"
+                        android:hint="@string/Total" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/zerodays" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_0dayschildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/HBNCdone" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_0daysHBNC"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/threedays" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_3dayschildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/HBNCdone" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_3daysHBNC"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/sevendays" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_7dayschildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/HBNCdone" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_7daysHBNC"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/fourteendays" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_14dayschildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/HBNCdone" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_14daysHBNC"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/twentyonedays" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_21dayschildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/HBNCdone" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_21daysHBNC"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_textview9"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/twentyeightdays" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_28dayschildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/HBNCdone" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_28daysHBNC"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/Fourteetwodays" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_42dayschildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/HBNCdone" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_42daysHBNC"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/bcg" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_BCGchildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/Dosegiven" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_BCGDose"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/Polio" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_Poliochildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/Dosegiven" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_PolioDose"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/dpt1" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_dpt1children"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/Dosegiven" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_dpt1Dose"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/Polioone" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_Polioonechildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/Dosegiven" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_PoliooneDose"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/HepBone" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_HepB1children"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/Dosegiven" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_HepB1Dose"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/Pentavalent1" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_Pentavalent1children"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/Dosegiven" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_Pentavalent1Dose"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/dpt2" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_dpt2children"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/Dosegiven" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_dpt2Dose"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/Poliotwo" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_Poliotwochildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/Dosegiven" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_PoliotwoDose"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/hep2" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_HepBtwochildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/Dosegiven" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_HepBtwoDose"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/Pentavalent2" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_Pentavalent2children"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/Dosegiven" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_Pentavalent2Dose"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/dpt3" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_dpt3children"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/Dosegiven" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_dpt3Dose"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/hep3" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_hep3children"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/Dosegiven" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_hep3Dose"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/Pentavalent3" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_Pentavalent3children"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/Dosegiven" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_Pentavalent3Dose"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="3.2"
+                        android:background="@color/LightBlue"
+                        android:gravity="center_vertical"
+                        android:text="@string/Measles" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_Measleschildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/Dosegiven" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        android:id="@+id/tv_MeaslesDose"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".7"
+                        android:background="@drawable/textbox"
+                        android:gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+                </TableRow>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

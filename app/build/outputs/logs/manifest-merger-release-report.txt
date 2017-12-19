@@ -1,0 +1,1058 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:2:1-348:12
+	package
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:3:5-40
+		INJECTED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:5:5-32
+		INJECTED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml
+	android:versionCode
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:4:5-29
+		INJECTED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:2:11-69
+uses-sdk
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:multidex:1.0.1] C:\Users\Rakesh\.android\build-cache\de7fbe6d3d80b080d7dc2611e4ca1b4a071ab767\output\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services:11.0.4] C:\Users\Rakesh\.android\build-cache\586b3d628d5131acfa630c0893fe1d74c3a3c9e6\output\AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-ads:11.0.4] C:\Users\Rakesh\.android\build-cache\a609a4d50afafeed58737e09cee86601a2673780\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-ads-lite:11.0.4] C:\Users\Rakesh\.android\build-cache\86fdd32161ed16f77804140e664429d9f22206b9\output\AndroidManifest.xml:22:5-43
+MERGED from [com.google.android.gms:play-services-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\8a6e16bf23144ecf63b898b166e2236bf1afee8e\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-appinvite:11.0.4] C:\Users\Rakesh\.android\build-cache\c6885fa6b78eacab55ed440b6d44bf8d6bc51bcf\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-auth-api-phone:11.0.4] C:\Users\Rakesh\.android\build-cache\e8adb3501b32f52d33d8bbe0200f4196302f9093\output\AndroidManifest.xml:3:3-41
+MERGED from [com.google.android.gms:play-services-auth:11.0.4] C:\Users\Rakesh\.android\build-cache\ca427acc31b0f4b030bcd4d28ca92e0739e4644e\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-auth-base:11.0.4] C:\Users\Rakesh\.android\build-cache\91bf0e50ea01516e8972210a4c70ac0740b8c03c\output\AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-cast-framework:11.0.4] C:\Users\Rakesh\.android\build-cache\11446ebdb3249a100c50720d23cb05a8006af81e\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-cast:11.0.4] C:\Users\Rakesh\.android\build-cache\7b85d163d567f9a17b17ef19acd9561bc4f71991\output\AndroidManifest.xml:17:5-43
+MERGED from [com.android.support:mediarouter-v7:25.2.0] C:\Users\Rakesh\.android\build-cache\cd5f5a4c2df9fddd4a3f6e7196b1a85d8b4d3952\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:25.2.0] C:\Users\Rakesh\.android\build-cache\5961d8d8e768c91f740a48a203d9e0e447ab94cc\output\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:25.2.0] C:\Users\Rakesh\.android\build-cache\6a0d7fb1bb19f1f2e49788ba0cc81b716827120e\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.2.0] C:\Users\Rakesh\.android\build-cache\fea2f3706dc713af8a2b720417c7aeb32cd88943\output\AndroidManifest.xml:21:5-43
+MERGED from [com.android.support:palette-v7:25.2.0] C:\Users\Rakesh\.android\build-cache\3d0159eb8e001229e1fe8faa9e4651ade2278e43\output\AndroidManifest.xml:20:5-43
+MERGED from [com.google.android.gms:play-services-clearcut:11.0.4] C:\Users\Rakesh\.android\build-cache\a27785b394cb1cc68748b8cf0523cf275cebc190\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-config:11.0.4] C:\Users\Rakesh\.android\build-cache\41868dd5724198dc036c7edb218ac237d2dd9bdf\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-awareness:11.0.4] C:\Users\Rakesh\.android\build-cache\fe40b8039ee4c088bd8f757f26ac086a2b02a3ee\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-crash:11.0.4] C:\Users\Rakesh\.android\build-cache\70f555493664914f12d43f3010d3ff06b494f617\output\AndroidManifest.xml:20:5-43
+MERGED from [com.google.firebase:firebase-auth:11.0.4] C:\Users\Rakesh\.android\build-cache\f0594a12ba642e386551c44bf7e73ca7d1ad2baf\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-database:11.0.4] C:\Users\Rakesh\.android\build-cache\2e2575d6be5333ebe31fcf117014abdadab4daee\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.firebase:firebase-database-connection:11.0.4] C:\Users\Rakesh\.android\build-cache\e9c07f7b2c2380059890f1bbf42b4bb759f42e73\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.firebase:firebase-dynamic-links:11.0.4] C:\Users\Rakesh\.android\build-cache\d8780aff888fcc6b098ad3c3105e3d1d8cb66cee\output\AndroidManifest.xml:3:3-41
+MERGED from [com.google.firebase:firebase-messaging:11.0.4] C:\Users\Rakesh\.android\build-cache\c07b6026b2ff287887027f2f937901ee47a36c31\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-storage:11.0.4] C:\Users\Rakesh\.android\build-cache\6d06817c1df8b4f3110aa703fdfa12c044566020\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.firebase:firebase-storage-common:11.0.4] C:\Users\Rakesh\.android\build-cache\89bb7ff110320f1c6fdcba9c26c137f83d8419dc\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-fitness:11.0.4] C:\Users\Rakesh\.android\build-cache\a3482f6169b8802ed7bf02ab423ef072cb67e202\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-games:11.0.4] C:\Users\Rakesh\.android\build-cache\9a90cace8c4fff72acaf15984c0a03f3a3d19661\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-drive:11.0.4] C:\Users\Rakesh\.android\build-cache\91d3b51808fced03817966175627399bfeda26df\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-gass:11.0.4] C:\Users\Rakesh\.android\build-cache\71d74d8d3ca2cabb11aabc7d8143446749cee7e5\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-gcm:11.0.4] C:\Users\Rakesh\.android\build-cache\c53a547387cd5ce44bea9e19290335485eb82be1\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-appindexing:11.0.4] C:\Users\Rakesh\.android\build-cache\8449dbc3b02b3777701b9344d0dde2a9446773d3\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\9324b754644d100029f08a6e5133e33b719f4cab\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-instantapps:11.0.4] C:\Users\Rakesh\.android\build-cache\2de17002afba566768af02f5f04726e802aed221\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-location:11.0.4] C:\Users\Rakesh\.android\build-cache\f8090ac2f0a8a087683644bfeb566f6f03b8e762\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-nearby:11.0.4] C:\Users\Rakesh\.android\build-cache\231b3a660fe7481140b639f4dd08b256ae050dc7\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-panorama:11.0.4] C:\Users\Rakesh\.android\build-cache\a943577d1c8acb49eddfc1e6b4aaa36057467739\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-places:11.0.4] C:\Users\Rakesh\.android\build-cache\5ad269d68405f68bee971eea7c843fe523c26b7a\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-plus:11.0.4] C:\Users\Rakesh\.android\build-cache\3e55e1526e20cc1b0e6108f28daae4db3eaf16d2\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-safetynet:11.0.4] C:\Users\Rakesh\.android\build-cache\99411f14d807a080027e1f2952944b8c788ddd45\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-tagmanager:11.0.4] C:\Users\Rakesh\.android\build-cache\0da966da853e7bdc98024ba7c43428ccec9c251f\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-tagmanager-api:11.0.4] C:\Users\Rakesh\.android\build-cache\5b38ec67b783c304698ee686c12a2dd00195547b\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] C:\Users\Rakesh\.android\build-cache\b652dfd0be45d92c087985a2983760e8f0f0547b\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-common:11.0.4] C:\Users\Rakesh\.android\build-cache\31e9178b1e45ebe8879f3d3776dc190c35776720\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-tagmanager-v4-impl:11.0.4] C:\Users\Rakesh\.android\build-cache\9424178e6e859c4fe95934ae65905d94f4b2a62a\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-analytics-impl:11.0.4] C:\Users\Rakesh\.android\build-cache\2948510970209d03edf46a115f40068a08251b98\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-vision:11.0.4] C:\Users\Rakesh\.android\build-cache\261bbeeecb383c4b801828e3861ea005dc363898\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-vision-common:11.0.4] C:\Users\Rakesh\.android\build-cache\37edc8a15425e3a02e1ea44d340b752762152ce9\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-wallet:11.0.4] C:\Users\Rakesh\.android\build-cache\c5df36de800feb19d57bd6e9823dab864e4f30bd\output\AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-identity:11.0.4] C:\Users\Rakesh\.android\build-cache\9ff4c40bc2c3cbbd3e4e530975d585c67bce5ecd\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-maps:11.0.4] C:\Users\Rakesh\.android\build-cache\66113b942b4bcc9c8b1cc8634243b3d039162751\output\AndroidManifest.xml:23:5-43
+MERGED from [com.google.android.gms:play-services-wearable:11.0.4] C:\Users\Rakesh\.android\build-cache\ea51a4a073100b6715124e050001e1467d5a4936\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-base:11.0.4] C:\Users\Rakesh\.android\build-cache\50f0da7826dedbe4c4444ec338a997e06d8bb3c3\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-tasks:11.0.4] C:\Users\Rakesh\.android\build-cache\856b00d7aabaaf6e894f552d8fa22f7fb372e5d6\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-basement:11.0.4] C:\Users\Rakesh\.android\build-cache\0b6ae17b925d72ad6fae8f8e7e746358ed8b3b60\output\AndroidManifest.xml:17:5-43
+MERGED from [com.android.support:support-v4:25.2.0] C:\Users\Rakesh\.android\build-cache\8f89e2aaef672ec20507a3272299dd9fd476dba5\output\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.2.0] C:\Users\Rakesh\.android\build-cache\5ef3f68ddd6ac9f0e2c53cbebde86cb13a58ead4\output\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.2.0] C:\Users\Rakesh\.android\build-cache\9af4a23f8f54a9733ac0c1560d30642ad5aff282\output\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.2.0] C:\Users\Rakesh\.android\build-cache\69ec1f8cb979cbebab7aa5b835fbeee5467476a7\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.2.0] C:\Users\Rakesh\.android\build-cache\aff62294d1601e0e178c01383485bc8116b867ee\output\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.2.0] C:\Users\Rakesh\.android\build-cache\d86d7b16f9501fb3c93ec8d54002418456f45ffd\output\AndroidManifest.xml:21:5-23:58
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:25.2.0] C:\Users\Rakesh\.android\build-cache\5961d8d8e768c91f740a48a203d9e0e447ab94cc\output\AndroidManifest.xml:23:9-75
+	android:targetSdkVersion
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:9:9-38
+		INJECTED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:8:9-35
+		INJECTED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:11:5-84
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:11:22-81
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:12:5-80
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:12:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:13:5-81
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:13:22-78
+uses-permission#android.permission.CAMERA
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:14:5-65
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:14:22-62
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:15:5-79
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:15:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:16:5-81
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:16:22-78
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:17:5-79
+MERGED from [com.google.android.gms:play-services-ads-lite:11.0.4] C:\Users\Rakesh\.android\build-cache\86fdd32161ed16f77804140e664429d9f22206b9\output\AndroidManifest.xml:20:5-78
+MERGED from [com.google.android.gms:play-services-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\8a6e16bf23144ecf63b898b166e2236bf1afee8e\output\AndroidManifest.xml:21:5-78
+MERGED from [com.google.android.gms:play-services-nearby:11.0.4] C:\Users\Rakesh\.android\build-cache\231b3a660fe7481140b639f4dd08b256ae050dc7\output\AndroidManifest.xml:4:5-78
+MERGED from [com.google.android.gms:play-services-tagmanager-api:11.0.4] C:\Users\Rakesh\.android\build-cache\5b38ec67b783c304698ee686c12a2dd00195547b\output\AndroidManifest.xml:21:5-78
+MERGED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:21:5-78
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] C:\Users\Rakesh\.android\build-cache\b652dfd0be45d92c087985a2983760e8f0f0547b\output\AndroidManifest.xml:21:5-78
+MERGED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:19:5-78
+MERGED from [com.google.android.gms:play-services-analytics-impl:11.0.4] C:\Users\Rakesh\.android\build-cache\2948510970209d03edf46a115f40068a08251b98\output\AndroidManifest.xml:21:5-78
+MERGED from [com.google.android.gms:play-services-maps:11.0.4] C:\Users\Rakesh\.android\build-cache\66113b942b4bcc9c8b1cc8634243b3d039162751\output\AndroidManifest.xml:19:5-78
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:17:22-76
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:18:5-75
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:18:22-72
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:19:5-67
+MERGED from [com.google.android.gms:play-services-ads-lite:11.0.4] C:\Users\Rakesh\.android\build-cache\86fdd32161ed16f77804140e664429d9f22206b9\output\AndroidManifest.xml:19:5-66
+MERGED from [com.google.android.gms:play-services-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\8a6e16bf23144ecf63b898b166e2236bf1afee8e\output\AndroidManifest.xml:20:5-66
+MERGED from [com.google.android.gms:play-services-appinvite:11.0.4] C:\Users\Rakesh\.android\build-cache\c6885fa6b78eacab55ed440b6d44bf8d6bc51bcf\output\AndroidManifest.xml:18:5-66
+MERGED from [com.google.firebase:firebase-crash:11.0.4] C:\Users\Rakesh\.android\build-cache\70f555493664914f12d43f3010d3ff06b494f617\output\AndroidManifest.xml:18:5-66
+MERGED from [com.google.android.gms:play-services-gcm:11.0.4] C:\Users\Rakesh\.android\build-cache\c53a547387cd5ce44bea9e19290335485eb82be1\output\AndroidManifest.xml:21:5-66
+MERGED from [com.google.android.gms:play-services-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\9324b754644d100029f08a6e5133e33b719f4cab\output\AndroidManifest.xml:21:5-66
+MERGED from [com.google.android.gms:play-services-tagmanager-api:11.0.4] C:\Users\Rakesh\.android\build-cache\5b38ec67b783c304698ee686c12a2dd00195547b\output\AndroidManifest.xml:20:5-66
+MERGED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:20:5-66
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] C:\Users\Rakesh\.android\build-cache\b652dfd0be45d92c087985a2983760e8f0f0547b\output\AndroidManifest.xml:20:5-66
+MERGED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:20:5-66
+MERGED from [com.google.android.gms:play-services-analytics-impl:11.0.4] C:\Users\Rakesh\.android\build-cache\2948510970209d03edf46a115f40068a08251b98\output\AndroidManifest.xml:20:5-66
+MERGED from [com.google.android.gms:play-services-maps:11.0.4] C:\Users\Rakesh\.android\build-cache\66113b942b4bcc9c8b1cc8634243b3d039162751\output\AndroidManifest.xml:20:5-66
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:19:22-64
+uses-permission#android.permission.CHANGE_NETWORK_STATE
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:20:5-79
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:20:22-76
+uses-permission#android.permission.READ_INTERNAL_STORAGE
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:21:5-80
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:21:22-77
+uses-permission#android.permission.WRITE_INTERNAL_STORAGE
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:22:5-81
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:22:22-78
+uses-permission#android.permission.WAKE_LOCK
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:23:5-68
+MERGED from [com.google.android.gms:play-services-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\8a6e16bf23144ecf63b898b166e2236bf1afee8e\output\AndroidManifest.xml:24:5-67
+MERGED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] C:\Users\Rakesh\.android\build-cache\b652dfd0be45d92c087985a2983760e8f0f0547b\output\AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:21:5-67
+MERGED from [com.google.android.gms:play-services-analytics-impl:11.0.4] C:\Users\Rakesh\.android\build-cache\2948510970209d03edf46a115f40068a08251b98\output\AndroidManifest.xml:24:5-67
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:23:22-65
+application
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:25:5-341:19
+MERGED from [com.google.android.gms:play-services:11.0.4] C:\Users\Rakesh\.android\build-cache\586b3d628d5131acfa630c0893fe1d74c3a3c9e6\output\AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-ads-lite:11.0.4] C:\Users\Rakesh\.android\build-cache\86fdd32161ed16f77804140e664429d9f22206b9\output\AndroidManifest.xml:23:5-26:19
+MERGED from [com.google.android.gms:play-services-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\8a6e16bf23144ecf63b898b166e2236bf1afee8e\output\AndroidManifest.xml:26:5-19
+MERGED from [com.google.android.gms:play-services-appinvite:11.0.4] C:\Users\Rakesh\.android\build-cache\c6885fa6b78eacab55ed440b6d44bf8d6bc51bcf\output\AndroidManifest.xml:19:5-26:19
+MERGED from [com.google.android.gms:play-services-auth:11.0.4] C:\Users\Rakesh\.android\build-cache\ca427acc31b0f4b030bcd4d28ca92e0739e4644e\output\AndroidManifest.xml:19:5-25:19
+MERGED from [com.google.android.gms:play-services-cast-framework:11.0.4] C:\Users\Rakesh\.android\build-cache\11446ebdb3249a100c50720d23cb05a8006af81e\output\AndroidManifest.xml:4:5-8:19
+MERGED from [com.google.android.gms:play-services-cast:11.0.4] C:\Users\Rakesh\.android\build-cache\7b85d163d567f9a17b17ef19acd9561bc4f71991\output\AndroidManifest.xml:18:5-19
+MERGED from [com.android.support:mediarouter-v7:25.2.0] C:\Users\Rakesh\.android\build-cache\cd5f5a4c2df9fddd4a3f6e7196b1a85d8b4d3952\output\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:25.2.0] C:\Users\Rakesh\.android\build-cache\5961d8d8e768c91f740a48a203d9e0e447ab94cc\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.2.0] C:\Users\Rakesh\.android\build-cache\6a0d7fb1bb19f1f2e49788ba0cc81b716827120e\output\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-vector-drawable:25.2.0] C:\Users\Rakesh\.android\build-cache\fea2f3706dc713af8a2b720417c7aeb32cd88943\output\AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:palette-v7:25.2.0] C:\Users\Rakesh\.android\build-cache\3d0159eb8e001229e1fe8faa9e4651ade2278e43\output\AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-clearcut:11.0.4] C:\Users\Rakesh\.android\build-cache\a27785b394cb1cc68748b8cf0523cf275cebc190\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.firebase:firebase-config:11.0.4] C:\Users\Rakesh\.android\build-cache\41868dd5724198dc036c7edb218ac237d2dd9bdf\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-awareness:11.0.4] C:\Users\Rakesh\.android\build-cache\fe40b8039ee4c088bd8f757f26ac086a2b02a3ee\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.firebase:firebase-crash:11.0.4] C:\Users\Rakesh\.android\build-cache\70f555493664914f12d43f3010d3ff06b494f617\output\AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.firebase:firebase-auth:11.0.4] C:\Users\Rakesh\.android\build-cache\f0594a12ba642e386551c44bf7e73ca7d1ad2baf\output\AndroidManifest.xml:19:5-20:19
+MERGED from [com.google.firebase:firebase-dynamic-links:11.0.4] C:\Users\Rakesh\.android\build-cache\d8780aff888fcc6b098ad3c3105e3d1d8cb66cee\output\AndroidManifest.xml:5:3-17
+MERGED from [com.google.firebase:firebase-messaging:11.0.4] C:\Users\Rakesh\.android\build-cache\c07b6026b2ff287887027f2f937901ee47a36c31\output\AndroidManifest.xml:19:5-29:19
+MERGED from [com.google.android.gms:play-services-fitness:11.0.4] C:\Users\Rakesh\.android\build-cache\a3482f6169b8802ed7bf02ab423ef072cb67e202\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-games:11.0.4] C:\Users\Rakesh\.android\build-cache\9a90cace8c4fff72acaf15984c0a03f3a3d19661\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-drive:11.0.4] C:\Users\Rakesh\.android\build-cache\91d3b51808fced03817966175627399bfeda26df\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-gass:11.0.4] C:\Users\Rakesh\.android\build-cache\71d74d8d3ca2cabb11aabc7d8143446749cee7e5\output\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-gcm:11.0.4] C:\Users\Rakesh\.android\build-cache\c53a547387cd5ce44bea9e19290335485eb82be1\output\AndroidManifest.xml:23:5-19
+MERGED from [com.google.firebase:firebase-appindexing:11.0.4] C:\Users\Rakesh\.android\build-cache\8449dbc3b02b3777701b9344d0dde2a9446773d3\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\9324b754644d100029f08a6e5133e33b719f4cab\output\AndroidManifest.xml:23:5-19
+MERGED from [com.google.android.gms:play-services-location:11.0.4] C:\Users\Rakesh\.android\build-cache\f8090ac2f0a8a087683644bfeb566f6f03b8e762\output\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-nearby:11.0.4] C:\Users\Rakesh\.android\build-cache\231b3a660fe7481140b639f4dd08b256ae050dc7\output\AndroidManifest.xml:5:5-19
+MERGED from [com.google.android.gms:play-services-panorama:11.0.4] C:\Users\Rakesh\.android\build-cache\a943577d1c8acb49eddfc1e6b4aaa36057467739\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-places:11.0.4] C:\Users\Rakesh\.android\build-cache\5ad269d68405f68bee971eea7c843fe523c26b7a\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-plus:11.0.4] C:\Users\Rakesh\.android\build-cache\3e55e1526e20cc1b0e6108f28daae4db3eaf16d2\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-safetynet:11.0.4] C:\Users\Rakesh\.android\build-cache\99411f14d807a080027e1f2952944b8c788ddd45\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-tagmanager-api:11.0.4] C:\Users\Rakesh\.android\build-cache\5b38ec67b783c304698ee686c12a2dd00195547b\output\AndroidManifest.xml:23:5-33:19
+MERGED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:24:5-34:19
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] C:\Users\Rakesh\.android\build-cache\b652dfd0be45d92c087985a2983760e8f0f0547b\output\AndroidManifest.xml:24:5-28:19
+MERGED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:28:5-49:19
+MERGED from [com.google.firebase:firebase-common:11.0.4] C:\Users\Rakesh\.android\build-cache\31e9178b1e45ebe8879f3d3776dc190c35776720\output\AndroidManifest.xml:4:5-7:19
+MERGED from [com.google.android.gms:play-services-tagmanager-v4-impl:11.0.4] C:\Users\Rakesh\.android\build-cache\9424178e6e859c4fe95934ae65905d94f4b2a62a\output\AndroidManifest.xml:19:5-19
+MERGED from [com.google.android.gms:play-services-analytics-impl:11.0.4] C:\Users\Rakesh\.android\build-cache\2948510970209d03edf46a115f40068a08251b98\output\AndroidManifest.xml:26:5-19
+MERGED from [com.google.android.gms:play-services-vision:11.0.4] C:\Users\Rakesh\.android\build-cache\261bbeeecb383c4b801828e3861ea005dc363898\output\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-vision-common:11.0.4] C:\Users\Rakesh\.android\build-cache\37edc8a15425e3a02e1ea44d340b752762152ce9\output\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-identity:11.0.4] C:\Users\Rakesh\.android\build-cache\9ff4c40bc2c3cbbd3e4e530975d585c67bce5ecd\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-maps:11.0.4] C:\Users\Rakesh\.android\build-cache\66113b942b4bcc9c8b1cc8634243b3d039162751\output\AndroidManifest.xml:24:5-19
+MERGED from [com.google.android.gms:play-services-wearable:11.0.4] C:\Users\Rakesh\.android\build-cache\ea51a4a073100b6715124e050001e1467d5a4936\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-base:11.0.4] C:\Users\Rakesh\.android\build-cache\50f0da7826dedbe4c4444ec338a997e06d8bb3c3\output\AndroidManifest.xml:18:5-20:19
+MERGED from [com.google.android.gms:play-services-tasks:11.0.4] C:\Users\Rakesh\.android\build-cache\856b00d7aabaaf6e894f552d8fa22f7fb372e5d6\output\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-basement:11.0.4] C:\Users\Rakesh\.android\build-cache\0b6ae17b925d72ad6fae8f8e7e746358ed8b3b60\output\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:25.2.0] C:\Users\Rakesh\.android\build-cache\8f89e2aaef672ec20507a3272299dd9fd476dba5\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-fragment:25.2.0] C:\Users\Rakesh\.android\build-cache\5ef3f68ddd6ac9f0e2c53cbebde86cb13a58ead4\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:25.2.0] C:\Users\Rakesh\.android\build-cache\9af4a23f8f54a9733ac0c1560d30642ad5aff282\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-ui:25.2.0] C:\Users\Rakesh\.android\build-cache\69ec1f8cb979cbebab7aa5b835fbeee5467476a7\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-utils:25.2.0] C:\Users\Rakesh\.android\build-cache\aff62294d1601e0e178c01383485bc8116b867ee\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-compat:25.2.0] C:\Users\Rakesh\.android\build-cache\d86d7b16f9501fb3c93ec8d54002418456f45ffd\output\AndroidManifest.xml:25:5-20
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:29:9-41
+	android:allowBackup
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:27:9-35
+	android:icon
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:28:9-45
+	android:largeHeap
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:30:9-33
+	android:theme
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:32:9-39
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:26:9-56
+service#com.microware.intrahealth.ConnectionService
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:33:9-35:38
+	android:enabled
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:35:13-35
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:34:13-71
+receiver#com.microware.intrahealth.ReceiverPositioningAlarm
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:37:9-45:20
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:37:19-84
+activity#com.microware.intrahealth.Login
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:47:9-57:20
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:50:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:49:13-45
+	android:windowSoftInputMode
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:51:13-54
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:48:13-59
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:52:13-56:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:53:17-69
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:53:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:55:17-77
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:55:27-74
+activity#com.microware.intrahealth.Delivery
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:58:9-61:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:61:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:60:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:59:13-62
+activity#com.microware.intrahealth.ImunizationChildList
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:62:9-65:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:65:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:64:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:63:13-74
+activity#com.microware.intrahealth.ListViewActivity
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:66:9-69:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:69:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:68:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:67:13-70
+activity#com.microware.intrahealth.Immunization_Entry
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:70:9-73:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:73:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:72:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:71:13-72
+activity#com.microware.intrahealth.Dashboard_Activity
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:74:9-77:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:77:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:76:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:75:13-72
+activity#com.microware.intrahealth.Deathform
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:78:9-81:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:81:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:80:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:79:13-63
+activity#com.microware.intrahealth.MigrationForm
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:82:9-85:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:85:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:84:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:83:13-67
+activity#com.microware.intrahealth.Synchronization
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:86:9-89:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:89:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:88:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:87:13-69
+activity#com.microware.intrahealth.AncQuestionActivity
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:91:9-94:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:94:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:93:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:92:13-73
+activity#com.microware.intrahealth.Report_Module
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:95:9-98:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:98:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:97:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:96:13-67
+activity#com.microware.intrahealth.Reportindicator_Hnbclist
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:99:9-102:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:102:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:101:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:100:13-78
+activity#com.microware.intrahealth.ReportIndicator_anmList
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:103:9-106:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:106:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:105:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:104:13-77
+activity#com.microware.intrahealth.ReportIndicatorListHH
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:107:9-110:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:110:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:109:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:108:13-75
+activity#com.microware.intrahealth.ReportIndicator_ashaList
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:111:9-114:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:114:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:113:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:112:13-78
+activity#com.microware.intrahealth.Reportindicator_anmHnbclist
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:115:9-118:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:118:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:117:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:116:13-81
+activity#com.microware.intrahealth.AshaDashboardList
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:119:9-122:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:122:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:121:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:120:13-71
+activity#com.microware.intrahealth.ReportIndicator_anmListHH
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:123:9-126:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:126:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:125:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:124:13-79
+activity#com.microware.intrahealth.AshaListForAnm
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:127:9-130:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:130:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:129:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:128:13-68
+activity#com.microware.intrahealth.AshaDashboardListHH
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:131:9-134:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:134:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:133:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:132:13-73
+activity#com.microware.intrahealth.AshaDashboardListHnbc
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:135:9-138:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:138:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:137:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:136:13-75
+activity#com.microware.intrahealth.FamilyDetails
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:139:9-142:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:142:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:141:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:140:13-67
+activity#com.microware.intrahealth.Survey_Activity
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:144:9-148:66
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:147:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:146:13-46
+	android:windowSoftInputMode
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:148:13-54
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:145:13-69
+activity#com.microware.intrahealth.Intrahealth_Tab_Activity
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:149:9-153:66
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:152:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:151:13-46
+	android:windowSoftInputMode
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:153:13-54
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:150:13-78
+activity#com.microware.intrahealth.PncWomenList
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:154:9-158:66
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:157:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:156:13-46
+	android:windowSoftInputMode
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:158:13-54
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:155:13-66
+activity#com.microware.intrahealth.homevisitanc1
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:159:9-162:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:162:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:161:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:160:13-67
+activity#com.microware.intrahealth.homevisitanc2
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:163:9-166:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:166:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:165:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:164:13-67
+activity#com.microware.intrahealth.homevisitanc4
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:167:9-170:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:170:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:169:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:168:13-67
+activity#com.microware.intrahealth.homevisit3
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:171:9-174:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:174:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:173:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:172:13-64
+activity#com.microware.intrahealth.MCH_Dashboard
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:175:9-178:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:178:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:177:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:176:13-67
+activity#com.microware.intrahealth.AncActivity
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:179:9-183:66
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:182:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:181:13-46
+	android:windowSoftInputMode
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:183:13-54
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:180:13-65
+activity#com.microware.intrahealth.HomeVisitPnc
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:184:9-187:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:187:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:186:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:185:13-66
+activity#com.microware.intrahealth.childActivity
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:188:9-191:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:191:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:190:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:189:13-67
+activity#com.microware.intrahealth.Anc
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:193:9-196:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:196:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:195:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:194:13-57
+activity#com.microware.intrahealth.PregnantWomen
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:197:9-201:66
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:200:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:199:13-46
+	android:windowSoftInputMode
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:201:13-54
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:198:13-67
+activity#com.microware.intrahealth.PregWomenList
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:202:9-205:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:205:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:204:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:203:13-67
+activity#com.microware.intrahealth.newbornGrid
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:206:9-209:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:209:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:208:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:207:13-65
+activity#com.microware.intrahealth.ImmunizationQuestionActivity
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:210:9-213:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:213:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:212:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:211:13-82
+activity#com.microware.intrahealth.WomenListHH
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:214:9-217:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:217:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:216:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:215:13-65
+activity#com.microware.intrahealth.NewChildActivity
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:218:9-221:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:221:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:220:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:219:13-70
+activity#com.microware.intrahealth.HomeVisit
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:222:9-226:66
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:225:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:224:13-46
+	android:windowSoftInputMode
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:226:13-54
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:223:13-63
+activity#com.microware.intrahealth.HomeVisitDashboard
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:228:9-231:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:231:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:230:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:229:13-72
+activity#com.microware.intrahealth.ImmunizationCounselling
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:232:9-235:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:235:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:234:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:233:13-77
+activity#com.microware.intrahealth.ImmunizationDashboard
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:236:9-239:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:239:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:238:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:237:13-75
+activity#com.microware.intrahealth.FP_AA
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:240:9-244:66
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:243:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:242:13-46
+	android:windowSoftInputMode
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:244:13-54
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:241:13-59
+activity#com.microware.intrahealth.FP_MemberVisit
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:245:9-248:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:248:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:247:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:246:13-68
+activity#com.microware.intrahealth.FP_Follwup
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:249:9-252:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:252:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:251:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:250:13-64
+activity#com.microware.intrahealth.Anc_duelist
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:253:9-256:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:256:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:255:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:254:13-65
+activity#com.microware.intrahealth.AncVisit_List
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:257:9-260:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:260:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:259:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:258:13-67
+activity#com.microware.intrahealth.Incentives
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:261:9-264:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:264:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:263:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:262:13-64
+activity#com.microware.intrahealth.VHND
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:265:9-268:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:268:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:267:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:266:13-58
+activity#com.microware.intrahealth.VHND_Record
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:269:9-272:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:272:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:271:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:270:13-65
+activity#com.microware.intrahealth.VHND_Performance
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:273:9-276:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:276:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:275:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:274:13-70
+activity#com.microware.intrahealth.VHND_DueList
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:277:9-280:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:280:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:279:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:278:13-66
+activity#com.microware.intrahealth.VHND_DueList_Report
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:281:9-284:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:284:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:283:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:282:13-73
+activity#com.microware.intrahealth.VHND_DateRecord
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:285:9-288:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:288:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:287:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:286:13-69
+activity#com.microware.intrahealth.VHND_DueList_new
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:289:9-292:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:292:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:291:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:290:13-70
+activity#com.microware.intrahealth.VHND_Report
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:293:9-296:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:296:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:295:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:294:13-65
+activity#com.microware.intrahealth.MigrationSelf
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:297:9-300:61
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:300:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:299:13-46
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:298:13-67
+activity#com.microware.intrahealth.NCD_AA
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:301:9-305:66
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:304:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:303:13-46
+	android:windowSoftInputMode
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:305:13-54
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:302:13-60
+activity#com.microware.intrahealth.NcdScreening
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:306:9-310:66
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:309:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:308:13-46
+	android:windowSoftInputMode
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:310:13-54
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:307:13-66
+activity#com.microware.intrahealth.NCDFollowUp
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:311:9-315:66
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:314:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:313:13-46
+	android:windowSoftInputMode
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:315:13-54
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:312:13-65
+activity#com.microware.intrahealth.NCD_Report
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:316:9-320:66
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:319:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:318:13-46
+	android:windowSoftInputMode
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:320:13-54
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:317:13-64
+activity#com.microware.intrahealth.Anm_NCD_Report
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:321:9-325:66
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:324:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:323:13-46
+	android:windowSoftInputMode
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:325:13-54
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:322:13-68
+activity#com.microware.intrahealth.Ncd_Cbac
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:326:9-330:66
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:329:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:328:13-46
+	android:windowSoftInputMode
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:330:13-54
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:327:13-62
+activity#com.microware.intrahealth.VHND_ANC
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:331:9-335:66
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:334:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:333:13-46
+	android:windowSoftInputMode
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:335:13-54
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:332:13-62
+activity#com.microware.intrahealth.VHND_Immunizatiom
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:336:9-340:66
+	android:screenOrientation
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:339:13-49
+	android:label
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:338:13-46
+	android:windowSoftInputMode
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:340:13-54
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:337:13-71
+meta-data#com.google.android.gms.version
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:343:5-64
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:343:16-61
+meta-data#com.google.android.gms.analytics.globalConfigResource
+ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:344:5-346:50
+	android:resource
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:346:9-47
+	android:name
+		ADDED from C:\Users\Rakesh\StudioProjects\IntraHealth\app\src\main\AndroidManifest.xml:345:9-77
+activity#com.google.android.gms.ads.AdActivity
+ADDED from [com.google.android.gms:play-services-ads-lite:11.0.4] C:\Users\Rakesh\.android\build-cache\86fdd32161ed16f77804140e664429d9f22206b9\output\AndroidManifest.xml:25:9-232
+	android:configChanges
+		ADDED from [com.google.android.gms:play-services-ads-lite:11.0.4] C:\Users\Rakesh\.android\build-cache\86fdd32161ed16f77804140e664429d9f22206b9\output\AndroidManifest.xml:25:72-181
+	android:theme
+		ADDED from [com.google.android.gms:play-services-ads-lite:11.0.4] C:\Users\Rakesh\.android\build-cache\86fdd32161ed16f77804140e664429d9f22206b9\output\AndroidManifest.xml:25:182-230
+	android:name
+		ADDED from [com.google.android.gms:play-services-ads-lite:11.0.4] C:\Users\Rakesh\.android\build-cache\86fdd32161ed16f77804140e664429d9f22206b9\output\AndroidManifest.xml:25:19-71
+activity#com.google.android.gms.appinvite.PreviewActivity
+ADDED from [com.google.android.gms:play-services-appinvite:11.0.4] C:\Users\Rakesh\.android\build-cache\c6885fa6b78eacab55ed440b6d44bf8d6bc51bcf\output\AndroidManifest.xml:20:9-25:20
+	android:exported
+		ADDED from [com.google.android.gms:play-services-appinvite:11.0.4] C:\Users\Rakesh\.android\build-cache\c6885fa6b78eacab55ed440b6d44bf8d6bc51bcf\output\AndroidManifest.xml:20:51-74
+	android:theme
+		ADDED from [com.google.android.gms:play-services-appinvite:11.0.4] C:\Users\Rakesh\.android\build-cache\c6885fa6b78eacab55ed440b6d44bf8d6bc51bcf\output\AndroidManifest.xml:20:75-121
+	android:name
+		ADDED from [com.google.android.gms:play-services-appinvite:11.0.4] C:\Users\Rakesh\.android\build-cache\c6885fa6b78eacab55ed440b6d44bf8d6bc51bcf\output\AndroidManifest.xml:20:19-50
+intent-filter#android.intent.category.DEFAULT+com.google.android.gms.appinvite.ACTION_PREVIEW
+ADDED from [com.google.android.gms:play-services-appinvite:11.0.4] C:\Users\Rakesh\.android\build-cache\c6885fa6b78eacab55ed440b6d44bf8d6bc51bcf\output\AndroidManifest.xml:21:13-24:29
+action#com.google.android.gms.appinvite.ACTION_PREVIEW
+ADDED from [com.google.android.gms:play-services-appinvite:11.0.4] C:\Users\Rakesh\.android\build-cache\c6885fa6b78eacab55ed440b6d44bf8d6bc51bcf\output\AndroidManifest.xml:22:17-89
+	android:name
+		ADDED from [com.google.android.gms:play-services-appinvite:11.0.4] C:\Users\Rakesh\.android\build-cache\c6885fa6b78eacab55ed440b6d44bf8d6bc51bcf\output\AndroidManifest.xml:22:25-87
+category#android.intent.category.DEFAULT
+ADDED from [com.google.android.gms:play-services-appinvite:11.0.4] C:\Users\Rakesh\.android\build-cache\c6885fa6b78eacab55ed440b6d44bf8d6bc51bcf\output\AndroidManifest.xml:23:17-75
+	android:name
+		ADDED from [com.google.android.gms:play-services-appinvite:11.0.4] C:\Users\Rakesh\.android\build-cache\c6885fa6b78eacab55ed440b6d44bf8d6bc51bcf\output\AndroidManifest.xml:23:27-73
+activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
+ADDED from [com.google.android.gms:play-services-auth:11.0.4] C:\Users\Rakesh\.android\build-cache\ca427acc31b0f4b030bcd4d28ca92e0739e4644e\output\AndroidManifest.xml:20:9-189
+	android:excludeFromRecents
+		ADDED from [com.google.android.gms:play-services-auth:11.0.4] C:\Users\Rakesh\.android\build-cache\ca427acc31b0f4b030bcd4d28ca92e0739e4644e\output\AndroidManifest.xml:20:129-162
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:11.0.4] C:\Users\Rakesh\.android\build-cache\ca427acc31b0f4b030bcd4d28ca92e0739e4644e\output\AndroidManifest.xml:20:163-187
+	android:theme
+		ADDED from [com.google.android.gms:play-services-auth:11.0.4] C:\Users\Rakesh\.android\build-cache\ca427acc31b0f4b030bcd4d28ca92e0739e4644e\output\AndroidManifest.xml:20:69-128
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:11.0.4] C:\Users\Rakesh\.android\build-cache\ca427acc31b0f4b030bcd4d28ca92e0739e4644e\output\AndroidManifest.xml:20:19-68
+service#com.google.android.gms.auth.api.signin.RevocationBoundService
+ADDED from [com.google.android.gms:play-services-auth:11.0.4] C:\Users\Rakesh\.android\build-cache\ca427acc31b0f4b030bcd4d28ca92e0739e4644e\output\AndroidManifest.xml:24:9-184
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:11.0.4] C:\Users\Rakesh\.android\build-cache\ca427acc31b0f4b030bcd4d28ca92e0739e4644e\output\AndroidManifest.xml:24:64-87
+	android:permission
+		ADDED from [com.google.android.gms:play-services-auth:11.0.4] C:\Users\Rakesh\.android\build-cache\ca427acc31b0f4b030bcd4d28ca92e0739e4644e\output\AndroidManifest.xml:24:88-182
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:11.0.4] C:\Users\Rakesh\.android\build-cache\ca427acc31b0f4b030bcd4d28ca92e0739e4644e\output\AndroidManifest.xml:24:18-63
+receiver#com.google.android.gms.cast.framework.media.MediaIntentReceiver
+ADDED from [com.google.android.gms:play-services-cast-framework:11.0.4] C:\Users\Rakesh\.android\build-cache\11446ebdb3249a100c50720d23cb05a8006af81e\output\AndroidManifest.xml:5:9-99
+	android:name
+		ADDED from [com.google.android.gms:play-services-cast-framework:11.0.4] C:\Users\Rakesh\.android\build-cache\11446ebdb3249a100c50720d23cb05a8006af81e\output\AndroidManifest.xml:5:19-97
+service#com.google.android.gms.cast.framework.media.MediaNotificationService
+ADDED from [com.google.android.gms:play-services-cast-framework:11.0.4] C:\Users\Rakesh\.android\build-cache\11446ebdb3249a100c50720d23cb05a8006af81e\output\AndroidManifest.xml:6:9-103
+	android:name
+		ADDED from [com.google.android.gms:play-services-cast-framework:11.0.4] C:\Users\Rakesh\.android\build-cache\11446ebdb3249a100c50720d23cb05a8006af81e\output\AndroidManifest.xml:6:18-101
+service#com.google.android.gms.cast.framework.ReconnectionService
+ADDED from [com.google.android.gms:play-services-cast-framework:11.0.4] C:\Users\Rakesh\.android\build-cache\11446ebdb3249a100c50720d23cb05a8006af81e\output\AndroidManifest.xml:7:9-92
+	android:name
+		ADDED from [com.google.android.gms:play-services-cast-framework:11.0.4] C:\Users\Rakesh\.android\build-cache\11446ebdb3249a100c50720d23cb05a8006af81e\output\AndroidManifest.xml:7:18-90
+service#com.google.firebase.messaging.FirebaseMessagingService
+ADDED from [com.google.firebase:firebase-messaging:11.0.4] C:\Users\Rakesh\.android\build-cache\c07b6026b2ff287887027f2f937901ee47a36c31\output\AndroidManifest.xml:23:9-27:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-messaging:11.0.4] C:\Users\Rakesh\.android\build-cache\c07b6026b2ff287887027f2f937901ee47a36c31\output\AndroidManifest.xml:23:88-111
+	android:name
+		ADDED from [com.google.firebase:firebase-messaging:11.0.4] C:\Users\Rakesh\.android\build-cache\c07b6026b2ff287887027f2f937901ee47a36c31\output\AndroidManifest.xml:23:18-87
+intent-filter#com.google.firebase.MESSAGING_EVENT
+ADDED from [com.google.firebase:firebase-messaging:11.0.4] C:\Users\Rakesh\.android\build-cache\c07b6026b2ff287887027f2f937901ee47a36c31\output\AndroidManifest.xml:24:13-26:29
+	android:priority
+		ADDED from [com.google.firebase:firebase-messaging:11.0.4] C:\Users\Rakesh\.android\build-cache\c07b6026b2ff287887027f2f937901ee47a36c31\output\AndroidManifest.xml:24:28-51
+action#com.google.firebase.MESSAGING_EVENT
+ADDED from [com.google.firebase:firebase-messaging:11.0.4] C:\Users\Rakesh\.android\build-cache\c07b6026b2ff287887027f2f937901ee47a36c31\output\AndroidManifest.xml:25:17-77
+	android:name
+		ADDED from [com.google.firebase:firebase-messaging:11.0.4] C:\Users\Rakesh\.android\build-cache\c07b6026b2ff287887027f2f937901ee47a36c31\output\AndroidManifest.xml:25:25-75
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from [com.google.android.gms:play-services-gcm:11.0.4] C:\Users\Rakesh\.android\build-cache\c53a547387cd5ce44bea9e19290335485eb82be1\output\AndroidManifest.xml:20:5-81
+MERGED from [com.google.android.gms:play-services-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\9324b754644d100029f08a6e5133e33b719f4cab\output\AndroidManifest.xml:20:5-81
+MERGED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:22:5-81
+	android:name
+		ADDED from [com.google.android.gms:play-services-gcm:11.0.4] C:\Users\Rakesh\.android\build-cache\c53a547387cd5ce44bea9e19290335485eb82be1\output\AndroidManifest.xml:20:22-79
+service#com.google.android.gms.tagmanager.TagManagerService
+ADDED from [com.google.android.gms:play-services-tagmanager-api:11.0.4] C:\Users\Rakesh\.android\build-cache\5b38ec67b783c304698ee686c12a2dd00195547b\output\AndroidManifest.xml:24:9-134
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-tagmanager-api:11.0.4] C:\Users\Rakesh\.android\build-cache\5b38ec67b783c304698ee686c12a2dd00195547b\output\AndroidManifest.xml:24:110-132
+	android:exported
+		ADDED from [com.google.android.gms:play-services-tagmanager-api:11.0.4] C:\Users\Rakesh\.android\build-cache\5b38ec67b783c304698ee686c12a2dd00195547b\output\AndroidManifest.xml:24:85-109
+	android:name
+		ADDED from [com.google.android.gms:play-services-tagmanager-api:11.0.4] C:\Users\Rakesh\.android\build-cache\5b38ec67b783c304698ee686c12a2dd00195547b\output\AndroidManifest.xml:24:18-84
+activity#com.google.android.gms.tagmanager.TagManagerPreviewActivity
+ADDED from [com.google.android.gms:play-services-tagmanager-api:11.0.4] C:\Users\Rakesh\.android\build-cache\5b38ec67b783c304698ee686c12a2dd00195547b\output\AndroidManifest.xml:25:9-32:20
+	android:exported
+		ADDED from [com.google.android.gms:play-services-tagmanager-api:11.0.4] C:\Users\Rakesh\.android\build-cache\5b38ec67b783c304698ee686c12a2dd00195547b\output\AndroidManifest.xml:25:94-117
+	android:noHistory
+		ADDED from [com.google.android.gms:play-services-tagmanager-api:11.0.4] C:\Users\Rakesh\.android\build-cache\5b38ec67b783c304698ee686c12a2dd00195547b\output\AndroidManifest.xml:25:118-142
+	android:name
+		ADDED from [com.google.android.gms:play-services-tagmanager-api:11.0.4] C:\Users\Rakesh\.android\build-cache\5b38ec67b783c304698ee686c12a2dd00195547b\output\AndroidManifest.xml:25:19-93
+intent-filter#android.intent.action.VIEW+android.intent.category.BROWSABLE+android.intent.category.DEFAULT
+ADDED from [com.google.android.gms:play-services-tagmanager-api:11.0.4] C:\Users\Rakesh\.android\build-cache\5b38ec67b783c304698ee686c12a2dd00195547b\output\AndroidManifest.xml:26:13-31:29
+data
+ADDED from [com.google.android.gms:play-services-tagmanager-api:11.0.4] C:\Users\Rakesh\.android\build-cache\5b38ec67b783c304698ee686c12a2dd00195547b\output\AndroidManifest.xml:27:17-71
+	android:scheme
+		ADDED from [com.google.android.gms:play-services-tagmanager-api:11.0.4] C:\Users\Rakesh\.android\build-cache\5b38ec67b783c304698ee686c12a2dd00195547b\output\AndroidManifest.xml:27:23-69
+action#android.intent.action.VIEW
+ADDED from [com.google.android.gms:play-services-tagmanager-api:11.0.4] C:\Users\Rakesh\.android\build-cache\5b38ec67b783c304698ee686c12a2dd00195547b\output\AndroidManifest.xml:28:17-68
+	android:name
+		ADDED from [com.google.android.gms:play-services-tagmanager-api:11.0.4] C:\Users\Rakesh\.android\build-cache\5b38ec67b783c304698ee686c12a2dd00195547b\output\AndroidManifest.xml:28:25-66
+category#android.intent.category.BROWSABLE
+ADDED from [com.google.android.gms:play-services-tagmanager-api:11.0.4] C:\Users\Rakesh\.android\build-cache\5b38ec67b783c304698ee686c12a2dd00195547b\output\AndroidManifest.xml:30:17-77
+	android:name
+		ADDED from [com.google.android.gms:play-services-tagmanager-api:11.0.4] C:\Users\Rakesh\.android\build-cache\5b38ec67b783c304698ee686c12a2dd00195547b\output\AndroidManifest.xml:30:27-75
+receiver#com.google.android.gms.measurement.AppMeasurementReceiver
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:25:7-26:18
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] C:\Users\Rakesh\.android\build-cache\b652dfd0be45d92c087985a2983760e8f0f0547b\output\AndroidManifest.xml:25:7-26:18
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:25:90-112
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:25:113-137
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:25:17-89
+receiver#com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:27:7-31:18
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:27:162-184
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:27:185-208
+	android:permission
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:27:105-161
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:27:17-104
+intent-filter#com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:28:11-30:27
+action#com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:29:15-76
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:29:23-74
+service#com.google.android.gms.measurement.AppMeasurementService
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:32:7-137
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.4] C:\Users\Rakesh\.android\build-cache\b652dfd0be45d92c087985a2983760e8f0f0547b\output\AndroidManifest.xml:27:7-137
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:32:88-110
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:32:111-135
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:32:16-87
+service#com.google.android.gms.measurement.AppMeasurementJobService
+ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:33:7-197
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:33:148-170
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:33:171-195
+	android:permission
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:33:91-147
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:11.0.4] C:\Users\Rakesh\.android\build-cache\ffc18fb63d30922e913ef5526dccd6332575dd61\output\AndroidManifest.xml:33:16-90
+permission#${applicationId}.permission.C2D_MESSAGE
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:24:5-109
+	android:protectionLevel
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:24:72-107
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:24:17-71
+uses-permission#${applicationId}.permission.C2D_MESSAGE
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:26:5-78
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:26:22-76
+receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:30:9-35:20
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:30:85-108
+	android:permission
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:30:109-169
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:30:19-84
+intent-filter#${applicationId}+com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:31:13-34:29
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:32:17-80
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:32:25-78
+category#${applicationId}
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:33:17-60
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:33:27-58
+receiver#com.google.firebase.iid.FirebaseInstanceIdInternalReceiver
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:39:9-119
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:39:93-117
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:39:19-92
+service#com.google.firebase.iid.FirebaseInstanceIdService
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:43:9-47:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:43:83-106
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:43:18-82
+intent-filter#com.google.firebase.INSTANCE_ID_EVENT
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:44:13-46:29
+	android:priority
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:44:28-51
+action#com.google.firebase.INSTANCE_ID_EVENT
+ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:45:17-79
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.4] C:\Users\Rakesh\.android\build-cache\393b4e42853c2a194b9c934788dbf3a0f587c91f\output\AndroidManifest.xml:45:25-77
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:11.0.4] C:\Users\Rakesh\.android\build-cache\31e9178b1e45ebe8879f3d3776dc190c35776720\output\AndroidManifest.xml:6:9-194
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:11.0.4] C:\Users\Rakesh\.android\build-cache\31e9178b1e45ebe8879f3d3776dc190c35776720\output\AndroidManifest.xml:6:19-78
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:11.0.4] C:\Users\Rakesh\.android\build-cache\31e9178b1e45ebe8879f3d3776dc190c35776720\output\AndroidManifest.xml:6:144-168
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:11.0.4] C:\Users\Rakesh\.android\build-cache\31e9178b1e45ebe8879f3d3776dc190c35776720\output\AndroidManifest.xml:6:169-192
+	android:name
+		ADDED from [com.google.firebase:firebase-common:11.0.4] C:\Users\Rakesh\.android\build-cache\31e9178b1e45ebe8879f3d3776dc190c35776720\output\AndroidManifest.xml:6:79-143
+uses-feature#0x00020000
+ADDED from [com.google.android.gms:play-services-maps:11.0.4] C:\Users\Rakesh\.android\build-cache\66113b942b4bcc9c8b1cc8634243b3d039162751\output\AndroidManifest.xml:21:5-77
+	android:glEsVersion
+		ADDED from [com.google.android.gms:play-services-maps:11.0.4] C:\Users\Rakesh\.android\build-cache\66113b942b4bcc9c8b1cc8634243b3d039162751\output\AndroidManifest.xml:21:19-51
+	android:required
+		ADDED from [com.google.android.gms:play-services-maps:11.0.4] C:\Users\Rakesh\.android\build-cache\66113b942b4bcc9c8b1cc8634243b3d039162751\output\AndroidManifest.xml:21:52-75
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:11.0.4] C:\Users\Rakesh\.android\build-cache\50f0da7826dedbe4c4444ec338a997e06d8bb3c3\output\AndroidManifest.xml:19:9-172
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:11.0.4] C:\Users\Rakesh\.android\build-cache\50f0da7826dedbe4c4444ec338a997e06d8bb3c3\output\AndroidManifest.xml:19:146-170
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:11.0.4] C:\Users\Rakesh\.android\build-cache\50f0da7826dedbe4c4444ec338a997e06d8bb3c3\output\AndroidManifest.xml:19:86-145
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:11.0.4] C:\Users\Rakesh\.android\build-cache\50f0da7826dedbe4c4444ec338a997e06d8bb3c3\output\AndroidManifest.xml:19:19-85

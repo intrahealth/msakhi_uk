@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:keepScreenOn="true"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <TableRow
+            android:id="@+id/tbl_hbnc"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1"
+                android:visibility="invisible" />
+
+            <TextView
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:gravity="center_vertical"
+                android:text="@string/hbnc"
+                android:textSize="22dp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1"
+                android:visibility="invisible" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tbl_hbnc1"
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/tvbaby_name"
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:text="@string/baby_nm"
+                android:textColor="@color/White" />
+
+            <TextView
+                android:id="@+id/pwname"
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:text="@string/mothername"
+                android:textColor="@color/White" />
+
+            <TextView
+                android:id="@+id/tvbaby_age"
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:text="@string/agechild"
+                android:textColor="@color/White" />
+
+            <TextView
+                android:id="@+id/tvHBNCvisit"
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:text="@string/visit"
+                android:textColor="@color/White" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <GridView
+                android:id="@+id/gridanc"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:scrollbarFadeDuration="0"
+                android:scrollbarStyle="insideOverlay"
+                android:scrollbars="vertical"
+                android:smoothScrollbar="true"></GridView>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tbl_hrp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1"
+                android:visibility="invisible" />
+
+            <TextView
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:gravity="center_vertical"
+                android:text="@string/hrp"
+                android:textSize="22dp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1"
+                android:visibility="invisible" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tbl_hrp1"
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/tvHrpbaby_name"
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:text="@string/pwname"
+                android:textColor="@color/White" />
+
+            <TextView
+                android:id="@+id/tvHrp_pwname"
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:text="@string/sspousename"
+                android:textColor="@color/White" />
+
+            <TextView
+                android:id="@+id/tvHrpbaby_age"
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:text="@string/lmp"
+                android:textColor="@color/White" />
+
+            <TextView
+                android:id="@+id/tvHrpvisit"
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:text="@string/edd1"
+                android:textColor="@color/White" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <GridView
+                android:id="@+id/gridHrpanc"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:scrollbarFadeDuration="0"
+                android:scrollbarStyle="insideOverlay"
+                android:scrollbars="vertical"
+                android:smoothScrollbar="true"></GridView>
+        </TableRow>
+
+
+        <TableRow
+            android:id="@+id/tbl_anc"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1"
+                android:visibility="invisible" />
+
+            <TextView
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:gravity="center_vertical"
+                android:text="@string/Anc"
+                android:textSize="22dp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1"
+                android:visibility="invisible" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tbl_anc1"
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/tvanc_name"
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:text="@string/pwname"
+                android:textColor="@color/White" />
+
+            <TextView
+                android:id="@+id/tvanc_pwname"
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:text="@string/sspousename"
+                android:textColor="@color/White" />
+
+            <TextView
+                android:id="@+id/tvanc_age"
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:text="@string/lmp"
+                android:textColor="@color/White" />
+
+            <TextView
+                android:id="@+id/tvancvisit"
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:text="@string/edd1"
+                android:textColor="@color/White" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <GridView
+                android:id="@+id/gridanc1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:scrollbarFadeDuration="0"
+                android:scrollbarStyle="insideOverlay"
+                android:scrollbars="vertical"
+                android:smoothScrollbar="true"></GridView>
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/tvVhndbaby_name"
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:text="@string/nextvhnd"
+                android:textColor="@color/White"
+                android:textSize="22dp" />
+        </TableRow>
+        </LinearLayout>
+    </ScrollView>
+
+    </LinearLayout>

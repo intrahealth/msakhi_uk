@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/textsheet"
+    android:orientation="vertical" >
+
+    <!-- layout title -->
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:background="@color/IndianRed"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/txt_alert_title"
+            style="@style/Textview"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@string/MemberList"
+            android:textAppearance="?android:attr/textAppearance"
+            android:textColor="@color/White"
+            android:textSize="20dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/White" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_alert_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="0dp" >
+
+        <ListView
+            android:id="@+id/memberlist"
+            style="@style/EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textbox"
+            android:gravity="center" >
+        </ListView>
+    </RelativeLayout>
+
+</LinearLayout>

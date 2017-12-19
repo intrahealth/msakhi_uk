@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+
+    defaultConfig {
+        applicationId "com.microware.intrahealth"
+        minSdkVersion 16
+        targetSdkVersion 25
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    aaptOptions{
+        cruncherEnabled = false
+    }
+    dexOptions{
+        javaMaxHeapSize "4g"
+    }
+    buildTypes {
+        release {
+            shrinkResources false
+            minifyEnabled false
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    compile 'com.android.support:appcompat-v7:25.0.0'
+    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.google.android.gms:play-services:+'
+    compile files('libs/android-support-design.jar')
+    compile files('libs/cardview-v7-21.0.0.jar')
+    compile files('libs/classes.jar')
+    compile files('libs/httpclient-4.2.5.jar')
+    compile files('libs/httpcore-4.2.3.jar')
+    compile files('libs/java-json.jar')
+    compile files('libs/jasperreports-fonts-4.5.0.jar')
+    compile files('libs/ksoap2-android-assembly-3.0.0-jar-with-dependencies.jar')
+    compile files('libs/libGoogleAnalyticsV2.jar')
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.itextpdf:itextpdf:5.5.11'
+    compile 'com.itextpdf.tool:xmlworker:5.5.11'
+
+    //compile files('libs/tamilutillib.jar')
+
+}

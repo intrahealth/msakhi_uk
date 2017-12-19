@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btnHousehold"
+        style="@style/ButtonText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_bg_custom"
+        android:gravity="center"
+        android:onClick="onclickButton"
+        android:text="@string/household" />
+
+    <Button
+        android:id="@+id/btnANC"
+        style="@style/ButtonText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/btn_bg_custom"
+        android:gravity="center"
+        android:onClick="onclickButton"
+
+        android:text="@string/PregnantWomen" />
+
+    <Button
+        android:id="@+id/btnHNBC"
+        style="@style/ButtonText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/btn_bg_custom"
+        android:gravity="center"
+        android:onClick="onclickButton"
+        android:text="@string/Children" />
+
+    <Button
+        android:id="@+id/btn_Immunizationduelist"
+        style="@style/ButtonText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/btn_bg_custom"
+        android:gravity="center"
+        android:onClick="onclickButton"
+        android:text="@string/Immunizationduelist" />
+
+    <Button
+        android:id="@+id/btn_ANCduelist"
+        style="@style/ButtonText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/btn_bg_custom"
+        android:gravity="center"
+        android:onClick="onclickButton"
+        android:text="@string/ANCduelist" />
+
+    <Button
+        android:id="@+id/btnReport"
+        style="@style/ButtonText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_bg_custom"
+        android:gravity="center"
+        android:onClick="onclickButton"
+        android:text="@string/ncdreport" />
+
+    <Button
+        android:id="@+id/btnhrpReport"
+        style="@style/ButtonText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_bg_custom"
+        android:gravity="center"
+        android:onClick="onclickButton"
+        android:text="@string/hrp_report" />
+
+</LinearLayout>

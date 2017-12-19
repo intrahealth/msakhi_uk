@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:keepScreenOn="true"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.5" />
+
+        <ImageView
+            android:id="@+id/btnadd"
+            style="@style/ButtonText"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/add"
+            android:gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/addicon" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1"
+            android:visibility="invisible" />
+
+        <TextView
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textsheet"
+            android:gravity="center"
+            android:text="@string/FamilyMemb"
+            android:textColor="@color/White" />
+
+        <TextView
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".7"
+            android:background="@drawable/textsheet"
+            android:gravity="center"
+            android:text="@string/Relation"
+            android:textColor="@color/White" />
+
+        <TextView
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".7"
+            android:background="@drawable/textsheet"
+            android:gravity="center"
+            android:text="@string/Gender"
+            android:textColor="@color/White" />
+
+        <TextView
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".7"
+            android:background="@drawable/textsheet"
+            android:gravity="center"
+            android:text="@string/agefamily"
+            android:textColor="@color/White" />
+
+        <TextView
+            android:id="@+id/tv_stat"
+            style="@style/Textview"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:background="@drawable/textsheet"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1"
+            android:visibility="invisible" />
+    </TableRow>
+
+   <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3" >
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <GridView
+                android:id="@+id/gridfamilydetails"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:background="@color/White" >
+            </GridView>
+        </TableRow>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight=".5"
+        android:gravity="center"
+        android:text="@string/tapTextScreen"
+        android:textColor="@color/Black" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp" >
+
+        <TextView
+            android:id="@+id/totalcount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/SkyBlue"
+            android:gravity="center" />
+    </LinearLayout>
+
+</LinearLayout>

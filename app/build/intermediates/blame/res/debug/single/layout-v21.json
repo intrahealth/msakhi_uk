@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout-v21\\notification_action.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout-v21\\notification_template_custom_big.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout-v21\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout-v21\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\place_autocomplete_fragment.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5ad269d68405f68bee971eea7c843fe523c26b7a\\output\\res\\layout-v21\\place_autocomplete_fragment.xml"
+    }
+]

@@ -1,0 +1,750 @@
+[
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_search_dropdown_item_icons_2line.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\migrationself.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\migrationself.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\report_indicatore_hnbclist.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\report_indicatore_hnbclist.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_list_menu_item_layout.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\mr_controller_volume_item.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\cd5f5a4c2df9fddd4a3f6e7196b1a85d8b4d3952\\output\\res\\layout\\mr_controller_volume_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\drop_down_list_row.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\drop_down_list_row.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\fp_dialog.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\fp_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\ncdreportadapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\ncdreportadapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\ashalistforanm.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\ashalistforanm.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_dialog_title_material.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\main.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_list_menu_item_checkbox.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\reportindicator_anmlisthh.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\reportindicator_anmlisthh.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\fp_existmember.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\fp_existmember.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_alert_dialog_material.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\list_mobilevisit.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\list_mobilevisit.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\ncdscreening.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\ncdscreening.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_part_time.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\fp_followup.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\fp_followup.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\dashboard1.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\dashboard1.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_screen_simple_overlay_action_mode.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_media.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\notification_template_media.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\ncd_cbac.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\ncd_cbac.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\vhnd_report.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\vhnd_report.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\support_simple_spinner_dropdown_item.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\incentives.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\incentives.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_bar_title_item.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\ncdfollowup.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\ncdfollowup.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\ncd_aa.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\ncd_aa.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\anc_list.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\anc_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\simple_spinner_multiitem.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\simple_spinner_multiitem.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_menu_layout.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_mode_bar.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\timepicker.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\timepicker.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_screen_content_include.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_screen_content_include.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\fp_membervisitadapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\fp_membervisitadapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_bar_up_container.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\imunization_entery.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\imunization_entery.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\place_autocomplete_item_prediction.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5ad269d68405f68bee971eea7c843fe523c26b7a\\output\\res\\layout\\place_autocomplete_item_prediction.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\newbornactivity.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\newbornactivity.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\preg_reg1.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\preg_reg1.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\services.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\services.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\ncdreport.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\ncdreport.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_screen_simple.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_screen_simple.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_activity_chooser_view.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\child_alert.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\child_alert.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\mr_chooser_list_item.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\cd5f5a4c2df9fddd4a3f6e7196b1a85d8b4d3952\\output\\res\\layout\\mr_chooser_list_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\pncviewpager.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\pncviewpager.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_activity_chooser_view_list_item.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\mr_playback_control.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\cd5f5a4c2df9fddd4a3f6e7196b1a85d8b4d3952\\output\\res\\layout\\mr_playback_control.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_list_menu_item_icon.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\anc_activity.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\anc_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\list_mobile.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\list_mobile.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\cast_help_text.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\11446ebdb3249a100c50720d23cb05a8006af81e\\output\\res\\layout\\cast_help_text.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\vhnd_record_adapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\vhnd_record_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\report_indicatore_anmhnbclist.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\report_indicatore_anmhnbclist.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\intrahealth_activity.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\intrahealth_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\pnc_activity.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\pnc_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\titlebar.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\titlebar.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\womenlistchild.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\womenlistchild.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\notification_action.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\notification_action.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\pnc_adapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\pnc_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\pregnantwomenvisit.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\pregnantwomenvisit.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_bar_view_list_nav_layout.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\vhnd_immunization.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\vhnd_immunization.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\select_dialog_singlechoice_material.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\vhnd_daterecord.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\vhnd_daterecord.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\homevisit_gridadapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\homevisit_gridadapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\mr_volume_control.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\cd5f5a4c2df9fddd4a3f6e7196b1a85d8b4d3952\\output\\res\\layout\\mr_volume_control.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\intrahealth_drawer_adapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\intrahealth_drawer_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\delivery.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\delivery.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\vhnd_performance.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\vhnd_performance.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\vaccination.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\vaccination.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_menu_item_layout.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\vhnd_record.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\vhnd_record.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\familydetails_adapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\familydetails_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_select_dialog_material.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\anclist.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\anclist.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_search_view.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_search_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_list_menu_item_radio.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\gridview.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\gridview.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\vhnd_duelist_adpater_new.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\vhnd_duelist_adpater_new.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\backpress.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\backpress.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\select_dialog_item_material.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\select_dialog_item_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\ancduelist.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\ancduelist.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\newchild.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\newchild.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\popup_father_mother.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\popup_father_mother.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\immunizationgridadapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\immunizationgridadapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\dialog_checklayout.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\dialog_checklayout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\cast_intro_overlay.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\11446ebdb3249a100c50720d23cb05a8006af81e\\output\\res\\layout\\cast_intro_overlay.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\anc_duelistadapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\anc_duelistadapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\immunnizationquestion_adapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\immunnizationquestion_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\map_relation_popup.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\map_relation_popup.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\anc_duevisistgriddialog.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\anc_duevisistgriddialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\migrationselfadapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\migrationselfadapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\visitlist.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\visitlist.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\listview_gridadapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\listview_gridadapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\ancgridadapter2.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\ancgridadapter2.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\home_activity.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\home_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\family_activity.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\family_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\immunization_activity.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\immunization_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\ancgridadapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\ancgridadapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_lines_media.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\notification_template_lines_media.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\memberlist.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\memberlist.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\vhndreportadapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\vhndreportadapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\preg_reglist.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\preg_reglist.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\ncd_adapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\ncd_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\newbornchild.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\newbornchild.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\fp_adapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\fp_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\showdata_spouse_father_mother.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\showdata_spouse_father_mother.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\survey_activity_adapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\survey_activity_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\dashboard.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\dashboard.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\cast_expanded_controller_activity.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\11446ebdb3249a100c50720d23cb05a8006af81e\\output\\res\\layout\\cast_expanded_controller_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_screen_toolbar.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\vhnd_duelist.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\vhnd_duelist.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\fp_membervisit.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\fp_membervisit.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\synchronization.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\synchronization.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\cast_tracks_chooser_dialog_row_layout.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\11446ebdb3249a100c50720d23cb05a8006af81e\\output\\res\\layout\\cast_tracks_chooser_dialog_row_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\visit_gridadapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\visit_gridadapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\incentive_adapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\incentive_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\ncd_existmember.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\ncd_existmember.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\cast_mini_controller.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\11446ebdb3249a100c50720d23cb05a8006af81e\\output\\res\\layout\\cast_mini_controller.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\newloginscreen.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\newloginscreen.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\familydetails.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\familydetails.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\image_dialog.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\image_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\vhnd_record_adapter_new.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\vhnd_record_adapter_new.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\asha_icentive.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\asha_icentive.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\datetimepicker.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\datetimepicker.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\ashalistform_adapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\ashalistform_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\imunazation.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\imunazation.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_alert_dialog_button_bar_material.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\viewpager_item.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\viewpager_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_mode_close_item_material.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\vhnd_duelist_new.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\vhnd_duelist_new.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\pncvisitadapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\pncvisitadapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\pncgridadapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\pncgridadapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\mr_controller_material_dialog_b.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\cd5f5a4c2df9fddd4a3f6e7196b1a85d8b4d3952\\output\\res\\layout\\mr_controller_material_dialog_b.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\datetimepicker1.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\datetimepicker1.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\fp_report.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\fp_report.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_popup_menu_header_item_layout.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_popup_menu_header_item_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\login.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\login.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\dialog_layout.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\dialog_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\immunizationques_activity.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\immunizationques_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\immunizationdashboard.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\immunizationdashboard.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\popupcheckup.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\popupcheckup.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\duelist_dialog.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\duelist_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\reportindicator_anm_list.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\reportindicator_anm_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_part_chronometer.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\logout_alert.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\logout_alert.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\place_autocomplete_progress.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5ad269d68405f68bee971eea7c843fe523c26b7a\\output\\res\\layout\\place_autocomplete_progress.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\mch_dashboard.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\mch_dashboard.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\reportindicatorlisthh.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\reportindicatorlisthh.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\homevisit.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\homevisit.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\immunization_grid_adapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\immunization_grid_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\vhnd_perform_adpter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\vhnd_perform_adpter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\place_autocomplete_fragment.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5ad269d68405f68bee971eea7c843fe523c26b7a\\output\\res\\layout\\place_autocomplete_fragment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\cast_tracks_chooser_dialog_layout.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\11446ebdb3249a100c50720d23cb05a8006af81e\\output\\res\\layout\\cast_tracks_chooser_dialog_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\newbornadapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\newbornadapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\myshape1.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\myshape1.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\mr_chooser_dialog.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\cd5f5a4c2df9fddd4a3f6e7196b1a85d8b4d3952\\output\\res\\layout\\mr_chooser_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\reportmodulescreen.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\reportmodulescreen.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\anc.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\anc.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\welcome.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\welcome.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_expanded_menu_layout.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\reportindicator_asha_list.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\reportindicator_asha_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\pop_up_window.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\pop_up_window.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\household_activity.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\household_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\ancform.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\ancform.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\anc_questionactivity.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\anc_questionactivity.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\homegridadapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\homegridadapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\widget_front.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\widget_front.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\select_dialog_multichoice_material.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\place_autocomplete_item_powered_by_google.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5ad269d68405f68bee971eea7c843fe523c26b7a\\output\\res\\layout\\place_autocomplete_item_powered_by_google.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\vhnd_duelist_adpater.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\vhnd_duelist_adpater.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\vhnd_anc.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\vhnd_anc.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\ancquestions_gridadapter.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\ancquestions_gridadapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\migration.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\migration.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\vhnd.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\vhnd.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_popup_menu_item_layout.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\survey_activity.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\survey_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\toast.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\toast.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_alert_dialog_title_material.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\abc_alert_dialog_title_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\ncdfolloupreport.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\ncdfolloupreport.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_media_custom.xml",
+        "source": "C:\\Users\\Rakesh\\.android\\build-cache\\5961d8d8e768c91f740a48a203d9e0e447ab94cc\\output\\res\\layout\\notification_template_media_custom.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\release\\layout\\death.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\layout\\death.xml"
+    }
+]

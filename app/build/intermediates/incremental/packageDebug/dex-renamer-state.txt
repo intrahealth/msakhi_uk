@@ -1,0 +1,7 @@
+#Fri Dec 15 20:15:33 IST 2017
+base.0=C\:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_b98aed7e273712d29d873d756fe729cfe8a37962
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=C\:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_c63ff6a2be69304b3d0e58b80d502aa90ebfda2d\\classes.dex
+base.1=C\:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_c63ff6a2be69304b3d0e58b80d502aa90ebfda2d
+file.0=C\:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_b98aed7e273712d29d873d756fe729cfe8a37962\\classes.dex

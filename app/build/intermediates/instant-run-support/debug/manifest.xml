@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.microware.intrahealth"
+    android:versionCode="31"
+    android:versionName="6.1.2" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="25" />
+
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <meta-data android:name="com.google.android.gms.version" />
+    <meta-data
+        android:name="com.google.android.gms.analytics.globalConfigResource"
+        android:resource="@xml/global_tracker" />
+
+    <!-- Permissions required for GCM -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <permission
+        android:name="com.microware.intrahealth.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.microware.intrahealth.permission.C2D_MESSAGE" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <application
+        android:name="com.microware.intrahealth.Global"
+        android:allowBackup="true"
+        android:icon="@drawable/msakhi_logo"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:theme="@style/MyTheme" >
+        <service
+            android:name="com.microware.intrahealth.ConnectionService"
+            android:enabled="true" />
+
+        <receiver android:name="com.microware.intrahealth.ReceiverPositioningAlarm" >
+
+            <!-- this Broadcast Receiver only listens to the following intent -->
+            <!--
+            <intent-filter>
+                <action android:name="com.microware.intrahealth.ACTION_REFRESH_SCHEDULE_ALARM" />
+            </intent-filter>
+            -->
+        </receiver>
+
+        <activity
+            android:name="com.microware.intrahealth.Login"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.microware.intrahealth.Delivery"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.ImunizationChildList"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.ListViewActivity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.Immunization_Entry"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.Dashboard_Activity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.Deathform"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.MigrationForm"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.Synchronization"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.AncQuestionActivity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.Report_Module"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.Reportindicator_Hnbclist"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.ReportIndicator_anmList"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.ReportIndicatorListHH"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.ReportIndicator_ashaList"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.Reportindicator_anmHnbclist"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.AshaDashboardList"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.ReportIndicator_anmListHH"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.AshaListForAnm"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.AshaDashboardListHH"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.AshaDashboardListHnbc"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.FamilyDetails"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.Survey_Activity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.microware.intrahealth.Intrahealth_Tab_Activity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.microware.intrahealth.PncWomenList"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.microware.intrahealth.homevisitanc1"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.homevisitanc2"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.homevisitanc4"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.homevisit3"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.MCH_Dashboard"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.AncActivity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.microware.intrahealth.HomeVisitPnc"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.childActivity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.Anc"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.PregnantWomen"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.microware.intrahealth.PregWomenList"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.newbornGrid"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.ImmunizationQuestionActivity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.WomenListHH"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.NewChildActivity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.HomeVisit"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.microware.intrahealth.HomeVisitDashboard"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.ImmunizationCounselling"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.ImmunizationDashboard"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.FP_AA"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.microware.intrahealth.FP_MemberVisit"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.FP_Follwup"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.Anc_duelist"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.AncVisit_List"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.Incentives"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.VHND"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.VHND_Record"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.VHND_Performance"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.VHND_DueList"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.VHND_DueList_Report"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.VHND_DateRecord"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.VHND_DueList_new"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.VHND_Report"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.MigrationSelf"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.microware.intrahealth.NCD_AA"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.microware.intrahealth.NcdScreening"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.microware.intrahealth.NCDFollowUp"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.microware.intrahealth.NCD_Report"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.microware.intrahealth.Anm_NCD_Report"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.microware.intrahealth.Ncd_Cbac"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.microware.intrahealth.VHND_ANC"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.microware.intrahealth.VHND_Immunizatiom"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent" />
+        <activity
+            android:name="com.google.android.gms.appinvite.PreviewActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppInvite.Preview" >
+            <intent-filter>
+                <action android:name="com.google.android.gms.appinvite.ACTION_PREVIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!--
+Service handling Google Sign-In user revocation. For apps that do not integrate with
+            Google Sign-In, this service will never be started.
+        -->
+        <service
+            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+            android:exported="true"
+            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />
+
+        <receiver android:name="com.google.android.gms.cast.framework.media.MediaIntentReceiver" />
+
+        <service android:name="com.google.android.gms.cast.framework.media.MediaNotificationService" />
+        <service android:name="com.google.android.gms.cast.framework.ReconnectionService" />
+        <!--
+ FirebaseMessagingService performs security checks at runtime,
+             no need for explicit permissions despite exported="true"
+        -->
+        <service
+            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+            android:exported="true" >
+            <intent-filter android:priority="-500" >
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.google.android.gms.tagmanager.TagManagerService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity
+            android:name="com.google.android.gms.tagmanager.TagManagerPreviewActivity"
+            android:exported="true"
+            android:noHistory="true" > <!-- optional, removes the previewActivity from the activity stack. -->
+            <intent-filter>
+                <data android:scheme="tagmanager.c.com.microware.intrahealth" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+            android:enabled="true"
+            android:exported="false" >
+        </receiver>
+        <receiver
+            android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.INSTALL_PACKAGES" >
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.google.android.gms.measurement.AppMeasurementService"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <receiver
+            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="com.microware.intrahealth" />
+            </intent-filter>
+        </receiver>
+        <!--
+ Internal (not exported) receiver used by the app to start its own exported services
+             without risk of being spoofed.
+        -->
+        <receiver
+            android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver"
+            android:exported="false" />
+        <!--
+ FirebaseInstanceIdService performs security checks at runtime,
+             no need for explicit permissions despite exported="true"
+        -->
+        <service
+            android:name="com.google.firebase.iid.FirebaseInstanceIdService"
+            android:exported="true" >
+            <intent-filter android:priority="-500" >
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <provider
+            android:name="com.google.firebase.provider.FirebaseInitProvider"
+            android:authorities="com.microware.intrahealth.firebaseinitprovider"
+            android:exported="false"
+            android:initOrder="100" />
+
+        <activity
+            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <provider
+            android:name="com.android.tools.fd.runtime.InstantRunContentProvider"
+            android:authorities="com.microware.intrahealth.com.android.tools.fd.runtime.InstantRunContentProvider"
+            android:multiprocess="true" />
+    </application>
+
+</manifest>

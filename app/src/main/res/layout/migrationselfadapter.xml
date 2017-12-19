@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TableRow
+        android:id="@+id/GridRow"
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/textbox" >
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".9"
+            android:text="change" />
+
+        <TextView
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1"
+            android:text="*" 
+            android:textColor="@color/Red"/>
+
+        <Spinner
+            android:id="@+id/spin_Relation"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:imeOptions="actionNext"
+            android:inputType="textCapSentences"
+            android:maxLength="50" />
+    </TableRow>
+
+</LinearLayout>

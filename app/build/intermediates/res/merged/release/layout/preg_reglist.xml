@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:keepScreenOn="true"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05" />
+
+        <EditText
+            android:id="@+id/etFamilyIDSearch"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".7"
+          
+            android:focusable="true"
+           android:inputType="text"
+            android:ems="10"
+            android:hint="@string/pregnantwomensrch" />
+
+        <ImageView
+            android:id="@+id/btnsearchFilter"
+            style="@style/ButtonText"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/search"
+            android:gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/search_icon" />
+
+   <!--      <ImageView
+            android:id="@+id/btnadd"
+            style="@style/ButtonText"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/add"
+            android:gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/addicon" /> -->
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="10dp" >
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp" 
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1"
+            android:visibility="invisible" />
+
+        <TextView
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".7"
+            android:background="@drawable/textsheet"
+            android:textColor="@color/White"
+            android:gravity="center"
+            android:text="@string/familyId" />
+
+        <TextView
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textsheet"
+            android:gravity="center"
+            android:textColor="@color/White"
+            android:text="@string/pregnantwomensrch" />
+
+        <TextView
+           
+            style="@style/Textview"
+            android:layout_width="90dp"
+            android:text="@string/husbandname"
+            android:layout_height="fill_parent"
+            android:textColor="@color/White"
+            android:background="@drawable/textsheet"
+            android:gravity="center" />
+        <TextView
+          
+            style="@style/Textview"
+            android:layout_width="90dp"
+          android:text="@string/addpregnantwomen"
+            android:layout_height="fill_parent"
+            android:textColor="@color/White"
+            android:background="@drawable/textsheet"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1"
+            android:visibility="invisible" />
+    </TableRow>
+   <!--  <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+     
+       
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1"
+            android:visibility="invisible" />
+
+        <TextView
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".7"
+     
+           android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="123" />
+
+        <TextView
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+         
+            android:gravity="center"
+          android:background="@drawable/textbox"
+            android:text="Supriya" />
+
+        <TextView
+           
+            style="@style/Textview"
+            android:layout_width="90dp"
+            android:text="Arun"
+            android:layout_height="fill_parent"
+          
+           android:background="@drawable/textbox"
+            android:gravity="center" />
+         <TextView
+         
+            style="@style/Textview"
+            android:layout_width="20dp"
+           
+            android:layout_height="fill_parent"
+          
+          
+            android:gravity="center" />
+        <ImageView
+            android:id="@+id/tv_stat"
+            style="@style/Textview"
+            android:layout_width="50dp"
+          android:background="@drawable/addicon"
+            android:layout_height="fill_parent"
+            android:textColor="@color/White"
+           
+            android:gravity="center" />
+     <TextView
+          
+            style="@style/Textview"
+            android:layout_width="20dp"
+           
+            android:layout_height="fill_parent"
+          
+          
+            android:gravity="center" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1"
+            android:visibility="invisible" />
+    </TableRow> -->
+
+   
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:scrollbars="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:scrollbars="vertical" >
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                   android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+                 >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1"
+                    android:visibility="invisible" />
+
+                <GridView
+                    android:id="@+id/HHSurveyGrid"
+                    android:layout_width="0dp"
+                    android:layout_height="30000dp"
+                    android:layout_weight="4"
+                    android:background="@color/White" >
+                </GridView>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1"
+                    android:visibility="invisible" />
+            </TableRow>
+            
+            </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+ 
+  <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp" 
+          >
+      
+             <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+               
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                android:background="@color/SkyBlue"
+                    android:id="@+id/totalcount" />
+            </LinearLayout>
+</LinearLayout>

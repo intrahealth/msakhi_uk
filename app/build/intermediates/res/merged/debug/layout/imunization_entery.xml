@@ -1,0 +1,1474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical" >
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="50dp" >
+            <TextView
+                style="@style/SimpleText"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1" />
+
+
+            <TextView
+                style="@style/SimpleText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.3"
+                android:gravity="left"
+                android:text="@string/Immunization"
+                android:textColor="@color/orangedark"
+                android:textSize="22dp" />
+
+            <Button
+                android:id="@+id/btnSave"
+                style="@style/ButtonText"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".7"
+                android:background="@drawable/btn_bg_custom"
+                android:text="@string/save" />
+            <TextView
+                style="@style/SimpleText"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1" />
+
+        </TableRow>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:orientation="vertical" >
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/MotherName" />
+
+                <TextView
+                    android:id="@+id/tVmothername"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:focusable="false" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/FatherName" />
+
+                <TextView
+                    android:id="@+id/tvfathername"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/childname" />
+
+                <TextView
+                    android:id="@+id/tvChildname"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblfacilitytype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/bcg" />
+
+                <TextView
+                    android:id="@+id/TXTBCG"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="true"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblfacility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/opv1" />
+
+                <TextView
+                    android:id="@+id/txtopv0"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/hep1" />
+
+                <TextView
+                    android:id="@+id/tvHepatitisB"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/opv2" />
+
+                <TextView
+                    android:id="@+id/txtopv1"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/dpt1" />
+
+                <TextView
+                    android:id="@+id/txtDPT1Pentavalent1"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/hep0" />
+
+                <TextView
+                    android:id="@+id/tvHepatitisB1"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/Pentavalent1" />
+
+                <TextView
+                    android:id="@+id/txtPentavalent1"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/opv3" />
+
+                <TextView
+                    android:id="@+id/tvOPV2"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/dpt2" />
+
+                <TextView
+                    android:id="@+id/tvDPT2Pentavalent2"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/hep2" />
+
+                <TextView
+                    android:id="@+id/tvHepatitisB2"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/Pentavalent2" />
+
+                <TextView
+                    android:id="@+id/txtPentavalent2"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/opv4" />
+
+                <TextView
+                    android:id="@+id/tvOPV3"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/dpt3" />
+
+                <TextView
+                    android:id="@+id/tvDPT3Pentavalent3"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/hep3" />
+
+                <TextView
+                    android:id="@+id/tvHepatitisB3"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/Pentavalent3" />
+
+                <TextView
+                    android:id="@+id/txtPentavalent3"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="50dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/ipv" />
+
+                <TextView
+                    android:id="@+id/txtipv"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/measles" />
+
+                <TextView
+                    android:id="@+id/txtMeasles1"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="50dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/vitamin" />
+
+                <TextView
+                    android:id="@+id/txtVitaminA"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="50dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/JEVaccine1" />
+
+                <TextView
+                    android:id="@+id/tv_JEVaccine1"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/opvbooster" />
+
+                <TextView
+                    android:id="@+id/txtopvbooster"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/dptbooster" />
+
+                <TextView
+                    android:id="@+id/txtDPTBooster"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/measles2" />
+
+                <TextView
+                    android:id="@+id/txtMeasles2"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/JEVaccine2" />
+
+                <TextView
+                    android:id="@+id/tv_JEVaccine2"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="50dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/vitamintwo" />
+
+                <TextView
+                    android:id="@+id/txtVitaminAtwo"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="50dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/vitamin3" />
+
+                <TextView
+                    android:id="@+id/tv_vitamin3"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="50dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/vitamin4" />
+
+                <TextView
+                    android:id="@+id/tv_vitamin4"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="50dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/vitamin5" />
+
+                <TextView
+                    android:id="@+id/tv_vitamin5"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="50dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/vitamin6" />
+
+                <TextView
+                    android:id="@+id/tv_vitamin6"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="50dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/vitamin7" />
+
+                <TextView
+                    android:id="@+id/tv_vitamin7"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="50dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/vitamin8" />
+
+                <TextView
+                    android:id="@+id/tv_vitamin8"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="50dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/vitamin9" />
+
+                <TextView
+                    android:id="@+id/tv_vitamin9"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/dptboostersecond" />
+
+                <TextView
+                    android:id="@+id/txtDPTBoostertwo"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="50dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/tt" />
+
+                <TextView
+                    android:id="@+id/txttt"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="50dp" >
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/TT2" />
+
+                <TextView
+                    android:id="@+id/tv_TT2"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="Date"
+                    android:onClick="txtclick" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

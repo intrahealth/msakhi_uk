@@ -1,4 +1,0 @@
-// synchronization.java
-To connect the application to the web services , please edit the file in the following path 
-IntraHealth\src\com\microware\intrahealth
-and replace all instances of 'WebURL' to the URL of Your web service

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TableRow
+        android:id="@+id/GridRow"
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/tvParentsname"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.5"
+            android:background="@drawable/textbox"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tvAge"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".5"
+            android:background="@drawable/textbox"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tvChildDob"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:visibility="gone" />
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox" >
+
+            <ImageView
+                android:id="@+id/btnimmune"
+                android:layout_width="45dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/immune" />
+
+            <TextView
+                android:id="@+id/tvcounselling"
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textbox"
+                android:gravity="center"
+                android:text="@string/counselling"
+                android:textColor="@color/Blue" />
+        </TableRow>
+         <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05"
+            android:visibility="invisible" />
+    </TableRow>
+    
+
+</LinearLayout>

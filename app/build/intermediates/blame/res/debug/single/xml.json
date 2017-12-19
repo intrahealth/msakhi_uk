@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\debug\\xml\\ecommerce_tracker.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\xml\\ecommerce_tracker.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\debug\\xml\\global_tracker.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\xml\\global_tracker.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\debug\\xml\\widget_info.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\xml\\widget_info.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\debug\\xml\\app_tracker.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\xml\\app_tracker.xml"
+    },
+    {
+        "merged": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\build\\intermediates\\res\\merged\\debug\\xml\\app_settings.xml",
+        "source": "C:\\Users\\Rakesh\\StudioProjects\\IntraHealth\\app\\src\\main\\res\\xml\\app_settings.xml"
+    }
+]

@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+
+
+    <TableRow
+        android:id="@+id/tbl_apr"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp" >
+
+        <TextView
+            android:id="@+id/village_Apr"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/VillageName"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_show_Apr"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_Apr"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_Add_Apr"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="+"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/btn_edit_Apr"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="@string/Duelist"
+            android:textColor="@color/White" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tbl_may"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp" >
+
+        <TextView
+            android:id="@+id/village_May"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/VillageName"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_show_May"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_May"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_Add_May"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="+"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/btn_edit_May"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="@string/Duelist"
+            android:textColor="@color/White" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tbl_jun"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp" >
+
+        <TextView
+            android:id="@+id/village_Jun"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/VillageName"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_show_Jun"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_Jun"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_Add_Jun"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="+"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/btn_edit_Jun"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="@string/Duelist"
+            android:textColor="@color/White" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tbl_jul"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp" >
+
+        <TextView
+            android:id="@+id/village_Jul"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/VillageName"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_show_Jul"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_Jul"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_Add_Jul"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="+"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/btn_edit_Jul"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="@string/Duelist"
+            android:textColor="@color/White" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tbl_aug"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp" >
+
+        <TextView
+            android:id="@+id/village_Aug"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/VillageName"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_show_Aug"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_Aug"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_Add_Aug"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="+"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/btn_edit_Aug"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="@string/Duelist"
+            android:textColor="@color/White" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tbl_sep"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp" >
+
+        <TextView
+            android:id="@+id/village_Sep"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/VillageName"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_show_Sep"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_Sep"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_Add_Sep"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="+"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/btn_edit_Sep"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="@string/Duelist"
+            android:textColor="@color/White" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tbl_oct"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp" >
+
+        <TextView
+            android:id="@+id/village_Oct"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/VillageName"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_show_Oct"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_Oct"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_Add_Oct"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="+"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/btn_edit_Oct"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="@string/Duelist"
+            android:textColor="@color/White" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tbl_nov"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp" >
+
+        <TextView
+            android:id="@+id/village_Nov"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/VillageName"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_show_Nov"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_Nov"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_Add_Nov"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="+"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/btn_edit_Nov"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="@string/Duelist"
+            android:textColor="@color/White" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tbl_dec"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp" >
+
+        <TextView
+            android:id="@+id/village_Dec"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/VillageName"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_show_Dec"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_Dec"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_Add_Dec"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="+"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/btn_edit_Dec"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="@string/Duelist"
+            android:textColor="@color/White" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tbl_jan"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp" >
+
+        <TextView
+            android:id="@+id/village_Jan"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/VillageName"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_show_Jan"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_Jan"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_Add_Jan"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="+"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/btn_edit_Jan"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="@string/Duelist"
+            android:textColor="@color/White" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tbl_feb"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp" >
+
+        <TextView
+            android:id="@+id/village_Feb"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/VillageName"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_show_Feb"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_Feb"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_Add_Feb"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="+"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/btn_edit_Feb"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="@string/Duelist"
+            android:textColor="@color/White" />
+    </TableRow>
+        <TableRow
+        android:id="@+id/tbl_mar"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp" >
+
+        <TextView
+            android:id="@+id/village_Mar"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/VillageName"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_show_Mar"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tx_date_Mar"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="@string/Date"
+            android:textSize="13dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_Add_Mar"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="+"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/btn_edit_Mar"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="@string/Duelist"
+            android:textColor="@color/White" />
+    </TableRow>
+
+</LinearLayout>

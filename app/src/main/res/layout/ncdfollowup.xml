@@ -1,0 +1,1697 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:orientation="vertical"
+    tools:context=".AncVisit_List">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".2" />
+
+        <TextView
+            style="@style/SimpleTextblack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/follow_up"
+            android:textSize="24dp" />
+
+        <Button
+            android:id="@+id/btnSave"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_custom"
+            android:text="@string/save" />
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".2" />
+    </TableRow>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/FamilyMemb" />
+
+                <EditText
+                    android:id="@+id/et_name"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:enabled="false"
+                    android:hint="@string/FamilyMemb"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/guardian" />
+
+                <EditText
+                    android:id="@+id/et_guardian"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:enabled="false"
+                    android:hint="@string/guardian"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    android:layout_width="10dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:textColor="@color/Red" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/edd" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <EditText
+                    android:id="@+id/spinASHAname"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight=".9"
+                    android:background="@drawable/textbox"
+                    android:maxLength="50">
+
+                    <requestFocus />
+                </EditText>
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/VillageName" />
+
+                <Spinner
+                    android:id="@+id/spin_Village"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/panchayat" />
+
+                <EditText
+                    android:id="@+id/et_panchayat"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:hint="@string/panchayat"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/registration_no" />
+
+                <EditText
+                    android:id="@+id/et_registrationno"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:enabled="false"
+                    android:hint="@string/registration_no"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/Date" />
+
+                <TextView
+                    android:id="@+id/tv_Date"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:hint="@string/Date"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/referral" />
+
+                <Spinner
+                    android:id="@+id/spin_referral1"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <RadioGroup
+                    android:id="@+id/RadioGroupreferral"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/checkbox"
+                    android:orientation="horizontal">
+
+
+                    <RadioButton
+                        android:id="@+id/radio_HighRisk"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:text="@string/HighRisk"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/radio_Suspected"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="1"
+                        android:text="@string/Suspected"
+                        android:textSize="12sp" />
+                </RadioGroup>
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@color/LightBlue"
+                    android:text="@string/NCD_diagnosis" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tbl_NCD"
+                android:layout_width="match_parent"
+                android:layout_height="230dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@drawable/checkbox"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/chk_Chc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/chc" />
+
+                    <CheckBox
+                        android:id="@+id/chk_phc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/phc" />
+
+                    <CheckBox
+                        android:id="@+id/chk_District_hospital"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/District_hospital" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Tertiary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Tertiary" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Private_doctor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Private_doctor" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Private_Clinic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Private_Clinic" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Did"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Did" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblQ3_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@color/LightBlue"
+                    android:text="@string/facility" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblQ3_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".9"
+                    android:text="@string/bsl" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1"
+                    android:text="*"
+                    android:textColor="@color/Red" />
+
+                <EditText
+                    android:id="@+id/et_bsl"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/checkbox"
+                    android:hint="@string/bsl"
+                    android:inputType="number"
+                    android:maxLength="3" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblQ3_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".9"
+                    android:text="@string/bp1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1"
+                    android:text="*"
+                    android:textColor="@color/Red" />
+
+                <EditText
+                    android:id="@+id/et_Systolic"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".5"
+                    android:background="@drawable/checkbox"
+                    android:hint="@string/Systolic1"
+                    android:inputType="number"
+                    android:maxLength="3" />
+
+                <EditText
+                    android:id="@+id/et_Diastolic"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_weight=".5"
+                    android:background="@drawable/checkbox"
+                    android:hint="@string/Diastolic1"
+                    android:inputType="number"
+                    android:maxLength="3" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tbl_green"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:background="@color/DarkGreen"
+                    android:padding="2dp"
+                    android:text="@string/rbsandblood"
+                    android:textColor="@color/White"
+                    android:textSize="12dp" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblQ4_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@color/LightBlue"
+                    android:text="@string/government_facility" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblQ4_2"
+                android:layout_width="match_parent"
+                android:layout_height="190dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@drawable/checkbox"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/chk_doctor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/doctor" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Medicines"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Medicines" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Bslcheckup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/bsl_checkup" />
+
+                    <CheckBox
+                        android:id="@+id/chk_BP_HTN"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/BP_HTN" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Consultation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Consultation" />
+
+                    <CheckBox
+                        android:id="@+id/chk_HBA1C"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/HBA1C" />
+
+                    <CheckBox
+                        android:id="@+id/chk_lipid_Profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/lipid_Profile" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Other1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/other" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblOther1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".3" />
+
+                <EditText
+                    android:id="@+id/et_Othergovernment_facility"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:hint="@string/other"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".3" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblQ5_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@color/LightBlue"
+                    android:text="@string/problem_faced" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblQ5_2"
+                android:layout_width="match_parent"
+                android:layout_height="190dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/checkbox"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/chk_Labtechnician"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Lab_technician" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Medicinewerenotavail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Medicinewerenotavail" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Gluco_strips"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Gluco_strips" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Doctorsnotpresent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Doctorsnotpresent" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Doctorsdidbehavproperly"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Doctorsdidbehavproperly" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Others2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Others" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblOther2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".3" />
+
+                <EditText
+                    android:id="@+id/et_Otherproblem_faced"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:hint="@string/other"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".3" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblQ6_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@color/LightBlue"
+                    android:text="@string/Government_Facility_diagnosis" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblQ6_2"
+                android:layout_width="match_parent"
+                android:layout_height="240dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@drawable/checkbox"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/chk_Doctorsnotavail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".4"
+                        android:text="@string/Doctorsnotavail" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Medicinesnotavail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Medicinesnotavail" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Doctorsnotbehave"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Doctorsnotbehave_properly" />
+
+                    <CheckBox
+                        android:id="@+id/chk_testnotavail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".4"
+                        android:text="@string/testnotavail" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Distanceproblem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Distanceproblem" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Notthoughfacilit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/Notthoughfacilit" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Others3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".2"
+                        android:text="@string/Others" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblOther3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".3" />
+
+                <EditText
+                    android:id="@+id/et_OtherGovernment_Facility_diagnosis"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:hint="@string/other"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".3" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblQ7_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@color/LightBlue"
+                    android:text="@string/neithertogovernment" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblQ7_2"
+                android:layout_width="match_parent"
+                android:layout_height="260dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/checkbox"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/chk_Financialconstraint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Financial_constraint" />
+
+                    <CheckBox
+                        android:id="@+id/chk_notlikego"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/notlikego" />
+
+                    <CheckBox
+                        android:id="@+id/chk_chemist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/chemist" />
+
+                    <CheckBox
+                        android:id="@+id/chk_quack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/quack" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Relative"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Relative" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Communicationdistance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Communicationdistance" />
+
+                    <CheckBox
+                        android:id="@+id/Chk_Others4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Others" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblOther4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".3" />
+
+                <EditText
+                    android:id="@+id/et_Otherneithertogovernment"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:hint="@string/other"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".3" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/medicine_NCD" />
+
+                <Spinner
+                    android:id="@+id/Spin_MedicineNCD"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblQ9_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/taken_medicine" />
+
+                <Spinner
+                    android:id="@+id/Spin_Medicinetaken"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tbl_SpinOther"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <EditText
+                    android:id="@+id/et_SpinOther"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:hint="@string/other"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblQdaymonth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@color/LightBlue"
+                    android:text="@string/medicinesgivenGovernmentHCenter" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tbldaymonth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <EditText
+                    android:id="@+id/et_day"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/checkbox"
+                    android:hint="@string/day"
+                    android:inputType="number"
+                    android:maxLength="3" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1"
+
+                    android:textColor="@color/Red" />
+
+                <EditText
+                    android:id="@+id/et_month"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/checkbox"
+                    android:hint="@string/month"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="invisible"/>
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tbl_continuemedicines"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/governmentenoughmedicines" />
+
+                <Spinner
+                    android:id="@+id/Spin_continuemedicines"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tbl_wheretakemadicine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/yestakemedicines" />
+
+                <Spinner
+                    android:id="@+id/Spin_wheretake"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+
+            <TableRow
+                android:id="@+id/tbl_Spinyesmedicinesother"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <EditText
+                    android:id="@+id/et_Spinyesmedicinesother"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:hint="@string/other"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblQ10_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@color/LightBlue"
+                    android:text="@string/taking_medicines" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblQ10_2"
+                android:layout_width="match_parent"
+                android:layout_height="160dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/checkbox"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/chk1_Financialconstraint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/Financial_constraint" />
+
+                    <CheckBox
+                        android:id="@+id/chk_madicinesnotavilatgovrnment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/madicinesnotavilatgovrnment" />
+
+                    <CheckBox
+                        android:id="@+id/chk_notmadicines"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/notmadicines" />
+
+                    <CheckBox
+                        android:id="@+id/chk_Other5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/other" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tblOther5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".3" />
+
+                <EditText
+                    android:id="@+id/et_Othertaking_medicines"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:hint="@string/other"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".3" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/counsellingtips" />
+
+                <Spinner
+                    android:id="@+id/spin_counsellingtips"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/AnySuggestion" />
+
+                <EditText
+                    android:id="@+id/et_AnySuggestion"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/textbox"
+                    android:hint="@string/AnySuggestion"
+                    android:maxLength="50" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".2" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="20dp"></TableRow>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

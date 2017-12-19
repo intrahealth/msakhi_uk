@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+          android:background="@drawable/textbox"
+     >
+
+
+        <TextView
+            android:id="@+id/hhcode"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".7"
+            android:background="@drawable/textbox"
+          
+            android:gravity="center"
+            android:text="@string/familyId" />
+
+        <TextView
+            android:id="@+id/womenname"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+           
+            android:text="@string/pregnantwomensrch" />
+
+        <TextView
+           android:id="@+id/husbandname"
+            style="@style/Textview"
+            android:layout_width="90dp"
+            android:text="@string/husbandname"
+            android:layout_height="fill_parent"
+           
+            android:background="@drawable/textbox"
+            android:gravity="center" />
+         <TextView
+                android:id="@+id/tblGraphtenyear"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+             
+ />
+        <ImageView
+            android:id="@+id/idbtnadd"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+           android:background="@drawable/addicon"
+           />
+        <TextView
+                android:id="@+id/tblGraphtenyear1"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+             
+ />
+
+    </TableRow>
+   <!--  <LinearLayout
+        android:id="@+id/Linear"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="60dp" >
+
+            <TextView
+                android:id="@+id/tblPlInput"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/sheet"
+                android:paddingLeft="10dp"
+                android:paddingTop="15dp"
+                android:text="@string/PLINPUT" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="60dp" >
+
+            <TextView
+                android:id="@+id/tblLoanRepayment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/sheet"
+                android:paddingLeft="10dp"
+                android:paddingTop="15dp"
+                android:text="@string/Loanrepayment" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="60dp" >
+
+            <TextView
+                android:id="@+id/tblOutput"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/sheet"
+                android:paddingLeft="10dp"
+                android:paddingTop="15dp"
+                android:text="@string/o_p" />
+        </TableRow>
+
+       
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="60dp" >
+
+            <TextView
+                android:id="@+id/tblGraphoneyear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/sheet"
+                android:paddingLeft="10dp"
+                android:paddingTop="15dp"
+                android:text="@string/bv_calculator" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="60dp" >
+
+            <TextView
+                android:id="@+id/tblGraphtenyear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/sheet"
+                android:paddingLeft="10dp"
+                android:paddingTop="15dp"
+                android:text="@string/graph" />
+        </TableRow>
+    </LinearLayout> -->
+
+</LinearLayout>
