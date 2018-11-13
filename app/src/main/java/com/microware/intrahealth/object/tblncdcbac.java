@@ -40,6 +40,7 @@ public class tblncdcbac {
     private String UpdatedOn;
     private int AshaID;
     private int ANMID;
+    private int IPRisk;
 
     public int getUID() {
         return UID;
@@ -320,6 +321,12 @@ public class tblncdcbac {
         this.ANMID = ANMID;
     }
 
+    public int getIPRisk() {
+        return IPRisk;
+    }
 
+    public void setIPRisk(int IPRisk) {
+        this.IPRisk = IPRisk;
+    }
 
 }

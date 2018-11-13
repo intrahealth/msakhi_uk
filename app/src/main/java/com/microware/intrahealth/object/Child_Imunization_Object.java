@@ -42,7 +42,35 @@ public class Child_Imunization_Object {
     private String VitaminA8;
     private String VitaminA9;
     private String TT2;
+    private String MeaslesRubella;
+    private String IPV2;
     private String HHGUID;
+    private String HHFamilyMemberGUID;
+    private String Wt_of_child;
+
+    public String getWt_of_child() {
+        return Wt_of_child;
+    }
+
+    public void setWt_of_child(String wt_of_child) {
+        Wt_of_child = wt_of_child;
+    }
+
+    public String getHHFamilyMemberGUID() {
+        return HHFamilyMemberGUID;
+    }
+
+    public void setHHFamilyMemberGUID(String HHFamilyMemberGUID) {
+        this.HHFamilyMemberGUID = HHFamilyMemberGUID;
+    }
+
+    public String getIPV2() {
+        return IPV2;
+    }
+
+    public void setIPV2(String IPV2) {
+        this.IPV2 = IPV2;
+    }
 
     public String getHHGUID() {
         return HHGUID;
@@ -54,6 +82,14 @@ public class Child_Imunization_Object {
 
     public String getTT2() {
         return TT2;
+    }
+
+    public String getMeaslesRubella() {
+        return MeaslesRubella;
+    }
+
+    public void setMeaslesRubella(String measlesRubella) {
+        MeaslesRubella = measlesRubella;
     }
 
     public void setTT2(String tT2) {

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:keepScreenOn="true"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_Headername"
+        style="@style/SimpleTextblack"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:background="@color/PowderBlue"
+        android:textSize="22dp"
+        android:paddingTop="5dp"/>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="20dp" />
+
+    <TableRow style="@style/tbl_SimpleText">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1" />
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="@string/Date" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:hint="@string/Date" />
+
+        <Button
+            android:id="@+id/btnSave"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".6"
+            android:background="@drawable/btn_bg_custom"
+            android:text="@string/show_data" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/tv_Header"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="4"
+            android:background="@drawable/textsheet"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:textColor="@color/White" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1"
+            android:visibility="invisible" />
+    </TableRow>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1"
+                    android:visibility="invisible" />
+
+                <GridView
+                    android:id="@+id/Duelist_Grid"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:background="@color/White" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1"
+                    android:visibility="invisible" />
+            </TableRow>
+        </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".3">
+
+        <TextView
+            android:id="@+id/totalcount"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/SkyBlue"
+            android:gravity="center"
+            android:textColor="@color/White" />
+    </LinearLayout>
+
+</LinearLayout>

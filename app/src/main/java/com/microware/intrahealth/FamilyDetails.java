@@ -374,9 +374,9 @@ public class FamilyDetails extends Activity {
                     } else {
                         fillCommonRecord(SpinRelation, 6, global.getLanguage());
                     }
-                    if(fillcount==1){
-                    SpinRelation.setSelection(relationid);
-                        fillcount=0;
+                    if (fillcount == 1) {
+                        SpinRelation.setSelection(relationid);
+                        fillcount = 0;
                     }
 
                 } catch (Exception e) {
@@ -531,7 +531,7 @@ public class FamilyDetails extends Activity {
             e.printStackTrace();
         }
         if (global.getGlobalHHFamilyMemberGUID() != null
-                && global.getGlobalHHFamilyMemberGUID().length() > 0 ) {
+                && global.getGlobalHHFamilyMemberGUID().length() > 0) {
             filldata();
 
         }
@@ -1177,7 +1177,8 @@ public class FamilyDetails extends Activity {
         LayoutInflater inflater = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.dialog_layout, null, false);
-        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
         dialog.setContentView(view);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         TextView txtTitle = (TextView) dialog
@@ -1209,7 +1210,9 @@ public class FamilyDetails extends Activity {
         LayoutInflater inflater = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.dialog_checklayout, null, false);
-        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCanceledOnTouchOutside(false);
+
+        dialog.setCancelable(false);
         dialog.setContentView(view);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         TextView txtTitle = (TextView) dialog
@@ -1303,7 +1306,9 @@ public class FamilyDetails extends Activity {
                 }
             }
         }
-
+        if (SpinMaritalStatus.getSelectedItemPosition() == 0) {
+            return 17;
+        }
         if (etAgeYearsTillApril.getText() != null
                 && etAgeYearsTillApril.getText().length() > 0) {
             age = Integer.valueOf(etAgeYearsTillApril.getText().toString());
@@ -1495,6 +1500,8 @@ public class FamilyDetails extends Activity {
         } else if (iCheck == 16) {
             CustomAlert(getResources()
                     .getString(R.string.househealdheadagelesstahn15));
+        } else if (iCheck == 17) {
+            CustomAlert(getString(R.string.PleaseselectMaritalStatus));
         }
     }
 

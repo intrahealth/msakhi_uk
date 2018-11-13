@@ -377,7 +377,7 @@ public class MigrationSelf extends Activity {
 									.getGenderID());
 
 					sql1 = "update  Tbl_HHFamilyMember set RelationID="
-							+ relation + " where HHSurveyGUID = '"
+							+ relation + ", IsEdited=1  where HHSurveyGUID = '"
 							+ HHFamilyMember.get(i).getHHSurveyGUID()
 							+ "' and HHFamilyMemberGUID='"
 							+ HHFamilyMember.get(i).getHHFamilyMemberGUID()

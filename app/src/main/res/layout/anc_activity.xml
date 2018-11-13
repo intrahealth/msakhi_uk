@@ -4,14 +4,14 @@
     android:layout_height="match_parent"
     android:background="@color/White"
     android:keepScreenOn="true"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:minHeight="50dp">
+        android:minHeight="50dp"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
@@ -26,10 +26,11 @@
             android:layout_weight="1.7"
             android:gravity="center_vertical"
             android:text="@string/Anc"
-            android:textSize="22dp"
             android:textColor="@color/orangedark"
+            android:textSize="22dp"
 
-           />
+            />
+
         <Button
             android:id="@+id/btn_PregnantWomen"
             style="@style/ButtonText"
@@ -39,8 +40,7 @@
             android:layout_weight="1"
             android:background="@drawable/btn_bg_custom"
             android:text="@string/report"
-            android:textColor="@color/White"
-            />
+            android:textColor="@color/White" />
 
 
         <Button
@@ -55,13 +55,15 @@
             android:textColor="@color/White" />
 
 
-
         <TextView
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight=".09"
             android:visibility="invisible" />
+
     </LinearLayout>
+
+
     <TableRow
         android:id="@+id/tbl_spinner"
         android:layout_width="match_parent"
@@ -98,54 +100,78 @@
             android:layout_height="fill_parent"
             android:layout_weight=".1" />
     </TableRow>
+
     <TableRow
         android:id="@+id/tbl_search"
         android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp" >
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_weight=".025" />
+            android:layout_weight=".1" />
 
         <EditText
             android:id="@+id/etFamilyIDSearch"
             style="@style/SimpleText"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1.1"
+            android:layout_weight="1"
             android:gravity="center_vertical"
             android:hint="@string/WomenName"
             android:inputType="text"
             android:maxLength="50"
-            android:padding="5dp" />
+            android:padding="5dp"
+            android:paddingLeft="10dp" />
 
-        <TextView
+
+        <TableRow
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_weight=".01" />
+            android:layout_weight="1"
+            android:padding="5dp">
+
+
+            <ImageView
+                android:id="@+id/btnCapture"
+                style="@style/ButtonText"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/qr"
+                android:text="@string/captureimage" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".5" />
+        </TableRow>
 
         <Button
             android:id="@+id/btnsearchFilter"
             style="@style/ButtonText"
             android:layout_width="35dp"
             android:layout_height="match_parent"
-            android:background="@drawable/search_icon" />
+            android:background="@drawable/search_icon"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1" />
     </TableRow>
 
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:visibility="gone" >
+        android:visibility="gone">
 
         <RadioGroup
             android:id="@+id/rgRegistration"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
@@ -194,7 +220,7 @@
         android:layout_height="55dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="10dp" >
+        android:layout_marginTop="10dp">
 
         <TextView
             android:id="@+id/ltvWomenName"
@@ -211,26 +237,25 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp" >
+            android:layout_marginRight="15dp">
 
             <GridView
                 android:id="@+id/gridanc"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/White" >
-            </GridView>
+                android:background="@color/White"/>
         </TableRow>
     </ScrollView>
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="50dp" >
+        android:layout_height="50dp">
 
         <TextView
             android:id="@+id/totalcount"

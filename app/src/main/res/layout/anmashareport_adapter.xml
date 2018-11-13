@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TableRow
+        android:id="@+id/GridRow"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:minHeight="40dp">
+
+        <TextView
+            android:id="@+id/tv_year"
+            style="@style/headinggrid"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".4" />
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".02" />
+
+        <TextView
+            android:id="@+id/tv_month"
+            style="@style/headinggrid"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".4" />
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".02" />
+
+
+        <TextView
+            android:id="@+id/tv_claimed"
+            style="@style/headinggrid"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".4" />
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".02" />
+
+
+        <TextView
+            android:id="@+id/tv_amntrcvd"
+            style="@style/headinggrid"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".4" />
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".02" />
+
+
+        <TextView
+            android:id="@+id/tv_notapproved"
+            style="@style/headinggrid"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".4" />
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".02" />
+
+
+        <LinearLayout
+            android:id="@+id/llpending"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".4"
+            android:background="@color/MistyRose"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_pending"
+                style="@style/headinggrid"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".4" />
+
+
+        </LinearLayout>
+    </TableRow>
+
+</LinearLayout>

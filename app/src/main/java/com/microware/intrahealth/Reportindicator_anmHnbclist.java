@@ -9,6 +9,8 @@ import java.util.Locale;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -39,6 +41,7 @@ public class Reportindicator_anmHnbclist extends Activity {
     ArrayAdapter<String> adapter;
 
     int anmid = 0, VillageID = 0;
+    Validate validate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,7 @@ public class Reportindicator_anmHnbclist extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.report_indicatore_anmhnbclist);
         dataprovider = new DataProvider(this);
+        validate = new Validate(this);
 
         global = (Global) getApplication();
         setTitle(global.getVersionName());
@@ -158,7 +162,7 @@ public class Reportindicator_anmHnbclist extends Activity {
     }
 
     private void fillVillageName(int Language) {
-        Village = dataprovider.getMstVillageName(global.getsGlobalANMCODE(), Language,1);
+        Village = dataprovider.getMstVillageName(global.getsGlobalANMCODE(), Language, 1);
 
         String sValue[] = new String[Village.size() + 1];
         sValue[0] = getResources().getString(R.string.select);
@@ -587,6 +591,7 @@ public class Reportindicator_anmHnbclist extends Activity {
 
 
     }
+
     public int countAllchild(int day, int ashaid) {
         String Sql11child = "";
         Sql11child = "select  count(*) from tblChild   inner join Tbl_HHSurvey on tblChild.HHGUID=Tbl_HHSurvey.HHSurveyGUID  where cast(round(julianday('Now')-julianday(tblChild.CHILD_dob) ) as int)>=" + day + " and    tblChild.ANMID = " + ashaid + "";
@@ -595,6 +600,37 @@ public class Reportindicator_anmHnbclist extends Activity {
         return iValue11child;
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        menu.add(0, 0, 1, validate.RetriveSharepreferenceString("name")).setShowAsAction(
+                MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
+
+        return true;
+    }
+
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getOrder()) {
+
+            case 1:
+                if (item.getTitle().equals(validate.RetriveSharepreferenceString("Username"))) {
+                    item.setTitle(validate.RetriveSharepreferenceString("name"));
+
+                } else {
+                    item.setTitle(validate.RetriveSharepreferenceString("Username"));
+
+                }
+                break;
+
+
+            default:
+                break;
+        }
+
+        return true;
+    }
 
 
     @Override

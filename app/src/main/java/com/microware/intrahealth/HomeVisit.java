@@ -105,19 +105,15 @@ public class HomeVisit extends Activity {
         spinVillageName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-
-
                 if (pos > 0) {
                     VillageID = Village.get(
                             spinVillageName.getSelectedItemPosition() - 1)
                             .getVillageID();
                     fillgrid(0);
-
                 } else {
                     VillageID = 0;
                     fillgrid(1);
                 }
-
             }
 
             @Override
@@ -132,10 +128,8 @@ public class HomeVisit extends Activity {
 
     private void fillVillageName(int Language) {
         Village = dataProvider.getMstVillageName(global.getsGlobalAshaCode(), Language, 0);
-
         String sValue[] = new String[Village.size() + 1];
         sValue[0] = getResources().getString(R.string.select);
-
         for (int i = 0; i < Village.size(); i++) {
             sValue[i + 1] = Village.get(i).getVillageName();
         }
@@ -149,7 +143,7 @@ public class HomeVisit extends Activity {
         int ashaid = 0;
         if (global.getsGlobalAshaCode() != null
                 && global.getsGlobalAshaCode().length() > 0) {
-            ashaid = Integer.valueOf(global.getsGlobalAshaCode());
+            ashaid = Validate.returnIntegerValue(global.getsGlobalAshaCode());
         }
         if (flag == 0) {
             pregnant = dataProvider.getPregnantWomendataanc("", 0, ashaid, VillageID);
@@ -180,7 +174,7 @@ public class HomeVisit extends Activity {
         int ashaid = 0;
         if (global.getsGlobalAshaCode() != null
                 && global.getsGlobalAshaCode().length() > 0) {
-            ashaid = Integer.valueOf(global.getsGlobalAshaCode());
+            ashaid = Validate.returnIntegerValue(global.getsGlobalAshaCode());
         }
 
 

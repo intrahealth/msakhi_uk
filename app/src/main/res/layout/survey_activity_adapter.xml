@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <TableRow
         android:id="@+id/GridRow"
         android:layout_width="fill_parent"
-        android:layout_height="55dp" >
+        android:layout_height="55dp">
 
         <TextView
             android:layout_width="0dp"
@@ -34,9 +34,15 @@
             android:gravity="center" />
 
         <TableRow
-            android:layout_width="90dp"
+            android:layout_width="100dp"
             android:layout_height="55dp"
-            android:background="@drawable/textbox" >
+            android:background="@drawable/textbox">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1"
+                android:visibility="invisible" />
 
             <ImageView
                 android:id="@+id/btnEdit"
@@ -44,24 +50,34 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
                 android:contentDescription="@string/search"
                 android:gravity="center"
                 android:scaleType="fitXY"
                 android:src="@drawable/editicon" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/btnDelete"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/search"
+                android:gravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/deleteicon" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".1"
+                android:visibility="invisible" />
         </TableRow>
 
-        <ImageView
-            android:id="@+id/btnDelete"
-            android:layout_width="50dp"
-            android:layout_height="10dp"
-            android:layout_gravity="center"
-            android:contentDescription="@string/search"
-            android:gravity="center"
-            android:scaleType="fitXY"
-            android:src="@drawable/deleteicon"
-            android:visibility="gone" />
 
         <TextView
             android:layout_width="0dp"

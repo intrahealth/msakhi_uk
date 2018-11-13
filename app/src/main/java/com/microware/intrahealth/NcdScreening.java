@@ -43,22 +43,22 @@ public class NcdScreening extends Activity {
     EditText et_registration_no, et_camp_no, et_name, et_address, et_age,
             edit_mobile, edit_height, edit_weight, et_Bmi, edit_Bloodglucose,
             et_Systolic, et_Diastolic, et_occupationother,
-            et_anyothercomplication, et_other1, et_Othersuspected;
+            et_anyothercomplication, et_other1, et_Othersuspected, et_AvailabilityofmedicinesDiabetes, et_ReasonforClosingDiabetes, et_AvailabilityofmedicinesHypertension, et_ReasonforClosingHypertension, et_AvailabilityofmedicinesBRcancer, et_ReasonforClosingBRcancer, et_AvailabilityofmedicinesCRcancer, et_ReasonforClosingCRcancer, et_AvailabilityofmedicinesORcancer, et_ReasonforClosingORcancer;
     CheckBox chk_Diabetes, chk_Hypertension, chk_Both, chk_Anyother, chk1,
-            chk2, chk3, chk4, chk5, chk6;
+            chk2, chk3, chk4, chk5, chk6, chk_prevDiabetes, chk_prevHypertension, chk_prevBRcancer, chk_prevCRcancer, chk_prevORcancer;
     Spinner spin_Sex, spin_Referredto, spin_Referredby, spin_Village,
             spin_Occupation, spin_Block, Spin_Health_Condition,
-            spin_Anyothecompli, spin_feet, spin_inch;
+            spin_Anyothecompli, spin_feet, spin_inch, spin_treatmentDiabetes, spin_testDiabetes, spin_HealthCenterDiabetes, spin_treatmentHypertension, spin_testHypertension, spin_HealthCenterHypertension, spin_treatmentBRcancer, spin_testBRcancer, spin_HealthCenterBRcancer, spin_treatmentCRcancer, spin_testCRcancer, spin_HealthCenterCRcancer, spin_treatmentORcancer, spin_testORcancer, spin_HealthCenterORcancer;
     String[] feet = {"4", "5", "6"};
     String[] inch = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"};
-    TextView tv_Date, tv_lastscreeningdate, tv_totalscreening;
+    TextView tv_Date, tv_lastscreeningdate, tv_totalscreening, tv_DatediagnosisDiabetes, tv_PredateDiabetes, tv_DatediagnosisHypertension, tv_PredateHypertension, tv_DatediagnosisBRcancer, tv_PredateBRcancer, tv_DatediagnosisCRcancer, tv_PredateCRcancer, tv_DatediagnosisORcancer, tv_PredateORcancer;
     DataProvider dataProvider;
     Global global;
     Dialog datepic;
     TableRow tbl_occupationother, tbl_Other1, tbl_Any_HealthIssue,
-            tbl_anyothercomplication, tblOther2, tbl_Bmi;
+            tbl_anyothercomplication, tblOther2, tbl_Bmi, tbl_medicinesDiabetes, tbl_reasonDiabetes, tbl_medicinesHypertension, tbl_reasonHypertension, tbl_medicinesBRcancer, tbl_reasonBRcancer, tbl_medicinesCRcancer, tbl_reasonCRcancer, tbl_medicinesORcancer, tbl_reasonORcancer;
     Button btnSave;
-    LinearLayout ll_suspected;
+    LinearLayout ll_suspected, ll_prevDiabetes, ll_Hypertension, ll_BRcancer, ll_CRcancer, ll_ORcancer;
     ArrayList<MstCommon> Common = new ArrayList<MstCommon>();
     ArrayList<MstVillage> Village = new ArrayList<MstVillage>();
     ArrayList<MstBlock> Block = new ArrayList<MstBlock>();
@@ -77,10 +77,26 @@ public class NcdScreening extends Activity {
         et_other1 = (EditText) findViewById(R.id.et_other1);
         et_occupationother = (EditText) findViewById(R.id.et_occupationother);
         et_anyothercomplication = (EditText) findViewById(R.id.et_anyothercomplication);
+
         tbl_occupationother = (TableRow) findViewById(R.id.tbl_occupationother);
         tbl_anyothercomplication = (TableRow) findViewById(R.id.tbl_anyothercomplication);
         tbl_Bmi = (TableRow) findViewById(R.id.tbl_Bmi);
+        tbl_medicinesDiabetes = (TableRow) findViewById(R.id.tbl_medicinesDiabetes);
+        tbl_reasonDiabetes = (TableRow) findViewById(R.id.tbl_reasonDiabetes);
+        tbl_medicinesHypertension = (TableRow) findViewById(R.id.tbl_medicinesHypertension);
+        tbl_reasonHypertension = (TableRow) findViewById(R.id.tbl_reasonHypertension);
+        tbl_medicinesBRcancer = (TableRow) findViewById(R.id.tbl_medicinesBRcancer);
+        tbl_reasonBRcancer = (TableRow) findViewById(R.id.tbl_reasonBRcancer);
+        tbl_medicinesCRcancer = (TableRow) findViewById(R.id.tbl_medicinesCRcancer);
+        tbl_reasonCRcancer = (TableRow) findViewById(R.id.tbl_reasonCRcancer);
+        tbl_medicinesORcancer = (TableRow) findViewById(R.id.tbl_medicinesORcancer);
+        tbl_reasonORcancer = (TableRow) findViewById(R.id.tbl_reasonORcancer);
         ll_suspected = (LinearLayout) findViewById(R.id.ll_suspected);
+        ll_prevDiabetes = (LinearLayout) findViewById(R.id.ll_prevDiabetes);
+        ll_Hypertension = (LinearLayout) findViewById(R.id.ll_Hypertension);
+        ll_BRcancer = (LinearLayout) findViewById(R.id.ll_BRcancer);
+        ll_CRcancer = (LinearLayout) findViewById(R.id.ll_CRcancer);
+        ll_ORcancer = (LinearLayout) findViewById(R.id.ll_ORcancer);
         et_anyothercomplication = (EditText) findViewById(R.id.et_anyothercomplication);
         spin_Anyothecompli = (Spinner) findViewById(R.id.spin_Anyothecompli);
         et_name = (EditText) findViewById(R.id.et_name);
@@ -91,6 +107,21 @@ public class NcdScreening extends Activity {
         Spin_Health_Condition = (Spinner) findViewById(R.id.Spin_Health_Condition);
         spin_feet = (Spinner) findViewById(R.id.spin_feet);
         spin_inch = (Spinner) findViewById(R.id.spin_inch);
+        spin_treatmentDiabetes = (Spinner) findViewById(R.id.spin_treatmentDiabetes);
+        spin_testDiabetes = (Spinner) findViewById(R.id.spin_testDiabetes);
+        spin_HealthCenterDiabetes = (Spinner) findViewById(R.id.spin_HealthCenterDiabetes);
+        spin_treatmentHypertension = (Spinner) findViewById(R.id.spin_treatmentHypertension);
+        spin_testHypertension = (Spinner) findViewById(R.id.spin_testHypertension);
+        spin_HealthCenterHypertension = (Spinner) findViewById(R.id.spin_HealthCenterHypertension);
+        spin_treatmentBRcancer = (Spinner) findViewById(R.id.spin_treatmentBRcancer);
+        spin_testBRcancer = (Spinner) findViewById(R.id.spin_testBRcancer);
+        spin_HealthCenterBRcancer = (Spinner) findViewById(R.id.spin_HealthCenterBRcancer);
+        spin_treatmentCRcancer = (Spinner) findViewById(R.id.spin_treatmentCRcancer);
+        spin_testCRcancer = (Spinner) findViewById(R.id.spin_testCRcancer);
+        spin_HealthCenterCRcancer = (Spinner) findViewById(R.id.spin_HealthCenterCRcancer);
+        spin_treatmentORcancer = (Spinner) findViewById(R.id.spin_treatmentORcancer);
+        spin_testORcancer = (Spinner) findViewById(R.id.spin_testORcancer);
+        spin_HealthCenterORcancer = (Spinner) findViewById(R.id.spin_HealthCenterORcancer);
         edit_height = (EditText) findViewById(R.id.edit_height);
         edit_weight = (EditText) findViewById(R.id.edit_weight);
         et_Bmi = (EditText) findViewById(R.id.et_Bmi);
@@ -101,6 +132,8 @@ public class NcdScreening extends Activity {
         chk_Hypertension = (CheckBox) findViewById(R.id.chk_Hypertension);
         chk_Both = (CheckBox) findViewById(R.id.chk_Both);
         chk_Anyother = (CheckBox) findViewById(R.id.chk_Anyother);
+        chk_prevDiabetes = (CheckBox) findViewById(R.id.chk_prevDiabetes);
+        chk_prevHypertension = (CheckBox) findViewById(R.id.chk_prevHypertension);
         spin_Sex = (Spinner) findViewById(R.id.spin_Sex);
         spin_Referredto = (Spinner) findViewById(R.id.spin_Referredto);
         spin_Referredby = (Spinner) findViewById(R.id.spin_Referredby);
@@ -109,6 +142,16 @@ public class NcdScreening extends Activity {
         tv_Date = (TextView) findViewById(R.id.tv_Date);
         tv_totalscreening = (TextView) findViewById(R.id.tv_totalscreening);
         tv_lastscreeningdate = (TextView) findViewById(R.id.tv_lastscreeningdate);
+        tv_DatediagnosisDiabetes = (TextView) findViewById(R.id.tv_DatediagnosisDiabetes);
+        tv_PredateDiabetes = (TextView) findViewById(R.id.tv_PredateDiabetes);
+        tv_DatediagnosisHypertension = (TextView) findViewById(R.id.tv_DatediagnosisHypertension);
+        tv_PredateHypertension = (TextView) findViewById(R.id.tv_PredateHypertension);
+        tv_DatediagnosisBRcancer = (TextView) findViewById(R.id.tv_DatediagnosisBRcancer);
+        tv_PredateBRcancer = (TextView) findViewById(R.id.tv_PredateBRcancer);
+        tv_DatediagnosisCRcancer = (TextView) findViewById(R.id.tv_DatediagnosisCRcancer);
+        tv_PredateCRcancer = (TextView) findViewById(R.id.tv_PredateCRcancer);
+        tv_DatediagnosisORcancer = (TextView) findViewById(R.id.tv_DatediagnosisORcancer);
+        tv_PredateORcancer = (TextView) findViewById(R.id.tv_PredateORcancer);
         tbl_Other1 = (TableRow) findViewById(R.id.tbl_Other1);
         tbl_Any_HealthIssue = (TableRow) findViewById(R.id.tbl_Any_HealthIssue);
         chk1 = (CheckBox) findViewById(R.id.chk1);
@@ -117,14 +160,98 @@ public class NcdScreening extends Activity {
         chk4 = (CheckBox) findViewById(R.id.chk4);
         chk5 = (CheckBox) findViewById(R.id.chk5);
         chk6 = (CheckBox) findViewById(R.id.chk6);
+        chk_prevBRcancer = (CheckBox) findViewById(R.id.chk_prevBRcancer);
+        chk_prevCRcancer = (CheckBox) findViewById(R.id.chk_prevCRcancer);
+        chk_prevORcancer = (CheckBox) findViewById(R.id.chk_prevORcancer);
         btnSave = (Button) findViewById(R.id.btnSave);
         et_Othersuspected = (EditText) findViewById(R.id.et_Othersuspected);
+        et_AvailabilityofmedicinesDiabetes = (EditText) findViewById(R.id.et_AvailabilityofmedicinesDiabetes);
+        et_ReasonforClosingDiabetes = (EditText) findViewById(R.id.et_ReasonforClosingDiabetes);
+        et_AvailabilityofmedicinesHypertension = (EditText) findViewById(R.id.et_AvailabilityofmedicinesHypertension);
+        et_ReasonforClosingHypertension = (EditText) findViewById(R.id.et_ReasonforClosingHypertension);
+        et_AvailabilityofmedicinesBRcancer = (EditText) findViewById(R.id.et_AvailabilityofmedicinesBRcancer);
+        et_ReasonforClosingBRcancer = (EditText) findViewById(R.id.et_ReasonforClosingBRcancer);
+        et_AvailabilityofmedicinesCRcancer = (EditText) findViewById(R.id.et_AvailabilityofmedicinesCRcancer);
+        et_ReasonforClosingCRcancer = (EditText) findViewById(R.id.et_ReasonforClosingCRcancer);
+        et_AvailabilityofmedicinesORcancer = (EditText) findViewById(R.id.et_AvailabilityofmedicinesORcancer);
+        et_ReasonforClosingORcancer = (EditText) findViewById(R.id.et_ReasonforClosingORcancer);
+
         tblOther2 = (TableRow) findViewById(R.id.tblOther2);
         tv_Date.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 ShowDatePicker(tv_Date);
+            }
+        });
+        tv_DatediagnosisDiabetes.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                ShowDatePicker(tv_DatediagnosisDiabetes);
+            }
+        });
+        tv_PredateDiabetes.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                ShowDatePicker(tv_PredateDiabetes);
+            }
+        });
+        tv_DatediagnosisHypertension.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                ShowDatePicker(tv_DatediagnosisHypertension);
+            }
+        });
+        tv_PredateHypertension.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                ShowDatePicker(tv_PredateHypertension);
+            }
+        });
+        tv_DatediagnosisBRcancer.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                ShowDatePicker(tv_DatediagnosisBRcancer);
+            }
+        });
+        tv_PredateBRcancer.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                ShowDatePicker(tv_PredateBRcancer);
+            }
+        });
+        tv_DatediagnosisCRcancer.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                ShowDatePicker(tv_DatediagnosisCRcancer);
+            }
+        });
+        tv_PredateCRcancer.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                ShowDatePicker(tv_PredateCRcancer);
+            }
+        });
+        tv_DatediagnosisORcancer.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                ShowDatePicker(tv_DatediagnosisORcancer);
+            }
+        });
+        tv_PredateORcancer.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                ShowDatePicker(tv_PredateORcancer);
             }
         });
         chk_Both.setOnClickListener(new OnClickListener() {
@@ -187,6 +314,82 @@ public class NcdScreening extends Activity {
 
             }
         });
+        chk_prevDiabetes.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                // TODO Auto-generated method stub
+                if (chk_prevDiabetes.isChecked()) {
+                    ll_prevDiabetes.setVisibility(View.VISIBLE);
+
+                } else {
+                    ll_prevDiabetes.setVisibility(View.GONE);
+
+                }
+
+            }
+        });
+        chk_prevHypertension.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                // TODO Auto-generated method stub
+                if (chk_prevHypertension.isChecked()) {
+                    ll_Hypertension.setVisibility(View.VISIBLE);
+
+                } else {
+                    ll_Hypertension.setVisibility(View.GONE);
+
+                }
+
+            }
+        });
+        chk_prevBRcancer.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                // TODO Auto-generated method stub
+                if (chk_prevBRcancer.isChecked()) {
+                    ll_BRcancer.setVisibility(View.VISIBLE);
+
+                } else {
+                    ll_BRcancer.setVisibility(View.GONE);
+
+                }
+
+            }
+        });
+        chk_prevCRcancer.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                // TODO Auto-generated method stub
+                if (chk_prevCRcancer.isChecked()) {
+                    ll_CRcancer.setVisibility(View.VISIBLE);
+
+                } else {
+                    ll_CRcancer.setVisibility(View.GONE);
+
+                }
+
+            }
+        });
+        chk_prevORcancer.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                // TODO Auto-generated method stub
+                if (chk_prevORcancer.isChecked()) {
+                    ll_ORcancer.setVisibility(View.VISIBLE);
+
+                } else {
+                    ll_ORcancer.setVisibility(View.GONE);
+
+                }
+
+            }
+        });
+
 
         fillVillageName(global.getLanguage());
         fillBlockName(global.getLanguage());
@@ -196,6 +399,21 @@ public class NcdScreening extends Activity {
         fillCommonRecord(spin_Referredto, 41, global.getLanguage());
         fillCommonRecord(Spin_Health_Condition, 36, global.getLanguage());
         fillCommonRecord(spin_Anyothecompli, 7, global.getLanguage());
+        fillCommonRecord(spin_treatmentDiabetes, 52, global.getLanguage());
+        fillCommonRecord(spin_testDiabetes, 102, global.getLanguage());
+        fillCommonRecord(spin_HealthCenterDiabetes, 27, global.getLanguage());
+        fillCommonRecord(spin_treatmentHypertension, 52, global.getLanguage());
+        fillCommonRecord(spin_testHypertension, 102, global.getLanguage());
+        fillCommonRecord(spin_HealthCenterHypertension, 27, global.getLanguage());
+        fillCommonRecord(spin_treatmentCRcancer, 52, global.getLanguage());
+        fillCommonRecord(spin_testCRcancer, 102, global.getLanguage());
+        fillCommonRecord(spin_HealthCenterCRcancer, 27, global.getLanguage());
+        fillCommonRecord(spin_treatmentBRcancer, 52, global.getLanguage());
+        fillCommonRecord(spin_testBRcancer, 102, global.getLanguage());
+        fillCommonRecord(spin_HealthCenterBRcancer, 27, global.getLanguage());
+        fillCommonRecord(spin_treatmentORcancer, 52, global.getLanguage());
+        fillCommonRecord(spin_testORcancer, 102, global.getLanguage());
+        fillCommonRecord(spin_HealthCenterORcancer, 27, global.getLanguage());
         spin_Occupation.setOnItemSelectedListener(new OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> parent, View view,
@@ -205,6 +423,126 @@ public class NcdScreening extends Activity {
                 } else {
                     tbl_occupationother.setVisibility(view.GONE);
                     et_occupationother.setText("");
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+        spin_treatmentHypertension.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int pos, long id) {
+                if (pos == 1) {
+                    tbl_medicinesHypertension.setVisibility(view.VISIBLE);
+                    tbl_reasonHypertension.setVisibility(view.GONE);
+                } else if (pos == 2) {
+                    tbl_reasonHypertension.setVisibility(view.VISIBLE);
+                    tbl_medicinesHypertension.setVisibility(view.GONE);
+                } else {
+                    tbl_medicinesHypertension.setVisibility(view.GONE);
+                    tbl_reasonHypertension.setVisibility(view.GONE);
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+        spin_treatmentDiabetes.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int pos, long id) {
+                if (pos == 1) {
+                    tbl_medicinesDiabetes.setVisibility(view.VISIBLE);
+                    tbl_reasonDiabetes.setVisibility(view.GONE);
+                } else if (pos == 2) {
+                    tbl_reasonDiabetes.setVisibility(view.VISIBLE);
+                    tbl_medicinesDiabetes.setVisibility(view.GONE);
+                } else {
+                    tbl_medicinesDiabetes.setVisibility(view.GONE);
+                    tbl_reasonDiabetes.setVisibility(view.GONE);
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+        spin_treatmentBRcancer.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int pos, long id) {
+                if (pos == 1) {
+                    tbl_medicinesBRcancer.setVisibility(view.VISIBLE);
+                    tbl_reasonBRcancer.setVisibility(view.GONE);
+                } else if (pos == 2) {
+                    tbl_reasonBRcancer.setVisibility(view.VISIBLE);
+                    tbl_medicinesBRcancer.setVisibility(view.GONE);
+                } else {
+                    tbl_medicinesBRcancer.setVisibility(view.GONE);
+                    tbl_reasonBRcancer.setVisibility(view.GONE);
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+        spin_treatmentCRcancer.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int pos, long id) {
+                if (pos == 1) {
+                    tbl_medicinesCRcancer.setVisibility(view.VISIBLE);
+                    tbl_reasonCRcancer.setVisibility(view.GONE);
+                } else if (pos == 2) {
+                    tbl_reasonCRcancer.setVisibility(view.VISIBLE);
+                    tbl_medicinesCRcancer.setVisibility(view.GONE);
+                } else {
+                    tbl_medicinesCRcancer.setVisibility(view.GONE);
+                    tbl_reasonCRcancer.setVisibility(view.GONE);
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+        spin_treatmentORcancer.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int pos, long id) {
+                if (pos == 1) {
+                    tbl_medicinesORcancer.setVisibility(view.VISIBLE);
+                    tbl_reasonORcancer.setVisibility(view.GONE);
+                } else if (pos == 2) {
+                    tbl_reasonORcancer.setVisibility(view.VISIBLE);
+                    tbl_medicinesORcancer.setVisibility(view.GONE);
+                } else {
+                    tbl_medicinesORcancer.setVisibility(view.GONE);
+                    tbl_reasonORcancer.setVisibility(view.GONE);
+
                 }
 
             }
@@ -385,7 +723,7 @@ public class NcdScreening extends Activity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() > 0 && !s.toString().equalsIgnoreCase(".")) {
-                    int count = Integer.valueOf(s.toString());
+                    int count = Validate.returnIntegerValue(s.toString());
 
                     if (count > 200) {
                         et_Systolic.setText("");
@@ -416,7 +754,7 @@ public class NcdScreening extends Activity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() > 0 && !s.toString().equalsIgnoreCase(".")) {
-                    int count = Integer.valueOf(s.toString());
+                    int count = Validate.returnIntegerValue(s.toString());
                     if (count > 150) {
                         et_Diastolic.setText("");
                         CustomAlert(getResources()
@@ -448,7 +786,7 @@ public class NcdScreening extends Activity {
             public void afterTextChanged(Editable s) {
                 if (s.length() > 0 && !s.toString().equalsIgnoreCase(".")) {
 
-                    int count = Integer.valueOf(s.toString());
+                    int count = Validate.returnIntegerValue(s.toString());
                     if (count > 500) {
                         edit_Bloodglucose.setText("");
                         CustomAlert(
@@ -560,8 +898,8 @@ public class NcdScreening extends Activity {
     public double calculateheight() {
         double height = 0;
         try {
-            int feet = Integer.valueOf(spin_feet.getSelectedItem().toString());
-            int inch = Integer.valueOf(spin_inch.getSelectedItem().toString());
+            int feet = Validate.returnIntegerValue(spin_feet.getSelectedItem().toString());
+            int inch = Validate.returnIntegerValue(spin_inch.getSelectedItem().toString());
             height = ((feet * 12) + inch) * 2.54;
         } catch (Exception e) {
             e.printStackTrace();
@@ -569,13 +907,11 @@ public class NcdScreening extends Activity {
         return height;
     }
 
-    public double calculateheightft(EditText et) {
+    public double calculateheightft(String str) {
         int height = 0, ftvalue = 0, invalue = 0;
         try {
-            if (et.getText() != null
-                    && et.getText().toString().length() > 0
-                    && !et.getText().toString().equalsIgnoreCase(".")) {
-                double value = Double.valueOf(et.getText().toString());
+            if (str != null && str.length() > 0 && !str.toString().equalsIgnoreCase(".")) {
+                double value = Double.valueOf(str);
                 height = (int) (value / 2.54);
             }
             int ft = height / 12;
@@ -583,13 +919,13 @@ public class NcdScreening extends Activity {
 
             for (int i = 0; i < feet.length; i++) {
 
-                if (ft == Integer.valueOf(feet[i])) {
+                if (ft == Validate.returnIntegerValue(feet[i])) {
                     ftvalue = i;
                 }
             }
             for (int i = 0; i < inch.length; i++) {
 
-                if (in == Integer.valueOf(inch[i])) {
+                if (in == Validate.returnIntegerValue(inch[i])) {
                     invalue = i;
                 }
             }
@@ -737,7 +1073,7 @@ public class NcdScreening extends Activity {
             }
             if (edit_height.getText().toString() != null
                     && edit_height.getText().toString().length() > 0) {
-                int height = Integer.parseInt(edit_height.getText().toString());
+                int height = (int) Float.parseFloat(edit_height.getText().toString());
                 if (height < 121) {
                     return 2;
                 } else if (height > 200) {
@@ -758,19 +1094,19 @@ public class NcdScreening extends Activity {
 
             }
 //
-            if (edit_Bloodglucose.getText().toString().length() == 0 || (edit_Bloodglucose.getText().toString().length() > 0 && (Integer.valueOf(edit_Bloodglucose.getText()
-                    .toString()) < 50 || Integer.valueOf(edit_Bloodglucose.getText().toString()) > 500))) {
+            if (edit_Bloodglucose.getText().toString().length() == 0 || (edit_Bloodglucose.getText().toString().length() > 0 && (Validate.returnIntegerValue(edit_Bloodglucose.getText()
+                    .toString()) < 50 || Validate.returnIntegerValue(edit_Bloodglucose.getText().toString()) > 500))) {
 
                 return 7;
             }
 
-            if (et_Systolic.getText().toString().length() == 0 || (et_Systolic.getText().toString().length() > 0 && (et_Systolic.getText().toString() != null && Integer.valueOf(et_Systolic.getText()
-                    .toString()) < 90 || Integer.valueOf(et_Systolic.getText().toString()) > 200))) {
+            if (et_Systolic.getText().toString().length() == 0 || (et_Systolic.getText().toString().length() > 0 && (et_Systolic.getText().toString() != null && Validate.returnIntegerValue(et_Systolic.getText()
+                    .toString()) < 90 || Validate.returnIntegerValue(et_Systolic.getText().toString()) > 200))) {
 
                 return 3;
             }
-            if (et_Diastolic.getText().toString().length() == 0 || (et_Diastolic.getText().toString().length() > 0 && (Integer.valueOf(et_Diastolic.getText()
-                    .toString()) < 50 || Integer.valueOf(et_Diastolic.getText().toString()) > 150))) {
+            if (et_Diastolic.getText().toString().length() == 0 || (et_Diastolic.getText().toString().length() > 0 && (Validate.returnIntegerValue(et_Diastolic.getText()
+                    .toString()) < 50 || Validate.returnIntegerValue(et_Diastolic.getText().toString()) > 150))) {
 
                 return 4;
             }
@@ -849,19 +1185,19 @@ public class NcdScreening extends Activity {
 
             if (global.getsGlobalANMCODE() != null
                     && global.getsGlobalANMCODE().length() > 0) {
-                ANMID = Integer.valueOf(global.getsGlobalANMCODE());
+                ANMID = Validate.returnIntegerValue(global.getsGlobalANMCODE());
             }
             if (global.getsGlobalAshaCode() != null
                     && global.getsGlobalAshaCode().length() > 0) {
-                AshaID = Integer.valueOf(global.getsGlobalAshaCode());
+                AshaID = Validate.returnIntegerValue(global.getsGlobalAshaCode());
             }
             if (!et_age.getText().toString().equalsIgnoreCase("null")
                     && et_age.getText().toString().length() > 0) {
-                Age = Integer.valueOf(et_age.getText().toString());
+                Age = Validate.returnIntegerValue(et_age.getText().toString());
             }
             if (!edit_height.getText().toString().equalsIgnoreCase("null")
                     && edit_height.getText().toString().length() > 0) {
-                Height = Integer.valueOf(edit_height.getText().toString());
+                Height = (int) Float.parseFloat(edit_height.getText().toString());
             }
             if (!edit_mobile.getText().toString().equalsIgnoreCase("null")
                     && edit_mobile.getText().toString().length() > 0) {
@@ -953,8 +1289,202 @@ public class NcdScreening extends Activity {
                     Status, AshaID, ANMID, global.getUserID(), flag,
                     AnyOthcomplicationYes, SuspectedAnyOther);
             if (ireturn > 0) {
+                if (chk_prevDiabetes.isChecked()) {
+
+
+                    int treatment = 0, test = 0, HealthCenter = 0, medicine = 0, NCD_id = 1;
+                    String detdate = Validate.changeDateFormat(tv_DatediagnosisDiabetes.getText().toString());
+                    if (spin_treatmentDiabetes.getSelectedItemPosition() > 0) {
+                        treatment = returnid(
+                                spin_treatmentDiabetes.getSelectedItemPosition() - 1, 52,
+                                global.getLanguage());
+                    }
+                    if (spin_testDiabetes.getSelectedItemPosition() > 0) {
+                        test = returnid(
+                                spin_testDiabetes.getSelectedItemPosition() - 1, 102,
+                                global.getLanguage());
+                    }
+                    if (spin_HealthCenterDiabetes.getSelectedItemPosition() > 0) {
+                        HealthCenter = returnid(
+                                spin_HealthCenterDiabetes.getSelectedItemPosition() - 1, 27,
+                                global.getLanguage());
+                    }
+                    medicine = Validate.returnIntegerValue(et_AvailabilityofmedicinesDiabetes.getText().toString());
+                    String Predate = Validate.changeDateFormat(tv_PredateDiabetes.getText().toString());
+                    String ReasonforClosing = Validate.returnStringValue(et_ReasonforClosingDiabetes.getText().toString());
+                    String flagdiagnosis = "";
+                    String sqldiagnosis = "select count(*) from tblncdcbacdiagnosis where HHFamilyMemberGUID='"
+                            + HHFamilyMemberGUID
+                            + "' and CreatedOn='"
+                            + Validate.getcurrentdate() + "' and NCD_id='" + NCD_id + "'";
+                    int count = dataProvider.getMaxRecord(sqldiagnosis);
+                    if (count == 0) {
+                        flagdiagnosis = "I";
+                    } else {
+                        flagdiagnosis = "U";
+                    }
+                    int ireturndiag = 0;
+                    ireturndiag = dataProvider.InsertNCDetailsDiagnosis(NCD_id, detdate, treatment,
+                            Predate, test, HealthCenter, HHFamilyMemberGUID, HHSurveyGUID, NCDScreeningGUID, medicine,
+                            ReasonforClosing, AshaID, ANMID, global.getUserID(), flagdiagnosis);
+                }
+                if (chk_prevHypertension.isChecked()) {
+
+                    int treatment = 0, test = 0, HealthCenter = 0, medicine = 0, NCD_id = 2;
+                    String detdate = Validate.changeDateFormat(tv_DatediagnosisHypertension.getText().toString());
+                    if (spin_treatmentHypertension.getSelectedItemPosition() > 0) {
+                        treatment = returnid(
+                                spin_treatmentHypertension.getSelectedItemPosition() - 1, 52,
+                                global.getLanguage());
+                    }
+                    if (spin_testHypertension.getSelectedItemPosition() > 0) {
+                        test = returnid(
+                                spin_testHypertension.getSelectedItemPosition() - 1, 102,
+                                global.getLanguage());
+                    }
+                    if (spin_HealthCenterHypertension.getSelectedItemPosition() > 0) {
+                        HealthCenter = returnid(
+                                spin_HealthCenterHypertension.getSelectedItemPosition() - 1, 27,
+                                global.getLanguage());
+                    }
+                    medicine = Validate.returnIntegerValue(et_AvailabilityofmedicinesHypertension.getText().toString());
+                    String Predate = Validate.changeDateFormat(tv_PredateHypertension.getText().toString());
+                    String ReasonforClosing = Validate.returnStringValue(et_ReasonforClosingHypertension.getText().toString());
+                    String flagdiagnosis = "";
+                    String sqldiagnosis = "select count(*) from tblncdcbacdiagnosis where HHFamilyMemberGUID='"
+                            + HHFamilyMemberGUID
+                            + "' and CreatedOn='"
+                            + Validate.getcurrentdate() + "' and NCD_id='" + NCD_id + "'";
+                    int count = dataProvider.getMaxRecord(sqldiagnosis);
+                    if (count == 0) {
+                        flagdiagnosis = "I";
+                    } else {
+                        flagdiagnosis = "U";
+                    }
+                    int ireturndiag = 0;
+                    ireturndiag = dataProvider.InsertNCDetailsDiagnosis(NCD_id, detdate, treatment,
+                            Predate, test, HealthCenter, HHFamilyMemberGUID, HHSurveyGUID, NCDScreeningGUID, medicine,
+                            ReasonforClosing, AshaID, ANMID, global.getUserID(), flagdiagnosis);
+                }
+                if (chk_prevBRcancer.isChecked()) {
+
+                    int treatment = 0, test = 0, HealthCenter = 0, medicine = 0, NCD_id = 3;
+                    String detdate = Validate.changeDateFormat(tv_DatediagnosisBRcancer.getText().toString());
+                    if (spin_treatmentBRcancer.getSelectedItemPosition() > 0) {
+                        treatment = returnid(
+                                spin_treatmentBRcancer.getSelectedItemPosition() - 1, 52,
+                                global.getLanguage());
+                    }
+                    if (spin_testBRcancer.getSelectedItemPosition() > 0) {
+                        test = returnid(
+                                spin_testBRcancer.getSelectedItemPosition() - 1, 102,
+                                global.getLanguage());
+                    }
+                    if (spin_HealthCenterBRcancer.getSelectedItemPosition() > 0) {
+                        HealthCenter = returnid(
+                                spin_HealthCenterBRcancer.getSelectedItemPosition() - 1, 27,
+                                global.getLanguage());
+                    }
+                    medicine = Validate.returnIntegerValue(et_AvailabilityofmedicinesBRcancer.getText().toString());
+                    String Predate = Validate.changeDateFormat(tv_PredateBRcancer.getText().toString());
+                    String ReasonforClosing = Validate.returnStringValue(et_ReasonforClosingBRcancer.getText().toString());
+                    String flagdiagnosis = "";
+                    String sqldiagnosis = "select count(*) from tblncdcbacdiagnosis where HHFamilyMemberGUID='"
+                            + HHFamilyMemberGUID
+                            + "' and CreatedOn='"
+                            + Validate.getcurrentdate() + "' and NCD_id='" + NCD_id + "'";
+                    int count = dataProvider.getMaxRecord(sqldiagnosis);
+                    if (count == 0) {
+                        flagdiagnosis = "I";
+                    } else {
+                        flagdiagnosis = "U";
+                    }
+                    int ireturndiag = 0;
+                    ireturndiag = dataProvider.InsertNCDetailsDiagnosis(NCD_id, detdate, treatment,
+                            Predate, test, HealthCenter, HHFamilyMemberGUID, HHSurveyGUID, NCDScreeningGUID, medicine,
+                            ReasonforClosing, AshaID, ANMID, global.getUserID(), flagdiagnosis);
+                }
+                if (chk_prevCRcancer.isChecked()) {
+
+                    int treatment = 0, test = 0, HealthCenter = 0, medicine = 0, NCD_id = 4;
+                    String detdate = Validate.changeDateFormat(tv_DatediagnosisCRcancer.getText().toString());
+                    if (spin_treatmentCRcancer.getSelectedItemPosition() > 0) {
+                        treatment = returnid(
+                                spin_treatmentCRcancer.getSelectedItemPosition() - 1, 52,
+                                global.getLanguage());
+                    }
+                    if (spin_testCRcancer.getSelectedItemPosition() > 0) {
+                        test = returnid(
+                                spin_testCRcancer.getSelectedItemPosition() - 1, 102,
+                                global.getLanguage());
+                    }
+                    if (spin_HealthCenterCRcancer.getSelectedItemPosition() > 0) {
+                        HealthCenter = returnid(
+                                spin_HealthCenterCRcancer.getSelectedItemPosition() - 1, 27,
+                                global.getLanguage());
+                    }
+                    medicine = Validate.returnIntegerValue(et_AvailabilityofmedicinesCRcancer.getText().toString());
+                    String Predate = Validate.changeDateFormat(tv_PredateCRcancer.getText().toString());
+                    String ReasonforClosing = Validate.returnStringValue(et_ReasonforClosingCRcancer.getText().toString());
+                    String flagdiagnosis = "";
+                    String sqldiagnosis = "select count(*) from tblncdcbacdiagnosis where HHFamilyMemberGUID='"
+                            + HHFamilyMemberGUID
+                            + "' and CreatedOn='"
+                            + Validate.getcurrentdate() + "' and NCD_id='" + NCD_id + "'";
+                    int count = dataProvider.getMaxRecord(sqldiagnosis);
+                    if (count == 0) {
+                        flagdiagnosis = "I";
+                    } else {
+                        flagdiagnosis = "U";
+                    }
+                    int ireturndiag = 0;
+                    ireturndiag = dataProvider.InsertNCDetailsDiagnosis(NCD_id, detdate, treatment,
+                            Predate, test, HealthCenter, HHFamilyMemberGUID, HHSurveyGUID, NCDScreeningGUID, medicine,
+                            ReasonforClosing, AshaID, ANMID, global.getUserID(), flagdiagnosis);
+                }
+                if (chk_prevORcancer.isChecked()) {
+
+                    int treatment = 0, test = 0, HealthCenter = 0, medicine = 0, NCD_id = 5;
+                    String detdate = Validate.changeDateFormat(tv_DatediagnosisORcancer.getText().toString());
+                    if (spin_treatmentORcancer.getSelectedItemPosition() > 0) {
+                        treatment = returnid(
+                                spin_treatmentORcancer.getSelectedItemPosition() - 1, 52,
+                                global.getLanguage());
+                    }
+                    if (spin_testORcancer.getSelectedItemPosition() > 0) {
+                        test = returnid(
+                                spin_testORcancer.getSelectedItemPosition() - 1, 102,
+                                global.getLanguage());
+                    }
+                    if (spin_HealthCenterORcancer.getSelectedItemPosition() > 0) {
+                        HealthCenter = returnid(
+                                spin_HealthCenterORcancer.getSelectedItemPosition() - 1, 27,
+                                global.getLanguage());
+                    }
+                    medicine = Validate.returnIntegerValue(et_AvailabilityofmedicinesORcancer.getText().toString());
+                    String Predate = Validate.changeDateFormat(tv_PredateORcancer.getText().toString());
+                    String ReasonforClosing = Validate.returnStringValue(et_ReasonforClosingORcancer.getText().toString());
+                    String flagdiagnosis = "";
+                    String sqldiagnosis = "select count(*) from tblncdcbacdiagnosis where HHFamilyMemberGUID='"
+                            + HHFamilyMemberGUID
+                            + "' and CreatedOn='"
+                            + Validate.getcurrentdate() + "' and NCD_id='" + NCD_id + "'";
+                    int count = dataProvider.getMaxRecord(sqldiagnosis);
+                    if (count == 0) {
+                        flagdiagnosis = "I";
+                    } else {
+                        flagdiagnosis = "U";
+                    }
+                    int ireturndiag = 0;
+                    ireturndiag = dataProvider.InsertNCDetailsDiagnosis(NCD_id, detdate, treatment,
+                            Predate, test, HealthCenter, HHFamilyMemberGUID, HHSurveyGUID, NCDScreeningGUID, medicine,
+                            ReasonforClosing, AshaID, ANMID, global.getUserID(), flagdiagnosis);
+                }
+
+
                 CustomAlert(
                         getResources().getString(R.string.savesuccessfully), 1);
+
 
             } else {
                 // CustomAlerts(getResources().getString(R.string.no));
@@ -962,9 +1492,13 @@ public class NcdScreening extends Activity {
 
             }
 
-        } catch (Exception e) {
+        } catch (
+                Exception e)
+
+        {
             e.printStackTrace();
         }
+
     }
 
     public void CustomAlert(String msg, final int flag) {
@@ -1022,13 +1556,13 @@ public class NcdScreening extends Activity {
         try {
             int count = 0, count1 = 0, count2 = 0;
             if (et1.length() > 0 && !et1.toString().equalsIgnoreCase(".")) {
-                count = Integer.valueOf(et1.getText().toString());
+                count = Validate.returnIntegerValue(et1.getText().toString());
             }
-            if (et3.length() > 0 && !et3.toString().equalsIgnoreCase(".")) {
-                count2 = Integer.valueOf(et3.getText().toString());
+            if (et3.length() > 0 && !et3.toString().equalsIgnoreCase("c.")) {
+                count2 = Validate.returnIntegerValue(et3.getText().toString());
             }
             if (et2.length() > 0 && !et2.toString().equalsIgnoreCase(".")) {
-                count1 = Integer.valueOf(et2.getText().toString());
+                count1 = Validate.returnIntegerValue(et2.getText().toString());
             }
             if (count > 120 || count2 > 90 || count1 > 140) {
                 ll_suspected.setVisibility(View.VISIBLE);

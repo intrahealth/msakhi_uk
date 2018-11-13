@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/White"
+    android:orientation="vertical">
+
+
+
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp">
+
+            <TextView
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:gravity="center"
+                android:minHeight="40dp"
+                android:text="@string/Medicines"
+                android:textColor="@color/White" />
+
+            <TextView
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textsheet"
+                android:gravity="center"
+                android:minHeight="40dp"
+                android:text="@string/Quantity"
+                android:textColor="@color/White" />
+
+
+        </TableRow>
+
+
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/White"
+            android:orientation="vertical">
+
+            <GridView
+                android:id="@+id/OtherGridView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+            </GridView>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp">
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1" />
+
+
+        <Button
+            android:id="@+id/btn_save"
+            style="@style/ButtonText"
+            android:layout_weight="1"
+            android:width="0dp"
+            android:background="@drawable/btn_bg_custom"
+            android:text="@string/save" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            style="@style/ButtonText"
+            android:layout_weight="1"
+            android:width="0dp"
+            android:background="@drawable/btn_bg_custom"
+            android:text="@string/cancel" />
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1" />
+    </TableRow>
+</LinearLayout>
+

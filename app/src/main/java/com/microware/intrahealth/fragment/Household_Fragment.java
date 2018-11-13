@@ -3,6 +3,7 @@ package com.microware.intrahealth.fragment;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -64,7 +65,7 @@ public class Household_Fragment extends Fragment {
             Spin_Anypremature_DeathYes, spin_Toilet, Spin_Waste_Disposal,
             Spin_Electricity, Spin_House_Type;
     CheckBox Drinkchk1, Drinkchk2, Drinkchk3, Drinkchk4, Drinkchk5, Drinkchk6,
-            Drinkchk7, chk1, chk3, chk4, chk5, chk6;
+            Drinkchk7, chk1, chk2,chk3, chk4, chk5, chk6;
     LinearLayout ll_jharkhand;
     TableRow tblDateOfMigrate, tblDOR, tbl_AnyprematureDeathYes, tbl_Hamlet;
     TextView tvDateOfMigrate, tvDateOfReturn, tv_ashafacilitator;
@@ -128,6 +129,7 @@ public class Household_Fragment extends Fragment {
         global = (Global) getActivity().getApplicationContext();
         // add jharkhand fields jitendra
         chk1 = (CheckBox) rootView.findViewById(R.id.chk1);
+        chk2 = (CheckBox) rootView.findViewById(R.id.chk2);
 
         chk3 = (CheckBox) rootView.findViewById(R.id.chk3);
         chk4 = (CheckBox) rootView.findViewById(R.id.chk4);
@@ -316,7 +318,7 @@ public class Household_Fragment extends Fragment {
             if (global.getStateCode() != null
                     && global.getStateCode().length() > 0) {
 
-                statecode = Integer.valueOf(global.getStateCode());
+                statecode = Validate.returnIntegerValue(global.getStateCode());
             }
             if (statecode == 20) {
 
@@ -324,10 +326,16 @@ public class Household_Fragment extends Fragment {
                 tbl_Hamlet.setVisibility(View.VISIBLE);
                 tv_ashafacilitator.setText(getResources().getString(
                         R.string.jhfacilator));
+                chk2.setVisibility(View.GONE);
+                chk6.setVisibility(View.VISIBLE);
 
             } else {
                 ll_jharkhand.setVisibility(View.GONE);
                 tbl_Hamlet.setVisibility(View.GONE);
+                chk2.setVisibility(View.VISIBLE);
+                chk6.setVisibility(View.GONE);
+                chk2.setText(R.string.Cowdungcake);
+                chk1.setText(R.string.Cropremains);
 
             }
 
@@ -384,8 +392,8 @@ public class Household_Fragment extends Fragment {
                 if (pos > 0) {
                     if (global.getGlobalHHSurveyGUID().length() == 0) {
                         int VillageID = Village.get(pos - 1).getVillageID();
-                        String count = "Select count(*) from Tbl_HHSurvey where VillageID = "
-                                + VillageID + "";
+                        String count = "Select max(cast(HHcode as int)) from Tbl_HHSurvey where VillageID = "
+                                + VillageID + " and CreatedBy=" + global.getUserID() + "";
                         int icount = dataProvider.getMaxRecord(count) + 1;
                         String SNo = String.valueOf(icount);
                         if (SNo.length() == 1) {
@@ -642,6 +650,9 @@ public class Household_Fragment extends Fragment {
                         } else if (arr1[i].equalsIgnoreCase("5")) {
                             chk6.setChecked(true);
                             break;
+                        }else if (arr1[i].equalsIgnoreCase("6")) {
+                            chk2.setChecked(true);
+                            break;
                         }
 
                     }
@@ -740,7 +751,7 @@ public class Household_Fragment extends Fragment {
     }
 
     private void fillVillageName(int Language) {
-        Village = dataProvider.getMstVillageName(global.getsGlobalAshaCode(), Language,0);
+        Village = dataProvider.getMstVillageName(global.getsGlobalAshaCode(), Language, 0);
 
         String sValue[] = new String[Village.size() + 1];
         sValue[0] = getResources().getString(R.string.select);
@@ -766,7 +777,8 @@ public class Household_Fragment extends Fragment {
     }
 
     private void fillASHAname(int Language) {
-        ASHA = dataProvider.getMstASHAname(Language);
+
+        ASHA = dataProvider.getMstASHAname(Language, global.getsGlobalAshaCode(), 2);
 
         String sValue[] = new String[ASHA.size() + 1];
         sValue[0] = getResources().getString(R.string.select);
@@ -805,7 +817,12 @@ public class Household_Fragment extends Fragment {
     }
 
     public void fillASHAF(Spinner spin) {
-        catchment = dataProvider.getCatchsupervisor(global.getLanguage());
+        int ashaid = 0;
+        if (global.getsGlobalAshaCode() != null
+                && global.getsGlobalAshaCode().length() > 0) {
+            ashaid = Validate.returnIntegerValue(global.getsGlobalAshaCode());
+        }
+        catchment = dataProvider.getCatchsupervisor(global.getLanguage(), ashaid);
 
         String WhereHouse[] = new String[catchment.size() + 1];
         WhereHouse[0] = getResources().getString(R.string.select);
@@ -899,7 +916,7 @@ public class Household_Fragment extends Fragment {
                     .getSubCenterID();
         }
         if (etFamilySNo.getText().toString().length() > 0) {
-            FamilySNo = Integer.valueOf(etFamilySNo.getText().toString());
+            FamilySNo = Validate.returnIntegerValue(etFamilySNo.getText().toString());
         }
         if (etHHShortName.getText().toString().length() > 0) {
             iHHShortName = etHHShortName.getText().toString();
@@ -920,7 +937,7 @@ public class Household_Fragment extends Fragment {
         }
 
         if (etSNoFamily.getText().toString().length() > 0) {
-            // SNoFamily = Integer.valueOf(etSNoFamily.getText().toString());
+            // SNoFamily = Validate.returnIntegerValue(etSNoFamily.getText().toString());
         }
         if (spinANMname.getSelectedItemPosition() > 0) {
             ANMid = ANM.get(spinANMname.getSelectedItemPosition() - 1)
@@ -961,7 +978,7 @@ public class Household_Fragment extends Fragment {
 
         }
         if (spin_ashafacilator.getSelectedItemPosition() > 0) {
-            catchment = dataProvider.getCatchsupervisor(global.getLanguage());
+            //catchment = dataProvider.getCatchsupervisor(global.getLanguage());
             facilatorid = catchment.get(
                     spin_ashafacilator.getSelectedItemPosition() - 1)
                     .getCHS_ID();
@@ -1023,9 +1040,61 @@ public class Household_Fragment extends Fragment {
                     MigrateOutDate, Hamlet, Anypremature_Death,
                     Anypremature_DeathYes, Toilet, Waste_Disposal,
                     Drinking_Water, Electricity, Cooking_Fuel, House_Type);
+            String status = "";
+            String statusmember = "", sqlmembermigin = "", sqlmembermigout = "";
+            statusmember = "select count(*) from Tbl_HHFamilyMember where HHSurveyGUID='"
+                    + global.getGlobalHHSurveyGUID() + "' and StatusID=1";
+            sqlmembermigout = "select HHFamilyMemberGUID from Tbl_HHFamilyMember where HHSurveyGUID='"
+                    + global.getGlobalHHSurveyGUID() + "' and StatusID=1";
+            sqlmembermigin = "select HHFamilyMemberGUID from Tbl_HHFamilyMember where HHSurveyGUID='"
+                    + global.getGlobalHHSurveyGUID() + "' and StatusID=3";
+            int memcount = dataProvider.getMaxRecord(statusmember);
+            ArrayList<HashMap<String, String>> data = null;
+
+
+            if (HHstatus == 2 || HHstatus == 3) {
+                data = dataProvider.getDynamicVal(sqlmembermigout);
+                status = "Update Tbl_HHFamilyMember set StatusID=3 where HHSurveyGUID='"
+                        + global.getGlobalHHSurveyGUID() + "'";
+                String CreatedOn = "", MigrationGUID = "";
+                CreatedOn = Validate.getcurrentdate();
+                for (int i = 0; i < data.size(); i++) {
+                    MigrationGUID = Validate.random();
+                    dataProvider.saveMigrationDetails("i", CreatedOn, global.getUserID(), "", CreatedOn, MigrationGUID, data.get(i).get("HHFamilyMemberGUID"));
+
+                }
+
+            } else if (HHstatus == 1 && memcount == 0) {
+                data = dataProvider.getDynamicVal(sqlmembermigin);
+                status = "Update Tbl_HHFamilyMember set StatusID=1 where HHSurveyGUID='"
+                        + global.getGlobalHHSurveyGUID() + "'";
+                String CreatedOn = "";
+                CreatedOn = Validate.getcurrentdate();
+                for (int i = 0; i < data.size(); i++) {
+                    String sql = "update tblMigration set DateOfMigrationIn='"
+                            + CreatedOn + "', UpdatedOn='" + CreatedOn
+                            + "',UpdatedBy=" + global.getUserID()
+                            + " ,IsEdited=1,IsUploaded=0 where HHFamilyMemberGUID='"
+                            + data.get(i).get("HHFamilyMemberGUID") + "' and (DateOfMigrationIn='' or DateOfMigrationIn is null)";
+                    dataProvider.executeSql(sql);
+                }
+
+            }
+            dataProvider.executeSql(status);
+            // ((Intrahealth_Tab_Activity) getActivity()).swapscreen(1);
 
         }
 
+    }
+
+    @Override
+    public void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+        if (global.getGlobalHHSurveyGUID() != null
+                && global.getGlobalHHSurveyGUID().length() > 0) {
+            filldata();
+        }
     }
 
     public void CustomAlertS(String msg) {
@@ -1037,7 +1106,8 @@ public class Household_Fragment extends Fragment {
         LayoutInflater inflater = (LayoutInflater) getActivity()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.dialog_layout, null, false);
-        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
         dialog.setContentView(view);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         TextView txtTitle = (TextView) dialog
@@ -1063,7 +1133,7 @@ public class Household_Fragment extends Fragment {
         if (chk1.isChecked()) {
             ss = ss + "1,";
         }
-        if (chk3.isChecked()) {
+         if (chk3.isChecked()) {
             ss = ss + "2,";
         }
         if (chk4.isChecked()) {
@@ -1073,7 +1143,9 @@ public class Household_Fragment extends Fragment {
             ss = ss + "4,";
         }
         if (chk6.isChecked()) {
-            ss = ss + "5";
+            ss = ss + "5,";
+        }if (chk2.isChecked()) {
+            ss = ss + "6";
         }
 
         return ss;
@@ -1114,7 +1186,8 @@ public class Household_Fragment extends Fragment {
         LayoutInflater inflater = (LayoutInflater) getActivity()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.dialog_checklayout, null, false);
-        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
         dialog.setContentView(view);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         TextView txtTitle = (TextView) dialog
@@ -1191,7 +1264,7 @@ public class Household_Fragment extends Fragment {
                                 Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                         startActivity(intent);
                         /*
-						 * Intent intent1 = new
+                         * Intent intent1 = new
 						 * Intent(Settings.ACTION_APPLICATION_SETTINGS);
 						 * mContext.startActivity(intent1);
 						 */
@@ -1207,7 +1280,7 @@ public class Household_Fragment extends Fragment {
                 });
 
         // Showing Alert Message
-       // alertDialog.setIcon(R.drawable.msakhi_logo);
+        // alertDialog.setIcon(R.drawable.msakhi_logo);
         alertDialog.show();
     }
 

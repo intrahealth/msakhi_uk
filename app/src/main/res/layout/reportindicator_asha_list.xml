@@ -2,42 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+    android:orientation="vertical">
 
-        <TextView
-            style="@style/SimpleText"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight=".1"
-            android:background="@color/PowderBlue"/>
-
-        <TextView
-            style="@style/SimpleTextblack"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_weight="2"
-            android:text="@string/PregnantWomen"
-            android:background="@color/PowderBlue"
-            android:textSize="22dp"
-            android:paddingTop="5dp"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight=".1"
-            android:background="@color/PowderBlue"/>
-
-        <TextView
-            style="@style/SimpleText"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight=".1"
-            android:background="@color/PowderBlue"/>
-    </TableRow>
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -86,10 +52,10 @@
             android:layout_height="fill_parent"
             android:layout_weight=".1" />
     </TableRow>
+
     <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp">
+        style="@style/tbl_SimpleText"
+        android:background="@color/LightsyncYellow">
 
         <TextView
             android:layout_width="0dp"
@@ -97,12 +63,26 @@
             android:layout_weight=".1" />
 
         <TextView
+            style="@style/SimpleTextblack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingTop="5dp"
+
+            android:text="@string/PregnantWomen"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
             style="@style/SimpleText"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:text="@string/sVillage" />
+            android:text="@string/sVillage"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/spinVillageName"
@@ -110,7 +90,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:background="@drawable/textbox"
+
             android:imeOptions="actionNext"
             android:inputType="textCapSentences"
             android:maxLength="50" />
@@ -122,6 +102,10 @@
             android:layout_weight=".1" />
     </TableRow>
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -132,9 +116,8 @@
             android:orientation="vertical">
 
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                style="@style/tbl_SimpleText"
+                android:background="@color/LightBlue">
 
                 <TextView
                     android:layout_width="0dp"
@@ -155,7 +138,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/textbox"
+
                     android:gravity="center_vertical" />
 
                 <TextView
@@ -164,10 +147,7 @@
                     android:layout_weight=".1" />
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+            <TableRow style="@style/tbl_SimpleText">
 
                 <TextView
                     android:layout_width="0dp"
@@ -181,7 +161,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:text="@string/textview11" />
+                    android:text="@string/month0_3" />
 
                 <TextView
                     android:id="@+id/tvinfirsttrimester"
@@ -189,7 +169,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/textbox"
+
                     android:gravity="center_vertical" />
 
                 <TextView
@@ -197,10 +177,10 @@
                     android:layout_height="fill_parent"
                     android:layout_weight=".1" />
             </TableRow>
+
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                style="@style/tbl_SimpleText"
+                android:background="@color/LightBlue">
 
                 <TextView
                     android:layout_width="0dp"
@@ -213,7 +193,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:text="@string/textview135" />
+                    android:text="@string/month4_6" />
 
                 <TextView
                     android:id="@+id/tvinsecondtrimester"
@@ -221,7 +201,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/textbox"
+
                     android:gravity="center_vertical" />
 
                 <TextView
@@ -229,10 +209,8 @@
                     android:layout_height="fill_parent"
                     android:layout_weight=".1" />
             </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+
+            <TableRow style="@style/tbl_SimpleText">
 
                 <TextView
                     android:layout_width="0dp"
@@ -245,7 +223,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:text="@string/textview136" />
+                    android:text="@string/month7_9" />
 
                 <TextView
                     android:id="@+id/tvinthirdtrimester"
@@ -253,7 +231,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/textbox"
+
                     android:gravity="center_vertical" />
 
                 <TextView
@@ -261,10 +239,41 @@
                     android:layout_height="fill_parent"
                     android:layout_weight=".1" />
             </TableRow>
+
+            <TableRow style="@style/tbl_SimpleText"
+                android:background="@color/LightBlue">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/_9_month" />
+
+                <TextView
+                    android:id="@+id/tv_9month"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+
+                    android:gravity="center_vertical" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                style="@style/tbl_SimpleText"
+              >
 
                 <TextView
                     android:layout_width="0dp"
@@ -285,7 +294,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/textbox"
+
                     android:gravity="center_vertical" />
 
                 <TextView
@@ -294,10 +303,8 @@
                     android:layout_weight=".1" />
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+            <TableRow style="@style/tbl_SimpleText"
+                android:background="@color/LightBlue">
 
                 <TextView
                     android:layout_width="0dp"
@@ -318,7 +325,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/textbox"
+
                     android:gravity="center_vertical" />
 
                 <TextView
@@ -328,9 +335,8 @@
             </TableRow>
 
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                style="@style/tbl_SimpleText"
+               >
 
                 <TextView
                     android:layout_width="0dp"
@@ -351,7 +357,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/textbox"
+
                     android:gravity="center_vertical" />
 
                 <TextView
@@ -360,10 +366,8 @@
                     android:layout_weight=".1" />
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+            <TableRow style="@style/tbl_SimpleText"
+                android:background="@color/LightBlue">
 
                 <TextView
                     android:layout_width="0dp"
@@ -384,7 +388,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/textbox"
+
                     android:gravity="center_vertical" />
 
                 <TextView
@@ -394,9 +398,8 @@
             </TableRow>
 
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                style="@style/tbl_SimpleText"
+                >
 
                 <TextView
                     android:layout_width="0dp"
@@ -417,7 +420,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/textbox"
+
                     android:gravity="center_vertical" />
 
                 <TextView
@@ -426,10 +429,8 @@
                     android:layout_weight=".1" />
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+            <TableRow style="@style/tbl_SimpleText"
+                android:background="@color/LightBlue">
 
                 <TextView
                     android:layout_width="0dp"
@@ -450,7 +451,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/textbox"
+
                     android:gravity="center_vertical" />
 
                 <TextView

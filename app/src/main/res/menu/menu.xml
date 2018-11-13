@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item
-        android:id="@+id/logbutton"
-        android:orderInCategory="100"
-        android:showAsAction="always"
-        android:title=""/>
- <item
-        android:id="@+id/homebutton"
-        android:orderInCategory="100"
-        android:showAsAction="always"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<item
         android:icon="@drawable/logout1"
-        android:title=""/>
- 
+        android:id="@+id/User"
+        android:orderInCategory="1"
+        app:showAsAction="always"
+        android:title="a" />
+    <item
+        android:icon="@drawable/logout1"
+        android:id="@+id/logbutton"
+        app:showAsAction="always"
+        android:title="@string/Acn" />
+
 </menu>

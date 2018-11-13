@@ -16,6 +16,9 @@ import com.microware.intrahealth.object.MstVillage;
 import com.microware.intrahealth.object.tbl_pregnantwomen;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
@@ -33,10 +36,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class AncActivity extends Activity {
 
@@ -50,11 +57,14 @@ public class AncActivity extends Activity {
     ArrayList<MstVillage> Village = new ArrayList<MstVillage>();
     int VillageID = 0;
     DataProvider dataProvider;
+    Validate validate;
     ArrayAdapter<String> adapter;
     TableRow tbl_search, tbl_spinner;
     ConnectivityManager connMgrCheckConnection;
     NetworkInfo networkInfoCheckConnection;
     public ArrayList<tbl_pregnantwomen> pregnant = new ArrayList<tbl_pregnantwomen>();
+    ImageView btnCapture;
+    static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +74,7 @@ public class AncActivity extends Activity {
         setContentView(R.layout.anc_activity);
 
         dataProvider = new DataProvider(this);
+        validate = new Validate(this);
         global = (Global) getApplication();
         setTitle(global.getVersionName());
         btnaddanc = (Button) findViewById(R.id.btnaddanc);
@@ -79,6 +90,7 @@ public class AncActivity extends Activity {
         // ltvWomenID = (TextView) findViewById(R.id.ltvWomenID);
         ltvWomenName = (TextView) findViewById(R.id.ltvWomenName);
         spinVillageName = (Spinner) findViewById(R.id.spinVillageName);
+        btnCapture = (ImageView) findViewById(R.id.btnCapture);
 
         // ltvNxtvisitdate = (TextView) findViewById(R.id.ltvNxtvisitdate);
 
@@ -96,11 +108,11 @@ public class AncActivity extends Activity {
         dataProvider.getUserLogin(anc_GUID, global.getUserID(), "ANC", "ANC",
                 localTime, dateStrings);
         if (global.getVHND_flag() == 1) {
-            fillgrid(2);
+            fillgrid(2, "");
             btnaddanc.setVisibility(View.INVISIBLE);
             tbl_search.setVisibility(View.GONE);
         } else {
-            fillgrid(2);
+            fillgrid(2, "");
             btnaddanc.setVisibility(View.VISIBLE);
             tbl_search.setVisibility(View.VISIBLE);
         }
@@ -110,7 +122,7 @@ public class AncActivity extends Activity {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 if (etFamilyIDSearch.getText().toString().length() > 0) {
-                    fillgrid(1);
+                    fillgrid(1, "");
                 }
             }
         });
@@ -121,7 +133,7 @@ public class AncActivity extends Activity {
                                       int count) {
                 // TODO Auto-generated method stub
                 if (s.length() > 0) {
-                    fillgrid(1);
+                    fillgrid(1, "");
                 }
 
             }
@@ -137,7 +149,28 @@ public class AncActivity extends Activity {
             public void afterTextChanged(Editable s) {
                 // TODO Auto-generated method stub
                 if (etFamilyIDSearch.getText().toString().length() == 0) {
-                    fillgrid(0);
+                    fillgrid(3, "");
+                }
+            }
+        });
+        btnCapture.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                try {
+                    // start the scanning activity from the
+                    // com.google.zxing.client.android.SCAN intent
+                    Intent intent = new Intent(ACTION_SCAN);
+                    intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+                    startActivityForResult(intent, 0);
+                } catch (ActivityNotFoundException anfe) {
+                    // on catch, show the download dialog
+                    showDialog(AncActivity.this,
+                            getResources().getString(R.string.NoScannerFound),
+                            getResources().getString(R.string.Downloadscanner),
+                            getResources().getString(R.string.Yes),
+                            getResources().getString(R.string.no)).show();
                 }
             }
         });
@@ -146,10 +179,11 @@ public class AncActivity extends Activity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-
-                Intent i = new Intent(AncActivity.this, PregWomenList.class);
-                finish();
-                startActivity(i);
+                if (global.getiGlobalRoleID() == 2 || global.getiGlobalRoleID() == 3) {
+                    Intent i = new Intent(AncActivity.this, PregWomenList.class);
+                    finish();
+                    startActivity(i);
+                }
                 //   createpdf();
 
             }
@@ -159,10 +193,12 @@ public class AncActivity extends Activity {
         btn_PregnantWomen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(AncActivity.this, ReportIndicator_ashaList.class);
-                i.putExtra("flag", 1);
-                finish();
-                startActivity(i);
+                if (global.getiGlobalRoleID() == 2 || global.getiGlobalRoleID() == 3) {
+                    Intent i = new Intent(AncActivity.this, ReportIndicator_ashaList.class);
+                    i.putExtra("flag", 1);
+                    finish();
+                    startActivity(i);
+                }
             }
         });
         fillVillageName(global.getLanguage());
@@ -175,11 +211,11 @@ public class AncActivity extends Activity {
                         VillageID = Village.get(
                                 spinVillageName.getSelectedItemPosition() - 1)
                                 .getVillageID();
-                        fillgrid(0);
+                        fillgrid(0, "");
 
                     } else {
                         VillageID = 0;
-                        fillgrid(3);
+                        fillgrid(3, "");
                     }
                 }
             }
@@ -189,20 +225,26 @@ public class AncActivity extends Activity {
 
             }
         });
-        if (global.getVHND_flag() == 1) {
-            fillgrid(2);
+        if (validate.RetriveSharepreferenceInt("QR") == 1) {
+            fillgrid(2, "");
+            btn_PregnantWomen.setVisibility(View.INVISIBLE);
+            btnaddanc.setVisibility(View.INVISIBLE);
+            tbl_search.setVisibility(View.GONE);
+            tbl_spinner.setVisibility(View.GONE);
+        } else if (global.getVHND_flag() == 1) {
+            fillgrid(2, "");
             btn_PregnantWomen.setVisibility(View.INVISIBLE);
             btnaddanc.setVisibility(View.INVISIBLE);
             tbl_search.setVisibility(View.GONE);
             tbl_spinner.setVisibility(View.GONE);
         } else if (global.getNotification_trackflag() == 1) {
-            fillgrid(2);
+            fillgrid(2, "");
             btn_PregnantWomen.setVisibility(View.INVISIBLE);
             btnaddanc.setVisibility(View.INVISIBLE);
             tbl_search.setVisibility(View.GONE);
             tbl_spinner.setVisibility(View.GONE);
         } else {
-            fillgrid(0);
+            fillgrid(0, "");
             btn_PregnantWomen.setVisibility(View.VISIBLE);
             btnaddanc.setVisibility(View.VISIBLE);
             tbl_search.setVisibility(View.VISIBLE);
@@ -226,7 +268,7 @@ public class AncActivity extends Activity {
     }
 
 
-    public void fillgrid(int flag) {
+    public void fillgrid(int flag, String pwguid) {
         // TODO Auto-generated method stub
         int ashaid = 0;
         if (global.getsGlobalAshaCode() != null
@@ -243,6 +285,8 @@ public class AncActivity extends Activity {
             pregnant = dataProvider.getPregnantWomendataanc(name, 7, ashaid, VillageID);
         } else if (flag == 3) {
             pregnant = dataProvider.getPregnantWomendataanc("", 8, ashaid, VillageID);
+        } else if (flag == 4) {
+            pregnant = dataProvider.getPregnantWomendataanc(pwguid, 7, ashaid, VillageID);
         }
 
         if (pregnant != null && pregnant.size() > 0) {
@@ -268,33 +312,6 @@ public class AncActivity extends Activity {
         }
     }
 
-    public void fillgrid(String Woman_name) {
-        // TODO Auto-generated method stub
-
-        int ashaid = 0;
-        if (global.getsGlobalAshaCode() != null
-                && global.getsGlobalAshaCode().length() > 0) {
-            ashaid = Integer.valueOf(global.getsGlobalAshaCode());
-        }
-        String name = "%" + Woman_name + "%";
-        pregnant = dataProvider.getPregnantWomendataanc(name, 4, ashaid, VillageID);
-
-        if (pregnant != null && pregnant.size() > 0) {
-            android.view.ViewGroup.LayoutParams params = gridanc
-                    .getLayoutParams();
-            Resources r = getResources();
-            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                    60, r.getDisplayMetrics());
-            int hi = Math.round(px);
-            int gridHeight1 = 0;
-            gridHeight1 = hi * (pregnant.size() + 4);
-            params.height = gridHeight1;
-            gridanc.setLayoutParams(params);
-            gridanc.setAdapter(new AncAdapter(this, pregnant));
-
-        }
-    }
-
     public void openExpendableGridView(int position) {
 
         int size = gridanc.getChildCount();
@@ -314,6 +331,78 @@ public class AncActivity extends Activity {
 
     }
 
+    private static AlertDialog showDialog(final Activity act,
+                                          CharSequence title, CharSequence message, CharSequence buttonYes,
+                                          CharSequence buttonNo) {
+        AlertDialog.Builder downloadDialog = new AlertDialog.Builder(act);
+        downloadDialog.setTitle(title);
+        downloadDialog.setMessage(message);
+        downloadDialog.setPositiveButton(buttonYes,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Uri uri = Uri.parse("market://search?q=pname:"
+                                + "com.google.zxing.client.android");
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        try {
+                            act.startActivity(intent);
+                        } catch (ActivityNotFoundException anfe) {
+
+                        }
+                    }
+                });
+        downloadDialog.setNegativeButton(buttonNo,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+        return downloadDialog.show();
+    }
+
+    // on ActivityResult method
+    @SuppressWarnings("unused")
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                // get the extras that are returned from the intent
+
+                String contents = intent.getStringExtra("SCAN_RESULT");
+                String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
+
+
+                show(contents);
+            }
+        }
+    }
+
+    private void show(String XMLData) {
+        String PWGUID = "";
+        try {
+            JSONObject jsonObj = new JSONObject(XMLData);
+            JSONArray data = jsonObj.getJSONArray("data");
+
+            if (data != null && data.length() > 0) {
+                JSONObject Form = data.getJSONObject(0);
+                PWGUID = Form.optString("PWGUID");
+                String sql = "";
+                sql = "Select count(*) from tblPregnant_woman  where PWGUID='"
+                        + PWGUID + "' and  IsPregnant=1  ";
+                int count = dataProvider.getMaxRecord(sql);
+                if (count > 0) {
+                    fillgrid(4, PWGUID);
+                } else {
+                    Toast.makeText(this, R.string.ancrecorddoesnotexist, Toast.LENGTH_LONG).show();
+                }
+            } else {
+                Toast.makeText(this, R.string.QRCodeisinvalid, Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            Toast.makeText(this, R.string.QRCodeisinvalid, Toast.LENGTH_LONG).show();
+
+        }
+
+    }
+
     public void onBackPressed() {// TODO Auto-generated method stub
         super.onBackPressed();
 
@@ -323,25 +412,35 @@ public class AncActivity extends Activity {
 
         String endTime = date1.format(currentLocalTime);
         dataProvider.getUserLoginUpdate(global.getAnc_GUID(), endTime);
-        if (global.getVHND_flag() == 1) {
-            global.setVHND_flag(0);
+        if (validate.RetriveSharepreferenceInt("QR") == 1) {
+            validate.SaveSharepreferenceInt("QR", 0);
             global.setsGlobalPWGUID("");
-            Intent i = new Intent(AncActivity.this, VHND_DueList_new.class);
+            Intent i = new Intent(AncActivity.this,
+                    Dashboard_Activity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             finish();
-
-            startActivity(i);
-        } else if (global.getNotification_trackflag() == 1) {
-            global.setsGlobalPWGUID("");
-            global.setNotification_trackflag(0);
-
-            Intent i = new Intent(AncActivity.this, Dashboard_Activity.class);
-            finish();
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         } else {
-            Intent i = new Intent(AncActivity.this, MCH_Dashboard.class);
-            finish();
-            startActivity(i);
+            if (global.getVHND_flag() == 1) {
+                global.setVHND_flag(0);
+                global.setsGlobalPWGUID("");
+                Intent i = new Intent(AncActivity.this, VHND_DueList_new.class);
+                finish();
+
+                startActivity(i);
+            } else if (global.getNotification_trackflag() == 1) {
+                global.setsGlobalPWGUID("");
+                global.setNotification_trackflag(0);
+
+                Intent i = new Intent(AncActivity.this, Dashboard_Activity.class);
+                finish();
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+            } else {
+                Intent i = new Intent(AncActivity.this, MCH_Dashboard.class);
+                finish();
+                startActivity(i);
+            }
         }
     }
 }

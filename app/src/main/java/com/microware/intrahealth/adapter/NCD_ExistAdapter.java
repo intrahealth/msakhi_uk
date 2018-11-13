@@ -3,7 +3,9 @@ package com.microware.intrahealth.adapter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 import com.microware.intrahealth.Dashboard_Activity;
@@ -15,6 +17,7 @@ import com.microware.intrahealth.NCDFollowUp;
 import com.microware.intrahealth.NcdScreening;
 import com.microware.intrahealth.Ncd_Cbac;
 import com.microware.intrahealth.R;
+import com.microware.intrahealth.Validate;
 import com.microware.intrahealth.dataprovider.DataProvider;
 import com.microware.intrahealth.object.Tbl_HHFamilyMember;
 import com.microware.intrahealth.object.tblmstFPAns;
@@ -24,14 +27,17 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -47,6 +53,7 @@ public class NCD_ExistAdapter extends BaseAdapter {
     ArrayList<tblmstFPAns> FP_Ans = new ArrayList<tblmstFPAns>();
     int diffInDays = 0;
     ArrayList<tblmstFPFDetail> tblFp_followArrayList = new ArrayList<tblmstFPFDetail>();
+    GridView gridCbac;
 
     public NCD_ExistAdapter(Context context,
                             ArrayList<Tbl_HHFamilyMember> hhsurvey) {
@@ -98,13 +105,14 @@ public class NCD_ExistAdapter extends BaseAdapter {
         TextView tvhusbandname = (TextView) gridview
                 .findViewById(R.id.tvhusbandname);
         TextView tvHHCode = (TextView) gridview.findViewById(R.id.tvHHCode);
+        TextView tv_score = (TextView) gridview.findViewById(R.id.tv_score);
         TextView tvHHHeadName = (TextView) gridview
                 .findViewById(R.id.tvHHHeadName);
         TableRow GridRow = (TableRow) gridview.findViewById(R.id.GridRow);
         ImageView btnEdit = (ImageView) gridview.findViewById(R.id.btnEdit);
         ImageView btn_page = (ImageView) gridview.findViewById(R.id.btn_page);
-        btn_page.setVisibility(View.VISIBLE);
-        btn_page.setImageResource(R.drawable.cbac);
+
+
         tvHHCode.setText(hhsurvey.get(position).getHHCode());
         tvHHHeadName.setText(hhsurvey.get(position).getFamilyMemberName());
         String guid = "";
@@ -131,19 +139,32 @@ public class NCD_ExistAdapter extends BaseAdapter {
                 + "' and Status=1 ";
         int aa = dataProvider.getMaxRecord(sql);
         if (aa > 0) {
-            tvHHHeadName.setBackgroundResource((R.drawable.yellowsheet));
-            tvHHCode.setBackgroundResource((R.drawable.yellowsheet));
-            tvhusbandname.setBackgroundResource((R.drawable.yellowsheet));
+            tvHHHeadName.setBackgroundResource((R.drawable.lightredsheet));
+            tvHHCode.setBackgroundResource((R.drawable.lightredsheet));
+            tvhusbandname.setBackgroundResource((R.drawable.lightredsheet));
+            aa = 0;
         } else {
-            aa=0;
+
             tvHHHeadName.setBackgroundResource((R.drawable.whitesheet));
             tvHHCode.setBackgroundResource((R.drawable.whitesheet));
             tvhusbandname.setBackgroundResource((R.drawable.whitesheet));
         }
+        String sqlscore = "Select Score from tblncdcbac where HHFamilyMemberGUID='"
+                + hhsurvey.get(position).getHHFamilyMemberGUID()
+                + "'  order by CreatedOn desc limit 1";
+
+        int score = dataProvider.getMaxRecord(sqlscore);
+        if (score > 0) {
+            tv_score.setText("" + score);
+        } else {
+            tv_score.setText("");
+        }
         if (global.getiGlobalRoleID() == 2) {
             btnEdit.setVisibility(View.GONE);
+            btn_page.setVisibility(View.VISIBLE);
         } else if (global.getiGlobalRoleID() == 3) {
             btn_page.setVisibility(View.GONE);
+            btnEdit.setVisibility(View.VISIBLE);
         }
         btnEdit.setOnClickListener(new View.OnClickListener() {
 
@@ -174,12 +195,21 @@ public class NCD_ExistAdapter extends BaseAdapter {
                 // TODO Auto-generated method stub
 
                 if (flag == 1) {
-                    Intent i = new Intent(v.getContext(), Ncd_Cbac.class);
-                    global.setGlobalHHFamilyMemberGUID(hhsurvey.get(position)
-                            .getHHFamilyMemberGUID());
-                    global.setGlobalHHSurveyGUID(hhsurvey.get(position)
-                            .getHHSurveyGUID());
-                    context.startActivity(i);
+                    String sql = "Select count(*) from tblncdcbac where HHFamilyMemberGUID='"
+                            + hhsurvey.get(position).getHHFamilyMemberGUID()
+                            + "' ";
+                    int aa = dataProvider.getMaxRecord(sql);
+                    if (aa > 0) {
+                        CustomAlert(position);
+                    } else {
+                        Intent i = new Intent(v.getContext(), Ncd_Cbac.class);
+                        global.setGlobalHHFamilyMemberGUID(hhsurvey.get(position)
+                                .getHHFamilyMemberGUID());
+                        global.setGlobalHHSurveyGUID(hhsurvey.get(position)
+                                .getHHSurveyGUID());
+                        context.startActivity(i);
+                    }
+
                 } else {
 //					Intent i = new Intent(v.getContext(), NCDFollowUp.class);
 //					// global.setRadioid(0);
@@ -190,58 +220,56 @@ public class NCD_ExistAdapter extends BaseAdapter {
             }
         });
 
+
         return gridview;
     }
 
-    private int Weekcalculation() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
-        String CurrentDate = sdf.format(new Date());
-        Date date, visitdate1;
-        String VisitDate = CurrentDate;
-        FP_Ans = dataProvider
-                .getFP_Ans(global.getGlobalHHFamilyMemberGUID(), 0);
 
-        if (FP_Ans != null && FP_Ans.size() > 0) {
-            VisitDate = String.valueOf(FP_Ans.get(0).getVisitDate());
-        }
+    public void CustomAlert(final int pos) {
 
-        try {
-            date = sdf.parse(CurrentDate);
-            visitdate1 = sdf.parse(VisitDate);
-
-            diffInDays = (int) ((date.getTime() - visitdate1.getTime()) / (1000 * 60 * 60 * 24));
-            return diffInDays;
-        } catch (ParseException e) {
-
-            e.printStackTrace();
-            return 1;
-        }
-
-    }
-
-    public void CustomAlerts(String msg) {
         // Create custom dialog object
         final Dialog dialog = new Dialog(context);
         // hide to default title for Dialog
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         // inflate the layout dialog_layout.xml and set it as contentView
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.dialog_layout, null, false);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.logout_alert, null, false);
         dialog.setCanceledOnTouchOutside(true);
         dialog.setContentView(view);
+
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        // ImageView image=(ImageView)findViewById(R.id.img_dialog_icon);
+        // image.setVisibility(false);
+
+        // Retrieve views from the inflated dialog layout and update their
+        // values
         TextView txtTitle = (TextView) dialog
                 .findViewById(R.id.txt_alert_message);
-        txtTitle.setText(msg);
+        txtTitle.setText(R.string.cbacalreadydone);
 
-        Button btnok = (Button) dialog.findViewById(R.id.btn_ok);
-        btnok.setOnClickListener(new android.view.View.OnClickListener() {
+        // TextView txtMessage = (TextView)
+        // dialog.findViewById(R.id.txt_dialog_message);
+        // txtMessage.setText("Do you want to Leave the page ?");
 
+        Button btnyes = (Button) dialog.findViewById(R.id.btn_yes);
+        btnyes.setOnClickListener(new android.view.View.OnClickListener() {
             public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), Ncd_Cbac.class);
+                global.setGlobalHHFamilyMemberGUID(hhsurvey.get(pos)
+                        .getHHFamilyMemberGUID());
+                global.setGlobalHHSurveyGUID(hhsurvey.get(pos)
+                        .getHHSurveyGUID());
+                context.startActivity(i);
 
-                // finish();
+                dialog.dismiss();
+            }
+        });
 
+        Button btnno = (Button) dialog.findViewById(R.id.btn_no);
+        btnno.setOnClickListener(new android.view.View.OnClickListener() {
+            public void onClick(View v) {
+                // Dismiss the dialog
                 dialog.dismiss();
             }
         });

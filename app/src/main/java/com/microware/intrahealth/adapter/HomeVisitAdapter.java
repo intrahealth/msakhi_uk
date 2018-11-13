@@ -25,189 +25,254 @@ import com.microware.intrahealth.dataprovider.DataProvider;
 import com.microware.intrahealth.object.TblANCVisit;
 import com.microware.intrahealth.object.tbl_pregnantwomen;
 
-@SuppressLint({ "SimpleDateFormat", "InflateParams" })
+@SuppressLint({"SimpleDateFormat", "InflateParams"})
 public class HomeVisitAdapter extends BaseAdapter {
 
-	ArrayList<TblANCVisit> VisitANC;
-	ArrayList<tbl_pregnantwomen> Pregnant;
-	Context context;
-	Global global;
-	DataProvider dataProvider;
+    ArrayList<TblANCVisit> VisitANC;
+    ArrayList<tbl_pregnantwomen> Pregnant;
+    Context context;
+    Global global;
+    DataProvider dataProvider;
 
-	public HomeVisitAdapter(Context context, ArrayList<TblANCVisit> VisitANC) {
-		// TODO Auto-generated constructor stub
-		this.context = context;
-		this.VisitANC = VisitANC;
-	}
 
-	@Override
-	public int getCount() {
-		// TODO Auto-generated method stub
-		return VisitANC.size();
-	}
+    public HomeVisitAdapter(Context context, ArrayList<TblANCVisit> VisitANC) {
+        // TODO Auto-generated constructor stub
+        this.context = context;
+        this.VisitANC = VisitANC;
+    }
 
-	@Override
-	public Object getItem(int position) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public int getCount() {
+        // TODO Auto-generated method stub
+        return VisitANC.size();
+    }
 
-	@Override
-	public long getItemId(int position) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    @Override
+    public Object getItem(int position) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	@SuppressWarnings("unused")
-	@Override
-	public View getView(final int position, View convertView, ViewGroup parent) {
+    @Override
+    public long getItemId(int position) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 
-		// TODO Auto-generated method stub
-		View gridview = null;
-		try {
+    @SuppressWarnings("unused")
+    @Override
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
-			if (convertView == null) {
-				LayoutInflater layoutInflater = (LayoutInflater) context
-						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				gridview = new View(context);
-				gridview = layoutInflater.inflate(
-						R.layout.homevisit_gridadapter, null);
-			} else {
-				gridview = convertView;
-			}
+        // TODO Auto-generated method stub
+        View gridview = null;
+        try {
 
-			dataProvider = new DataProvider(context);
-			global = (Global) context.getApplicationContext();
-			TextView tvsno = (TextView) gridview.findViewById(R.id.tvsno);
-			TextView tvlastvisit = (TextView) gridview
-					.findViewById(R.id.tvlastvisit);
-			ImageView imageedit = (ImageView) gridview
-					.findViewById(R.id.imageedit);
-			int ashaid = 0;
-			if (global.getsGlobalAshaCode() != null
-					&& global.getsGlobalAshaCode().length() > 0) {
-				ashaid = Integer.valueOf(global.getsGlobalAshaCode());
-			}
+            if (convertView == null) {
+                LayoutInflater layoutInflater = (LayoutInflater) context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                gridview = new View(context);
+                gridview = layoutInflater.inflate(
+                        R.layout.homevisit_gridadapter, null);
+            } else {
+                gridview = convertView;
+            }
 
-			Pregnant = dataProvider.getPregnantWomendata(VisitANC.get(position)
-					.getPWGUID(), 1, ashaid);
-			String tvvisitdate = Pregnant.get(0).getLMPDate();
-			int diffInDays = 0;
-			SimpleDateFormat dfDate = new SimpleDateFormat("yyyy-MM-dd",Locale.US);
-			Date d = null;
-			Date d1 = null;
-			Calendar cal = Calendar.getInstance();
-			if (tvvisitdate != null && tvvisitdate.length() > 0) {
-				String[] Cdt = tvvisitdate.split("-");
-				String DD = Cdt[0];
-				String MM = Cdt[1];
-				String YYYY = Cdt[2];
-				if (MM.length() == 1) {
-					MM = "0" + Cdt[1];
-				}
-				tvvisitdate = DD + "-" + MM + "-" + YYYY;
+            dataProvider = new DataProvider(context);
+            global = (Global) context.getApplicationContext();
+            TextView tvsno = (TextView) gridview.findViewById(R.id.tvsno);
+            TextView tvlastvisit = (TextView) gridview
+                    .findViewById(R.id.tvlastvisit);
+            ImageView imageedit = (ImageView) gridview
+                    .findViewById(R.id.imageedit);
+            int ashaid = 0;
+            if (global.getsGlobalAshaCode() != null
+                    && global.getsGlobalAshaCode().length() > 0) {
+                ashaid = Integer.valueOf(global.getsGlobalAshaCode());
+            }
 
-			}
-			if (tvvisitdate != null && tvvisitdate.length() > 0) {
+            Pregnant = dataProvider.getPregnantWomendata(VisitANC.get(position)
+                    .getPWGUID(), 1, ashaid);
+            String tvvisitdate = Pregnant.get(0).getLMPDate();
+            int diffInDays = 0;
+            SimpleDateFormat dfDate = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+            Date d = null;
+            Date d1 = null;
+            Calendar cal = Calendar.getInstance();
+            if (tvvisitdate != null && tvvisitdate.length() > 0) {
+                String[] Cdt = tvvisitdate.split("-");
+                String DD = Cdt[0];
+                String MM = Cdt[1];
+                String YYYY = Cdt[2];
+                if (MM.length() == 1) {
+                    MM = "0" + Cdt[1];
+                }
+                tvvisitdate = DD + "-" + MM + "-" + YYYY;
 
-				String tt1 = Validate.getcurrentdate();
-				String lmp = tvvisitdate;
+            }
+            if (tvvisitdate != null && tvvisitdate.length() > 0) {
 
-				try {
-					d = dfDate.parse(lmp);
-					d1 = dfDate.parse(tt1);
-				} catch (java.text.ParseException e) {
-					e.printStackTrace();
-				}
+                String tt1 = Validate.getcurrentdate();
+                String lmp = tvvisitdate;
 
-				diffInDays = (int) ((d1.getTime() - d.getTime()) / (1000 * 60 * 60 * 24));
-				System.out.println(diffInDays);
-				if (position == 0) {
-					if (diffInDays >= 0 && diffInDays <= 105) {
+                try {
+                    d = dfDate.parse(lmp);
+                    d1 = dfDate.parse(tt1);
+                } catch (java.text.ParseException e) {
+                    e.printStackTrace();
+                }
 
-						imageedit.setEnabled(true);
-					} else {
-						imageedit.setEnabled(false);
-					}
-				} else if (position == 1) {
-					if (diffInDays >= 91 && diffInDays <= 203) {
+                diffInDays = (int) ((d1.getTime() - d.getTime()) / (1000 * 60 * 60 * 24));
+                System.out.println(diffInDays);
+                if (position == 0) {
+                    if (diffInDays >= 0 && diffInDays <= 105) {
 
-						imageedit.setEnabled(true);
-					} else {
-						imageedit.setEnabled(false);
-					}
+                        imageedit.setEnabled(true);
+                        if (VisitANC.get(position).getHomeVisitDate().length() > 0) {
+                            tvsno.setBackgroundColor(Color.GREEN);
+                            tvlastvisit.setBackgroundColor(Color.GREEN);
+                        } else {
+                            tvsno.setBackgroundColor(Color.BLUE);
+                            tvlastvisit.setBackgroundColor(Color.BLUE);
+                        }
+                    } else {
+                        if (VisitANC.get(position).getHomeVisitDate().length() > 0) {
+                            tvsno.setBackgroundColor(Color.GREEN);
+                            tvlastvisit.setBackgroundColor(Color.GREEN);
+                        } else if(diffInDays > 105) {
+                            tvsno.setBackgroundColor(context.getResources()
+                                    .getColor(R.color.Orange));
+                            tvlastvisit.setBackgroundColor(context
+                                    .getResources().getColor(R.color.Orange));
+                        }
+                        imageedit.setEnabled(false);
+                    }
+                } else if (position == 1) {
+                    if (diffInDays >= 91 && diffInDays <= 203) {
 
-				} else if (position == 2) {
-					if (diffInDays >= 189 && diffInDays <= 259) {
+                        imageedit.setEnabled(true);
+                        if (VisitANC.get(position).getHomeVisitDate().length() > 0) {
+                            tvsno.setBackgroundColor(Color.GREEN);
+                            tvlastvisit.setBackgroundColor(Color.GREEN);
+                        } else {
+                            tvsno.setBackgroundColor(Color.BLUE);
+                            tvlastvisit.setBackgroundColor(Color.BLUE);
+                        }
+                    } else if(diffInDays > 203) {
+                        imageedit.setEnabled(false);
+                        if (VisitANC.get(position).getHomeVisitDate().length() > 0) {
+                            tvsno.setBackgroundColor(Color.GREEN);
+                            tvlastvisit.setBackgroundColor(Color.GREEN);
+                        } else {
+                            tvsno.setBackgroundColor(context.getResources()
+                                    .getColor(R.color.Orange));
+                            tvlastvisit.setBackgroundColor(context
+                                    .getResources().getColor(R.color.Orange));
+                        }
+                    }
 
-						imageedit.setEnabled(true);
-					} else {
-						imageedit.setEnabled(false);
-					}
+                } else if (position == 2) {
+                    if (diffInDays >= 189 && diffInDays <= 259) {
 
-				} else if (position == 3) {
-					if (diffInDays >= 252) {
+                        imageedit.setEnabled(true);
+                        if (VisitANC.get(position).getHomeVisitDate().length() > 0) {
+                            tvsno.setBackgroundColor(Color.GREEN);
+                            tvlastvisit.setBackgroundColor(Color.GREEN);
+                        } else {
+                            tvsno.setBackgroundColor(Color.BLUE);
+                            tvlastvisit.setBackgroundColor(Color.BLUE);
+                        }
+                    } else {
+                        imageedit.setEnabled(false);
+                        if (VisitANC.get(position).getHomeVisitDate().length() > 0) {
+                            tvsno.setBackgroundColor(Color.GREEN);
+                            tvlastvisit.setBackgroundColor(Color.GREEN);
+                        } else if(diffInDays > 259){
+                            tvsno.setBackgroundColor(context.getResources()
+                                    .getColor(R.color.Orange));
+                            tvlastvisit.setBackgroundColor(context
+                                    .getResources().getColor(R.color.Orange));
+                        }
+                    }
 
-						imageedit.setEnabled(true);
-					} else {
-						imageedit.setEnabled(false);
-					}
-				}
+                } else if (position == 3) {
+                    if (diffInDays >= 252) {
 
-			}
+                        imageedit.setEnabled(true);
+                        if (VisitANC.get(position).getHomeVisitDate().length() > 0) {
+                            tvsno.setBackgroundColor(Color.GREEN);
+                            tvlastvisit.setBackgroundColor(Color.GREEN);
+                        } else {
+                            tvsno.setBackgroundColor(Color.BLUE);
+                            tvlastvisit.setBackgroundColor(Color.BLUE);
+                        }
+                    } else if(diffInDays > 252){
+                        imageedit.setEnabled(false);
+                        if (VisitANC.get(position).getHomeVisitDate().length() > 0) {
+                            tvsno.setBackgroundColor(Color.GREEN);
+                            tvlastvisit.setBackgroundColor(Color.GREEN);
+                        } else {
+                            tvsno.setBackgroundColor(context.getResources()
+                                    .getColor(R.color.Orange));
+                            tvlastvisit.setBackgroundColor(context
+                                    .getResources().getColor(R.color.Orange));
+                        }
+                    }
+                }
 
-			// ImageView imagedelete = (ImageView) gridview
-			// .findViewById(R.id.imagedelete);
-			if ((VisitANC.get(position).getVisit_No()) > 0) {
+            }
 
-				// imagedelete.setEnabled(false);
-			}
+            // ImageView imagedelete = (ImageView) gridview
+            // .findViewById(R.id.imagedelete);
+            if ((VisitANC.get(position).getVisit_No()) > 0) {
 
-			tvsno.setText(context.getResources().getString(R.string.visit)
-					+ "-"
-					+ String.valueOf(VisitANC.get(position).getVisit_No()));
-			tvlastvisit.setText(Validate.changeDateFormat(VisitANC.get(position).getHomeVisitDate()));
-			if (global.getiGlobalRoleID() != 3) {
-				imageedit.setOnClickListener(new View.OnClickListener() {
+                // imagedelete.setEnabled(false);
+            }
 
-					@Override
-					public void onClick(View v) {
-						// TODO Auto-generated method stub
-						// global.setiCurrentActiveTab(0);
-						global.setVisitno(VisitANC.get(position).getVisit_No());
-						global.setsGlobalANCVisitGUID(VisitANC.get(position)
-								.getVisitGUID());
-						global.setsGlobalPWGUID(VisitANC.get(position)
-								.getPWGUID());
-						if (VisitANC.get(position).getVisit_No() == 1) {
-							Intent in = new Intent(context,
-									AncQuestionActivity.class);
+            tvsno.setText(context.getResources().getString(R.string.visit)
+                    + "-"
+                    + String.valueOf(VisitANC.get(position).getVisit_No()));
+            tvlastvisit.setText(Validate.changeDateFormat(VisitANC.get(position).getHomeVisitDate()));
+            if (global.getiGlobalRoleID() == 2) {
+                imageedit.setOnClickListener(new View.OnClickListener() {
 
-							context.startActivity(in);
-						} else if (VisitANC.get(position).getVisit_No() == 2) {
-							Intent in = new Intent(context,
-									AncQuestionActivity.class);
-							// ((AncActivity) context).finish();
-							context.startActivity(in);
-						} else if (VisitANC.get(position).getVisit_No() == 3) {
-							Intent in = new Intent(context,
-									AncQuestionActivity.class);
-							// ((AncActivity) context).finish();
-							context.startActivity(in);
-						} else if (VisitANC.get(position).getVisit_No() == 4) {
-							Intent in = new Intent(context,
-									AncQuestionActivity.class);
-							// ((AncActivity) context).finish();
-							context.startActivity(in);
-						}
-					}
-				});
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return gridview;
+                    @Override
+                    public void onClick(View v) {
+                        // TODO Auto-generated method stub
+                        // global.setiCurrentActiveTab(0);
+                        global.setVisitno(VisitANC.get(position).getVisit_No());
+                        global.setsGlobalANCVisitGUID(VisitANC.get(position)
+                                .getVisitGUID());
+                        global.setsGlobalPWGUID(VisitANC.get(position)
+                                .getPWGUID());
+                        if (VisitANC.get(position).getVisit_No() == 1) {
+                            Intent in = new Intent(context,
+                                    AncQuestionActivity.class);
 
-	}
+                            context.startActivity(in);
+                        } else if (VisitANC.get(position).getVisit_No() == 2) {
+                            Intent in = new Intent(context,
+                                    AncQuestionActivity.class);
+                            // ((AncActivity) context).finish();
+                            context.startActivity(in);
+                        } else if (VisitANC.get(position).getVisit_No() == 3) {
+                            Intent in = new Intent(context,
+                                    AncQuestionActivity.class);
+                            // ((AncActivity) context).finish();
+                            context.startActivity(in);
+                        } else if (VisitANC.get(position).getVisit_No() == 4) {
+                            Intent in = new Intent(context,
+                                    AncQuestionActivity.class);
+                            // ((AncActivity) context).finish();
+                            context.startActivity(in);
+                        }
+                    }
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return gridview;
+
+    }
 
 }

@@ -29,12 +29,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.PropertyInfo;
-import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapPrimitive;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;
+
 
 import com.microware.intrahealth.object.tblmstimmunizationQues;
 import com.google.gson.Gson;
@@ -268,7 +263,7 @@ public class ConnectionService extends IntentService {
 
 			HttpClient httpClient = new DefaultHttpClient();
 			// replace with your url
-			HttpPost httpPost = new HttpPost("http://msakhi.org/api/uploadData");
+			HttpPost httpPost = new HttpPost("replace your URL");
 			JSONObject jsonObjectcombined = new JSONObject();
 			try {
 
@@ -386,7 +381,7 @@ public class ConnectionService extends IntentService {
 				HttpClient httpClient = new DefaultHttpClient();
 				// replace with your url
 				HttpPost httpPost = new HttpPost(
-						"http://msakhi.org/api/uploadData");
+						"replace your URL");
 				JSONObject jsonObjectcombined = new JSONObject();
 				try {
 
@@ -470,7 +465,7 @@ public class ConnectionService extends IntentService {
 				HttpClient httpClient = new DefaultHttpClient();
 				// replace with your url
 				HttpPost httpPost = new HttpPost(
-						"http://msakhi.org/api/uploadData");
+						"replace your URL");
 				JSONObject jsonObjectcombined = new JSONObject();
 				try {
 
@@ -548,9 +543,9 @@ public class ConnectionService extends IntentService {
 
 		HttpClient httpClient = new DefaultHttpClient();
 		// replace with your url
-		HttpPost httpPost = new HttpPost("http://msakhi.org/api/putimage");
+		HttpPost httpPost = new HttpPost("replace your URL");
 
-		SoapPrimitive resultString = null;
+
 		String TAG1 = "Response";
 		if (prg != null && prg.size() > 0) {
 			for (int i = 0; i < prg.size(); i++) {
@@ -656,7 +651,7 @@ public class ConnectionService extends IntentService {
 		try {
 			HttpClient httpClient = new DefaultHttpClient();
 			// replace with your url
-			HttpPost httpPost = new HttpPost("http://msakhi.org/api/uploadData");
+			HttpPost httpPost = new HttpPost("replace your URL");
 			JSONObject jsonObjectcombined = new JSONObject();
 			try {
 				if (Child.size() > 0) {
@@ -778,7 +773,7 @@ public class ConnectionService extends IntentService {
 		try {
 			HttpClient httpClient = new DefaultHttpClient();
 			// replace with your url
-			HttpPost httpPost = new HttpPost("http://msakhi.org/api/uploadData");
+			HttpPost httpPost = new HttpPost("replace your URL");
 			JSONObject jsonObjectcombined = new JSONObject();
 			try {
 
@@ -865,7 +860,7 @@ public class ConnectionService extends IntentService {
 		try {
 			HttpClient httpClient = new DefaultHttpClient();
 			// replace with your url
-			HttpPost httpPost = new HttpPost("http://msakhi.org/api/uploadData");
+			HttpPost httpPost = new HttpPost("replace your URL");
 			JSONObject jsonObjectcombined = new JSONObject();
 			try {
 				if (VHNDDuelistnew.size() > 0) {
@@ -940,7 +935,7 @@ public class ConnectionService extends IntentService {
 
 			HttpClient httpClient = new DefaultHttpClient();
 			// replace with your url
-			HttpPost httpPost = new HttpPost("http://msakhi.org/api/uploadData");
+			HttpPost httpPost = new HttpPost("replace your URL");
 			JSONObject jsonObjectcombined = new JSONObject();
 			try {
 
@@ -1092,7 +1087,7 @@ public class ConnectionService extends IntentService {
 			HttpClient httpClient = new DefaultHttpClient();
 
 			// replace with your url
-			HttpPost httpPost = new HttpPost("http://msakhi.org/api/uploadData");
+			HttpPost httpPost = new HttpPost("replace your URL");
 			JSONObject jsonObjectcombined = new JSONObject();
 			try {
 

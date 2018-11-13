@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -39,6 +40,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -64,7 +66,7 @@ public class Anc extends Activity {
     DataProvider dataProvider;
     Global global;
     Float actualheight;
-    Button btnSave;
+    Button btnSave/*, btnNotverified, btnVerifiedOk, btnVerifiedNotOk*/;
     ArrayAdapter<String> adapter;
     String HRP = "";
     String condition = "";
@@ -73,7 +75,10 @@ public class Anc extends Activity {
     public ArrayList<MstCommon> common = new ArrayList<MstCommon>();
     ConnectivityManager connMgrCheckConnection;
     NetworkInfo networkInfoCheckConnection;
-    int heightflag = 0;
+    int heightflag = 0, etheightflag = 0;
+    //    LinearLayout llVerification, llSave;
+    LinearLayout llSave;
+    Validate validate;
 
     @SuppressLint("SimpleDateFormat")
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,7 @@ public class Anc extends Activity {
         // requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.ancform);
         dataProvider = new DataProvider(this);
+        validate = new Validate(this);
         global = (Global) getApplicationContext();
         tvRegistration = (TextView) findViewById(R.id.tvRegistration);
         checkup = (TextView) findViewById(R.id.checkup);
@@ -134,6 +140,26 @@ public class Anc extends Activity {
         tblultrasondconduct = (TableRow) findViewById(R.id.tblultrasondconduct);
         etHeight = (EditText) findViewById(R.id.etHeight);
         btnSave = (Button) findViewById(R.id.btnSave);
+        llSave = (LinearLayout) findViewById(R.id.llSave);
+       /* btnNotverified = (Button) findViewById(R.id.btnNotverified);
+        btnVerifiedOk = (Button) findViewById(R.id.btnVerifiedOk);
+        btnVerifiedNotOk = (Button) findViewById(R.id.btnVerifiedNotOk);
+        llVerification = (LinearLayout) findViewById(R.id.llVerification);
+        llSave = (LinearLayout) findViewById(R.id.llSave);
+        llVerification.setVisibility(View.GONE);
+        llSave.setVisibility(View.GONE);
+        if (global.getiGlobalRoleID() == 4) {
+            llVerification.setVisibility(View.VISIBLE);
+            llSave.setVisibility(View.GONE);
+        } else {
+            llVerification.setVisibility(View.GONE);
+            llSave.setVisibility(View.VISIBLE);
+        }*/
+        if (global.getiGlobalRoleID() == 4) {
+            llSave.setVisibility(View.GONE);
+        } else {
+            llSave.setVisibility(View.VISIBLE);
+        }
         connMgrCheckConnection = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         networkInfoCheckConnection = connMgrCheckConnection
                 .getActiveNetworkInfo();
@@ -221,6 +247,14 @@ public class Anc extends Activity {
 
             }
         });
+        etHeight.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    calculateheightft(etHeight);
+                }
+            }
+        });
         etHeight.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -264,6 +298,7 @@ public class Anc extends Activity {
                         tvBmi.setText(String.valueOf(Bmi));
                         actualheight = height;
                     }
+                    // calculateheightft(etweight);
                 } else {
                     tvBmi.setText("" + 0);
                 }
@@ -288,7 +323,7 @@ public class Anc extends Activity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() > 0 && !s.toString().equalsIgnoreCase(".")) {
-                    int count = Integer.valueOf(s.toString());
+                    int count = Validate.returnIntegerValue(s.toString());
                     if (count > 250) {
                         etIFAnumber.setText("");
                         CustomAlert(getResources().getString(R.string.enterifa));
@@ -346,7 +381,7 @@ public class Anc extends Activity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() > 0 && !s.toString().equalsIgnoreCase(".")) {
-                    int count = Integer.valueOf(s.toString());
+                    int count = Validate.returnIntegerValue(s.toString());
                     if (count > 400) {
                         etcalciumno.setText("");
                         CustomAlert(getResources().getString(
@@ -376,7 +411,7 @@ public class Anc extends Activity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() > 0 && !s.toString().equalsIgnoreCase(".")) {
-                    int count = Integer.valueOf(s.toString());
+                    int count = Validate.returnIntegerValue(s.toString());
                     if (count > 200) {
                         etsystolic.setText("");
                         CustomAlert(getResources().getString(R.string.Systolic));
@@ -404,7 +439,7 @@ public class Anc extends Activity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() > 0 && !s.toString().equalsIgnoreCase(".")) {
-                    int count = Integer.valueOf(s.toString());
+                    int count = Validate.returnIntegerValue(s.toString());
                     if (count > 150) {
                         etDiastolic.setText("");
                         CustomAlert(getResources()
@@ -507,7 +542,7 @@ public class Anc extends Activity {
                         try {
                             d = dfDate.parse(lmpdate);
                             d1 = dfDate.parse(visitdate);
-                        } catch (java.text.ParseException e) {
+                        } catch (ParseException e) {
                             e.printStackTrace();
                         }
 
@@ -545,8 +580,8 @@ public class Anc extends Activity {
                 int diffInDays = 0;
                 SimpleDateFormat dfDate = new SimpleDateFormat("dd-MM-yyyy",
                         Locale.US);
-                java.util.Date d = null;
-                java.util.Date d1 = null;
+                Date d = null;
+                Date d1 = null;
                 // Calendar cal = Calendar.getInstance();
                 if (tvvisitdate.getText() != null
                         && tvvisitdate.getText().toString().length() > 0) {
@@ -584,7 +619,7 @@ public class Anc extends Activity {
                             d = dfDate.parse(lmpdate);
                             d1 = dfDate.parse(visitdate);
                             diffInDays = (int) ((d1.getTime() - d.getTime()) / (1000 * 60 * 60 * 24));
-                        } catch (java.text.ParseException e) {
+                        } catch (ParseException e) {
                             e.printStackTrace();
                         }
 
@@ -609,7 +644,7 @@ public class Anc extends Activity {
                                 try {
                                     d = dfDate.parse(visit1);
                                     d1 = dfDate.parse(visit2);
-                                } catch (java.text.ParseException e) {
+                                } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
 
@@ -661,8 +696,8 @@ public class Anc extends Activity {
                         String tt1 = tvTT1date.getText().toString();
                         SimpleDateFormat dfDate = new SimpleDateFormat(
                                 "dd-MM-yyyy", Locale.US);
-                        java.util.Date d = null;
-                        java.util.Date d1 = null;
+                        Date d = null;
+                        Date d1 = null;
                         String lmpdate = "";
                         if (tt2 != null && tt2.length() > 0) {
                             String[] Cdt = tt2.split("-");
@@ -693,7 +728,7 @@ public class Anc extends Activity {
                         try {
                             d = dfDate.parse(visitdate);
                             d1 = dfDate.parse(lmpdate);
-                        } catch (java.text.ParseException e) {
+                        } catch (ParseException e) {
                             e.printStackTrace();
                         }
 
@@ -887,6 +922,8 @@ public class Anc extends Activity {
                 // TODO Auto-generated method stub
                 int hrp = checkhrp();
                 int icheck = 0;
+                etHeight.clearFocus();
+
                 if (hrp == 1) {
                     icheck = sCheckValidation();
                     if (icheck == 1) {
@@ -956,47 +993,79 @@ public class Anc extends Activity {
         fillspiners(spincheckup, 103, global.getLanguage());
         fillspiners(spinultrasoundresult, 13, global.getLanguage());
         fillspiners(spindangersign, 24, global.getLanguage());
+        fillspinnerheight();
+        spin_feet.setOnItemSelectedListener(new OnItemSelectedListener() {
 
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                // TODO Auto-generated method stub
+                if (heightflag == 0) {
+                    etHeight.setText(String.valueOf(calculateheight()));
+                    // etheightflag=2;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+        spin_inch.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                // TODO Auto-generated method stub
+                if (heightflag == 0) {
+                    etHeight.setText(String.valueOf(calculateheight()));
+                    //  etheightflag=2;
+                } else {
+                    heightflag = 0;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+       /* btnNotverified.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnNotverified.setBackgroundColor(getResources().getColor(R.color.buttonorange));
+                btnVerifiedOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedNotOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                Validate.verification(global.getUserID(), 4, global.getsGlobalANCVisitGUID(), 1, global.getsGlobalAshaCode(), global.getAnmidasAnmCode(), validate.RetriveSharepreferenceString("AFID"), btnNotverified, btnVerifiedOk, btnVerifiedNotOk);
+            }
+        });
+
+        btnVerifiedOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnNotverified.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedOk.setBackgroundColor(getResources().getColor(R.color.DarkGreen));
+                btnVerifiedNotOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                Validate.verification(global.getUserID(), 4, global.getsGlobalANCVisitGUID(), 2, global.getsGlobalAshaCode(), global.getAnmidasAnmCode(), validate.RetriveSharepreferenceString("AFID"), btnNotverified, btnVerifiedOk, btnVerifiedNotOk);
+            }
+        });
+        btnVerifiedNotOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnNotverified.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedNotOk.setBackgroundColor(getResources().getColor(R.color.DarkRed));
+                Validate.verification(global.getUserID(), 4, global.getsGlobalANCVisitGUID(), 3, global.getsGlobalAshaCode(), global.getAnmidasAnmCode(), validate.RetriveSharepreferenceString("AFID"), btnNotverified, btnVerifiedOk, btnVerifiedNotOk);
+            }
+        });*/
 
         if (global.getVisitno() == 1) {
             fillspiners(spindangersign, 30, global.getLanguage());
             tvLMPdate.setEnabled(true);
-            fillspinnerheight();
-            spin_feet.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view,
-                                           int position, long id) {
-                    // TODO Auto-generated method stub
-                    if (heightflag == 0)
-                        etHeight.setText(String.valueOf(calculateheight()));
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    // TODO Auto-generated method stub
-
-                }
-            });
-            spin_inch.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view,
-                                           int position, long id) {
-                    // TODO Auto-generated method stub
-                    if (heightflag == 0) {
-                        etHeight.setText(String.valueOf(calculateheight()));
-                    } else {
-                        heightflag = 0;
-                    }
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    // TODO Auto-generated method stub
-
-                }
-            });
         } else if (global.getVisitno() == 2) {
             fillspiners(spindangersign, 31, global.getLanguage());
             tvLMPdate.setEnabled(false);
@@ -1051,11 +1120,45 @@ public class Anc extends Activity {
         spin_inch.setAdapter(adapter);
     }
 
+    public double calculateheightft(EditText et) {
+        int height = 0, ftvalue = 0, invalue = 0;
+        try {
+            if (et.getText() != null
+                    && et.getText().toString().length() > 0
+                    && !et.getText().toString().equalsIgnoreCase(".")) {
+                double value = Double.valueOf(et.getText().toString());
+                height = (int) (value / 2.54);
+            }
+            int ft = height / 12;
+            int in = height % 12;
+
+            for (int i = 0; i < feet.length; i++) {
+
+                if (ft == Integer.valueOf(feet[i])) {
+                    ftvalue = i;
+                }
+            }
+            for (int i = 0; i < inch.length; i++) {
+
+                if (in == Integer.valueOf(inch[i])) {
+                    invalue = i;
+                }
+            }
+
+            spin_feet.setSelection(ftvalue);
+            spin_inch.setSelection(invalue);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return height;
+    }
+
     public double calculateheight() {
         double height = 0;
         try {
-            int feet = Integer.valueOf(spin_feet.getSelectedItem().toString());
-            int inch = Integer.valueOf(spin_inch.getSelectedItem().toString());
+            int feet = Validate.returnIntegerValue(spin_feet.getSelectedItem().toString());
+            int inch = Validate.returnIntegerValue(spin_inch.getSelectedItem().toString());
             height = ((feet * 12) + inch) * 2.54;
         } catch (Exception e) {
             e.printStackTrace();
@@ -1176,7 +1279,7 @@ public class Anc extends Activity {
         txtTitle.setText(msg);
 
         Button btnok = (Button) dialog.findViewById(R.id.btn_ok);
-        btnok.setOnClickListener(new android.view.View.OnClickListener() {
+        btnok.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
 
@@ -1225,7 +1328,7 @@ public class Anc extends Activity {
             }
         }
         if (etsystolic.getText().toString().length() > 0
-                && Integer.valueOf(etsystolic.getText().toString()) >= 140) {
+                && Validate.returnIntegerValue(etsystolic.getText().toString()) >= 140) {
             condition = getResources().getString(R.string.moresys);
             if (HRP == null || HRP.equalsIgnoreCase("null")
                     || HRP.length() == 0) {
@@ -1235,7 +1338,7 @@ public class Anc extends Activity {
             }
         }
         if (etDiastolic.getText().toString().length() > 0
-                && Integer.valueOf(etDiastolic.getText().toString()) >= 90) {
+                && Validate.returnIntegerValue(etDiastolic.getText().toString()) >= 90) {
             condition = getResources().getString(R.string.moredia);
             if (HRP == null || HRP.equalsIgnoreCase("null")
                     || HRP.length() == 0) {
@@ -1302,7 +1405,7 @@ public class Anc extends Activity {
         txtTitle.setText(msg);
 
         Button btnok = (Button) dialog.findViewById(R.id.btn_ok);
-        btnok.setOnClickListener(new android.view.View.OnClickListener() {
+        btnok.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 dialog.dismiss();
@@ -1313,6 +1416,8 @@ public class Anc extends Activity {
                 if (icheck == 1) {
                     String sql = "update tblPregnant_woman set HighRisk=1,IsEdited=1 where PWGUID='" + global.getsGlobalPWGUID() + "'";
                     dataProvider.executeSql(sql);
+                    String sqlhrp = "update tblANCVisit set HighRisk=1,HighRiskDate='" + Validate.getcurrentdate() + "' where PWGUID='" + global.getsGlobalPWGUID() + "' and VisitGUID='" + global.getsGlobalANCVisitGUID() + "'";
+                    dataProvider.executeSql(sqlhrp);
                     sSavedata();
                     CustomAlertSave2(getResources().getString(
                             R.string.savesuccessfully));
@@ -1341,20 +1446,22 @@ public class Anc extends Activity {
             int ashaid = 0;
             if (global.getsGlobalAshaCode() != null
                     && global.getsGlobalAshaCode().length() > 0) {
-                ashaid = Integer.valueOf(global.getsGlobalAshaCode());
+                ashaid = Validate.returnIntegerValue(global.getsGlobalAshaCode());
             }
 
-            pregnant = dataProvider.getPregnantWomendata(
-                    global.getsGlobalPWGUID(), 1, ashaid);
+            pregnant = dataProvider.getPregnantWomendata(global.getsGlobalPWGUID(), 1, ashaid);
             if (pregnant != null && pregnant.size() > 0) {
-                if (pregnant.get(0).getPWName().length() > 0) {
-                    etpregname.setText(pregnant.get(0).getPWName());
+                String name = "";
+                String sql1 = "select FamilyMemberName from tbl_HHFamilyMember where HHFamilyMemberGUID = '"
+                        + pregnant.get(0).getHHFamilyMemberGUID() + "'";
+                name = Validate.returnStringValue(dataProvider.getRecord(sql1));
+                if (name.length() > 0) {
+                    etpregname.setText(name);
                 } else {
                     etpregname.setText("");
                 }
                 if (pregnant.get(0).getPWRegistrationDate().length() > 0) {
-                    tvRegistration.setText(Validate.changeDateFormat(pregnant
-                            .get(0).getPWRegistrationDate()));
+                    tvRegistration.setText(Validate.changeDateFormat(pregnant.get(0).getPWRegistrationDate()));
                 } else {
                     tvRegistration.setText("");
                 }
@@ -1371,25 +1478,79 @@ public class Anc extends Activity {
                     tvMCTSID.setText("");
                 }
 
+                if (pregnant.get(0).getHighRisk() > 0) {
+                    global.setHishRisk(pregnant.get(0).getHighRisk());
+                }
                 if (pregnant.get(0).getPWHeight() > 0) {
                     etHeight.setText(String.valueOf(pregnant.get(0)
                             .getPWHeight()));
+                    calculateheightft(String.valueOf(pregnant.get(0)
+                            .getPWHeight()));
                     heightflag = 1;
+                    etheightflag = 2;
                 } else {
                     etHeight.setText("");
                 }
-                if (global.getVisitno() == 1) {
-                    tblHeight.setVisibility(View.VISIBLE);
-                    tblHeightet.setVisibility(View.VISIBLE);
-                } else {
-                    tblHeight.setVisibility(View.GONE);
-                    tblHeightet.setVisibility(View.GONE);
+                String sql = "";
+                sql = "Select TT1TT2last2yr,TTfirstDoseDate,TTsecondDoseDate,TTBoosterDate from tblANCVisit where PWGUID='" + global.getsGlobalPWGUID() + "' and ((TTfirstDoseDate!='' and TTfirstDoseDate is not null) or (TTsecondDoseDate!='' and TTsecondDoseDate is not null) or (TTBoosterDate!='' and TTBoosterDate is not null)) ";
+                ArrayList<HashMap<String, String>> data = null;
+                data = dataProvider.getDynamicVal(sql);
+                if (data != null) {
+                    if (Validate.returnIntegerValue(data.get(0).get("TT1TT2last2yr")) > 0) {
+                        spintt1.setSelection(returnPosition(7, Validate.returnIntegerValue(data.get(0).get("TT1TT2last2yr"))));
+                    }
+                    tvTT1date.setText(Validate.changeDateFormat(data.get(0).get("TTfirstDoseDate")));
+                    tvTT2date.setText(Validate.changeDateFormat(data.get(0).get("TTsecondDoseDate")));
+                    tvTT3date.setText(Validate.changeDateFormat(data.get(0).get("TTBoosterDate")));
+
                 }
+
+                //remove by chayan sugession on meeting 09/01/2018 open height all anc visit
+//                if (global.getVisitno() < 4) {
+//                    tblHeight.setVisibility(View.VISIBLE);
+//                    tblHeightet.setVisibility(View.VISIBLE);
+//                } else {
+//
+//                    tblHeight.setVisibility(View.GONE);
+//                    tblHeightet.setVisibility(View.GONE);
+//                }
 
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public double calculateheightft(String str) {
+        int height = 0, ftvalue = 0, invalue = 0;
+        try {
+            if (str != null && str.length() > 0 && !str.toString().equalsIgnoreCase(".")) {
+                double value = Double.valueOf(str);
+                height = (int) (value / 2.54);
+            }
+            int ft = height / 12;
+            int in = height % 12;
+
+            for (int i = 0; i < feet.length; i++) {
+
+                if (ft == Validate.returnIntegerValue(feet[i])) {
+                    ftvalue = i;
+                }
+            }
+            for (int i = 0; i < inch.length; i++) {
+
+                if (in == Validate.returnIntegerValue(inch[i])) {
+                    invalue = i;
+                }
+            }
+
+            spin_feet.setSelection(ftvalue);
+            spin_inch.setSelection(invalue);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return height;
     }
 
     public void showdata() {
@@ -1398,18 +1559,18 @@ public class Anc extends Activity {
             visit = dataProvider.getTbl_VisitANCData(global.getsGlobalPWGUID(),
                     global.getsGlobalANCVisitGUID(), 1);
             if (visit != null && visit.size() > 0) {
-                if (visit.get(0).getTTfirstDoseDate() != null
-                        && visit.get(0).getTTfirstDoseDate().length() > 0) {
-                    tvTT1date.setText(Validate.changeDateFormat(visit.get(0)
-                            .getTTfirstDoseDate()));
-                    if (global.getVisitno() == 1) {
-                        tvTT1date.setEnabled(true);
-                    } else {
-                        tvTT1date.setEnabled(false);
-                    }
-                } else {
-                    tvTT1date.setText("");
-                }
+//                if (visit.get(0).getTTfirstDoseDate() != null
+//                        && visit.get(0).getTTfirstDoseDate().length() > 0) {
+////                    tvTT1date.setText(Validate.changeDateFormat(visit.get(0)
+////                            .getTTfirstDoseDate()));
+//                    if (global.getVisitno() == 1) {
+//                        tvTT1date.setEnabled(true);
+//                    } else {
+//                        tvTT1date.setEnabled(false);
+//                    }
+//                } else {
+//                    tvTT1date.setText("");
+//                }
                 dt = visit.get(0).getCheckupVisitDate();
                 if (visit.get(0).getCheckupVisitDate() != null
                         && visit.get(0).getCheckupVisitDate().length() > 0) {
@@ -1419,28 +1580,28 @@ public class Anc extends Activity {
                 } else {
                     tvvisitdate.setText("");
                 }
-                if (visit.get(0).getTTsecondDoseDate() != null
-                        && visit.get(0).getTTsecondDoseDate().length() > 0) {
-                    tvTT2date.setText(Validate.changeDateFormat(visit.get(0)
-                            .getTTsecondDoseDate()));
-
-                    if (global.getVisitno() == 1) {
-                        tvTT2date.setEnabled(true);
-                    } else {
-                        tvTT2date.setEnabled(false);
-                    }
-                } else {
-                    tvTT2date.setText("");
-
-                }
-                if (visit.get(0).getTTBoosterDate() != null
-                        && visit.get(0).getTTBoosterDate().length() > 0) {
-                    tvTT3date.setText(Validate.changeDateFormat(visit.get(0)
-                            .getTTBoosterDate()));
-                    tvTT3date.setEnabled(false);
-                } else {
-                    tvTT3date.setText("");
-                }
+//                if (visit.get(0).getTTsecondDoseDate() != null
+//                        && visit.get(0).getTTsecondDoseDate().length() > 0) {
+//                    tvTT2date.setText(Validate.changeDateFormat(visit.get(0)
+//                            .getTTsecondDoseDate()));
+//
+//                    if (global.getVisitno() == 1) {
+//                        tvTT2date.setEnabled(true);
+//                    } else {
+//                        tvTT2date.setEnabled(false);
+//                    }
+//                } else {
+//                    tvTT2date.setText("");
+//
+//                }
+//                if (visit.get(0).getTTBoosterDate() != null
+//                        && visit.get(0).getTTBoosterDate().length() > 0) {
+//                    tvTT3date.setText(Validate.changeDateFormat(visit.get(0)
+//                            .getTTBoosterDate()));
+//                    tvTT3date.setEnabled(false);
+//                } else {
+//                    tvTT3date.setText("");
+//                }
                 if (visit.get(0).getBirthWeight() > 0) {
                     etweight.setText(String.valueOf(visit.get(0)
                             .getBirthWeight()));
@@ -1472,12 +1633,12 @@ public class Anc extends Activity {
                 } else {
                     spinurineYN.setSelection(0);
                 }
-                if (visit.get(0).getTT1TT2last2yr() > 0) {
-                    spintt1.setSelection(returnPosition(7, visit.get(0)
-                            .getTT1TT2last2yr()));
-                } else {
-                    spintt1.setSelection(0);
-                }
+//                if (visit.get(0).getTT1TT2last2yr() > 0) {
+//                    spintt1.setSelection(returnPosition(7, visit.get(0)
+//                            .getTT1TT2last2yr()));
+//                } else {
+//                    spintt1.setSelection(0);
+//                }
                 if (visit.get(0).getDangerSign() > 0) {
                     if (global.getVisitno() == 1) {
                         spindangersign.setSelection(returnPosition(30, visit
@@ -1568,6 +1729,26 @@ public class Anc extends Activity {
                 }
 
             }
+
+/*
+            if (global.getiGlobalRoleID() == 4) {
+                String sVerify = "Select Verify from tblAFVerify where ModuleGUID='" + global.getsGlobalANCVisitGUID() + "'";
+                if (dataProvider.getRecord(sVerify).equals("1")) {
+                    btnNotverified.setBackgroundColor(getResources().getColor(R.color.buttonorange));
+                    btnVerifiedOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                    btnVerifiedNotOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                } else if (dataProvider.getRecord(sVerify).equals("2")) {
+                    btnNotverified.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                    btnVerifiedOk.setBackgroundColor(getResources().getColor(R.color.DarkGreen));
+                    btnVerifiedNotOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                } else if (dataProvider.getRecord(sVerify).equals("3")) {
+                    btnNotverified.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                    btnVerifiedOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                    btnVerifiedNotOk.setBackgroundColor(getResources().getColor(R.color.DarkRed));
+                }
+            }
+*/
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1600,11 +1781,11 @@ public class Anc extends Activity {
         int CalciumTablet = 0;
         double PWHeight = 0;
         int TT1TT2last2yr = 0;
-        if (global.getVisitno() == 1) {
-            if (etHeight.getText().toString().length() > 0) {
-                PWHeight = Double.valueOf(etHeight.getText().toString());
-            }
+
+        if (etHeight.getText().toString().length() > 0) {
+            PWHeight = Double.valueOf(etHeight.getText().toString());
         }
+
         CurrentDate = Validate.getcurrentdate();
         if (tvTT1date.getText().toString().length() > 0) {
             TT1dt = Validate.changeDateFormat(tvTT1date.getText().toString());
@@ -1708,7 +1889,7 @@ public class Anc extends Activity {
         }
         data.put("IFARecieved", IFARecieved);
         if (etIFAnumber.getText().toString().length() > 0) {
-            NumberIFARecieved = Integer.valueOf(etIFAnumber.getText()
+            NumberIFARecieved = Validate.returnIntegerValue(etIFAnumber.getText()
                     .toString());
         } else {
             NumberIFARecieved = 0;
@@ -1718,7 +1899,7 @@ public class Anc extends Activity {
         }
         data.put("CalciumReceived", CalciumReceived);
         if (etcalciumno.getText().toString().length() > 0) {
-            CalciumTablet = Integer.valueOf(etcalciumno.getText().toString());
+            CalciumTablet = Validate.returnIntegerValue(etcalciumno.getText().toString());
         } else {
             CalciumTablet = 0;
         }
@@ -1737,6 +1918,12 @@ public class Anc extends Activity {
         if (global.getVisitno() == 1) {
             String sql = "Update  tblPregnant_woman set LMPDate='" + LMPDATE
                     + "', PWHeight=" + PWHeight + ", HighRisk="
+                    + global.getHishRisk() + ",IsEdited=1 ,UpdatedOn='" + Validate.getcurrentdate() + "' where PWGUID='"
+                    + global.getsGlobalPWGUID() + "'";
+
+            dataProvider.executeSql(sql);
+        } else {
+            String sql = "Update  tblPregnant_woman set  PWHeight=" + PWHeight + ", HighRisk="
                     + global.getHishRisk() + ",IsEdited=1 ,UpdatedOn='" + Validate.getcurrentdate() + "' where PWGUID='"
                     + global.getsGlobalPWGUID() + "'";
 
@@ -1928,7 +2115,8 @@ public class Anc extends Activity {
         LayoutInflater inflater = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.dialog_layout, null, false);
-        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
         dialog.setContentView(view);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         TextView txtTitle = (TextView) dialog
@@ -1936,7 +2124,7 @@ public class Anc extends Activity {
         txtTitle.setText(msg);
 
         Button btn_ok = (Button) dialog.findViewById(R.id.btn_ok);
-        btn_ok.setOnClickListener(new android.view.View.OnClickListener() {
+        btn_ok.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 dialog.dismiss();
@@ -1979,7 +2167,8 @@ public class Anc extends Activity {
         LayoutInflater inflater = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.dialog_layout, null, false);
-        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
         dialog.setContentView(view);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         TextView txtTitle = (TextView) dialog
@@ -1987,7 +2176,7 @@ public class Anc extends Activity {
         txtTitle.setText(msg);
 
         Button btn_ok = (Button) dialog.findViewById(R.id.btn_ok);
-        btn_ok.setOnClickListener(new android.view.View.OnClickListener() {
+        btn_ok.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 dialog.dismiss();

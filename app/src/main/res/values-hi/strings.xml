@@ -12,7 +12,8 @@
     <string name="Pentavalent1">पेंटावेलेंट 1</string>
     <string name="Pentavalent2">पेंटावेलेंट 2</string>
     <string name="Pentavalent3">पेंटावेलेंट 3</string>
-    <string name="ipv">आईपीवी</string>
+    <string name="ipv">आईपीवी 1</string>
+    <string name="ipv2">आईपीवी 2</string>
     <string name="opv3">ओपीवी 2</string>
     <string name="opv4">ओपीवी 3</string>
     <string name="opvbooster">ओपीवी बूस्टर</string>
@@ -62,7 +63,7 @@
     <string name="other">अन्य </string>
     <string name="totalcountPwomen"> कुल गर्भवती महिलाओं की संख्या </string>
     <string name="app_name">mSakhi</string>
-    <string name="app_name1">mSakhi  6.1.1</string>
+    <string name="app_name1">mSakhi 6.1.8</string>
     <string name="migrateout">क्या आप अपने गांव या क्षेत्र से इस व्यक्ति का नाम प्रवास के कारण हटाना चाहते हैं?</string>
     <string name="migratein">क्या आप अपने गांव या क्षेत्र में किसी  व्यक्ति का नाम जोड़ना चाहते हैं?</string>
     <string name="Deadmsg">क्या आप इस व्यक्ति की मृत्यु का विवरण लिखना चाहते हैं?  </string>
@@ -83,7 +84,7 @@
     <string name="no">नहीं</string>
     <string name="enterdob">जन्म दिनांक दर्ज करें</string>
     <string name="enter12digituid">मान्य आधार नंबर दर्ज करें</string>
-    <string name="search">Search</string>
+    <string name="search">खोजे </string>
     <string name="add">जोड़ें</string>
     <string name="familyId">गृह कोड</string>
     <string name="HH_Head"> नाम</string>
@@ -170,7 +171,9 @@
     <string name="UrineAlbumin">यूरिन-एल्ब्यूमिन</string>
     <string name="report">रिपोर्ट</string>
     <string name="tt">टी टी </string>
-    <string name="IFA">आई फ ए</string>
+    <string name="TT10">टी टी 10</string>
+    <string name="TT16">टी टी 16</string>
+    <string name="IFA">आई एफ ए</string>
     <string name="calcium1">कै‍ल्शियम</string>
     <string name="HRP1">एच आर पी</string>
     <string name="Religion">धर्म</string>
@@ -213,7 +216,7 @@
     <string name="deathdate1">मृत्यु की दिनाक</string>
     <string name="newPregnantwomen"> नई गर्भवती</string>
     <string name="newborn"> नवजात शिशु</string>
-    <string name="immunized"> प्रतिरक्षण</string>
+    <string name="immunized"> प्रतिरक्षण(14 वर्ष तक)</string>
     <string name="homevisit">सलाह के लिए घर का दौरा</string>
     <string name="yesavailable">हाँ उपलब्ध है </string>
     <string name="yesntavailable">मिली है पर अभी नही है </string>
@@ -352,7 +355,7 @@
     <string name="counselling2">परामर्श</string>
     <string name="childGender">बच्चे  का लिंग</string>
     <string name="pregnantwomen">गर्भावस्था में देखभाल </string>
-    <string name="np">नवजात / प्रसव पश्चात देखभाल</string>
+    <string name="np">नवजात / प्रसव पश्चात देखभाल(1 वर्ष तक)</string>
     <string name="entermobile">10 अंकों का मोबाइल नंबर दर्ज करें।</string>
     <string name="enter16digituid">18 अंकों  एमसीटीएस आईडी दर्ज </string>
     <string name="enterheight">वास्तविक ऊंचाई दर्ज  करें।</string>
@@ -417,7 +420,7 @@
     <string name="textview135">दूसरे तिमाही में</string>
     <string name="textview136">तीसरे तिमाही में</string>
     <string name="household">परिवार</string>
-    <string name="AshaName">आशा नाम</string>
+    <string name="AshaName">आशा का नाम</string>
     <string name="noOfwomen">गर्भवती महिलाओं की संख्या</string>
     <!-- new born -->
 
@@ -429,8 +432,8 @@
     <string name="textview172">जन्म के वक़्त, शिशु के वजन मे कमी होना </string>
 
     <!-- radio -->
-    <string name="LastMonth">पिछले महीने</string>
-    <string name="Last3Month">पिछले 3 महीने</string>
+    <string name="LastMonth">पिछले माह</string>
+    <string name="Last3Month">पिछले 3 माह</string>
     <string name="ashadetails">आशा विवरण</string>
     <string name="girl">लड़की</string>
     <string name="boy">लड़का</string>
@@ -647,9 +650,9 @@
     <string name="textview192">36 महीने की उम्र मे विटामिन ए की पाँचवी  खुराक प्राप्त बच्चो का अनुपात</string>
     <string name="cancel">रद्द करें</string>
     <string name="negative">नकारात्मक</string>
-    <string name="enter16digituid1">पहले बच्चे की 16 अंकों की एमसीटीएस आईडी दर्ज करें </string>
-    <string name="enter16digituid2">दूसरे बच्चे की 16 अंकों की एमसीटीएस आईडी दर्ज करें </string>
-    <string name="enter16digituid3">तीसरे बच्चे की 16 अंकों की एमसीटीएस आईडी दर्ज करें </string>
+    <string name="enter16digituid1">पहले बच्चे की 18 अंकों की एमसीटीएस आईडी दर्ज करें </string>
+    <string name="enter16digituid2">दूसरे बच्चे की 18 अंकों की एमसीटीएस आईडी दर्ज करें </string>
+    <string name="enter16digituid3">तीसरे बच्चे की 18 अंकों की एमसीटीएस आईडी दर्ज करें </string>
     <string name="MeaslesVHND">खसरा</string>
     <string name="select_string">चयन करें </string>
     <string name="notdone">नहीं हुआ</string>
@@ -690,27 +693,27 @@
     <string name="enterIdentificationNo">कृपया  पहचान संख्या दर्ज करें</string>
     <string name="hhsearch">गृह कोड/नाम</string>
     <!-- ajeet sharma -->
-    <string name="Afname">AF Name</string>
-    <string name="Women">Women</string>
+    <string name="Afname">ऐ ऍफ़  का नाम </string>
+    <string name="Women">महिला</string>
     <string name="Children">शिशु</string>
-    <string name="Asha">ASHA</string>
-    <string name="Total_Pregnant">Total Pregnant - 180</string>
-    <string name="month0_3">0-3 month</string>
-    <string name="month4_6">4-6 month</string>
-    <string name="month7_9">7-9 month</string>
-    <string name="month9_11">9-11 month</string>
+    <string name="Asha">आशा</string>
+    <string name="Total_Pregnant">कुल गर्भवती - 180</string>
+    <string name="month0_3">0-3 महीने</string>
+    <string name="month4_6">4-6 महीने</string>
+    <string name="month7_9">7-9 महीने</string>
+    <string name="month9_11">9-11 महीने</string>
     <string name="temp30">30</string>
     <string name="temp80">80</string>
     <string name="temp70">70</string>
-    <string name="Firstanc">1st ANC</string>
-    <string name="Secondanc">2nd ANC</string>
-    <string name="thirdanc">3rd ANC</string>
-    <string name="Fourthanc">4rth ANC</string>
-    <string name="Delivered">Delivered in last 7 days</string>
-    <string name="totalpending">Total Pending ANC-</string>
-    <string name="Ndone">Note done</string>
-    <string name="panchayat">Panchayat</string>
-    <string name="hsc">HSC</string>
+    <string name="Firstanc">1st ए एन सी </string>
+    <string name="Secondanc">2nd ए एन सी </string>
+    <string name="thirdanc">3rd ए एन सी </string>
+    <string name="Fourthanc">4rth ए एन सी </string>
+    <string name="Delivered">पिछले 7 दिनों में डिलीवरी </string>
+    <string name="totalpending">कुल पेंडिंग  एएनसी -</string>
+    <string name="Ndone">नहीं किया</string>
+    <string name="panchayat">पंचायत</string>
+    <string name="hsc">एच एस सी</string>
     <string name="sex">लिंग</string>
     <string name="illness">बीमारी का कोई भी इतिहास</string>
     <string name="statusglucose">रक्त ग्लूकोज</string>
@@ -821,8 +824,8 @@
     <string name="newbornreport"> नवजात शिशु रिपोर्ट</string>
     <string name="ageinmonthanddays">उम्र(माह/दिन)</string>
     <string name="ncdreport">एनसीडी रिपोर्ट</string>
-    <string name="Totalintervention">हस्तक्षेप क्षेत्र में कुल गृहस्थीयो की संख्या घरेलू</string>
-    <string name="Totalfamily">परिवार के सदस्यों की कुल संख्या</string>
+    <string name="Totalintervention">कुल परिवारों की संख्या</string>
+    <string name="Totalfamily">कुल जनसंख्या</string>
     <string name="CheckupsCBAC">सीबीएसी के दौरान किए गए एनसीडी चेकअप की कुल संख्या</string>
     <string name="screeningConfirmation">डीएम के लिए संदिग्ध नए व्यक्तियों की संख्या और स्क्रीनिंग और पुष्टि के लिए भेजा</string>
     <string name="HTN">एचटीएन के लिए संदिग्ध नए व्यक्तियों की संख्या और स्क्रीनिंग और पुष्टि के लिए भेजा गया</string>
@@ -881,7 +884,7 @@
     <string name="Poliothree">पोलियो 3</string>
     <string name="Measles">खसरा</string>
     <string name="Dosegiven">खुराक दिया</string>
-    <string name="hrpreport">उच्च जोखिम गर्भावस्था(HRP) : ANM स्तरीय मासिक रिपोर्ट </string>
+    <string name="hrpreport">उच्च जोखिम गर्भावस्था(HRP) : एएनएम स्तरीय मासिक रिपोर्ट </string>
     <string name="anmname">एएनएम  का नाम </string>
     <string name="distname">जनपद</string>
     <string-array name="pdfcoloumn">
@@ -913,6 +916,237 @@
     <string name="Valuelessthan8kg">वजन 8 से कम होना चाहिए</string>
     <string name="Valuelessthan106F">तापमान 106F से कम होना चाहिए</string>
     <string name="Valuegreaterthan91f">तापमान 91F से कम होना चाहिए </string>
+    <string name="measles_rubella1">मेसल्स रुबेला 1</string>
+    <string name="measles_rubella2">मेसल्स रुबेला 2</string>
+    <string name="DoyouwanttodeleteUser">क्या आप यूजर डिलीट करना चाहते है?</string>
+    <string name="firstupoloadthendelete">पहले डेटा अपलोड करें और फिर यूजर हटाएं</string>
+    <string name="loginotheruser">इस प्रक्रिया के बाद, एप्लीकेशन  स्वतः बंद हो जाएगी । कृपया पुनः एप्लीकेशन चालू कर अन्य यूजर से लॉगिन करें</string>
+    <string name="notatemporaryuser">यह एक अस्थायी यूजर नहीं है</string>
+    <string name="addanotheruser">क्या आप अन्य यूजर जोड़ना चाहते हैं?</string>
+    <string name="user">यूजर</string>
+    <string name="PleaseselectMaritalStatus">कृपया वैवाहिक स्थिति चुनें</string>
+    <string name="status">स्वास्थ्य की स्थिति</string>
+    <string name="cbacalreadydone">इनकी CBAC हो चुकी है क्या आप दोबारा करना चाहते है?</string>
+    <string name="plreaseenterhousehold">कृपया पहले गृह विवरण दर्ज करें?</string>
+    <string name="childdoesnotexist">यह बच्चा इस आशा रिकॉर्ड में मौजूद नहीं है।</string>
+    <string name="QRCodeisinvalid">यह QR कोड अमान्य है</string>
+    <string name="scan_anc_qr_code">ANC QR कोड को स्कैन करें</string>
+    <string name="ancrecorddoesnotexist">एएनसी रिकॉर्ड इस आशा में मौजूद नहीं है।</string>
+    <string name="scan_child_qr_code">स्कैन चाइल्ड QR कोड</string>
+    <string name="fasting_blood_sugar_test">भूखे पेट खून में शर्करा की मात्रा</string>
+    <string name="post_prandial_glucose_test">भोजन के बाद ग्लूकोज परीक्षण</string>
+    <string name="HbA1C">HbA1C</string>
+    <string name="Urine_Test">यूरिन परीक्षण</string>
+    <string name="Outsidepatient">बाहरी मरीज</string>
+    <string name="Referredpaitent">रेफर किये गये मरीज</string>
+    <string name="referred_patient_name">रेफर  किये गए मरीज का नाम</string>
+    <string name="Name">नाम</string>
+    <string name="Diabetic">उपचार हेतु सलाह</string>
+    <string name="download_referal_data">रेफ़रल डेटा डाउनलोड करें</string>
+    <string name="Quantity">संख्या</string>
+    <string name="Pleaseentername">कृपया नाम दर्ज करें</string>
+    <string name="select_subcenter">सबसेंटर चुनें</string>
+    <string name="select_asha">आशा चुनें</string>
+    <string name="normaladvice">औपचारिक सलाह और एक वर्ष के बाद स्क्रीनिंग</string>
+    <string name="adequatefood">भोजन संतुलित एवं पर्याप्त मात्रा में लेना  </string>
+    <string name="Physicalactivity">शारीरिक गतिविधि - एक्टिव या फुर्तीले रहना </string>
+    <string name="Reducingphysical">शारीरिक व मानसिक तनाव को कम करना </string>
+    <string name="reduceexcessiveweight">अत्यधिक वजन या मोटापा को कम करना </string>
+    <string name="medicineshavebeengiven">यदि कोई दवाई दी गई है तो उसका नियमित रूप से सेवन करें और डॉक्टरी सलाह के अनुसार समय-समय पर जांच करवाते रहे</string>
+    <string name="adhar_card_no">आधार क्रमांक</string>
+    <string name="PleaseenterAddress">कृपया पता दर्ज करें</string>
+    <string name="PleasevalidphoneNo">कृपया, वैध फोन नंबर दर्ज करें</string>
+    <string name="patientname">मरीज का नाम</string>
+    <string name="MigratedHouseholds">माइग्रेटेड परिवार</string>
+    <string name="MigratedMembers">माइग्रेटेड सदस्य</string>
+    <string name="PleaseEnterFBSvalue">कृपया 40 से 400 तक एफबीएस जांच दर्ज करें</string>
+    <string name="PleaseEnterpptvalue">कृपया 50 से 500 तक PPT जांच दर्ज करें</string>
+    <string name="PleaseEnterHbA1cvalue">कृपया 3 से 12 तक HbA1c जांच दर्ज करें</string>
+    <string name="expected_delivery_date_next_five_day">अगले पांच दिनों में संभावित डिलीवरी तिथि</string>
+    <string name="Populationinherarea"> ३० वर्ष से ज्यादा उम्र वालों की संख्या</string>
+    <string name="CBACcompletedfortotalpersontilldate">गैर संचारी रोग हेतु समुदाय के लोगों की आकलन (CBAC) सम्पन्न</string>
+    <string name="TotalpersonscreenedforNCDtilldate">स्क्रीनिंग कितने व्यक्तियों का किया गया</string>
+    <string name="Totalsuspectedpersonreferredfortreatment">पुष्टिकरण हेतु कितने व्यक्तियों को रेफर किया गया</string>
+    <string name="Totalpersonhavingcontinued">वर्तमान में  कितने लोगों का इलाज चल रहा है</string>
+    <string name="counselling_going_on_for_how_many_patient">वर्तमान में  कितने लोग दवा का सेवन कर रहे हैं</string>
+    <string name="convertedashealthyperson">कितने लोगों ने आशा के सहयोग से रोग को नियंत्रित कर लिया है</string>
+    <string name="pdf_id">पीडीएफ आईडी</string>
+    <string name="PDFName">पीडीएफ का नाम</string>
+    <string name="ReportName">रिपोर्ट का नाम</string>
+    <string name="current_month">वर्तमान माह</string>
+    <string name="download_report">रिपोर्ट डाउनलोड करें</string>
+    <string name="Downloadingreport">रिपोर्ट डाउनलोड  हो रही है..</string>
+    <string name="ReportDowloadSuccessfully">रिपोर्ट सफलतापूर्वक डाउनलोड की गई।</string>
+    <string name="ErrorinReportDowload">रिपोर्ट डाउनलोड में त्रुटि!</string>
+    <string name="PleaseenternameorAadharno">कृपया नाम या आधार संख्या दर्ज करें</string>
+    <string name="show_data">डेटा देखें</string>
+    <string name="from_date">कब से</string>
+    <string name="ToDate">कब तक</string>
+    <string name="PleaseenterDaterange">कृपया दिनांक दर्ज करें</string>
+    <string name="for_diabetes">मधुमेह हेतु</string>
+    <string name="for_blood_pressure">रक्तचाप हेतु</string>
+    <string name="DeliveryType">डिलीवरी प्रकार</string>
+    <string name="PleaseselectDeliveryType">कृपया डिलीवरी  प्रकार का चयन करें</string>
+    <string name="Householdstatusmigrated">कृपया हाउसहोल्ड स्थिति बदलें, फिर सदस्य जोड़ें, वर्तमान में हाउसहोल्ड सक्रिय नहीं है।</string>
+    <string name="NewbornInfant">बच्चे (नवजात शिशु / शिशु / 5 वर्ष तक)</string>
+    <string name="upto14year">(14 वर्ष तक)</string>
+    <string name="women_name">महिला का नाम</string>
+    <string name="_0_6_months">0 - 6 महीना</string>
+    <string name="_7_12_months">7-12 महीना</string>
+    <string name="_1_2_yrs">1 - 2 साल</string>
+    <string name="_3_5_yrs">3 - 5 साल</string>
+    <string name="_5_6_yrs">5 - 6 साल</string>
+    <string name="_7_14_yrs">7 - 14 साल</string>
+    <string name="_15_49_yrs">15 - 49 साल</string>
+    <string name="_50_60_yrs">50 - 60 साल</string>
+    <string name="VHNDImmunizationduelist">वी एच एन डी टीकाकरण  ड्यू लिस्ट</string>
+    <string name="VHNDANCduelist">वी एच एन डी ए.एन.सी  ड्यू लिस्ट</string>
+    <string name="Children0to28">बच्चे (0 से 28 दिन )</string>
+    <string name="Children29to365">बच्चे (29 दिन  से 1 साल तक )</string>
+    <string name="Children1to2">बच्चे (1 से 2 साल तक )</string>
+    <string name="Children3to5">बच्चे (2 से 5 साल तक )</string>
+    <string name="Children5">बच्चे (5 साल से ज्यादा )</string>
+    <string name="supervising_anm">सुपरवाइजिंग एएनएम :</string>
+    <string name="villages_served">गांवों :</string>
+    <string name="subcenter">सबसेंटर :</string>
+    <string name="hrprep">एच आर पी :</string>
+    <string name="reason_for_hrp">एचआरपी का कारण</string>
+    <string name="Visit_Done">विजिट किया गया</string>
+    <string name="visit_not_done">विजिट नहीं किया गया</string>
+    <string name="hbnc_visit_children_42_days_and_2yrs"><![CDATA[एचबीएनसी विजिट (बच्चे > 42 दिन and <= 2 साल)]]></string>
+    <string name="hbnc_visit_children_42_days"><![CDATA[एचबीएनसी विजिट (बच्चे <= 42 दिन)]]></string>
+    <string name="visit_done">% विजिट</string>
+    <string name="immunisation_children_1yr"><![CDATA[टीकाकरण (बच्चे < 1 साल)]]></string>
+    <string name="Children1to2yrs"><![CDATA[टीकाकरण (बच्चे >=1 साल and <2 साल)]]></string>
+    <string name="MR">एम आर</string>
+    <string name="child_report_immunisation">चाइल्ड  रिपोर्ट टीकाकरण</string>
+    <string name="ChildReportHBNC">चाइल्ड  रिपोर्ट एचबीएनसी</string>
+    <string name="EligibleChildren">योग्य बच्चे</string>
+    <string name="DosenotGiven">खुराक नहीं दिया गया</string>
+    <string name="crvs">सी आर वी एस</string>
+    <string name="Births">जन्म</string>
+    <string name="_9_month">9 महीने  से ज्यादा </string>
+    <string name="dose">खुराक</string>
+    <!-- Incentive app string -->
 
 
+    <string-array name="monthincentive">
+        <item>--All--</item>
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+
+    </string-array>
+    <string-array name="globalyear">
+        <item>--All--</item>
+        <item>2016</item>
+        <item>2017</item>
+        <item>2018</item>
+        <item>2019</item>
+        <item>2020</item>
+    </string-array>
+
+
+
+
+    <string name="selectmonth">कृपया माह चुनें</string>
+    <string name="selectyear">कृपया वर्ष चुनें</string>
+    <string name="Number">Number</string>
+
+    <string name="Report">रिपोर्ट</string>
+    <string name="DataEntry">डाटा एंट्री</string>
+    <string name="y">वर्ष</string>
+    <string name="m1">माह</string>
+    <string name="claim">दावा</string>
+    <string name="status1">स्थिति</string>
+    <string name="amount_recieved">प्राप्त राशि</string>
+    <string name="claimed">कुल दावा</string>
+    <string name="notapproved">अस्वीकृत</string>
+    <string name="Amountreceived">राशि प्राप्त</string>
+    <string name="Pending">अपूर्ण</string>
+    <string name="not_approved">अस्वीकृत</string>
+    <string name="pending">अपूर्ण</string>
+    <string name="Totalasha">कुल आशा</string>
+
+
+
+
+
+    <string name="reason_for_not_approving">अस्वीकृत करने का कारण</string>
+    <string name="reason_for_not_approvingshow">अस्वीकृत करने का कारण देखने के लिए दावा को क्लिक करें</string>
+    <string name="thisrecordexist">आपने इस महीने के लिए पहले ही विवरण जमा कर दिया है</string>
+    <string name="SaveSuccessfully">सेव सफलतापूर्वक</string>
+    <string name="Approveall">सभी स्वीकृत करें</string>
+    <string name="Approveselected">चयनित स्वीकृत करें</string>
+
+    <string name="Area">क्षेत्र</string>
+    <string name="Claime">दावा</string>
+    <string name="Approval">स्वीकृत राशि</string>
+    <string name="TotalClaimed">कुल दावा</string>
+    <string name="TotalApproved">कुल स्वीकृत</string>
+    <string name="Activitycode">गतिविधि कोड</string>
+    <string name="AF">AF</string>
+    <string name="ANM">एएनएम</string>
+    <string name="BCM">बी. सी. एम </string>
+    <string name="BAM">BAM</string>
+
+    <string name="incentive">प्रोत्साहन राशि के लिए अनुरोध</string>
+
+    <string name="downloadmaster">डाउनलोड Master</string>
+
+    <string name="upload_incentive">अपलोड Incentive</string>
+    <string name="download_incentive">डाउनलोड Incentive</string>
+    <string name="pleaseselectoneasha">कृपया कम से कम एक आशा का चयन करें</string>
+    <string name="enter_reason">कारण दर्ज करें</string>
+    <string name="selectatleast">कृपया कम से कम एक गतिविधि का चयन करें</string>
+    <string name="approvedsuccessfully">सफलतापूर्वक स्वीकृत</string>
+    <string name="partiallyapproved">आंशिक रूप से स्वीकृत</string>
+    <string name="rejected">अस्वीकृत</string>
+    <string name="pleaseselectashaforapproved">कृपया अस्वीकृत करने के लिए केवल एक आशा का चयन करें</string>
+    <string name="enter_reason_for_not_approved">अस्वीकृत  करने का कारण दर्ज करें</string>
+    <string name="asha_wise_details">आशाओं की विस्तृत सूची</string>
+    <string name="summury">सारांश</string>
+
+    <string name="about_msakhi">About mSakhi</string>
+    <string name="AreyousureforDeleteRecord">क्या आप  रिकॉर्ड हटाने के लिए सुनिश्चित हैं?</string>
+    <string name="RecordDeletedSuccessfully"> रिकॉर्ड सफलतापूर्वक हटाया गया |</string>
+    <string name="RecordDeleted">यह रिकॉर्ड हटाया नहीं जा सकता है</string>
+    <string name="Cropremains">फसल बनी हुई है</string>
+    <string name="Cowdungcake">उपला</string>
+    <string name="oralcancer">मौखिक कैंसर</string>
+    <string name="cervix_cancer">गर्भाशय कैंसर</string>
+    <string name="breast_cancer">स्तन कैंसर</string>
+    <string name="COPD">सीओपीडी</string>
+    <string name="Treatmentcompliance">इलाज का अनुपालन </string>
+    <string name="HealthCenter">स्वास्थ्य केंद्र</string>
+    <string name="Availabilityofmedicines">दवाइयों की उपलब्धता मासिक</string>
+    <string name="Sideeffect">दुष्प्रभाव/जटिलता </string>
+    <string name="ReasonforClosing">बंद करने का कारण</string>
+    <string name="test_results">जांच के परिणाम </string>
+    <string name="Primarycheck"> प्राथमिक जांच (जांच की तारीख बताएं )</string>
+    <string name="Preinformation">पूर्व जानकारी (गैर संचारी रोगों के बारे में )</string>
+    <string name="industrialRisk">औद्योगिक प्रदूषण जोखिम</string>
+    <string name="Datediagnosis">रोग के पहचान की तारीख </string>
+    <string name="treatment">इलाज </string>
+    <string name="not_verified">प्रमाणित नहीं है</string>
+    <string name="verified_ok">ठीक है</string>
+    <string name="verified_not_ok"> ठीक नहीं है</string>
+    <string name="downloadashadata">क्या आप आशा डेटा डाउनलोड करना चाहते हैं?</string>
+    <string name="select_ashadown">डेटा डाउनलोड करने के लिए आशा चुनें</string>
+    <string name="ChangeASHA">Change ASHA</string>
+    <string name="datacontinue">कृपया पहले डाउनलोड डेटा और फिर जारी रखें</string>
+    <string name="informationofasha">आपके फोन में आशा </string>
+    <string name="inyourphone"> की जानकारी उपलब्ध है, आशा बदलने के लिए आशा को चुने और फिर डेटा डाउनलोड करें|</string>
+    <string name="upload_verification_detail">Upload Verification Detail</string>
+    <string name="ThisUserNotAllow">इस उपयोगकर्ता को अनुमति नहीं है|</string>
+    <string name="PleasefirstUploadData">कृपया डेटा अपलोड करें, फिर डेटा डाउनलोड करें।</string>
 </resources>

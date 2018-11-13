@@ -67,13 +67,13 @@ public class VHND_DueList_Report extends Activity {
 		spinVillageName = (TextView) findViewById(R.id.spinVillageName);
 		Update = (Button) findViewById(R.id.Update);
 		AddPerform = (Button) findViewById(R.id.AddPerform);
-		Village_ID = Integer.valueOf(global.getVHND_VillageID());
+		Village_ID = Validate.returnIntegerValue(global.getVHND_VillageID());
 		String mon[] = {};
 		String CurrentDate = global.getVHND_Date();
 		mon = CurrentDate.split("-");
 		int Year = 0, monthi = 0;
-		Year = Integer.valueOf(mon[0]);
-		monthi = Integer.valueOf(mon[1]) - 1;
+		Year = Validate.returnIntegerValue(mon[0]);
+		monthi = Validate.returnIntegerValue(mon[1]) - 1;
 		String aa[] = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
 				"Sep", "Oct", "Nov", "Dec" };
 		String MonthNo = "";
@@ -138,7 +138,7 @@ public class VHND_DueList_Report extends Activity {
 			params.height = gridHeight;
 			VHND_Duelist_grid.setLayoutParams(params);
 			VHND_Duelist_grid.setAdapter(new VHND_DueList_Adpater(this,
-					VHND_Duelist, Integer.valueOf(global.getsGlobalAshaCode()),
+					VHND_Duelist, Validate.returnIntegerValue(global.getsGlobalAshaCode()),
 					Date, Village_ID, FlagNo, U_Question_ID,
 					U_NoDueReceive_1st, U_NoDue_1st, U_NoDueReceive_2nd,
 					U_NoDue_2nd, RefreshFlag, ActivityName));

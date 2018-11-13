@@ -2,6 +2,7 @@ package com.microware.intrahealth.adapter;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.microware.intrahealth.AncActivity;
 import com.microware.intrahealth.Delivery;
@@ -36,6 +37,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 @SuppressLint("InflateParams")
@@ -48,16 +50,17 @@ public class AncAdapter extends BaseAdapter {
     @SuppressWarnings("unused")
     private static final String IMAGE_DIRECTORY_NAME = "mSakhi";
     DataProvider dataProvider;
+    Validate validate;
     ArrayList<TblANCVisit> VisitANC = new ArrayList<TblANCVisit>();
     ArrayList<Tbl_HHFamilyMember> masterEntery1 = new ArrayList<Tbl_HHFamilyMember>();
     ArrayList<TblANCVisit> VisitANC2 = new ArrayList<TblANCVisit>();
 
     Dialog PicVideo_PreviewPopUp;
-    TextView weight1, weight2, weight3, weight4, bp1, bp2, bp3, bp4, hb1, hb2,
+    TextView anc_date1, anc_date2, anc_date3, anc_date4, weight1, weight2, weight3, weight4, bp1, bp2, bp3, bp4, hb1, hb2,
             hb3, hb4, us1, us2, us3, us4, ua1, ua2, ua3, ua4, BMI1, BMI2, BMI3,
             BMI4, tt1, tt2, tt3, tt4, tt21, tt22, tt23, tt24, IFA1, IFA2, IFA3, IFA4, calcium1,
             calcium2, calcium3, calcium4, dangersigns1, dangersigns2,
-            dangersigns3, dangersigns4, HRP1, HRP2, HRP3, HRP4, Height1,
+            dangersigns3, dangersigns4, HRP, HRP1, HRP2, HRP3, HRP4, Height1,
             Height2, Height3, Height4;
     String arr[] = {"अत्याधिक/गंभीर एनीमिया",
             "गर्भावस्था में योनि से रक्तस्राव", "तेज बुखार",
@@ -106,17 +109,14 @@ public class AncAdapter extends BaseAdapter {
         }
 
         dataProvider = new DataProvider(context);
+        validate = new Validate(context);
         global = (Global) context.getApplicationContext();
 
         TextView tvwname = (TextView) gridview.findViewById(R.id.tvwname);
+        TextView tv_count = (TextView) gridview.findViewById(R.id.tv_count);
 
-        Button report = (Button) gridview.findViewById(R.id.report);
-        /*
-         * TextView tvlastvisit = (TextView) gridview
-		 * .findViewById(R.id.tvlastvisit); ImageView ivaddvisit = (ImageView)
-		 * gridview .findViewById(R.id.imageancaddvisit); // ImageView ivdelete
-		 * = (ImageView) gridview .findViewById(R.id.imageancdelete);
-		 */
+        ImageView report = (ImageView) gridview.findViewById(R.id.report);
+
         final TextView tvGridhide = (TextView) gridview
                 .findViewById(R.id.tvGridhide);
         final GridView gridVisits = (GridView) gridview
@@ -127,8 +127,13 @@ public class AncAdapter extends BaseAdapter {
                 + pregnant.get(position).getPWGUID()
                 + "' and checkupVisitDate!=''";
         count = dataProvider.getMaxRecord(sql);
-        report.setText(context.getResources().getString(R.string.report) + "  "
-                + count);
+
+        if (count > 0) {
+            tv_count.setVisibility(View.VISIBLE);
+            tv_count.setText("" + count);
+        } else {
+            tv_count.setVisibility(View.INVISIBLE);
+        }
         ImageView ivedit = (ImageView) gridview.findViewById(R.id.imageancedit);
         // ImageView imagePreg = (ImageView)
         // gridview.findViewById(R.id.imagePreg);
@@ -141,6 +146,39 @@ public class AncAdapter extends BaseAdapter {
         } else {
             ivoutcome.setVisibility(View.VISIBLE);
         }
+        if (global.getiGlobalRoleID() == 4) {
+            // ((AncActivity) context).fillgrid(3, "");
+            btnhousehold.setEnabled(false);
+            ivoutcome.setEnabled(false);
+            String sVerify = "Select Verify from tblAFVerify where ModuleGUID='" + pregnant.get(position).getPWGUID() + "'";
+            String verifyValue = dataProvider.getRecord(sVerify);
+
+            if (verifyValue.length() > 0) {
+                int iVerify = Integer.valueOf(verifyValue);
+                if (iVerify == 1) {
+                    tvwname.setBackgroundResource(R.drawable.aforangesheet);
+                } else if (iVerify == 2) {
+                    tvwname.setBackgroundResource(R.drawable.afgreensheet);
+                } else if (iVerify == 3) {
+                    tvwname.setBackgroundResource(R.drawable.afredsheet);
+                }
+            }
+        } else {
+            btnhousehold.setEnabled(true);
+            ivoutcome.setEnabled(true);
+            String status = "Select StatusID from Tbl_HHFamilyMember where HHFamilyMemberGUID='"
+                    + pregnant.get(position).getHHFamilyMemberGUID() + "'";
+            String stat = dataProvider.getRecord(status);
+            if (Validate.returnIntegerValue(stat) == 3) {
+                tvwname.setBackgroundResource(R.drawable.yellowsheet);
+                // report.setBackgroundResource(R.drawable.yellowsheet);
+            } else {
+                tvwname.setBackgroundResource(R.drawable.whitesheet);
+                // report.setBackgroundResource(R.drawable.whitesheet);
+            }
+        }
+
+
         ivoutcome.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -186,24 +224,33 @@ public class AncAdapter extends BaseAdapter {
 
                 global.setsGlobalPWGUID(pregnant.get(position).getPWGUID());
                 Intent i = new Intent(context, PregnantWomen.class);
+
                 context.startActivity(i);
             }
         });
+        String name = "", husbandname = "";
 
-        if (pregnant.get(position).getPWName().length() > 0
-                && pregnant.get(position).getHusbandName().length() > 0) {
-            tvwname.setText(String.valueOf(pregnant.get(position).getPWName())
-                    + " " + "w/o" + " "
-                    + String.valueOf(pregnant.get(position).getHusbandName()));
-        } else if (pregnant.get(position).getPWName().length() > 0
-                && pregnant.get(position).getHusbandName().length() == 0) {
-            tvwname.setText(String.valueOf(pregnant.get(position).getPWName()));
+        String sql1 = "select FamilyMemberName from tbl_HHFamilyMember where HHFamilyMemberGUID = '"
+                + pregnant.get(position).getHHFamilyMemberGUID() + "'";
+        String sql2 = "select FamilyMemberName from tbl_HHFamilyMember where HHFamilyMemberGUID =(select Spouse from tbl_HHFamilyMember where HHFamilyMemberGUID = '"
+                + pregnant.get(position).getHHFamilyMemberGUID() + "')";
+        name = Validate.returnStringValue(dataProvider.getRecord(sql1));
+        husbandname = Validate.returnStringValue(dataProvider.getRecord(sql2));
+        if (husbandname.length() > 0) {
+            tvwname.setText(name + " " + "w/o" + " " + husbandname);
+        } else if (pregnant.get(position).getPWName().length() > 0) {
+            tvwname.setText(name);
         }
-        if (pregnant.get(position).getHighRisk() == 1) {
+        String sqlhrpcount = "Select count(*) from tblancvisit where PWGUID='" + pregnant.get(position).getPWGUID() + "' and HighRisk=1";
+
+        int hrpcount = dataProvider.getMaxRecord(sqlhrpcount);
+        if (pregnant.get(position).getHighRisk() == 1 || hrpcount > 0) {
             tvwname.setTextColor(Color.RED);
         } else {
             tvwname.setTextColor(context.getResources().getColor(R.color.Blue));
         }
+
+
         tvwname.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -212,7 +259,7 @@ public class AncAdapter extends BaseAdapter {
                 String anc_guid = pregnant.get(position).getPWGUID();
                 // global.setsGlobalANCGUID(pregnant.get(position).getPW);
                 ((AncActivity) context).openExpendableGridView(position);
-                if (Integer.valueOf(tvGridhide.getText().toString()) == 0) {
+                if (Validate.returnIntegerValue(tvGridhide.getText().toString()) == 0) {
                     gridVisits.setVisibility(View.VISIBLE);
                     tvGridhide.setText("1");
                     fillvisitdata(gridVisits, anc_guid);
@@ -248,6 +295,7 @@ public class AncAdapter extends BaseAdapter {
         // PicVideo_PreviewPopUp.getWindow().setLayout(900, 400);
         // PicVideo_PreviewPopUp.getWindow().setBackgroundDrawable(
         // new ColorDrawable(Color.TRANSPARENT));
+        //window.requestFeature(Window.FEATURE_NO_TITLE);
         PicVideo_PreviewPopUp.getWindow().setBackgroundDrawableResource(
                 color.white);
         WindowManager wm = (WindowManager) context
@@ -259,13 +307,13 @@ public class AncAdapter extends BaseAdapter {
         Double height = metrics.heightPixels * 5.3;
         Window win = PicVideo_PreviewPopUp.getWindow();
         win.setLayout(width.intValue(), height.intValue());
-        // window.requestFeature(Window.FEATURE_NO_TITLE);
 
-        PicVideo_PreviewPopUp.setContentView(R.layout.popupcheckup);
+
+        PicVideo_PreviewPopUp.setContentView(R.layout.popupcheckupanc);
         PicVideo_PreviewPopUp.setCancelable(true);
         PicVideo_PreviewPopUp.setCanceledOnTouchOutside(true);
         PicVideo_PreviewPopUp.show();
-
+        PicVideo_PreviewPopUp.setTitle(context.getResources().getString(R.string.report));
         weight1 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.weight1);
         weight2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.weight2);
         weight3 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.weight3);
@@ -306,6 +354,25 @@ public class AncAdapter extends BaseAdapter {
         calcium2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.calcium2);
         calcium3 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.calcium3);
         calcium4 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.calcium4);
+        TextView tv_lmp = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_lmp);
+        TextView tv_height = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_height);
+        TextView tv_edd = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_edd);
+        TextView tv_name = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_name);
+        TextView tv_age = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_age);
+        final ImageView btn_Img1 = (ImageView) PicVideo_PreviewPopUp.findViewById(R.id.btn_Img1);
+        final ImageView btn_Img2 = (ImageView) PicVideo_PreviewPopUp.findViewById(R.id.btn_Img2);
+        final ImageView btn_Img3 = (ImageView) PicVideo_PreviewPopUp.findViewById(R.id.btn_Img3);
+        final ImageView btn_Img4 = (ImageView) PicVideo_PreviewPopUp.findViewById(R.id.btn_Img4);
+        final TextView tv_img1 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_img1);
+        final TextView tv_img2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_img2);
+        final TextView tv_img3 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_img3);
+        final TextView tv_img4 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_img4);
+        TableRow tbl_af = (TableRow) PicVideo_PreviewPopUp.findViewById(R.id.tbl_af);
+        if (global.getiGlobalRoleID() == 4) {
+            tbl_af.setVisibility(View.VISIBLE);
+        } else {
+            tbl_af.setVisibility(View.GONE);
+        }
         dangersigns1 = (TextView) PicVideo_PreviewPopUp
                 .findViewById(R.id.dangersigns1);
         dangersigns2 = (TextView) PicVideo_PreviewPopUp
@@ -322,6 +389,11 @@ public class AncAdapter extends BaseAdapter {
         Height2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.Height2);
         Height3 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.Height3);
         Height4 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.Height4);
+        anc_date1 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.anc_date1);
+        anc_date2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.anc_date2);
+        anc_date3 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.anc_date3);
+        anc_date4 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.anc_date4);
+        HRP = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.HRP);
         if (pregnant.get(position).getPWHeight() > 0) {
             Height1.setText(String
                     .valueOf(pregnant.get(position).getPWHeight()));
@@ -331,24 +403,115 @@ public class AncAdapter extends BaseAdapter {
                     .valueOf(pregnant.get(position).getPWHeight()));
             Height4.setText(String
                     .valueOf(pregnant.get(position).getPWHeight()));
+            tv_height.setText(context.getResources().getString(R.string.Height) + " : " + String.valueOf(pregnant.get(position).getPWHeight()));
+            tv_height.setText(context.getResources().getString(R.string.Height) + " : " + String.valueOf(pregnant.get(position).getPWHeight()));
+        }
+        tv_lmp.setText(context.getResources().getString(R.string.lmp) + " : " + Validate.changeDateFormat(pregnant.get(position).getLMPDate()));
+        tv_edd.setText(context.getResources().getString(R.string.edd1) + " : " + Validate.changeDateFormat(pregnant.get(position).getEDDDate()));
+        String name = "";
+
+        String sql1 = "select FamilyMemberName from tbl_HHFamilyMember where HHFamilyMemberGUID = '"
+                + pregnant.get(position).getHHFamilyMemberGUID() + "'";
+
+        name = Validate.returnStringValue(dataProvider.getRecord(sql1));
+        tv_name.setText(name);
+        tv_age.setText(context.getResources().getString(R.string.age) + " : " + pregnant.get(position).getPWAgeYears());
+
+        String hr = "";
+        if (pregnant.get(position).getHighRisk() == 1) {
+            hr = context.getResources().getString(R.string.yes);
+        } else {
+            hr = context.getResources().getString(R.string.no);
         }
 
-            String hr = "";
-            if (pregnant.get(position).getHighRisk() == 1) {
-                hr = context.getResources().getString(R.string.yes);
-            } else {
-                hr = context.getResources().getString(R.string.no);
+        HRP.setText(String.valueOf(hr));
+        HRP1.setText(String.valueOf(hr));
+        HRP2.setText(String.valueOf(hr));
+        HRP3.setText(String.valueOf(hr));
+        HRP4.setText(String.valueOf(hr));
+        String sql = "Select VisitGUID from tblANCVisit where PWGUID='" + PWGUID
+                + "' order by Visit_No";
+        final ArrayList<HashMap<String, String>> data = dataProvider.getDynamicVal(sql);
+        btn_Img1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (tv_img1.getText().toString().equals("1")) {
+                    tv_img1.setText("2");
+                    btn_Img1.setImageResource(R.drawable.afgreen_128dp);
+                } else if (tv_img1.getText().toString().equals("2")) {
+                    tv_img1.setText("3");
+                    btn_Img1.setImageResource(R.drawable.afred_128dp);
+                } else {
+                    tv_img1.setText("1");
+                    btn_Img1.setImageResource(R.drawable.aforange_128dp);
+                }
+                if (data != null && data.size() > 0) {
+                    Validate.verificationanc(global.getUserID(), 4, data.get(0).get("VisitGUID"), Validate.returnIntegerValue(tv_img1.getText().toString()), global.getsGlobalAshaCode(), global.getAnmidasAnmCode(), validate.RetriveSharepreferenceString("AFID"));
+                }
+
             }
+        });
+        btn_Img2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (tv_img2.getText().toString().equals("1")) {
+                    tv_img2.setText("2");
+                    btn_Img2.setImageResource((R.drawable.afgreen_128dp));
+                } else if (tv_img2.getText().toString().equals("2")) {
+                    tv_img2.setText("3");
+                    btn_Img2.setImageResource((R.drawable.afred_128dp));
+                } else {
+                    tv_img2.setText("1");
+                    btn_Img2.setImageResource((R.drawable.aforange_128dp));
+                }
+                if (data != null && data.size() > 1) {
+                    Validate.verificationanc(global.getUserID(), 4, data.get(1).get("VisitGUID"), Validate.returnIntegerValue(tv_img2.getText().toString()), global.getsGlobalAshaCode(), global.getAnmidasAnmCode(), validate.RetriveSharepreferenceString("AFID"));
+                }
 
-            HRP1.setText(String.valueOf(hr));
-            HRP2.setText(String.valueOf(hr));
-            HRP3.setText(String.valueOf(hr));
-            HRP4.setText(String.valueOf(hr));
+            }
+        });
+        btn_Img3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (tv_img3.getText().toString().equals("1")) {
+                    tv_img3.setText("2");
+                    btn_Img3.setImageResource((R.drawable.afgreen_128dp));
+                } else if (tv_img3.getText().toString().equals("2")) {
+                    tv_img3.setText("3");
+                    btn_Img3.setImageResource((R.drawable.afred_128dp));
+                } else {
+                    tv_img3.setText("1");
+                    btn_Img3.setImageResource((R.drawable.aforange_128dp));
+                }
+                if (data != null && data.size() > 2) {
+                    Validate.verificationanc(global.getUserID(), 4, data.get(2).get("VisitGUID"), Validate.returnIntegerValue(tv_img3.getText().toString()), global.getsGlobalAshaCode(), global.getAnmidasAnmCode(), validate.RetriveSharepreferenceString("AFID"));
+                }
 
-        filldata(PWGUID);
+            }
+        });
+        btn_Img4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (tv_img4.getText().toString().equals("1")) {
+                    tv_img4.setText("2");
+                    btn_Img4.setImageResource((R.drawable.afgreen_128dp));
+                } else if (tv_img4.getText().toString().equals("2")) {
+                    tv_img4.setText("3");
+                    btn_Img4.setImageResource((R.drawable.afred_128dp));
+                } else {
+                    tv_img4.setText("1");
+                    btn_Img4.setImageResource((R.drawable.aforange_128dp));
+                }
+                if (data != null && data.size() > 3) {
+                    Validate.verificationanc(global.getUserID(), 4, data.get(3).get("VisitGUID"), Validate.returnIntegerValue(tv_img4.getText().toString()), global.getsGlobalAshaCode(), global.getAnmidasAnmCode(), validate.RetriveSharepreferenceString("AFID"));
+                }
+
+            }
+        });
+        filldata(PWGUID, pregnant.get(position).getHighRisk());
     }
 
-    public void filldata(String PWGUID) {
+    public void filldata(String PWGUID, int highrisk) {
         try {
             VisitANC2 = dataProvider.getTbl_VisitANCData(PWGUID, "0", 0);
             DecimalFormat df = new DecimalFormat("####0.00");
@@ -452,62 +615,75 @@ public class AncAdapter extends BaseAdapter {
                 } else {
                     hb4.setText("");
                 }
-                if (VisitANC2.get(0).getUrineSugar() > 0) {
-                    us1.setText(returnPosition(102, VisitANC2.get(0)
-                            .getUrineSugar()));
-
+                if (VisitANC2.get(0).getCheckupVisitDate().length() > 0) {
+                    anc_date1.setText(Validate.changeDateFormat(VisitANC2.get(0).getCheckupVisitDate()));
                 } else {
-                    us1.setText("");
+                    anc_date1.setText("");
                 }
-                if (VisitANC2.get(1).getUrineSugar() > 0) {
-                    us2.setText(returnPosition(102, VisitANC2.get(1)
-                            .getUrineSugar()));
-
+                if (VisitANC2.get(1).getCheckupVisitDate().length() > 0) {
+                    anc_date2.setText(Validate.changeDateFormat(VisitANC2.get(1).getCheckupVisitDate()));
                 } else {
-                    us2.setText("");
+                    anc_date2.setText("");
                 }
-                if (VisitANC2.get(2).getUrineSugar() > 0) {
-                    us3.setText(returnPosition(102, VisitANC2.get(2)
-                            .getUrineSugar()));
-
+                if (VisitANC2.get(2).getCheckupVisitDate().length() > 0) {
+                    anc_date3.setText(Validate.changeDateFormat(VisitANC2.get(2).getCheckupVisitDate()));
                 } else {
-                    us3.setText("");
+                    anc_date3.setText("");
                 }
-                if (VisitANC2.get(3).getUrineSugar() > 0) {
-                    us4.setText(returnPosition(102, VisitANC2.get(3)
-                            .getUrineSugar()));
-
+                if (VisitANC2.get(3).getCheckupVisitDate().length() > 0) {
+                    anc_date4.setText(Validate.changeDateFormat(VisitANC2.get(3).getCheckupVisitDate()));
                 } else {
-                    us4.setText("");
+                    anc_date4.setText("");
                 }
-                if (VisitANC2.get(0).getUrineAlbumin() > 0) {
-                    ua1.setText(returnPosition(102, VisitANC2.get(0)
-                            .getUrineAlbumin()));
+                if (VisitANC2.get(0).getUrineSugar() == 1) {
+                    us1.setText("+ve");
 
-                } else {
-                    ua1.setText("");
+                } else if (VisitANC2.get(0).getUrineSugar() == 2) {
+                    us1.setText("-ve");
                 }
-                if (VisitANC2.get(1).getUrineAlbumin() > 0) {
-                    ua2.setText(returnPosition(102, VisitANC2.get(1)
-                            .getUrineAlbumin()));
+                if (VisitANC2.get(1).getUrineSugar() == 1) {
+                    us2.setText("+ve");
 
-                } else {
-                    ua2.setText("");
+                } else if (VisitANC2.get(1).getUrineSugar() == 2) {
+                    us2.setText("-ve");
                 }
-                if (VisitANC2.get(2).getUrineAlbumin() > 0) {
-                    ua3.setText(returnPosition(102, VisitANC2.get(2)
-                            .getUrineAlbumin()));
+                if (VisitANC2.get(2).getUrineSugar() == 1) {
+                    us3.setText("+ve");
 
-                } else {
-                    ua3.setText("");
+                } else if (VisitANC2.get(2).getUrineSugar() == 2) {
+                    us3.setText("-ve");
                 }
-                if (VisitANC2.get(3).getUrineAlbumin() > 0) {
-                    ua4.setText(returnPosition(102, VisitANC2.get(3)
-                            .getUrineAlbumin()));
+                if (VisitANC2.get(3).getUrineSugar() == 1) {
+                    us4.setText("+ve");
 
-                } else {
-                    ua4.setText("");
+                } else if (VisitANC2.get(3).getUrineSugar() == 2) {
+                    us4.setText("-ve");
                 }
+                if (VisitANC2.get(0).getUrineAlbumin() == 1) {
+                    ua1.setText("+ve");
+
+                } else if (VisitANC2.get(0).getUrineAlbumin() == 2) {
+                    ua1.setText("-ve");
+                }
+                if (VisitANC2.get(1).getUrineAlbumin() == 1) {
+                    ua2.setText("+ve");
+
+                } else if (VisitANC2.get(1).getUrineAlbumin() == 2) {
+                    ua2.setText("-ve");
+                }
+                if (VisitANC2.get(2).getUrineAlbumin() == 1) {
+                    ua3.setText("+ve");
+
+                } else if (VisitANC2.get(2).getUrineAlbumin() == 2) {
+                    ua3.setText("-ve");
+                }
+                if (VisitANC2.get(3).getUrineAlbumin() == 1) {
+                    ua4.setText("+ve");
+
+                } else if (VisitANC2.get(3).getUrineAlbumin() == 2) {
+                    ua4.setText("-ve");
+                }
+
                 if (VisitANC2.get(0).getTTfirstDoseDate().length() > 0) {
                     tt1.setText(Validate.changeDateFormat(VisitANC2.get(0).getTTfirstDoseDate()));
 
@@ -531,6 +707,22 @@ public class AncAdapter extends BaseAdapter {
 
                 } else {
                     tt4.setText("");
+                }
+                if (VisitANC2.get(0).getTTBoosterDate().length() > 0 && tt1.getText().toString().length() == 0) {
+                    tt1.setText(Validate.changeDateFormat(VisitANC2.get(0).getTTBoosterDate()));
+
+                }
+                if (VisitANC2.get(1).getTTBoosterDate().length() > 0 && tt1.getText().toString().length() == 0 && tt2.getText().toString().length() == 0 && tt3.getText().toString().length() == 0 && tt4.getText().toString().length() == 0) {
+                    tt2.setText(Validate.changeDateFormat(VisitANC2.get(1).getTTBoosterDate()));
+
+                }
+                if (VisitANC2.get(2).getTTBoosterDate().length() > 0 && tt3.getText().toString().length() == 0 && tt1.getText().toString().length() == 0 && tt2.getText().toString().length() == 0 && tt4.getText().toString().length() == 0) {
+                    tt3.setText(Validate.changeDateFormat(VisitANC2.get(2).getTTBoosterDate()));
+
+                }
+                if (VisitANC2.get(3).getTTBoosterDate().length() > 0 && tt4.getText().toString().length() == 0 && tt1.getText().toString().length() == 0 && tt2.getText().toString().length() == 0 && tt3.getText().toString().length() == 0) {
+                    tt4.setText(Validate.changeDateFormat(VisitANC2.get(3).getTTBoosterDate()));
+
                 }
                 if (VisitANC2.get(0).getTTsecondDoseDate().length() > 0) {
                     tt21.setText(Validate.changeDateFormat(VisitANC2.get(0).getTTsecondDoseDate()));
@@ -644,6 +836,43 @@ public class AncAdapter extends BaseAdapter {
                 } else {
                     dangersigns4.setText("");
                 }
+                if (highrisk == 0) {
+
+                    if (VisitANC2.get(0).getHighRisk() == 1) {
+                        HRP1.setText(context.getResources().getString(R.string.yes));
+                        HRP.setText(context.getResources().getString(R.string.yes));
+
+                    } else {
+                        HRP1.setText(context.getResources().getString(R.string.no));
+                        HRP.setText(context.getResources().getString(R.string.no));
+                    }
+                    if (VisitANC2.get(1).getDangerSign() == 1) {
+                        HRP2.setText(context.getResources().getString(R.string.yes));
+                        HRP.setText(context.getResources().getString(R.string.yes));
+
+                    } else {
+                        HRP2.setText(context.getResources().getString(R.string.no));
+                        HRP.setText(context.getResources().getString(R.string.no));
+                    }
+                    if (VisitANC2.get(2).getDangerSign() == 1) {
+
+                        HRP3.setText(context.getResources().getString(R.string.yes));
+                        HRP.setText(context.getResources().getString(R.string.yes));
+                    } else {
+                        HRP3.setText(context.getResources().getString(R.string.no));
+                        HRP.setText(context.getResources().getString(R.string.no));
+                    }
+                    if (VisitANC2.get(3).getDangerSign() == 1) {
+                        HRP4.setText(context.getResources().getString(R.string.yes));
+                        HRP.setText(context.getResources().getString(R.string.yes));
+
+                    } else {
+                        HRP4.setText(context.getResources().getString(R.string.no));
+                        HRP.setText(context.getResources().getString(R.string.no));
+                    }
+                }
+
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -679,152 +908,7 @@ public class AncAdapter extends BaseAdapter {
         return ipos;
     }
 
-	/*
-     * public void CustomAlert() {
-	 * 
-	 * // Create custom dialog object final Dialog dialog = new Dialog(context);
-	 * // hide to default title for Dialog
-	 * dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-	 * 
-	 * // inflate the layout dialog_layout.xml and set it as contentView
-	 * LayoutInflater inflater = (LayoutInflater) context
-	 * .getSystemService(Context.LAYOUT_INFLATER_SERVICE); View view =
-	 * inflater.inflate(R.layout.logout_alert, null, false);
-	 * dialog.setCanceledOnTouchOutside(true); dialog.setContentView(view);
-	 * dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0)); //
-	 * ImageView image=(ImageView)findViewById(R.id.img_dialog_icon); //
-	 * image.setVisibility(false);
-	 * 
-	 * // Retrieve views from the inflated dialog layout and update their //
-	 * values TextView txtTitle = (TextView) dialog
-	 * .findViewById(R.id.txt_alert_message); //
-	 * txtTitle.setText("Do you want to add visit?");
-	 * txtTitle.setText(context.getResources().getString(R.string.addvisit)); //
-	 * TextView txtMessage = (TextView) //
-	 * dialog.findViewById(R.id.txt_dialog_message); //
-	 * txtMessage.setText("Do you want to Leave the page ?");
-	 * 
-	 * Button btnyes = (Button) dialog.findViewById(R.id.btn_yes);
-	 * btnyes.setOnClickListener(new android.view.View.OnClickListener() {
-	 * 
-	 * @Override public void onClick(View v) { // Dismiss the dialog
-	 * global.setsGlobalANCVisitGUID(""); global.setiGlobalTTFlag(1);
-	 * global.setiGlobalFacilityVisit(0); Intent i = new Intent(context,
-	 * AncVisitTabActivity.class); ((Activity) context).finish();
-	 * context.startActivity(i); dialog.dismiss();
-	 * 
-	 * } });
-	 * 
-	 * Button btnno = (Button) dialog.findViewById(R.id.btn_no);
-	 * btnno.setOnClickListener(new android.view.View.OnClickListener() {
-	 * 
-	 * @Override public void onClick(View v) { // Dismiss the dialog
-	 * dialog.dismiss(); } });
-	 * 
-	 * // Display the dialog dialog.show();
-	 * 
-	 * }
-	 */
-    /*
-	 * public void CustomAlertFacility() {
-	 * 
-	 * // Create custom dialog object final Dialog dialog = new Dialog(context);
-	 * // hide to default title for Dialog
-	 * dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-	 * 
-	 * // inflate the layout dialog_layout.xml and set it as contentView
-	 * LayoutInflater inflater = (LayoutInflater) context
-	 * .getSystemService(Context.LAYOUT_INFLATER_SERVICE); View view =
-	 * inflater.inflate(R.layout.logout_alert, null, false);
-	 * dialog.setCanceledOnTouchOutside(true); dialog.setContentView(view);
-	 * dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0)); //
-	 * ImageView image=(ImageView)findViewById(R.id.img_dialog_icon); //
-	 * image.setVisibility(false);
-	 * 
-	 * // Retrieve views from the inflated dialog layout and update their //
-	 * values TextView txtTitle = (TextView) dialog
-	 * .findViewById(R.id.txt_alert_message); //
-	 * txtTitle.setText("Do you want to add visit?");
-	 * txtTitle.setText(context.getResources().getString(R.string.Fac_visit));
-	 * // TextView txtMessage = (TextView) //
-	 * dialog.findViewById(R.id.txt_dialog_message); //
-	 * txtMessage.setText("Do you want to Leave the page ?");
-	 * 
-	 * Button btnyes = (Button) dialog.findViewById(R.id.btn_yes);
-	 * btnyes.setOnClickListener(new android.view.View.OnClickListener() {
-	 * 
-	 * @Override public void onClick(View v) { // Dismiss the dialog
-	 * global.setsGlobalANCVisitGUID(""); global.setiGlobalTTFlag(1);
-	 * global.setiGlobalFacilityVisit(0); Intent i = new Intent(context,
-	 * AncVisitTabActivity.class); ((Activity) context).finish();
-	 * context.startActivity(i); dialog.dismiss();
-	 * 
-	 * } });
-	 * 
-	 * Button btnno = (Button) dialog.findViewById(R.id.btn_no);
-	 * btnno.setOnClickListener(new android.view.View.OnClickListener() {
-	 * 
-	 * @Override public void onClick(View v) { // Dismiss the dialog
-	 * dialog.dismiss(); } });
-	 * 
-	 * // Display the dialog dialog.show();
-	 * 
-	 * }
-	 */
 
-    /*
-     * public void CustomAlertDelete(final String sANCGUID) {
-     *
-     * // Create custom dialog object final Dialog dialog = new Dialog(context);
-     * // hide to default title for Dialog
-     * dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-     *
-     * // inflate the layout dialog_layout.xml and set it as contentView
-     * LayoutInflater inflater = (LayoutInflater) context
-     * .getSystemService(Context.LAYOUT_INFLATER_SERVICE); View view =
-     * inflater.inflate(R.layout.logout_alert, null, false);
-     * dialog.setCanceledOnTouchOutside(true); dialog.setContentView(view);
-     * dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0)); //
-     * ImageView image=(ImageView)findViewById(R.id.img_dialog_icon); //
-     * image.setVisibility(false);
-     *
-     * // Retrieve views from the inflated dialog layout and update their //
-     * values TextView txtTitle = (TextView) dialog
-     * .findViewById(R.id.txt_alert_message); //
-     * txtTitle.setText("Are you sure you want to delete this record?");
-     * txtTitle.setText(context.getResources()
-     * .getString(R.string.deleterecord)); // TextView txtMessage = (TextView)
-     * // dialog.findViewById(R.id.txt_dialog_message); //
-     * txtMessage.setText("Do you want to Leave the page ?");
-     *
-     * Button btnyes = (Button) dialog.findViewById(R.id.btn_yes);
-     * btnyes.setOnClickListener(new android.view.View.OnClickListener() {
-     *
-     * @Override public void onClick(View v) { // Dismiss the dialog
-     *
-     * DeleteData(sANCGUID); dialog.dismiss(); } });
-     *
-     * Button btnno = (Button) dialog.findViewById(R.id.btn_no);
-     * btnno.setOnClickListener(new android.view.View.OnClickListener() {
-     *
-     * @Override public void onClick(View v) { // Dismiss the dialog
-     * dialog.dismiss(); } });
-     *
-     * // Display the dialog dialog.show();
-     *
-     * }
-     *
-     * public void DeleteData(String sANCGUID) { String sqldelete =
-     * "Delete from Tbl_ANC where ANC_GUID = '" + sANCGUID + "'";
-     * dataProvider.executeSql(sqldelete); String sqloutcomedelete =
-     * "Delete from Tbl_ANCOutcome where ANC_GUID = '" + sANCGUID + "'";
-     * dataProvider.executeSql(sqloutcomedelete); String sqlvisitdelete =
-     * "Delete from Tbl_ANCVisit where ANC_GUID = '" + sANCGUID + "'";
-     * dataProvider.executeSql(sqlvisitdelete);
-     *
-     * ((AncActivity) context).fillgrid(iflag, global.getsGlobalVillageCode());
-     * }
-     */
     public void fillvisitdata(GridView gridVisits, String sPWGUID) {
         VisitANC = dataProvider.getTbl_VisitANCData(sPWGUID, "", 0);
         if (VisitANC != null && VisitANC.size() > 0) {

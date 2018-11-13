@@ -147,7 +147,7 @@ public class NCD_Patient extends Fragment {
 		int ashaid = 0;
 		if (global.getsGlobalAshaCode() != null
 				&& global.getsGlobalAshaCode().length() > 0) {
-			ashaid = Integer.valueOf(global.getsGlobalAshaCode());
+			ashaid = Validate.returnIntegerValue(global.getsGlobalAshaCode());
 		}
 		if (flag == 0) {
 

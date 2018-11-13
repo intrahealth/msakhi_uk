@@ -56,7 +56,7 @@ public class FP_AA extends FragmentActivity implements ActionBar.TabListener,
                 .getActiveNetworkInfo();
         Tracker t = ((Global) getApplication())
                 .getTracker(TrackerName.APP_TRACKER);
-        t.setScreenName("Survey List");
+        t.setScreenName("Family Planing eligible List");
         String dimensionValue = "5";
         if (global.getsGlobalUserName() != null
                 && global.getsGlobalUserName().length() > 0) {

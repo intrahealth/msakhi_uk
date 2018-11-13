@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -17,12 +19,10 @@ import java.util.HashMap;
 
 public class Report_Module extends Activity {
 
-    Button btnHousehold, btnhrpReport, btnAnc, btnHNBC, btn_ANCduelist, btn_Immunizationduelist, btnReport;
+    Button btncrvs, btnHousehold, btnhrpReport, btnAnc, btnHNBC, btn_VHNDANCduelist, btn_VHNDImmunizationduelist, btn_ANCduelist, btn_Immunizationduelist, btnReport, btnashaPdfReport;
     Global global;
 
-
-    String[] Page2_1Source = new String[6];
-
+    Validate validate;
     DataProvider dataProvider;
 
     @Override
@@ -32,15 +32,20 @@ public class Report_Module extends Activity {
 
         global = (Global) getApplication();
         dataProvider = new DataProvider(this);
+        validate = new Validate(this);
         setTitle(global.getVersionName());
         setContentView(R.layout.reportmodulescreen);
         btnHousehold = (Button) findViewById(R.id.btnHousehold);
         btnAnc = (Button) findViewById(R.id.btnANC);
         btnHNBC = (Button) findViewById(R.id.btnHNBC);
+        btncrvs = (Button) findViewById(R.id.btncrvs);
         btn_Immunizationduelist = (Button) findViewById(R.id.btn_Immunizationduelist);
         btn_ANCduelist = (Button) findViewById(R.id.btn_ANCduelist);
+        btn_VHNDImmunizationduelist = (Button) findViewById(R.id.btn_VHNDImmunizationduelist);
+        btn_VHNDANCduelist = (Button) findViewById(R.id.btn_VHNDANCduelist);
         btnReport = (Button) findViewById(R.id.btnReport);
         btnhrpReport = (Button) findViewById(R.id.btnhrpReport);
+        btnashaPdfReport = (Button) findViewById(R.id.btnashaPdfReport);
 
         try {
             int statecode = 0;
@@ -53,13 +58,20 @@ public class Report_Module extends Activity {
 
                 btnAnc.setVisibility(View.GONE);
                 btnHNBC.setVisibility(View.GONE);
+                btncrvs.setVisibility(View.GONE);
                 btn_ANCduelist.setVisibility(View.GONE);
                 btn_Immunizationduelist.setVisibility(View.GONE);
+                btn_VHNDANCduelist.setVisibility(View.GONE);
+                btn_VHNDImmunizationduelist.setVisibility(View.GONE);
                 btnReport.setVisibility(View.VISIBLE);
                 btnhrpReport.setVisibility(View.GONE);
+                btnashaPdfReport.setVisibility(View.GONE);
 
             } else {
-                btnReport.setVisibility(View.GONE);
+                // btnReport.setVisibility(View.GONE);
+                if (global.getiGlobalRoleID() != 2) {
+                    btnashaPdfReport.setVisibility(View.GONE);
+                }
             }
 
         } catch (Exception e) {
@@ -144,19 +156,51 @@ public class Report_Module extends Activity {
                 break;
             case R.id.btnHNBC:
 
-                if (global.getiGlobalRoleID() == 3) {
+                if (global.getiGlobalRoleID() == 2 || global.getiGlobalRoleID() == 3) {
                     in = new Intent(Report_Module.this,
-                            Reportindicator_anmHnbclist.class);
+                            HbncReport.class);
                     finish();
                     startActivity(in);
-                } else {
+                }
+                break;
+            case R.id.btncrvs:
+
+                if (global.getiGlobalRoleID() == 2) {
                     in = new Intent(Report_Module.this,
-                            Reportindicator_Hnbclist.class);
+                            CRVSReportASHA.class);
                     finish();
                     startActivity(in);
                 }
                 break;
             case R.id.btn_Immunizationduelist:
+                if (global.getiGlobalRoleID() == 3) {
+                    Intent i = new Intent(Report_Module.this, Immunization_DueListAnm.class);
+                    finish();
+                    startActivity(i);
+
+                } else if (global.getiGlobalRoleID() == 2) {
+                    Intent i = new Intent(Report_Module.this, Immunization_DueList.class);
+                    finish();
+                    startActivity(i);
+
+                }
+                break;
+            case R.id.btn_ANCduelist:
+                if (global.getiGlobalRoleID() == 3) {
+
+                    Intent i = new Intent(Report_Module.this, AncReport_DueListAnm.class);
+                    finish();
+                    startActivity(i);
+
+                } else if (global.getiGlobalRoleID() == 2) {
+
+                    Intent i = new Intent(Report_Module.this, AncReport_DueList.class);
+                    finish();
+                    startActivity(i);
+
+                }
+                break;
+            case R.id.btn_VHNDImmunizationduelist:
                 if (global.getiGlobalRoleID() == 2) {
                     Intent i = new Intent(Report_Module.this, VHND_Immunizatiom.class);
                     finish();
@@ -164,7 +208,7 @@ public class Report_Module extends Activity {
 
                 }
                 break;
-            case R.id.btn_ANCduelist:
+            case R.id.btn_VHNDANCduelist:
                 if (global.getiGlobalRoleID() == 2) {
                     Intent i = new Intent(Report_Module.this, VHND_ANC.class);
                     finish();
@@ -181,16 +225,58 @@ public class Report_Module extends Activity {
                             Anm_NCD_Report.class);
                     finish();
                     startActivity(i);
-                } else {
+                } else if (global.getiGlobalRoleID() == 2) {
                     in = new Intent(Report_Module.this,
                             NCD_Report.class);
                     finish();
                     startActivity(in);
                 }
                 break;
+            case R.id.btnashaPdfReport:
+                if (global.getiGlobalRoleID() == 2) {
+                    Intent i = new Intent(Report_Module.this,
+                            PdfReport.class);
+                    finish();
+                    startActivity(i);
+                } else {
+
+                }
+                break;
             default:
                 break;
         }
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        menu.add(0, 0, 1, validate.RetriveSharepreferenceString("name")).setShowAsAction(
+                MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
+
+        return true;
+    }
+
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getOrder()) {
+
+            case 1:
+                if (item.getTitle().equals(validate.RetriveSharepreferenceString("Username"))) {
+                    item.setTitle(validate.RetriveSharepreferenceString("name"));
+
+                } else {
+                    item.setTitle(validate.RetriveSharepreferenceString("Username"));
+
+                }
+                break;
+
+
+            default:
+                break;
+        }
+
+        return true;
     }
 
     @Override

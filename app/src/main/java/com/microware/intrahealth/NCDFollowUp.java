@@ -217,6 +217,7 @@ public class NCDFollowUp extends Activity {
                             tbl_SpinOther.setVisibility(view.GONE);
                             et_SpinOther.setText("");
 
+
                         }
 
                     }
@@ -1017,13 +1018,13 @@ public class NCDFollowUp extends Activity {
         try {
             int count = 0, count1 = 0, count2 = 0;
             if (et1.length() > 0 && !et1.toString().equalsIgnoreCase(".")) {
-                count = Integer.valueOf(et1.getText().toString());
+                count =  Validate.returnIntegerValue(et1.getText().toString());
             }
             if (et3.length() > 0 && !et3.toString().equalsIgnoreCase(".")) {
-                count2 = Integer.valueOf(et3.getText().toString());
+                count2 = Validate.returnIntegerValue(et3.getText().toString());
             }
             if (et2.length() > 0 && !et2.toString().equalsIgnoreCase(".")) {
-                count1 = Integer.valueOf(et2.getText().toString());
+                count1 =  Validate.returnIntegerValue(et2.getText().toString());
             }
             if (count <= 120 && count1 <= 140 && count2 <= 90 && count >= 80
                     && count1 >= 50 && count2 >= 50) {

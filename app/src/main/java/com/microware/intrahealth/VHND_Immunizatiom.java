@@ -32,8 +32,7 @@ public class VHND_Immunizatiom extends Activity {
     ArrayAdapter<String> adapter;
     ArrayList<tblVHNDDuelist> VHND_Date = new ArrayList<tblVHNDDuelist>();
     String Monthhh[];
-    // int AshaID = 136;
-    // LinearLayout Addbtn;
+    Validate validate;
     Global global;
     ArrayList<tbl_pregnantwomen> Pregnant_woman;
     Spinner spin_month;
@@ -52,6 +51,7 @@ public class VHND_Immunizatiom extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vhnd_immunization);
         dataProvider = new DataProvider(this);
+        validate = new Validate(this);
         global = (Global) this.getApplicationContext();
         setTitle(global.getVersionName());
 
@@ -181,11 +181,34 @@ public class VHND_Immunizatiom extends Activity {
 
     }
 
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        menu.add(0, 0, 0, global.getsGlobalAshaName()).setShowAsAction(
+        menu.add(0, 0, 1, validate.RetriveSharepreferenceString("name")).setShowAsAction(
                 MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
+
+        return true;
+    }
+
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getOrder()) {
+
+            case 1:
+                if (item.getTitle().equals(validate.RetriveSharepreferenceString("Username"))) {
+                    item.setTitle(validate.RetriveSharepreferenceString("name"));
+
+                } else {
+                    item.setTitle(validate.RetriveSharepreferenceString("Username"));
+
+                }
+                break;
+
+
+            default:
+                break;
+        }
 
         return true;
     }

@@ -43,6 +43,23 @@
         <item name="android:textColor">@color/White</item>
     </style>
 
+    <style name="MyTheme1" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/MyActionBar1</item>
+        <item name="android:actionMenuTextColor">@color/Black</item>
+    </style>
+
+    <style name="MyActionBar1" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/White</item>
+
+        <item name="android:titleTextStyle">@style/MyTheme.ActionBar.TitleTextStyle1</item>
+    </style>
+
+    <style name="MyTheme.ActionBar.TitleTextStyle1" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="ButtonText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -75,6 +92,7 @@
         <item name="android:paddingTop">5dp</item>
         <item name="android:paddingBottom">5dp</item>
     </style>
+
     <style name="tbl_SimpleText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -83,9 +101,10 @@
         <item name="android:textSize">@dimen/simpletextsize</item>
         <item name="android:shadowColor">#000000</item>
         <item name="android:minHeight">40dp</item>
-        <item name="android:layout_marginTop">10dp</item>
+
 
     </style>
+
     <style name="TextviewCircle">
         <item name="android:textSize">16sp</item>
         <item name="android:background">@drawable/circleview</item>
@@ -191,7 +210,73 @@
         <item name="android:paddingLeft">5dp</item>
         <item name="android:textSize">20sp</item>
     </style>
+
+    <style name="NewSimpleTextWeight">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="heading1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/White</item>
+        <item name="android:background">@color/darkyellow1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="tablerow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">40dp</item>
+
+    </style>
+
+    <style name="headinggrid">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:background">@color/MistyRose</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="heading2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:background">@color/accentcolor</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="headinggridsilver">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:background">@color/Silver</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="headinggrid1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">14sp</item>
+    </style>
     <!-- Color -->
+    <color name="OffWhite">#FDFDFD</color>
+    <color name="darkyellow1">#f99740</color>
     <color name="appgreen">#54d3a2</color>
     <color name="appred">#ed6f88</color>
     <color name="barblue">#407cc9</color>
@@ -206,8 +291,10 @@
     <color name="LLBG">#DBDBFF</color>
     <color name="White">#FFFFFF</color>
     <color name="Ivory">#FFFFF0</color>
+    <color name="buttonorange">#FF851B</color>
     <color name="LightYellow">#FFFFE0</color>
     <color name="Yellow">#FFFF00</color>
+    <color name="LightsyncYellow">#FEC000</color>
     <color name="Snow">#FFFAFA</color>
     <color name="FloralWhite">#FFFAF0</color>
     <color name="LemonChiffon">#FFFACD</color>
@@ -279,6 +366,7 @@
     <color name="DarkGoldenrod">#B8860B</color>
     <color name="FireBrick">#B22222</color>
     <color name="PowderBlue">#B0E0E6</color>
+    <color name="LightPowderBlue">#effcff</color>
     <color name="LightSteelBlue">#B0C4DE</color>
     <color name="PaleTurquoise">#AFEEEE</color>
     <color name="GreenYellow">#ADFF2F</color>
@@ -308,6 +396,7 @@
     <color name="LawnGreen">#7CFC00</color>
     <color name="MediumSlateBlue">#7B68EE</color>
     <color name="LightSlateGray">#778899</color>
+    <color name="pastelRed">#ae0001</color>
     <color name="SlateGray">#708090</color>
     <color name="OliveDrab">#6B8E23</color>
     <color name="SlateBlue">#6A5ACD</color>
@@ -344,6 +433,7 @@
     <color name="Blue">#0000FF</color>
     <color name="MediumBlue">#0000CD</color>
     <color name="DarkBlue">#00008B</color>
+    <color name="TextBlue">#002060</color>
     <color name="Navy">#000080</color>
     <color name="Black">#000000</color>
     <color name="darkyellow">#FF7A05</color>
@@ -360,5 +450,7 @@
     <color name="accentcolor">#FFC107</color>
     <color name="Secondaccentcolor">#06ABFE</color>
     <color name="statusbarcolor">#00796B</color>
+    <color name="lightgreen">#A1B069</color>
+    <color name="lightred">#A45A52</color>
 
 </resources>

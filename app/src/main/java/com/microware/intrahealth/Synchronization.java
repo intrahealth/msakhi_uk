@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
@@ -29,12 +30,6 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.PropertyInfo;
-import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapPrimitive;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;
 
 import com.microware.intrahealth.object.tblmstimmunizationQues;
 import com.google.gson.Gson;
@@ -84,6 +79,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.util.Base64;
 import android.util.Log;
@@ -91,6 +87,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -101,7 +98,7 @@ public class Synchronization extends Activity {
     LinearLayout Lineardownloadmaster, lineardownloadHH, lineardownloadMNCH,
             linearuploadHH, linearuploadMNCH, linearuploadFP, lineardownloadFP,
             lineardownloadncd, linearuploadncd, ll_mnch, ll_fp, ll_ncd,
-            ll_vhnd;
+            ll_vhnd, linearDownloadReferal, ll_Incentive, lineardownloadIncentive, linearuploadIncentive;
     // Add New Herojit
 
     private static final String IMAGE_DIRECTORY_NAME = "mSakhi";
@@ -131,7 +128,10 @@ public class Synchronization extends Activity {
     JSONArray anmashaArray = null;
     JSONArray ashavillageArray = null;
     JSONArray MigrationArray = null;
-
+    JSONArray anmsubcenterArray = null;
+    JSONArray mstpdfreportArray = null;
+    JSONArray mstashaactivityArray = null;
+    JSONArray mstchc = null;
     JSONArray MstCatchmentSupervisorArray = null;
     JSONArray MstPHCArray = null;
     JSONArray MstSubCenterVillageMappingArray = null;
@@ -151,7 +151,7 @@ public class Synchronization extends Activity {
     public ArrayList<tbl_DetailedModuleUsage> ModuleUsage = new ArrayList<tbl_DetailedModuleUsage>();
     public ArrayList<Tbl_HHSurvey> HHSurveycount = new ArrayList<Tbl_HHSurvey>();
     public ArrayList<MstASHA> MstASHA = new ArrayList<MstASHA>();
-
+    ArrayList<HashMap<String, String>> data = null, Incentivedata = null;
     public ArrayList<tblChild> Child = new ArrayList<tblChild>();
     public ArrayList<tblncdcbac> ncdcbac = new ArrayList<tblncdcbac>();
     public ArrayList<tblncdscreening> ncdscreening = new ArrayList<tblncdscreening>();
@@ -184,15 +184,12 @@ public class Synchronization extends Activity {
     public ArrayList<tblmstimmunizationQues> tblmstimmunizationQues = new ArrayList<tblmstimmunizationQues>();
     int iDataUploadImmu;
     public ArrayList<tblVHNDDuelist> VHNDDuelistnew = new ArrayList<tblVHNDDuelist>();
-
     public ArrayList<q_bank> q_bank = new ArrayList<q_bank>();
     JSONArray q_bankArray = null;
     int iDataUploadfp;
-    int iDataUploadfpans;
     int iDataUploadpncans;
-
     int iDataUploadMNCH;
-    int iMNCHDataDownload = 1, hhsurvey = 1, hhfamily = 1, childdownload = 1, pregnantdownload = 1, ancvisitdownload = 1, pncvisitdownload = 1, immucounsellingdownload = 1, fpvisitdownload = 1, fpfollowupdownload = 1, ncdfollowupdownload = 1, ncdscreeningdownload = 1;
+    int iMNCHDataDownload = 1, iDataDownloadIncentive = 0, iDataUploadIncentive = 0, hhsurvey = 1, hhfamily = 1, childdownload = 1, pregnantdownload = 1, ancvisitdownload = 1, pncvisitdownload = 1, immucounsellingdownload = 1, fpvisitdownload = 1, fpfollowupdownload = 1, ncdfollowupdownload = 1, ncdscreeningdownload = 1;
 
     // Add Herojit for upload and download
     ArrayList<tbl_VHND_DueList> VHND_Duelist = new ArrayList<tbl_VHND_DueList>();
@@ -200,8 +197,9 @@ public class Synchronization extends Activity {
     JSONArray Array_tbl_VHND_DueList = null;
     JSONArray Array_tbl_VHNDPerformance = null;
     JSONArray VHNDDuelistnewarray = null;
-    TextView tv_uploadFP, tv_uploadHH, tv_uploadMNCH, tv_VHNDUpload,
-            tv_uploadNCD, tv_datehh, tv_dateMnch, tv_datefp, tv_dateVHND, tv_dateNCD, tv_dateuploadNCD, tv_dateMaster, tv_dateuploadVHND, tv_dateuploadFP, tv_dateuploadMNCH, tv_dateuploadHH;
+    TextView tv_dateuploadIncentive, tv_dateIncentive, tv_dateIncentive1, tv_uploadIncentive, tv_uploadFP, tv_dateReferal, tv_uploadHH, tv_uploadMNCH, tv_VHNDUpload,
+            tv_uploadNCD, tv_datehh, tv_dateMnch, tv_datefp, tv_dateVHND, tv_dateNCD, tv_datehh1, tv_dateMnch1, tv_datefp1, tv_dateVHND1, tv_dateNCD1, tv_dateuploadNCD, tv_dateMaster, tv_dateuploadVHND, tv_dateuploadFP, tv_dateuploadMNCH, tv_dateuploadHH;
+    ImageView imgdownloadHH, imguploadHH, imgdownloadncd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -212,11 +210,25 @@ public class Synchronization extends Activity {
         global = (Global) getApplicationContext();
         setTitle(global.getVersionName());
         dataProvider = new DataProvider(this);
+        imgdownloadHH = (ImageView) findViewById(R.id.imgdownloadHH);
+        imguploadHH = (ImageView) findViewById(R.id.imguploadHH);
+        imgdownloadncd = (ImageView) findViewById(R.id.imgdownloadncd);
+
+        tv_dateuploadIncentive = (TextView) findViewById(R.id.tv_dateuploadIncentive);
+        tv_dateIncentive = (TextView) findViewById(R.id.tv_dateIncentive);
+        tv_uploadIncentive = (TextView) findViewById(R.id.tv_uploadIncentive);
+        tv_dateIncentive1 = (TextView) findViewById(R.id.tv_dateIncentive1);
+        tv_dateReferal = (TextView) findViewById(R.id.tv_dateReferal);
         tv_datehh = (TextView) findViewById(R.id.tv_datehh);
         tv_dateMnch = (TextView) findViewById(R.id.tv_dateMnch);
         tv_datefp = (TextView) findViewById(R.id.tv_datefp);
         tv_dateVHND = (TextView) findViewById(R.id.tv_dateVHND);
         tv_dateNCD = (TextView) findViewById(R.id.tv_dateNCD);
+        tv_datehh1 = (TextView) findViewById(R.id.tv_datehh1);
+        tv_dateMnch1 = (TextView) findViewById(R.id.tv_dateMnch1);
+        tv_datefp1 = (TextView) findViewById(R.id.tv_datefp1);
+        tv_dateVHND1 = (TextView) findViewById(R.id.tv_dateVHND1);
+        tv_dateNCD1 = (TextView) findViewById(R.id.tv_dateNCD1);
         tv_dateuploadNCD = (TextView) findViewById(R.id.tv_dateuploadNCD);
         tv_dateMaster = (TextView) findViewById(R.id.tv_dateMaster);
         tv_dateuploadVHND = (TextView) findViewById(R.id.tv_dateuploadVHND);
@@ -228,6 +240,7 @@ public class Synchronization extends Activity {
         tv_uploadMNCH = (TextView) findViewById(R.id.tv_uploadMNCH);
         tv_VHNDUpload = (TextView) findViewById(R.id.tv_VHNDUpload);
         tv_uploadNCD = (TextView) findViewById(R.id.tv_uploadNCD);
+        linearDownloadReferal = (LinearLayout) findViewById(R.id.linearDownloadReferal);
         Lineardownloadmaster = (LinearLayout) findViewById(R.id.lineardownloadmaster);
         lineardownloadHH = (LinearLayout) findViewById(R.id.lineardownloadHH);
         lineardownloadMNCH = (LinearLayout) findViewById(R.id.lineardownloadMNCH);
@@ -244,6 +257,9 @@ public class Synchronization extends Activity {
         // Add Herojit
         linearVHNDDownload = (LinearLayout) findViewById(R.id.linearVHNDDownload);
         linearVHNDUpload = (LinearLayout) findViewById(R.id.linearVHNDUpload);
+        ll_Incentive = (LinearLayout) findViewById(R.id.ll_Incentive);
+        lineardownloadIncentive = (LinearLayout) findViewById(R.id.lineardownloadIncentive);
+        linearuploadIncentive = (LinearLayout) findViewById(R.id.linearuploadIncentive);
         int PERMISSION_ALL = 1;
         String[] PERMISSIONS = {android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 android.Manifest.permission.READ_PHONE_STATE,
@@ -263,17 +279,38 @@ public class Synchronization extends Activity {
                 statecode = Integer.valueOf(global.getStateCode());
             }
             if (statecode == 20) {
+                ll_Incentive.setVisibility(View.GONE);
                 ll_vhnd.setVisibility(View.GONE);
                 ll_mnch.setVisibility(View.GONE);
                 ll_fp.setVisibility(View.GONE);
                 ll_ncd.setVisibility(View.VISIBLE);
             } else {
+                ll_Incentive.setVisibility(View.VISIBLE);
                 ll_vhnd.setVisibility(View.VISIBLE);
-                ll_ncd.setVisibility(View.GONE);
+                // ll_ncd.setVisibility(View.GONE);
                 ll_fp.setVisibility(View.VISIBLE);
                 ll_mnch.setVisibility(View.VISIBLE);
             }
-            count();
+            if (global.getiGlobalRoleID() == 3) {
+                count();
+                linearDownloadReferal.setVisibility(View.GONE);
+            } else if (global.getiGlobalRoleID() == 11) {
+                countchc();
+                imgdownloadHH.setBackgroundResource((R.drawable.disabledownload));
+                imgdownloadncd.setBackgroundResource((R.drawable.disabledownload));
+                imguploadHH.setBackgroundResource((R.drawable.disableupload));
+                lineardownloadncd.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                lineardownloadHH.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                linearuploadHH.setBackgroundColor(getResources().getColor(R.color.lightgray));
+
+                linearuploadHH.setEnabled(false);
+                lineardownloadncd.setEnabled(false);
+                lineardownloadHH.setEnabled(false);
+
+            } else {
+                linearDownloadReferal.setVisibility(View.GONE);
+                countashawise();
+            }
             uploaddate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -327,7 +364,11 @@ public class Synchronization extends Activity {
                                                 exportUPloadVNHD();
                                             } else
                                                 showNewWorkError();
-                                            count();
+                                            if (global.getiGlobalRoleID() == 3) {
+                                                count();
+                                            } else {
+                                                countashawise();
+                                            }
                                         } catch (Exception e) {
                                             // TODO: handle exception
                                             Toast.makeText(
@@ -379,7 +420,11 @@ public class Synchronization extends Activity {
                                             } else {
                                                 showNewWorkError();
                                             }
-                                            count();
+                                            if (global.getiGlobalRoleID() == 3) {
+                                                count();
+                                            } else {
+                                                countashawise();
+                                            }
                                         } catch (Exception e) {
                                             // TODO: handle exception
                                             Toast.makeText(
@@ -483,8 +528,7 @@ public class Synchronization extends Activity {
                                         try {
 
                                             if (isNetworkconn()) {
-                                                importAnswer(
-                                                        global.getsGlobalUserName(),
+                                                importAnswer(global.getsGlobalUserName(),
                                                         global.getsGlobalPassword());
                                             } else
                                                 showNewWorkError();
@@ -605,6 +649,13 @@ public class Synchronization extends Activity {
             @Override
             public void onClick(View arg0) {
 
+                String sql = "";
+                if (global.getiGlobalRoleID() == 3) {
+                    sql = "Select count(*)  from Tbl_HHSurvey where ANMID=" + global.getsGlobalANMCODE() + " and  IsEdited=1 or HHSurveyGUID in (Select HHSurveyGUID  from Tbl_HHFamilyMember where ANMID=" + global.getsGlobalANMCODE() + " and  IsEdited=1 )";
+                } else if (global.getiGlobalRoleID() == 2) {
+                    sql = "Select count(*)  from Tbl_HHSurvey where ServiceProviderID=" + global.getsGlobalAshaCode() + " and  IsEdited=1 or HHSurveyGUID in (Select HHSurveyGUID  from Tbl_HHFamilyMember where ashaid=" + global.getsGlobalAshaCode() + " and  IsEdited=1 )";
+                }
+                final int count = dataProvider.getMaxRecord(sql);
                 Synchronization.this.runOnUiThread(new Runnable() {
                     public void run() {
                         AlertDialog.Builder builder1 = new AlertDialog.Builder(
@@ -619,14 +670,25 @@ public class Synchronization extends Activity {
                                                         int id) {
                                         dialog.cancel();
 
-                                        exportHH();
+                                        if (count > 0) {
+                                            exportHH();
+                                        } else {
+                                            Toast.makeText(Synchronization.this,
+                                                    getResources().getString(R.string.NothingforUpload),
+                                                    Toast.LENGTH_LONG).show();
+                                        }
 
                                     }
                                 });
 
                         builder1.setNegativeButton(
-                                getResources().getString(R.string.no),
-                                new DialogInterface.OnClickListener() {
+
+                                getResources().
+
+                                        getString(R.string.no),
+                                new DialogInterface.OnClickListener()
+
+                                {
                                     public void onClick(DialogInterface dialog,
                                                         int id) {
                                         dialog.cancel();
@@ -640,7 +702,9 @@ public class Synchronization extends Activity {
 
             }
         });
-        linearuploadMNCH.setOnClickListener(new View.OnClickListener() {
+        linearuploadMNCH.setOnClickListener(new View.OnClickListener()
+
+        {
 
             @Override
             public void onClick(View arg0) {
@@ -660,7 +724,11 @@ public class Synchronization extends Activity {
                                         dialog.cancel();
 
                                         exportMNCH();
-                                        count();
+                                        if (global.getiGlobalRoleID() == 3) {
+                                            count();
+                                        } else {
+                                            countashawise();
+                                        }
                                     }
                                 });
 
@@ -680,7 +748,9 @@ public class Synchronization extends Activity {
 
             }
         });
-        linearuploadncd.setOnClickListener(new View.OnClickListener() {
+        linearuploadncd.setOnClickListener(new View.OnClickListener()
+
+        {
 
             @Override
             public void onClick(View arg0) {
@@ -705,8 +775,15 @@ public class Synchronization extends Activity {
                                             } else {
                                                 showNewWorkError();
                                             }
-                                            count();
-                                            uploaddate();
+//                                            if (global.getiGlobalRoleID() == 11) {
+//                                                countchc();
+//                                            }
+//                                            if (global.getiGlobalRoleID() == 3) {
+//                                                count();
+//                                            } else {
+//                                                countashawise();
+//                                            }
+//                                            uploaddate();
                                         } catch (Exception e) {
                                             // TODO: handle exception
                                             Toast.makeText(
@@ -735,7 +812,9 @@ public class Synchronization extends Activity {
             }
         });
 
-        lineardownloadncd.setOnClickListener(new View.OnClickListener() {
+        lineardownloadncd.setOnClickListener(new View.OnClickListener()
+
+        {
 
             @Override
             public void onClick(View arg0) {
@@ -789,7 +868,444 @@ public class Synchronization extends Activity {
 
             }
         });
+        linearDownloadReferal.setOnClickListener(new View.OnClickListener()
 
+        {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Synchronization.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(
+                                Synchronization.this);
+                        builder1.setMessage(getResources().getString(
+                                R.string.downloaddata));
+                        builder1.setCancelable(false);
+                        builder1.setPositiveButton(
+                                getResources().getString(R.string.yes),
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int id) {
+                                        dialog.cancel();
+                                        try {
+
+                                            if (isNetworkconn()) {
+                                                importreferaldata(
+                                                        global.getsGlobalUserName(),
+                                                        global.getsGlobalPassword());
+                                            } else
+                                                showNewWorkError();
+
+                                        } catch (Exception e) {
+                                            // TODO: handle exception
+                                            Toast.makeText(
+                                                    Synchronization.this,
+                                                    e.getMessage().toString(),
+                                                    Toast.LENGTH_LONG).show();
+                                        }
+
+                                    }
+                                });
+
+                        builder1.setNegativeButton(
+                                getResources().getString(R.string.no),
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        AlertDialog alert11 = builder1.create();
+                        alert11.show();
+                    }
+                });
+
+            }
+        });
+        lineardownloadIncentive.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+
+                Synchronization.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(
+                                Synchronization.this);
+                        builder1.setMessage(getResources().getString(
+                                R.string.downloaddata));
+                        builder1.setCancelable(false);
+                        builder1.setPositiveButton(
+                                getResources().getString(R.string.yes),
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int id) {
+                                        dialog.cancel();
+                                        try {
+
+                                            if (isNetworkconn()) {
+                                                importIncentive(global.getsGlobalUserName(), global.getsGlobalPassword());
+                                            } else
+                                                showNewWorkError();
+
+                                        } catch (Exception e) {
+                                            // TODO: handle exception
+                                            Toast.makeText(
+                                                    Synchronization.this,
+                                                    e.getMessage().toString(),
+                                                    Toast.LENGTH_LONG).show();
+                                        }
+
+                                    }
+                                });
+
+                        builder1.setNegativeButton(
+                                getResources().getString(R.string.no),
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        AlertDialog alert11 = builder1.create();
+                        alert11.show();
+                    }
+                });
+            }
+        });
+        linearuploadIncentive.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Synchronization.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(
+                                Synchronization.this);
+                        builder1.setMessage(getResources().getString(
+                                R.string.uploaddata));
+                        builder1.setCancelable(false);
+                        builder1.setPositiveButton(
+                                getResources().getString(R.string.yes),
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int id) {
+                                        dialog.cancel();
+                                        try {
+
+                                            if (isNetworkconn()) {
+                                                exportIncentive();
+                                            } else {
+                                                showNewWorkError();
+                                            }
+
+                                        } catch (Exception e) {
+                                            // TODO: handle exception
+                                            Toast.makeText(
+                                                    Synchronization.this,
+                                                    e.getMessage().toString(),
+                                                    Toast.LENGTH_LONG).show();
+                                        }
+
+                                    }
+                                });
+
+                        builder1.setNegativeButton(
+                                getResources().getString(R.string.no),
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        AlertDialog alert11 = builder1.create();
+                        alert11.show();
+                    }
+                });
+
+            }
+        });
+
+    }
+
+    public void importIncentive(final String sUserName,
+                                final String sPassword) {
+
+        progressDialog = ProgressDialog.show(Synchronization.this, "",
+                getResources().getString(R.string.DataLoading));
+        new Thread() {
+
+            @Override
+            public void run() {
+                try {
+                    // importAns(sUserName, sPassword);ll
+                    // Array_tbl_VHND_DueList,Array_tbl_VHNDPerformance
+                    if (global.getiGlobalRoleID() == 3) {
+                        MstASHA = dataProvider.getMstASHAname(1, "", 1);
+                        if ((MstASHA != null && MstASHA.size() > 0)) {
+                            for (int i = 0; i < MstASHA.size(); i++) {
+                                importIncentivedata(sUserName,
+                                        sPassword, String.valueOf(MstASHA
+                                                .get(i).getASHAID()));
+                            }
+                        }
+
+                    } else {
+
+                        importIncentivedata(sUserName, sPassword, "0");
+
+                    }
+
+                } catch (Exception exp) {
+                    progressDialog.dismiss();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (iDataDownloadIncentive == 1) {
+                            Toast.makeText(
+                                    Synchronization.this,
+                                    getResources().getString(
+                                            R.string.DataDownloadsuccessfully),
+                                    Toast.LENGTH_LONG).show();
+                            dataProvider.insertdownlaoddetail(13, "DownloadIncentive", global.getUserID(), global.getsGlobalAshaCode(), global.getsGlobalANMCODE());
+                            uploaddate();
+                            if (global.getiGlobalRoleID() == 3) {
+                                count();
+                            } else {
+                                countashawise();
+                            }
+
+                        } else {
+                            Toast.makeText(
+                                    Synchronization.this,
+                                    getResources().getString(
+                                            R.string.DatanotDownloadsuccessfully),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+                progressDialog.dismiss();
+
+            }
+
+        }.start();
+
+    }
+
+    public void importIncentivedata(String UserName, String Password,
+                                    String ashaid) {
+        HttpClient httpClient = new DefaultHttpClient();
+        // replace with your url
+        HttpPost httpPost = new HttpPost("replace your URL");
+
+        // Post Data
+        List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(3);
+        nameValuePair.add(new BasicNameValuePair("username", UserName));
+        nameValuePair.add(new BasicNameValuePair("password", Password));
+        nameValuePair.add(new BasicNameValuePair("sFlag", "incentive"));
+        nameValuePair.add(new BasicNameValuePair("asha_id", ashaid));
+
+        // Encoding POST data
+        try {
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+        } catch (UnsupportedEncodingException e) {
+            // log exception
+            e.printStackTrace();
+        }
+
+        // making POST request.
+        try {
+            String responseBody = "";
+            HttpResponse response = httpClient.execute(httpPost);
+            responseBody = EntityUtils.toString(response.getEntity());
+
+            JSONObject jsonObj = null;
+
+
+            try {
+                String[] Tablename = {"tblincentivesurvey", "tblashaincentivedetail"};
+                String[] condition[] = {{"IncentiveSurveyGUID"}, {"IncentiveGUID"}};
+                jsonObj = new JSONObject(responseBody.toString());
+                dataProvider.ImportDataInMyWay(jsonObj, Tablename, condition);
+                iDataDownloadIncentive = 1;
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                downloadmsg = e.getMessage();
+                iDataDownloadIncentive = 0;
+                e.printStackTrace();
+            }
+
+        } catch (IOException e) {
+            downloadmsg = e.getMessage();
+            e.printStackTrace();
+        }
+    }
+
+    public void exportIncentive() {
+
+        // TODO Auto-generated method stub
+        data = null;
+        String sql = "select * from tblincentivesurvey where  Isedited=1  ";
+        data = dataProvider.getDynamicVal(sql);
+        Incentivedata = null;
+        String sqlincentive = "select * from tblashaincentivedetail where  Isedited=1 ";
+        Incentivedata = dataProvider.getDynamicVal(sqlincentive);
+        // mstFPFDetail = dataProvider.getFP_Detail("", 2);
+
+        if ((data != null && data.size() > 0)
+                || (Incentivedata != null && Incentivedata.size() > 0)) {
+            progressDialog = ProgressDialog.show(Synchronization.this, "",
+                    getResources().getString(R.string.Uploadingdata));
+            new Thread() {
+
+                @Override
+                public void run() {
+                    try {
+
+                        exportIncentivedata();
+
+                    } catch (Exception exp) {
+                        downloadmsg = exp.getMessage();
+                        progressDialog.dismiss();
+                    }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            if (iDataUploadIncentive == 1) {
+                                Toast.makeText(
+                                        Synchronization.this,
+                                        getResources()
+                                                .getString(
+                                                        R.string.Datauploadsuccessfully),
+                                        Toast.LENGTH_LONG).show();
+                                dataProvider.insertdownlaoddetail(14, "UploadIncentive", global.getUserID(), global.getsGlobalAshaCode(), global.getsGlobalANMCODE());
+                                uploaddate();
+                                if (global.getiGlobalRoleID() == 11) {
+                                    countchc();
+                                } else if (global.getiGlobalRoleID() == 3) {
+                                    count();
+                                } else {
+                                    countashawise();
+                                }
+
+                            } else {
+                                Toast.makeText(Synchronization.this,
+                                        downloadmsg, Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+
+                    progressDialog.dismiss();
+
+                }
+            }.start();
+        } else {
+            Toast.makeText(Synchronization.this,
+                    getResources().getString(R.string.NothingforUpload),
+                    Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    public void exportIncentivedata() {
+        try {
+
+            HttpClient httpClient = new DefaultHttpClient();
+            // replace with your url
+            HttpPost httpPost = new HttpPost("replace your URL");
+
+            JSONObject jsonObjectcombined = new JSONObject();
+            try {
+
+                if (data.size() > 0) {
+                    String json1 = new Gson().toJson(data);
+                    JSONArray JSONArray_mstFPAns = new JSONArray(json1);
+                    jsonObjectcombined.put("tblincentivesurvey", JSONArray_mstFPAns);
+                } else {
+                    JSONArray otherJsonArray = new JSONArray();
+                    jsonObjectcombined.put("tblincentivesurvey", otherJsonArray);
+
+                }
+
+                if (Incentivedata.size() > 0) {
+                    String json1 = new Gson().toJson(Incentivedata);
+                    JSONArray JSONArray_mstFPFDetail = new JSONArray(json1);
+                    jsonObjectcombined.put("tblashaincentivedetail",
+                            JSONArray_mstFPFDetail);
+                } else {
+                    JSONArray otherJsonArray = new JSONArray();
+                    jsonObjectcombined.put("tblashaincentivedetail", otherJsonArray);
+
+                }
+
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            // Post Data
+            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
+
+            nameValuePair.add(new BasicNameValuePair("username", global
+                    .getsGlobalUserName()));
+
+            nameValuePair.add(new BasicNameValuePair("password", global
+                    .getsGlobalPassword()));
+
+            nameValuePair.add(new BasicNameValuePair("data", jsonObjectcombined
+                    .toString()));
+            nameValuePair.add(new BasicNameValuePair("IMEI", global.getIMEI()));
+            nameValuePair.add(new BasicNameValuePair("VersionName", global.getVersionName()));
+
+            try {
+                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair,
+                        HTTP.UTF_8));
+            } catch (UnsupportedEncodingException e) {
+                // log exception
+                e.printStackTrace();
+            }
+
+            // making POST request.
+            try {
+                HttpResponse response = httpClient.execute(httpPost);
+                String responseBody = EntityUtils
+                        .toString(response.getEntity());
+
+                try {
+                    if (responseBody.contains("success")) {
+
+                        String sqltblmstFPAns = "Update tblashaincentivedetail set AshaStatus=1,IsEdited=0 where IsEdited=1 ";
+                        dataProvider.executeSql(sqltblmstFPAns);
+                        String sqltblFP_visit = "Update tblincentivesurvey set AshaStatus=1,IsEdited=0 where IsEdited=1 ";
+                        dataProvider.executeSql(sqltblFP_visit);
+
+                        iDataUploadIncentive = 1;
+
+                    } else {
+                        downloadmsg = responseBody;
+                        iDataUploadIncentive = 0;
+
+                    }
+
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+
+            } catch (ClientProtocolException e) {
+                // Log exception
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            downloadmsg = e.getMessage();
+            System.out.println(e);
+        }
     }
 
     /*
@@ -991,7 +1507,11 @@ public class Synchronization extends Activity {
                                     Toast.LENGTH_LONG).show();
                             dataProvider.insertdownlaoddetail(11, "DownloadMaster", global.getUserID(), global.getsGlobalAshaCode(), global.getsGlobalANMCODE());
                             uploaddate();
-                            count();
+                            if (global.getiGlobalRoleID() == 3) {
+                                count();
+                            } else {
+                                countashawise();
+                            }
                         } else {
                             Toast.makeText(
                                     Synchronization.this,
@@ -1047,7 +1567,7 @@ public class Synchronization extends Activity {
                     // importAns(sUserName, sPassword);ll
                     // Array_tbl_VHND_DueList,Array_tbl_VHNDPerformance
                     if (global.getiGlobalRoleID() == 3) {
-                        MstASHA = dataProvider.getMstASHAname(1);
+                        MstASHA = dataProvider.getMstASHAname(1, "", 1);
                         if ((MstASHA != null && MstASHA.size() > 0)) {
                             for (int i = 0; i < MstASHA.size(); i++) {
                                 importDownloadVHND_Duelist(sUserName,
@@ -1086,7 +1606,11 @@ public class Synchronization extends Activity {
                             dataProvider.insertdownlaoddetail(10, "DownloadVHND", global.getUserID(), global.getsGlobalAshaCode(), global.getsGlobalANMCODE());
 
                             uploaddate();
-                            count();
+                            if (global.getiGlobalRoleID() == 3) {
+                                count();
+                            } else {
+                                countashawise();
+                            }
                         } else {
                             Toast.makeText(
                                     Synchronization.this,
@@ -1117,7 +1641,7 @@ public class Synchronization extends Activity {
                     // importAns(sUserName, sPassword);ll
                     // Array_tbl_VHND_DueList,Array_tbl_VHNDPerformance
                     if (global.getiGlobalRoleID() == 3) {
-                        MstASHA = dataProvider.getMstASHAname(1);
+                        MstASHA = dataProvider.getMstASHAname(1, "", 1);
                         if ((MstASHA != null && MstASHA.size() > 0)) {
                             for (int i = 0; i < MstASHA.size(); i++) {
 
@@ -1130,6 +1654,9 @@ public class Synchronization extends Activity {
                                 importncdcbac(sUserName, sPassword,
                                         String.valueOf(MstASHA.get(i)
                                                 .getASHAID()));
+                                importncdcbacdiagnosis(sUserName, sPassword,
+                                        String.valueOf(MstASHA.get(i)
+                                                .getASHAID()));
 
                             }
                         }
@@ -1139,6 +1666,7 @@ public class Synchronization extends Activity {
                         importncdscreening(sUserName, sPassword, "0");
                         importncdfollowup(sUserName, sPassword, "0");
                         importncdcbac(sUserName, sPassword, "0");
+                        importncdcbacdiagnosis(sUserName, sPassword, "0");
                         //importDownloadtblVHNDDuelist(sUserName, sPassword, "0");
 
                     }
@@ -1157,7 +1685,74 @@ public class Synchronization extends Activity {
                                     Toast.LENGTH_LONG).show();
                             dataProvider.insertdownlaoddetail(9, "DownloadNCD", global.getUserID(), global.getsGlobalAshaCode(), global.getsGlobalANMCODE());
                             uploaddate();
-                            count();
+                            if (global.getiGlobalRoleID() == 3) {
+                                count();
+                            } else {
+                                countashawise();
+                            }
+                        } else {
+                            Toast.makeText(
+                                    Synchronization.this,
+                                    getResources().getString(
+                                            R.string.DatanotDownloadsuccessfully),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+                progressDialog.dismiss();
+
+            }
+
+        }.start();
+
+    }
+
+    public void importreferaldata(final String sUserName, final String sPassword) {
+
+        progressDialog = ProgressDialog.show(Synchronization.this, "",
+                getResources().getString(R.string.DataLoading));
+        new Thread() {
+
+            @Override
+            public void run() {
+                try {
+                    // importAns(sUserName, sPassword);ll
+                    // Array_tbl_VHND_DueList,Array_tbl_VHNDPerformance
+                    if (global.getiGlobalRoleID() == 11) {
+                        MstASHA = dataProvider.getMstASHAname(1, "", 1);
+                        if ((MstASHA != null && MstASHA.size() > 0)) {
+                            for (int i = 0; i < MstASHA.size(); i++) {
+
+                                importreferal(sUserName, sPassword,
+                                        String.valueOf(MstASHA.get(i)
+                                                .getASHAID()));
+
+
+                            }
+                        }
+
+                    }
+
+                } catch (Exception exp) {
+                    progressDialog.dismiss();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (ncdfollowupdownload == 1 && ncdscreeningdownload == 1) {
+                            Toast.makeText(
+                                    Synchronization.this,
+                                    getResources().getString(
+                                            R.string.DataDownloadsuccessfully),
+                                    Toast.LENGTH_LONG).show();
+                            dataProvider.insertdownlaoddetail(12, "DownloadReferaldata", global.getUserID(), global.getsGlobalAshaCode(), global.getsGlobalANMCODE());
+                            uploaddate();
+                            if (global.getiGlobalRoleID() == 11) {
+                                count();
+                            } else {
+                                countashawise();
+                            }
                         } else {
                             Toast.makeText(
                                     Synchronization.this,
@@ -1187,7 +1782,7 @@ public class Synchronization extends Activity {
                 try {
                     // importAns(sUserName, sPassword);ll
                     if (global.getiGlobalRoleID() == 3) {
-                        MstASHA = dataProvider.getMstASHAname(1);
+                        MstASHA = dataProvider.getMstASHAname(1, "", 1);
                         if ((MstASHA != null && MstASHA.size() > 0)) {
                             for (int i = 0; i < MstASHA.size(); i++) {
 
@@ -1233,7 +1828,11 @@ public class Synchronization extends Activity {
                                     Toast.LENGTH_LONG).show();
                             dataProvider.insertdownlaoddetail(8, "DownloadFP", global.getUserID(), global.getsGlobalAshaCode(), global.getsGlobalANMCODE());
                             uploaddate();
-                            count();
+                            if (global.getiGlobalRoleID() == 3) {
+                                count();
+                            } else {
+                                countashawise();
+                            }
                         } else {
                             Toast.makeText(
                                     Synchronization.this,
@@ -1263,7 +1862,7 @@ public class Synchronization extends Activity {
             public void run() {
                 try {
                     if (global.getiGlobalRoleID() == 3) {
-                        MstASHA = dataProvider.getMstASHAname(1);
+                        MstASHA = dataProvider.getMstASHAname(1, "", 1);
                         if ((MstASHA != null && MstASHA.size() > 0)) {
                             for (int i = 0; i < MstASHA.size(); i++) {
                                 // importSurveydata1(sUserName, sPassword,
@@ -1308,7 +1907,11 @@ public class Synchronization extends Activity {
                                     Toast.LENGTH_LONG).show();
                             dataProvider.insertdownlaoddetail(7, "DownloadHH", global.getUserID(), global.getsGlobalAshaCode(), global.getsGlobalANMCODE());
                             uploaddate();
-                            count();
+                            if (global.getiGlobalRoleID() == 3) {
+                                count();
+                            } else {
+                                countashawise();
+                            }
                         } else {
                             Toast.makeText(
                                     Synchronization.this,
@@ -1339,7 +1942,7 @@ public class Synchronization extends Activity {
 
                     // importMNCHSurveydata(sUserName, sPassword);
                     if (global.getiGlobalRoleID() == 3) {
-                        MstASHA = dataProvider.getMstASHAname(1);
+                        MstASHA = dataProvider.getMstASHAname(1, "", 1);
                         if ((MstASHA != null && MstASHA.size() > 0)) {
                             for (int i = 0; i < MstASHA.size(); i++) {
 
@@ -1386,7 +1989,11 @@ public class Synchronization extends Activity {
                                     Toast.LENGTH_LONG).show();
                             dataProvider.insertdownlaoddetail(6, "DownloadMNCH", global.getUserID(), global.getsGlobalAshaCode(), global.getsGlobalANMCODE());
                             uploaddate();
-                            count();
+                            if (global.getiGlobalRoleID() == 3) {
+                                count();
+                            } else {
+                                countashawise();
+                            }
                         } else {
                             Toast.makeText(
                                     Synchronization.this,
@@ -1411,7 +2018,7 @@ public class Synchronization extends Activity {
 
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("url");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
@@ -1442,10 +2049,15 @@ public class Synchronization extends Activity {
                 e1.printStackTrace();
             }
 
-            // JSONObject jsonObj = new JSONObject(resultString.toString());
-            ClearMasterData();
+            if (global.getiGlobalRoleID() == 11) {
+                ClearMasterData();
+            }
+            if (global.getiGlobalRoleID() == 3) {
+                ClearMasterData();
+            } else {
+                ClearMasterDataasha();
+            }
 
-            // Log.i(TAG1, "JsonObject: " + jsonObj);
 
             try {
 
@@ -1677,28 +2289,36 @@ public class Synchronization extends Activity {
                         iLanguageID = Integer.valueOf(village
                                 .getInt("LanguageID"));
                     }
-
                     String sql = "";
-                    sql = "Insert into MstVillage(VillageID,StateCode,DistrictCode,BlockCode,PanchayatCode,VillageCode,VillageName,LanguageID,IsDeleted)values("
-                            + iVillageID
-                            + ",'"
-                            + sStateCode
-                            + "','"
-                            + sDistrictCode
-                            + "','"
-                            + sBlockCode
-                            + "','"
-                            + sPanchayatCode
-                            + "','"
-                            + sVillageCode
-                            + "','"
-                            + sVillage
-                            + "',"
-                            + iLanguageID
-                            + ","
-                            + iIsDeleted
-                            + ")";
-                    dataProvider.executeSql(sql);
+                    String sqlcount = "Select count(*) from MstVillage where VillageID=" + iVillageID + "  and LanguageID=" + iLanguageID + "";
+
+                    int iCount = dataProvider.getMaxRecord(sqlcount);
+                    if (iCount == 0) {
+
+                        sql = "Insert into MstVillage(VillageID,StateCode,DistrictCode,BlockCode,PanchayatCode,VillageCode,VillageName,LanguageID,IsDeleted)values("
+                                + iVillageID
+                                + ",'"
+                                + sStateCode
+                                + "','"
+                                + sDistrictCode
+                                + "','"
+                                + sBlockCode
+                                + "','"
+                                + sPanchayatCode
+                                + "','"
+                                + sVillageCode
+                                + "','"
+                                + sVillage
+                                + "',"
+                                + iLanguageID
+                                + ","
+                                + iIsDeleted
+                                + ")";
+                        dataProvider.executeSql(sql);
+                    } else {
+                        sql = "update  MstVillage set VillageName='" + sVillage + "' where VillageID=" + iVillageID + "  and LanguageID=" + iLanguageID + "";
+
+                    }
                 }
 
                 MstCommonArray = jsonObj.getJSONArray("mstcommon");
@@ -1900,19 +2520,28 @@ public class Synchronization extends Activity {
                             .getInt("IsDeleted"));
 
                     String sql = "";
-                    sql = "Insert into MstCatchmentSupervisor(LanguageID,CHS_ID,SubCenterID,SupervisorCode,SupervisorName,IsDeleted)values("
-                            + LanguageID
-                            + ","
-                            + CHS_ID
-                            + ","
-                            + SubCenterID
-                            + ",'"
-                            + SupervisorCode
-                            + "','"
-                            + SupervisorName
-                            + "'," + IsDeleted + ")";
-                    dataProvider.executeSql(sql);
 
+                    String sqlcount = "Select count(*) from MstCatchmentSupervisor where CHS_ID=" + CHS_ID + "  and LanguageID=" + LanguageID + "";
+
+                    int iCount = dataProvider.getMaxRecord(sqlcount);
+                    if (iCount == 0) {
+                        sql = "Insert into MstCatchmentSupervisor(LanguageID,CHS_ID,SubCenterID,SupervisorCode,SupervisorName,IsDeleted)values("
+                                + LanguageID
+                                + ","
+                                + CHS_ID
+                                + ","
+                                + SubCenterID
+                                + ",'"
+                                + SupervisorCode
+                                + "','"
+                                + SupervisorName
+                                + "'," + IsDeleted + ")";
+                        dataProvider.executeSql(sql);
+
+                    } else {
+                        sql = "update  MstCatchmentSupervisor set SupervisorName='" + SupervisorName + "' where CHS_ID=" + CHS_ID + "  and LanguageID=" + LanguageID + "";
+                        dataProvider.executeSql(sql);
+                    }
                 }
 
                 MstPHCArray = jsonObj.getJSONArray("mstphc");
@@ -2607,7 +3236,148 @@ public class Synchronization extends Activity {
                     dataProvider.executeSql(sql);
 
                 }
+                mstchc = jsonObj.getJSONArray("mstchc");
+                for (int i = 0; i < mstchc.length(); i++) {
+                    JSONObject mstchcobj = mstchc.getJSONObject(i);
+                    int UID = 0;
+                    int CHCID = 0;
+                    String CHCCode = "";
+                    String CHCName = "";
+                    int LanguageID = 0;
+                    int IsDeleted = 0;
 
+                    UID = Validate.returnIntegerValue(mstchcobj.getString("UID"));
+                    CHCID = Validate.returnIntegerValue(mstchcobj.getString("CHCID"));
+                    LanguageID = Validate.returnIntegerValue(mstchcobj.getString("LanguageID"));
+                    IsDeleted = Validate.returnIntegerValue(mstchcobj.getString("IsDeleted"));
+                    CHCCode = mstchcobj.getString("CHCCode");
+                    CHCName = mstchcobj.getString("CHCName");
+                    String sql = "";
+                    sql = "Insert into mstchc(UID,CHCID,CHCCode,CHCName,LanguageID,IsDeleted)values("
+                            + UID
+                            + ",'"
+                            + CHCID
+                            + "','"
+                            + CHCCode
+                            + "','"
+                            + CHCName
+                            + "',"
+                            + LanguageID
+                            + ","
+                            + IsDeleted + ")";
+                    dataProvider.executeSql(sql);
+
+                }
+                anmsubcenterArray = jsonObj.getJSONArray("anmsubcenter");
+                for (int i = 0; i < anmsubcenterArray.length(); i++) {
+                    JSONObject anmsubcenter = anmsubcenterArray.getJSONObject(i);
+                    int ANMSubCenterUID = 0;
+                    int ANMID = 0;
+                    int SubCenterID = 0;
+                    int SubCenterCode = 0;
+                    ANMSubCenterUID = Validate.returnIntegerValue(anmsubcenter.getString("ANMSubCenterUID"));
+                    ANMID = Validate.returnIntegerValue(anmsubcenter.getString("ANMID"));
+                    SubCenterID = Validate.returnIntegerValue(anmsubcenter.getString("SubCenterID"));
+                    SubCenterCode = Validate.returnIntegerValue(anmsubcenter.getString("SubCenterCode"));
+
+
+                    String sql = "";
+                    sql = "Insert into anmsubcenter(ANMSubCenterUID,ANMID,SubCenterID,SubCenterCode)values("
+                            + ANMSubCenterUID
+                            + ",'"
+                            + ANMID
+                            + "','"
+                            + SubCenterID
+                            + "',"
+                            + SubCenterCode
+                            + ")";
+                    dataProvider.executeSql(sql);
+
+                }
+                mstpdfreportArray = jsonObj.getJSONArray("mstpdfreport");
+                for (int i = 0; i < mstpdfreportArray.length(); i++) {
+                    JSONObject mstpdfreport = mstpdfreportArray.getJSONObject(i);
+                    int UID = 0;
+                    int ReportID = 0;
+                    String ReportName = "";
+                    int IsActive = 0;
+                    UID = Validate.returnIntegerValue(mstpdfreport.optString("UID"));
+                    ReportID = Validate.returnIntegerValue(mstpdfreport.optString("ReportID"));
+                    ReportName = Validate.returnStringValue(mstpdfreport.optString("ReportName"));
+                    IsActive = Validate.returnIntegerValue(mstpdfreport.optString("IsActive"));
+
+
+                    String sql = "";
+                    sql = "Insert into mstpdfreport(UID,ReportID,ReportName,IsActive)values("
+                            + UID
+                            + ",'"
+                            + ReportID
+                            + "','"
+                            + ReportName
+                            + "',"
+                            + IsActive
+                            + ")";
+                    dataProvider.executeSql(sql);
+
+                }
+                mstashaactivityArray = jsonObj.getJSONArray("mstashaactivity");
+                for (int i = 0; i < mstashaactivityArray.length(); i++) {
+                    JSONObject mstashaactivity = mstashaactivityArray.getJSONObject(i);
+                    int UID;
+                    int SeqID;
+                    String Qsrno;
+                    int QuesID;
+                    String Activity;
+                    String Createdon;
+                    String Updatedon;
+                    String AreaType;
+                    int Amount;
+                    int CreatedBy;
+                    int LangaugeID;
+                    int Qtype;
+                    UID = Validate.returnIntegerValue(mstashaactivity.optString("UID"));
+                    SeqID = Validate.returnIntegerValue(mstashaactivity.optString("SeqID"));
+                    Qsrno = Validate.returnStringValue(mstashaactivity.optString("Qsrno"));
+                    QuesID = Validate.returnIntegerValue(mstashaactivity.optString("QuesID"));
+                    Activity = Validate.returnStringValue(mstashaactivity.optString("Activity"));
+                    Createdon = Validate.returnStringValue(mstashaactivity.optString("Createdon"));
+                    Updatedon = Validate.returnStringValue(mstashaactivity.optString("Updatedon"));
+                    AreaType = Validate.returnStringValue(mstashaactivity.optString("AreaType"));
+                    Amount = Validate.returnIntegerValue(mstashaactivity.optString("Amount"));
+                    CreatedBy = Validate.returnIntegerValue(mstashaactivity.optString("CreatedBy"));
+                    LangaugeID = Validate.returnIntegerValue(mstashaactivity.optString("LangaugeID"));
+                    Qtype = Validate.returnIntegerValue(mstashaactivity.optString("Qtype"));
+
+
+                    String sql = "";
+                    sql = "Insert into mstashaactivity(UID,SeqID,Qsrno,QuesID,Activity,Createdon,Updatedon,AreaType,Amount,CreatedBy,LangaugeID,Qtype)values("
+                            + UID
+                            + ",'"
+                            + SeqID
+                            + "','"
+                            + Qsrno
+                            + "','"
+                            + QuesID
+                            + "','"
+                            + Activity
+                            + "','"
+                            + Createdon
+                            + "','"
+                            + Updatedon
+                            + "','"
+                            + AreaType
+                            + "','"
+                            + Amount
+                            + "','"
+                            + CreatedBy
+                            + "','"
+                            + LangaugeID
+                            + "','"
+                            + Qtype
+                            + "')";
+                    dataProvider.executeSql(sql);
+
+                }
                 MstUserArray = jsonObj.getJSONArray("tblusers");
                 for (int i = 0; i < MstUserArray.length(); i++) {
                     JSONObject user = MstUserArray.getJSONObject(i);
@@ -2615,12 +3385,21 @@ public class Synchronization extends Activity {
                     int iRoleID = 1;
                     String sPassword = null;
                     String sUserName = null;
+                    String firstname = null;
+                    String lastname = null;
                     int iIsDeleted = 0;
+                    int is_temp = 0;
                     if (user.getString("user_id") != null
                             && user.getString("user_id").length() > 0
                             && !user.getString("user_id").equalsIgnoreCase(
                             "null")) {
                         iUserID = Integer.valueOf(user.getInt("user_id"));
+                    }
+                    if (user.getString("is_temp") != null
+                            && user.getString("is_temp").length() > 0
+                            && !user.getString("is_temp").equalsIgnoreCase(
+                            "null")) {
+                        is_temp = Integer.valueOf(user.getInt("is_temp"));
                     }
                     if (user.getString("user_role") != null
                             && user.getString("user_role").length() > 0
@@ -2630,18 +3409,20 @@ public class Synchronization extends Activity {
                     }
                     sUserName = user.getString("user_name");
                     sPassword = Password;
-
+                    firstname = Validate.returnStringValue(user.optString("first_name"));
+                    lastname = Validate.returnStringValue(user.optString("last_name"));
                     String sql = "";
-                    sql = "Insert into MstUser(UserID,UserName,RoleID,Password,IsDeleted)values("
+                    sql = "Insert into MstUser(UserID,UserName,RoleID,Password,IsDeleted,is_temp,first_name,last_name)values("
                             + iUserID
                             + ",'"
                             + sUserName
                             + "',"
                             + iRoleID
-                            + ",'" + sPassword + "'," + iIsDeleted + ")";
+                            + ",'" + sPassword + "'," + iIsDeleted + "," + is_temp + ",'" + firstname + "','" + lastname + "')";
                     dataProvider.executeSql(sql);
 
                 }
+
 
                 iDownloadMaster = 1;
             } catch (JSONException e) {
@@ -2660,7 +3441,7 @@ public class Synchronization extends Activity {
 
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("url");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
@@ -2735,7 +3516,7 @@ public class Synchronization extends Activity {
 
         try {
             String iImagePath, imageurl;
-            imageurl = "URL";
+            imageurl = "replace your URL/" + file;
             URL url = new URL(imageurl);
             URLConnection conection = url.openConnection();
             conection.connect();
@@ -2793,7 +3574,7 @@ public class Synchronization extends Activity {
         hhsurvey = 0;
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(4);
@@ -2802,6 +3583,7 @@ public class Synchronization extends Activity {
         nameValuePair.add(new BasicNameValuePair("sFlag", "tblhhsurvey"));
         nameValuePair.add(new BasicNameValuePair("asha_id", ashaid));
         nameValuePair.add(new BasicNameValuePair("IMEI", global.getIMEI()));
+        nameValuePair.add(new BasicNameValuePair("lastdownload_date", tv_datehh1.getText().toString()));
 
 
         // Encoding POST data
@@ -2873,6 +3655,7 @@ public class Synchronization extends Activity {
                     HHSurveyGUID = SurveyData.getString("HHSurveyGUID");
                     MigrateInDate = SurveyData.getString("MigrateInDate");
                     MigrateOutDate = SurveyData.getString("MigrateOutDate");
+                    CHS_ID = Validate.returnIntegerValue(SurveyData.getString("CHS_ID"));
 
                     if (SurveyData.getString("ChAreaID") != null
                             && SurveyData.getString("ChAreaID").length() > 0
@@ -3229,7 +4012,7 @@ public class Synchronization extends Activity {
         hhfamily = 0;
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(4);
@@ -3237,6 +4020,7 @@ public class Synchronization extends Activity {
         nameValuePair.add(new BasicNameValuePair("password", Password));
         nameValuePair.add(new BasicNameValuePair("sFlag", "tblhhfamilymember"));
         nameValuePair.add(new BasicNameValuePair("asha_id", ashaid));
+        nameValuePair.add(new BasicNameValuePair("lastdownload_date", tv_datehh1.getText().toString()));
 
         // Encoding POST data
         try {
@@ -3542,6 +4326,7 @@ public class Synchronization extends Activity {
                     Occupation_Other = SurveyFamilyData
                             .getString("Occupation_Other");
                     Phone_No = SurveyFamilyData.getString("Phone_No");
+                    DateOfDeath = SurveyFamilyData.getString("DateOfDeath");
                     Any_HealthIssue_Other = SurveyFamilyData
                             .getString("Any_HealthIssue_Other");
                     String sqlcount = "select count(*) from Tbl_HHFamilyMember where  HHFamilyMemberGUID='"
@@ -3776,14 +4561,14 @@ public class Synchronization extends Activity {
                                    String ashaid) {
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
-
+        HttpPost httpPost = new HttpPost("replace your URL");
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(4);
         nameValuePair.add(new BasicNameValuePair("username", UserName));
         nameValuePair.add(new BasicNameValuePair("password", Password));
         nameValuePair.add(new BasicNameValuePair("sFlag", "tblmigration"));
         nameValuePair.add(new BasicNameValuePair("asha_id", ashaid));
+        nameValuePair.add(new BasicNameValuePair("lastdownload_date", tv_datehh1.getText().toString()));
 
         // Encoding POST data
         try {
@@ -3916,2256 +4701,6 @@ public class Synchronization extends Activity {
         }
     }
 
-    @SuppressWarnings("unused")
-    public void importSurveydata1(String UserName, String Password,
-                                  String ashaid) {
-        // TODO Auto-generated method stub
-
-        String URL = GlobalString.URL1;
-        String NAMESPACE = GlobalString.NAMESPACE;
-        String SOAP_ACTION = GlobalString.SOAP_ACTION_DOWNLOAD_MASTER;
-        String METHOD_NAME = GlobalString.METHOD_NAME_DOWNLOAD_MASTER;
-
-        SoapPrimitive resultString;
-        String TAG1 = "Response";
-
-        SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-        request.addProperty("UserName", UserName);
-        request.addProperty("PassWord", Password);
-        request.addProperty("sFlag", "Data");
-
-        request.addProperty("AuthenticationToken", ashaid);
-        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
-                SoapEnvelope.VER12);
-        envelope.dotNet = true;
-        envelope.setOutputSoapObject(request);
-
-        HttpTransportSE httpTransport = new HttpTransportSE(URL, 1000000);
-
-        SoapObject responses = null;
-        try {
-
-            httpTransport.call(SOAP_ACTION, envelope);
-            resultString = (SoapPrimitive) envelope.getResponse();
-
-            JSONObject jsonObj = new JSONObject(resultString.toString());
-            // ClearSurveyData();
-
-            HHSurveyData = jsonObj.getJSONArray("tblHHSurvey");
-            for (int i = 0; i < HHSurveyData.length(); i++) {
-                JSONObject SurveyData = HHSurveyData.getJSONObject(i);
-                String HHSurveyGUID = "";
-                int SubCenterID = 0;
-                int ANMID = 0;
-                int VillageID = 0;
-                int ASHAID = 0;
-                int FamilyCode = 0;
-                int CasteID = 0;
-                int FinancialStatusID = 0;
-                int CreatedBy = 0;
-                String CreatedOn = "";
-                int UploadedBy = 0;
-                String UploadedOn = "";
-                int IsTablet = 0;
-                int IsDeleted = 0;
-                int HHStatusID = 0;
-                String HHCode = "";
-                int Verified = 0;
-                int CHS_ID = 0;
-                int ChAreaID = 0;
-                String Latitude = "";
-                String Longitude = "";
-                String Location = "";
-                String MigrateInDate = "";
-                String MigrateOutDate = "";
-                HHCode = SurveyData.getString("HHCode");
-                HHSurveyGUID = SurveyData.getString("HHSurveyGUID");
-                MigrateInDate = SurveyData.getString("MigrateInDate");
-                MigrateOutDate = SurveyData.getString("MigrateOutDate");
-
-                // if (SurveyData.getString("Latitude") != null
-                // && SurveyData.getString("Latitude").length() > 0
-                // && !SurveyData.getString("Latitude")
-                // .equalsIgnoreCase("null")) {
-                // Latitude = SurveyData.getString("Latitude");
-                // }
-                if (SurveyData.getString("ChAreaID") != null
-                        && SurveyData.getString("ChAreaID").length() > 0
-                        && !SurveyData.getString("ChAreaID").equalsIgnoreCase(
-                        "null")) {
-                    ChAreaID = Integer.valueOf(SurveyData.getInt("ChAreaID"));
-                }
-                // if (SurveyData.getString("Longitude") != null
-                // && SurveyData.getString("Longitude").length() > 0
-                // && !SurveyData.getString("Longitude")
-                // .equalsIgnoreCase("null")) {
-                // Longitude = SurveyData.getString("Longitude");
-                // }
-                // if (SurveyData.getString("Location") != null
-                // && SurveyData.getString("Location").length() > 0
-                // && !SurveyData.getString("Location")
-                // .equalsIgnoreCase("null")) {
-                // Location =SurveyData.getString("Location");
-                // }
-                if (SurveyData.getString("SubCenterID") != null
-                        && SurveyData.getString("SubCenterID").length() > 0
-                        && !SurveyData.getString("SubCenterID")
-                        .equalsIgnoreCase("null")) {
-                    SubCenterID = Integer.valueOf(SurveyData
-                            .getInt("SubCenterID"));
-                }
-
-                if (SurveyData.getString("ANMID") != null
-                        && SurveyData.getString("ANMID").length() > 0
-                        && !SurveyData.getString("ANMID").equalsIgnoreCase(
-                        "null")) {
-                    ANMID = Integer.valueOf(SurveyData.getInt("ANMID"));
-                }
-
-                if (SurveyData.getString("VillageID") != null
-                        && SurveyData.getString("VillageID").length() > 0
-                        && !SurveyData.getString("VillageID").equalsIgnoreCase(
-                        "null")) {
-                    VillageID = Integer.valueOf(SurveyData.getInt("VillageID"));
-                }
-
-                if (SurveyData.getString("ServiceProviderID") != null
-                        && SurveyData.getString("ServiceProviderID").length() > 0
-                        && !SurveyData.getString("ServiceProviderID")
-                        .equalsIgnoreCase("null")) {
-                    ASHAID = Integer.valueOf(SurveyData
-                            .getInt("ServiceProviderID"));
-                }
-                if (SurveyData.getString("FamilyCode") != null
-                        && SurveyData.getString("FamilyCode").length() > 0
-                        && !SurveyData.getString("FamilyCode")
-                        .equalsIgnoreCase("null")) {
-                    FamilyCode = Integer.valueOf(SurveyData
-                            .getInt("FamilyCode"));
-                }
-
-                if (SurveyData.getString("CasteID") != null
-                        && SurveyData.getString("CasteID").length() > 0
-                        && !SurveyData.getString("CasteID").equalsIgnoreCase(
-                        "null")) {
-                    CasteID = Integer.valueOf(SurveyData.getInt("CasteID"));
-                }
-                // if (SurveyData.getString("CHS_ID") != null
-                // && SurveyData.getString("CHS_ID").length() > 0
-                // && !SurveyData.getString("CHS_ID").equalsIgnoreCase(
-                // "null")) {
-                // CHS_ID = Integer.valueOf(SurveyData.getInt("CHS_ID"));
-                // }
-
-                if (SurveyData.getString("FinancialStatusID") != null
-                        && SurveyData.getString("FinancialStatusID").length() > 0
-                        && !SurveyData.getString("FinancialStatusID")
-                        .equalsIgnoreCase("null")) {
-                    FinancialStatusID = Integer.valueOf(SurveyData
-                            .getInt("FinancialStatusID"));
-                }
-
-                if (SurveyData.getString("CreatedBy") != null
-                        && SurveyData.getString("CreatedBy").length() > 0
-                        && !SurveyData.getString("CreatedBy").equalsIgnoreCase(
-                        "null")) {
-                    CreatedBy = Integer.valueOf(SurveyData.getInt("CreatedBy"));
-                }
-                CreatedOn = SurveyData.getString("CreatedOn");
-
-                if (SurveyData.getString("UploadedBy") != null
-                        && SurveyData.getString("UploadedBy").length() > 0
-                        && !SurveyData.getString("UploadedBy")
-                        .equalsIgnoreCase("null")) {
-                    UploadedBy = Integer.valueOf(SurveyData
-                            .getInt("UploadedBy"));
-                }
-                UploadedOn = SurveyData.getString("UploadedOn");
-                if (SurveyData.getString("HHStatusID") != null
-                        && SurveyData.getString("HHStatusID").length() > 0
-                        && !SurveyData.getString("HHStatusID")
-                        .equalsIgnoreCase("null")) {
-                    HHStatusID = Integer.valueOf(SurveyData
-                            .getInt("HHStatusID"));
-                }
-                if (SurveyData.getString("Verified") != null
-                        && SurveyData.getString("Verified").length() > 0
-                        && !SurveyData.getString("Verified").equalsIgnoreCase(
-                        "null")) {
-                    Verified = Integer.valueOf(SurveyData.getInt("Verified"));
-                }
-                if (SurveyData.getString("Verified") != null
-                        && SurveyData.getString("Verified").length() > 0
-                        && !SurveyData.getString("Verified").equalsIgnoreCase(
-                        "null")) {
-                    Verified = Integer.valueOf(SurveyData.getInt("Verified"));
-                }
-                if (SurveyData.getString("IsDeleted") != null
-                        && SurveyData.getString("IsDeleted").length() > 0
-                        && !SurveyData.getString("IsDeleted").equalsIgnoreCase(
-                        "null")) {
-                    IsDeleted = Integer.valueOf(SurveyData.getInt("IsDeleted"));
-                }
-                if (SurveyData.getString("IsTablet") != null
-                        && SurveyData.getString("IsTablet").length() > 0
-                        && !SurveyData.getString("IsTablet").equalsIgnoreCase(
-                        "null")) {
-                    IsTablet = Integer.valueOf(SurveyData.getInt("IsTablet"));
-                }
-                // if (SurveyData.getString("Latitude") != null
-                // && SurveyData.getString("Latitude").length() > 0
-                // && !SurveyData.getString("Latitude")
-                // .equalsIgnoreCase("null")) {
-                // Latitude = SurveyData.getString("Latitude");
-                // }
-                // if (SurveyData.getString("Longitude") != null
-                // && SurveyData.getString("Longitude").length() > 0
-                // && !SurveyData.getString("Longitude")
-                // .equalsIgnoreCase("null")) {
-                // Longitude = SurveyData.getString("Longitude");
-                // }
-                //
-                // if (SurveyData.getString("Location") != null
-                // && SurveyData.getString("Location").length() > 0
-                // && !SurveyData.getString("Location")
-                // .equalsIgnoreCase("null")) {
-                // Location = SurveyData.getString("Location");
-                // }
-                String sqlcount = "select count(*) from Tbl_HHSurvey where  HHSurveyGUID='"
-                        + HHSurveyGUID + "' ";
-                int count = dataProvider.getMaxRecord(sqlcount);
-                String sqlcount1 = "select count(*) from Tbl_HHSurvey where HHSurveyGUID='"
-                        + HHSurveyGUID + "' and  IsEdited= 1";
-                int count1 = dataProvider.getMaxRecord(sqlcount1);
-                String sql = "";
-                if (count == 0) {
-
-                    sql = "Insert into Tbl_HHSurvey(Latitude,Longitude,Location,MigrateOutDate,MigrateInDate,ChAreaID,CHS_ID,HHSurveyGUID,SubCenterID,ANMID,VillageID,ServiceProviderID,FamilyCode,CasteID,FinancialStatusID,CreatedBy,CreatedOn,UploadedBy,UploadedOn,IsTablet,IsDeleted,IsEdited,IsUploaded,HHStatusID,HHCode,Verified)values('"
-                            + Latitude
-                            + "','"
-                            + Longitude
-                            + "','"
-                            + Location
-                            + "','"
-                            + MigrateOutDate
-                            + "','"
-                            + MigrateInDate
-                            + "',"
-                            + ChAreaID
-                            + ","
-                            + CHS_ID
-                            + ",'"
-                            + HHSurveyGUID
-                            + "',"
-                            + SubCenterID
-                            + ","
-                            + ANMID
-                            + ","
-                            + VillageID
-                            + ","
-                            + ASHAID
-                            + ","
-                            + FamilyCode
-                            + ","
-                            + CasteID
-                            + ","
-                            + FinancialStatusID
-                            + ","
-                            + CreatedBy
-                            + ",'"
-                            + CreatedOn
-                            + "',"
-                            + UploadedBy
-                            + ",'"
-                            + UploadedOn
-                            + "',"
-                            + IsTablet
-                            + ","
-                            + IsDeleted
-                            + ",0,0,"
-                            + HHStatusID
-                            + ",'"
-                            + HHCode
-                            + "'," + Verified + ")";
-
-                } else {
-                    if (count1 == 0) {
-                        sql = "update  Tbl_HHSurvey set Latitude='" + Latitude
-                                + "',Longitude='" + Longitude + "',Location='"
-                                + Location + "',ChAreaID=" + ChAreaID
-                                + ",CHS_ID=" + CHS_ID + ",SubCenterID="
-                                + SubCenterID + ",ANMID=" + ANMID
-                                + ",VillageID=" + VillageID
-                                + ",ServiceProviderID=" + ASHAID
-                                + ",FamilyCode=" + FamilyCode + ",CasteID="
-                                + CasteID + ",FinancialStatusID="
-                                + FinancialStatusID + ",CreatedBy=" + CreatedBy
-                                + ",CreatedOn='" + CreatedOn + "',UploadedBy="
-                                + UploadedBy + ",UploadedOn='" + UploadedOn
-                                + "',IsTablet=" + IsTablet + ",IsDeleted="
-                                + IsDeleted + ",IsEdited=0,MigrateInDate='"
-                                + MigrateInDate + "',MigrateOutDate='"
-                                + MigrateOutDate + "',IsUploaded=0,HHStatusID="
-                                + HHStatusID + ",HHCode='" + HHCode
-                                + "',Verified=" + Verified
-                                + " where HHSurveyGUID='" + HHSurveyGUID + "'";
-                    }
-
-                }
-                try {
-
-                    dataProvider.executeSql(sql);
-                } catch (Exception e) {
-
-                    // TODO: handle exception
-                    downloadmsg = e.getMessage();
-                }
-            }
-            MigrationArray = jsonObj.getJSONArray("tblMigration");
-            for (int i = 0; i < MigrationArray.length(); i++) {
-                JSONObject MigrationData = MigrationArray.getJSONObject(i);
-                String HHFamilyMemberGUID = "";
-                String DateOfMigrationIn = "";
-                String DateOfMigrationOut = "";
-                String MigrationGUID = "";
-                String CreatedOn = "";
-                String UpdatedOn = "";
-                int CreatedBy = 0;
-                int UpdatedBy = 0;
-                HHFamilyMemberGUID = MigrationData
-                        .getString("HHFamilyMemberGUID");
-                DateOfMigrationIn = MigrationData
-                        .getString("DateOfMigrationIn");
-                DateOfMigrationOut = MigrationData
-                        .getString("DateOfMigrationOut");
-                MigrationGUID = MigrationData.getString("MigrationGUID");
-                CreatedOn = MigrationData.getString("CreatedOn");
-
-                if (MigrationData.getString("CreatedBy") != null
-                        && MigrationData.getString("CreatedBy").length() > 0
-                        && !MigrationData.getString("CreatedBy")
-                        .equalsIgnoreCase("null")) {
-                    CreatedBy = Integer.valueOf(MigrationData
-                            .getInt("CreatedBy"));
-                }
-                if (MigrationData.getString("UpdatedBy") != null
-                        && MigrationData.getString("UpdatedBy").length() > 0
-                        && !MigrationData.getString("UpdatedBy")
-                        .equalsIgnoreCase("null")) {
-                    UpdatedBy = Integer.valueOf(MigrationData
-                            .getInt("UpdatedBy"));
-                }
-
-                String sqlcount = "select count(*) from tblMigration where  HHFamilyMemberGUID='"
-                        + HHFamilyMemberGUID
-                        + "'and MigrationGUID='"
-                        + MigrationGUID + "'";
-                int count = dataProvider.getMaxRecord(sqlcount);
-                String sqlcount1 = "select count(*) from tblMigration where  HHFamilyMemberGUID='"
-                        + HHFamilyMemberGUID
-                        + "'and MigrationGUID='"
-                        + MigrationGUID + "' and IsEdited=1";
-                int count1 = dataProvider.getMaxRecord(sqlcount1);
-                String sql = "";
-                if (count == 0) {
-                    sql = "insert into tblMigration (HHFamilyMemberGUID, DateOfMigrationIn,DateOfMigrationOut,MigrationGUID,CreatedOn,CreatedBy,UpdatedOn,UpdatedBy) Values('"
-                            + HHFamilyMemberGUID
-                            + "', '"
-                            + DateOfMigrationIn
-                            + "','"
-                            + DateOfMigrationOut
-                            + "','"
-                            + MigrationGUID
-                            + "','"
-                            + CreatedOn
-                            + "',"
-                            + CreatedBy
-                            + ",'"
-                            + UpdatedOn
-                            + "',"
-                            + UpdatedBy
-                            + ")";
-
-                } else {
-                    if (count1 == 0) {
-                        sql = "update tblMigration set DateOfMigrationOut='"
-                                + DateOfMigrationOut + "', DateOfMigrationIn='"
-                                + DateOfMigrationIn + "' ,UpdatedOn='"
-                                + UpdatedOn + "',UpdatedBy=" + UpdatedBy
-                                + ",CreatedOn='" + CreatedOn + "',CreatedBy="
-                                + CreatedBy + " where HHFamilyMemberGUID='"
-                                + HHFamilyMemberGUID + "' and MigrationGUID='"
-                                + MigrationGUID + "'";
-                    }
-                }
-                try {
-
-                    dataProvider.executeSql(sql);
-                } catch (Exception e) {
-                    // TODO: handle exception
-                    downloadmsg = e.getMessage();
-                }
-
-            }
-
-            HHSurveyFamilyData = jsonObj.getJSONArray("tblHHFamilyMember");
-            for (int i = 0; i < HHSurveyFamilyData.length(); i++) {
-                JSONObject SurveyFamilyData = HHSurveyFamilyData
-                        .getJSONObject(i);
-                String HHFamilyMemberGUID = "";
-                String HHSurveyGUID = "";
-                String HHFamilyMemberCode = "";
-                String UniqueIDNumber = "";
-                int StatusID = 0;
-                int RelationID = 0;
-                int GenderID = 0;
-                int MaritialStatusID = 0;
-                int DOBAvailable = 0;
-                String DateOfBirth = "";
-                String AgeAsOnYear = "";
-                int AprilAgeYear = 0;
-                int AprilAgeMonth = 0;
-                String MotherGUID = "";
-                int TargetID = 0;
-                int CreatedBy = 0;
-                String CreatedOn = "";
-                int UploadedBy = 0;
-                String UploadedOn = "";
-                int IsTablet = 0;
-                int IsDeleted = 0;
-                int AshaID = 0;
-                int ANMID = 0;
-                String DateOfDeath = "";
-                int PlaceOfDeath = 0;
-                int DeathVillage = 0;
-                String FamilyMemberName = "";
-                String NameofDeathplace = "";
-                int Education = 0;
-                HHFamilyMemberGUID = SurveyFamilyData
-                        .getString("HHFamilyMemberGUID");
-                NameofDeathplace = SurveyFamilyData
-                        .getString("NameofDeathplace");
-                HHSurveyGUID = SurveyFamilyData.getString("HHSurveyGUID");
-                HHFamilyMemberCode = SurveyFamilyData
-                        .getString("HHFamilyMemberCode");
-                UniqueIDNumber = SurveyFamilyData.getString("UniqueIDNumber");
-                if (SurveyFamilyData.getString("StatusID") != null
-                        && SurveyFamilyData.getString("StatusID").length() > 0
-                        && !SurveyFamilyData.getString("StatusID")
-                        .equalsIgnoreCase("null")) {
-                    StatusID = Integer.valueOf(SurveyFamilyData
-                            .getInt("StatusID"));
-                }
-                if (SurveyFamilyData.getString("RelationID") != null
-                        && SurveyFamilyData.getString("RelationID").length() > 0
-                        && !SurveyFamilyData.getString("RelationID")
-                        .equalsIgnoreCase("null")) {
-                    RelationID = Integer.valueOf(SurveyFamilyData
-                            .getInt("RelationID"));
-                }
-                if (SurveyFamilyData.getString("GenderID") != null
-                        && SurveyFamilyData.getString("GenderID").length() > 0
-                        && !SurveyFamilyData.getString("GenderID")
-                        .equalsIgnoreCase("null")) {
-                    GenderID = Integer.valueOf(SurveyFamilyData
-                            .getInt("GenderID"));
-                }
-                if (SurveyFamilyData.getString("MaritialStatusID") != null
-                        && SurveyFamilyData.getString("MaritialStatusID")
-                        .length() > 0
-                        && !SurveyFamilyData.getString("MaritialStatusID")
-                        .equalsIgnoreCase("null")) {
-                    MaritialStatusID = Integer.valueOf(SurveyFamilyData
-                            .getInt("MaritialStatusID"));
-                }
-                if (SurveyFamilyData.getString("DOBAvailable") != null
-                        && SurveyFamilyData.getString("DOBAvailable").length() > 0
-                        && !SurveyFamilyData.getString("DOBAvailable")
-                        .equalsIgnoreCase("null")) {
-                    DOBAvailable = Integer.valueOf(SurveyFamilyData
-                            .getInt("DOBAvailable"));
-                }
-                if (SurveyFamilyData.getString("DateOfBirth") != null
-                        && SurveyFamilyData.getString("DateOfBirth").length() > 0
-                        && !SurveyFamilyData.getString("DateOfBirth")
-                        .equalsIgnoreCase("null")) {
-
-                    DateOfBirth = SurveyFamilyData.getString("DateOfBirth");
-                }
-                AgeAsOnYear = SurveyFamilyData.getString("AgeAsOnYear");
-                if (SurveyFamilyData.getString("AprilAgeYear") != null
-                        && SurveyFamilyData.getString("AprilAgeYear").length() > 0
-                        && !SurveyFamilyData.getString("AprilAgeYear")
-                        .equalsIgnoreCase("null")) {
-                    AprilAgeYear = Integer.valueOf(SurveyFamilyData
-                            .getInt("AprilAgeYear"));
-                }
-                if (SurveyFamilyData.getString("AprilAgeMonth") != null
-                        && SurveyFamilyData.getString("AprilAgeMonth").length() > 0
-                        && !SurveyFamilyData.getString("AprilAgeMonth")
-                        .equalsIgnoreCase("null")) {
-                    AprilAgeMonth = Integer.valueOf(SurveyFamilyData
-                            .getInt("AprilAgeMonth"));
-                }
-                MotherGUID = SurveyFamilyData.getString("MotherGUID");
-
-                if (SurveyFamilyData.getString("TargetID") != null
-                        && SurveyFamilyData.getString("TargetID").length() > 0
-                        && !SurveyFamilyData.getString("TargetID")
-                        .equalsIgnoreCase("null")) {
-                    TargetID = Integer.valueOf(SurveyFamilyData
-                            .getInt("TargetID"));
-                }
-                if (SurveyFamilyData.getString("CreatedBy") != null
-                        && SurveyFamilyData.getString("CreatedBy").length() > 0
-                        && !SurveyFamilyData.getString("CreatedBy")
-                        .equalsIgnoreCase("null")) {
-                    CreatedBy = Integer.valueOf(SurveyFamilyData
-                            .getInt("CreatedBy"));
-                }
-                CreatedOn = SurveyFamilyData.getString("CreatedOn");
-                if (SurveyFamilyData.getString("UploadedBy") != null
-                        && SurveyFamilyData.getString("UploadedBy").length() > 0
-                        && !SurveyFamilyData.getString("UploadedBy")
-                        .equalsIgnoreCase("null")) {
-                    UploadedBy = Integer.valueOf(SurveyFamilyData
-                            .getInt("UploadedBy"));
-                }
-                UploadedOn = SurveyFamilyData.getString("UploadedOn");
-                if (SurveyFamilyData.getString("IsTablet") != null
-                        && SurveyFamilyData.getString("IsTablet").length() > 0
-                        && !SurveyFamilyData.getString("IsTablet")
-                        .equalsIgnoreCase("null")) {
-                    IsTablet = Integer.valueOf(SurveyFamilyData
-                            .getInt("IsTablet"));
-                }
-                if (SurveyFamilyData.getString("IsDeleted") != null
-                        && SurveyFamilyData.getString("IsDeleted").length() > 0
-                        && !SurveyFamilyData.getString("IsDeleted")
-                        .equalsIgnoreCase("null")) {
-                    IsDeleted = Integer.valueOf(SurveyFamilyData
-                            .getInt("IsDeleted"));
-                }
-                if (SurveyFamilyData.getString("IsDeleted") != null
-                        && SurveyFamilyData.getString("IsDeleted").length() > 0
-                        && !SurveyFamilyData.getString("IsDeleted")
-                        .equalsIgnoreCase("null")) {
-                    IsDeleted = Integer.valueOf(SurveyFamilyData
-                            .getInt("IsDeleted"));
-                }
-                if (SurveyFamilyData.getString("AshaID") != null
-                        && SurveyFamilyData.getString("AshaID").length() > 0
-                        && !SurveyFamilyData.getString("AshaID")
-                        .equalsIgnoreCase("null")) {
-                    AshaID = Integer.valueOf(SurveyFamilyData.getInt("AshaID"));
-                }
-                if (SurveyFamilyData.getString("ANMID") != null
-                        && SurveyFamilyData.getString("ANMID").length() > 0
-                        && !SurveyFamilyData.getString("ANMID")
-                        .equalsIgnoreCase("null")) {
-                    ANMID = Integer.valueOf(SurveyFamilyData.getInt("ANMID"));
-                }
-                if (SurveyFamilyData.getString("Education") != null
-                        && SurveyFamilyData.getString("Education").length() > 0
-                        && !SurveyFamilyData.getString("Education")
-                        .equalsIgnoreCase("null")) {
-                    Education = Integer.valueOf(SurveyFamilyData
-                            .getInt("Education"));
-                }
-                if (SurveyFamilyData.getString("DeathVillage") != null
-                        && SurveyFamilyData.getString("DeathVillage").length() > 0
-                        && !SurveyFamilyData.getString("DeathVillage")
-                        .equalsIgnoreCase("null")) {
-                    DeathVillage = Integer.valueOf(SurveyFamilyData
-                            .getInt("DeathVillage"));
-                }
-                FamilyMemberName = SurveyFamilyData
-                        .getString("FamilyMemberName");
-                String sqlcount = "select count(*) from Tbl_HHFamilyMember where  HHFamilyMemberGUID='"
-                        + HHFamilyMemberGUID + "'";
-                int count = dataProvider.getMaxRecord(sqlcount);
-                String sqlcount1 = "select count(*) from Tbl_HHFamilyMember where  HHFamilyMemberGUID='"
-                        + HHFamilyMemberGUID + "' and IsEdited=1";
-                int count1 = dataProvider.getMaxRecord(sqlcount1);
-                String sql = "";
-                if (count == 0) {
-
-                    sql = "Insert into Tbl_HHFamilyMember(HHFamilyMemberGUID,HHSurveyGUID,Education,AshaID,ANMID,HHFamilyMemberCode,UniqueIDNumber,StatusID,RelationID,GenderID,MaritialStatusID,DOBAvailable,DateOfBirth,AgeAsOnYear,AprilAgeYear,AprilAgeMonth,MotherGUID,TargetID,CreatedBy,CreatedOn,UploadedBy,UploadedOn,IsTablet,IsDeleted,IsEdited,IsUploaded,FamilyMemberName,DateOfDeath,PlaceOfDeath,NameofDeathplace,DeathVillage)values('"
-                            + HHFamilyMemberGUID
-                            + "','"
-                            + HHSurveyGUID
-                            + "',"
-                            + Education
-                            + ","
-                            + AshaID
-                            + ","
-                            + ANMID
-                            + ",'"
-                            + HHFamilyMemberCode
-                            + "','"
-                            + UniqueIDNumber
-                            + "',"
-                            + StatusID
-                            + ","
-                            + RelationID
-                            + ","
-                            + GenderID
-                            + ","
-                            + MaritialStatusID
-                            + ","
-                            + DOBAvailable
-                            + ",'"
-                            + DateOfBirth
-                            + "','"
-                            + AgeAsOnYear
-                            + "',"
-                            + AprilAgeYear
-                            + ","
-                            + AprilAgeMonth
-                            + ",'"
-                            + MotherGUID
-                            + "',"
-                            + TargetID
-                            + ","
-                            + CreatedBy
-                            + ",'"
-                            + CreatedOn
-                            + "',"
-                            + UploadedBy
-                            + ",'"
-                            + UploadedOn
-                            + "',"
-                            + IsTablet
-                            + ","
-                            + IsDeleted
-                            + ",0,0,'"
-                            + FamilyMemberName
-                            + "','"
-                            + DateOfDeath
-                            + "',"
-                            + PlaceOfDeath
-                            + ",'"
-                            + NameofDeathplace
-                            + "',"
-                            + DeathVillage + ")";
-
-                } else {
-                    if (count1 == 0) {
-                        sql = "update Tbl_HHFamilyMember set Education="
-                                + Education + ", HHFamilyMemberCode='"
-                                + HHFamilyMemberCode + "',UniqueIDNumber='"
-                                + UniqueIDNumber + "',StatusID=" + StatusID
-                                + ",RelationID=" + RelationID + ",GenderID="
-                                + GenderID + ",MaritialStatusID="
-                                + MaritialStatusID + ",DOBAvailable="
-                                + DOBAvailable + ",DateOfBirth='" + DateOfBirth
-                                + "',AgeAsOnYear='" + AgeAsOnYear
-                                + "',AprilAgeYear=" + AprilAgeYear
-                                + ",AprilAgeMonth=" + AprilAgeMonth
-                                + ",MotherGUID='" + MotherGUID + "',TargetID="
-                                + TargetID + ",CreatedBy=" + CreatedBy
-                                + ",CreatedOn='" + CreatedOn + "',UploadedBy="
-                                + UploadedBy + ",UploadedOn='" + UploadedOn
-                                + "',IsTablet=" + IsTablet + ",IsDeleted="
-                                + IsDeleted
-                                + ",IsEdited=0,IsUploaded=0,FamilyMemberName='"
-                                + FamilyMemberName + "',AshaID=" + AshaID
-                                + ",ANMID=" + ANMID + ",DeathVillage="
-                                + DeathVillage + ",NameofDeathplace='"
-                                + NameofDeathplace + "',DateOfDeath='"
-                                + DateOfDeath + "',PlaceOfDeath="
-                                + PlaceOfDeath + " where HHFamilyMemberGUID='"
-                                + HHFamilyMemberGUID + "'and HHSurveyGUID='"
-                                + HHSurveyGUID + "'";
-
-                    }
-                }
-                try {
-
-                    dataProvider.executeSql(sql);
-                } catch (Exception e) {
-                    // TODO: handle exception
-
-                    downloadmsg = e.getMessage();
-                }
-            }
-
-        } catch (Exception e) {
-            downloadmsg = e.getMessage();
-            e.printStackTrace();
-
-        }
-    }
-
-    @SuppressWarnings("unused")
-    public void importMNCHSurveydata(String UserName, String Password) {
-        // TODO Auto-generated method stub
-
-        String URL = GlobalString.URL1;
-        String NAMESPACE = GlobalString.NAMESPACE;
-        String SOAP_ACTION = GlobalString.SOAP_ACTION_DOWNLOAD_MASTER;
-        String METHOD_NAME = GlobalString.METHOD_NAME_DOWNLOAD_MASTER;
-
-        SoapPrimitive resultString;
-        String TAG1 = "Response";
-
-        SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-        request.addProperty("UserName", UserName);
-        request.addProperty("PassWord", Password);
-        request.addProperty("sFlag", "MNCH");
-
-        request.addProperty("AuthenticationToken", UserName);
-        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
-                SoapEnvelope.VER12);
-        envelope.dotNet = true;
-        envelope.setOutputSoapObject(request);
-
-        HttpTransportSE httpTransport = new HttpTransportSE(URL, 250000);
-
-        SoapObject responses = null;
-        try {
-
-            httpTransport.call(SOAP_ACTION, envelope);
-            resultString = (SoapPrimitive) envelope.getResponse();
-
-            JSONObject jsonObj = new JSONObject(resultString.toString());
-            // ClearMNCHData();
-
-            tblChildArray = jsonObj.getJSONArray("tblChild");
-            for (int i = 0; i < tblChildArray.length(); i++) {
-                JSONObject Child = tblChildArray.getJSONObject(i);
-
-                String pw_GUID = "";
-                String HHGUID = "";
-                String HHFamilyMemberGUID = "";
-                int Child_ID = 0;
-                String ChildGUID = "";
-                String MotherGUID = "";
-                String Date_Of_Registration = "";
-                String Child_dob = "";
-                String Birth_time = "";
-                int Gender = 0;
-                float Wt_of_child = 0;
-                int place_of_birth = 0;
-                String preTerm_fullTerm = "";
-                int mother_status = 0;
-                int child_status = 0;
-                String mother_death_dt = "";
-                String child_death_dt = "";
-                String child_mcts_id = "";
-                String child_name = "";
-                String cried_after_birth = "";
-                int breastfeeding_within1H = 0;
-                String Exclusive_BF = "";
-                String complementry_BF = "";
-                String bcg = "";
-                String opv1 = "";
-                String dpt1 = "";
-                String hepb1 = "";
-                String opv2 = "";
-                String dpt2 = "";
-                String hepb2 = "";
-                String opv3 = "";
-                String dpt3 = "";
-                String hepb3 = "";
-                String measeals = "";
-                String vitaminA = "";
-                String created_on = "";
-                int created_by = 0;
-                String modified_on = "";
-                int modified_by = 0;
-                int AshaID = 0;
-                int ANMID = 0;
-                int IsEdited = 0;
-                int IsUploaded = 0;
-                int FacilityType = 0;
-                String Facility = "";
-                String opv4 = "";
-                String hepb4 = "";
-                String Pentavalent1 = "";
-                String Pentavalent2 = "";
-                String Pentavalent3 = "";
-                String IPV = "";
-                String DPTBooster = "";
-                String OPVBooster = "";
-                String MeaslesTwoDose = "";
-                String VitaminAtwo = "";
-                String DPTBoostertwo = "";
-                String ChildTT = "";
-                // add jitendra
-                String JEVaccine1 = "";
-                String JEVaccine2 = "";
-                String VitaminA3 = "";
-                String VitaminA4 = "";
-                String VitaminA5 = "";
-                String VitaminA6 = "";
-                String VitaminA7 = "";
-                String VitaminA8 = "";
-                String VitaminA9 = "";
-                String TT2 = "";
-
-                Facility = Child.getString("Facility");
-                opv4 = Child.getString("opv4");
-                hepb4 = Child.getString("hepb4");
-                Pentavalent1 = Child.getString("Pentavalent1");
-                Pentavalent2 = Child.getString("Pentavalent2");
-                Pentavalent3 = Child.getString("Pentavalent3");
-                IPV = Child.getString("IPV");
-                DPTBooster = Child.getString("DPTBooster");
-                OPVBooster = Child.getString("OPVBooster");
-                MeaslesTwoDose = Child.getString("MeaslesTwoDose");
-                VitaminAtwo = Child.getString("VitaminAtwo");
-                DPTBoostertwo = Child.getString("DPTBoostertwo");
-                ChildTT = Child.getString("ChildTT");
-                pw_GUID = Child.getString("pw_GUID");
-                HHGUID = Child.getString("HHGUID");
-                HHFamilyMemberGUID = Child.getString("HHFamilyMemberGUID");
-                ChildGUID = Child.getString("ChildGUID");
-                MotherGUID = Child.getString("MotherGUID");
-                Date_Of_Registration = Child.getString("Date_Of_Registration");
-                Child_dob = Child.getString("child_dob");
-                Birth_time = Child.getString("birth_time");
-                preTerm_fullTerm = Child.getString("preTerm_fullTerm");
-                mother_death_dt = Child.getString("mother_death_dt");
-                child_death_dt = Child.getString("child_death_dt");
-                child_mcts_id = Child.getString("child_mcts_id");
-                child_name = Child.getString("child_name");
-                cried_after_birth = Child.getString("cried_after_birth");
-                Exclusive_BF = Child.getString("Exclusive_BF");
-                complementry_BF = Child.getString("complementry_BF");
-                bcg = Child.getString("bcg");
-                opv1 = Child.getString("opv1");
-                dpt1 = Child.getString("dpt1");
-                hepb1 = Child.getString("hepb1");
-                opv2 = Child.getString("opv2");
-                dpt2 = Child.getString("dpt2");
-                hepb2 = Child.getString("hepb2");
-                opv3 = Child.getString("opv3");
-                dpt3 = Child.getString("dpt3");
-                hepb3 = Child.getString("hepb3");
-                measeals = Child.getString("measeals");
-                vitaminA = Child.getString("vitaminA");
-                created_on = Child.getString("created_on");
-                modified_on = Child.getString("modified_on");
-                JEVaccine1 = Child.getString("JEVaccine1");
-                JEVaccine2 = Child.getString("JEVaccine2");
-                VitaminA3 = Child.getString("VitaminA3");
-                VitaminA4 = Child.getString("VitaminA4");
-                VitaminA5 = Child.getString("VitaminA5");
-                VitaminA6 = Child.getString("VitaminA6");
-                VitaminA7 = Child.getString("VitaminA7");
-                VitaminA8 = Child.getString("VitaminA8");
-                VitaminA9 = Child.getString("VitaminA9");
-                TT2 = Child.getString("TT2");
-
-                if (Child.getString("child_id") != null
-                        && Child.getString("child_id").length() > 0
-                        && !Child.getString("child_id")
-                        .equalsIgnoreCase("null")) {
-                    Child_ID = Integer.valueOf(Child.getInt("child_id"));
-                }
-                if (Child.getString("Gender") != null
-                        && Child.getString("Gender").length() > 0
-                        && !Child.getString("Gender").equalsIgnoreCase("null")) {
-                    Gender = Integer.valueOf(Child.getInt("Gender"));
-                }
-                if (Child.getString("Wt_of_child") != null
-                        && Child.getString("Wt_of_child").length() > 0
-                        && !Child.getString("Wt_of_child").equalsIgnoreCase(
-                        "null")) {
-                    Wt_of_child = Float.valueOf(Child.getInt("Wt_of_child"));
-                }
-                if (Child.getString("place_of_birth") != null
-                        && Child.getString("place_of_birth").length() > 0
-                        && !Child.getString("place_of_birth").equalsIgnoreCase(
-                        "null")) {
-                    place_of_birth = Integer.valueOf(Child
-                            .getInt("place_of_birth"));
-                }
-                if (Child.getString("mother_status") != null
-                        && Child.getString("mother_status").length() > 0
-                        && !Child.getString("mother_status").equalsIgnoreCase(
-                        "null")) {
-                    mother_status = Integer.valueOf(Child
-                            .getInt("mother_status"));
-                }
-                if (Child.getString("child_status") != null
-                        && Child.getString("child_status").length() > 0
-                        && !Child.getString("child_status").equalsIgnoreCase(
-                        "null")) {
-                    child_status = Integer
-                            .valueOf(Child.getInt("child_status"));
-                }
-                if (Child.getString("breastfeeding_within1H") != null
-                        && Child.getString("breastfeeding_within1H").length() > 0
-                        && !Child.getString("breastfeeding_within1H")
-                        .equalsIgnoreCase("null")) {
-                    breastfeeding_within1H = Integer.valueOf(Child
-                            .getInt("breastfeeding_within1H"));
-                }
-                if (Child.getString("created_by") != null
-                        && Child.getString("created_by").length() > 0
-                        && !Child.getString("created_by").equalsIgnoreCase(
-                        "null")) {
-                    created_by = Integer.valueOf(Child.getInt("created_by"));
-                }
-                if (Child.getString("modified_by") != null
-                        && Child.getString("modified_by").length() > 0
-                        && !Child.getString("modified_by").equalsIgnoreCase(
-                        "null")) {
-                    modified_by = Integer.valueOf(Child.getInt("modified_by"));
-                }
-                if (Child.getString("AshaID") != null
-                        && Child.getString("AshaID").length() > 0
-                        && !Child.getString("AshaID").equalsIgnoreCase("null")) {
-                    AshaID = Integer.valueOf(Child.getInt("AshaID"));
-                }
-                if (Child.getString("ANMID") != null
-                        && Child.getString("ANMID").length() > 0
-                        && !Child.getString("ANMID").equalsIgnoreCase("null")) {
-                    ANMID = Integer.valueOf(Child.getInt("ANMID"));
-                }
-                if (Child.getString("FacilityType") != null
-                        && Child.getString("FacilityType").length() > 0
-                        && !Child.getString("FacilityType").equalsIgnoreCase(
-                        "null")) {
-                    FacilityType = Integer
-                            .valueOf(Child.getInt("FacilityType"));
-                }
-                String sqlcount = "select count(*) from tblChild  where ChildGUID='"
-                        + ChildGUID + "'";
-                int count = dataProvider.getMaxRecord(sqlcount);
-                String sqlcount1 = "select count(*) from tblChild  where ChildGUID='"
-                        + ChildGUID + "' and IsEdited=1";
-                int count1 = dataProvider.getMaxRecord(sqlcount1);
-
-                String sql = "";
-                if (count == 0) {
-
-                    sql = "Insert into tblChild(AshaID,ANMID,pw_GUID,Facility,opv4,hepb4,Pentavalent1,Pentavalent2,Pentavalent3,IPV,DPTBooster,OPVBooster,MeaslesTwoDose,VitaminAtwo,DPTBoostertwo,ChildTT,FacilityType,HHGUID,HHFamilyMemberGUID,Child_ID,ChildGUID,MotherGUID,Date_Of_Registration,Child_dob,Birth_time,Gender,Wt_of_child,place_of_birth,preTerm_fullTerm,mother_status,child_status,mother_death_dt,child_death_dt,child_mcts_id,child_name,cried_after_birth,breastfeeding_within1H,Exclusive_BF,complementry_BF,bcg,opv1,dpt1,hepb1,opv2,dpt2,hepb2,opv3,dpt3,hepb3,measeals,vitaminA,created_on,created_by,modified_on,modified_by,IsEdited,IsUploaded,JEVaccine1,JEVaccine2,VitaminA3,VitaminA4,VitaminA5,VitaminA6,VitaminA7,VitaminA8,VitaminA9,TT2)values("
-                            + AshaID
-                            + ","
-                            + ANMID
-                            + ",'"
-                            + pw_GUID
-                            + "',	'"
-                            + Facility
-                            + "',	'"
-                            + opv4
-                            + "',	'"
-                            + hepb4
-                            + "','"
-                            + Pentavalent1
-                            + "',	'"
-                            + Pentavalent2
-                            + "',	'"
-                            + Pentavalent3
-                            + "',		'"
-                            + IPV
-                            + "',	'"
-                            + DPTBooster
-                            + "','"
-                            + OPVBooster
-                            + "',	'"
-                            + MeaslesTwoDose
-                            + "','"
-                            + VitaminAtwo
-                            + "',	'"
-                            + DPTBoostertwo
-                            + "',	'"
-                            + ChildTT
-                            + "',"
-                            + FacilityType
-                            + ",'"
-                            + HHGUID
-                            + "','"
-                            + HHFamilyMemberGUID
-                            + "',"
-                            + Child_ID
-                            + ",'"
-                            + ChildGUID
-                            + "','"
-                            + MotherGUID
-                            + "','"
-                            + Date_Of_Registration
-                            + "','"
-                            + Child_dob
-                            + "','"
-                            + Birth_time
-                            + "',"
-                            + Gender
-                            + ","
-                            + Wt_of_child
-                            + ","
-                            + place_of_birth
-                            + ",'"
-                            + preTerm_fullTerm
-                            + "',"
-                            + mother_status
-                            + ","
-                            + child_status
-                            + ",'"
-                            + mother_death_dt
-                            + "','"
-                            + child_death_dt
-                            + "','"
-                            + child_mcts_id
-                            + "','"
-                            + child_name
-                            + "','"
-                            + cried_after_birth
-                            + "',"
-                            + breastfeeding_within1H
-                            + ",'"
-                            + Exclusive_BF
-                            + "','"
-                            + complementry_BF
-                            + "','"
-                            + bcg
-                            + "','"
-                            + opv1
-                            + "','"
-                            + dpt1
-                            + "','"
-                            + hepb1
-                            + "','"
-                            + opv2
-                            + "','"
-                            + dpt2
-                            + "','"
-                            + hepb2
-                            + "','"
-                            + opv3
-                            + "','"
-                            + dpt3
-                            + "','"
-                            + hepb3
-                            + "','"
-                            + measeals
-                            + "','"
-                            + vitaminA
-                            + "','"
-                            + created_on
-                            + "',"
-                            + created_by
-                            + ",'"
-                            + modified_on
-                            + "',"
-                            + modified_by
-                            + ",0,0, '"
-                            + JEVaccine1
-                            + "','"
-                            + JEVaccine2
-                            + "','"
-                            + VitaminA3
-                            + "','"
-                            + VitaminA4
-                            + "','"
-                            + VitaminA5
-                            + "','"
-                            + VitaminA6
-                            + "','"
-                            + VitaminA7
-                            + "','"
-                            + VitaminA8
-                            + "','"
-                            + VitaminA9
-                            + "','"
-                            + TT2
-                            + "')";
-                    dataProvider.executeSql(sql);
-
-                } else {
-                    if (count1 == 0) {
-                        sql = "update  tblChild set pw_GUID='" + pw_GUID
-                                + "',HHGUID='" + HHGUID
-                                + "',HHFamilyMemberGUID='" + HHFamilyMemberGUID
-                                + "',Child_ID=" + Child_ID + ",MotherGUID='"
-                                + MotherGUID + "',Date_Of_Registration='"
-                                + Date_Of_Registration + "',Child_dob='"
-                                + Child_dob + "',Birth_time='" + Birth_time
-                                + "',Gender=" + Gender + ",Wt_of_child="
-                                + Wt_of_child + ",place_of_birth="
-                                + place_of_birth + ",preTerm_fullTerm='"
-                                + preTerm_fullTerm + "',mother_status="
-                                + mother_status + ",child_status="
-                                + child_status + ",mother_death_dt='"
-                                + mother_death_dt + "',child_death_dt='"
-                                + child_death_dt + "',child_mcts_id='"
-                                + child_mcts_id + "',child_name='" + child_name
-                                + "',cried_after_birth='" + cried_after_birth
-                                + "',breastfeeding_within1H="
-                                + breastfeeding_within1H + ",Exclusive_BF='"
-                                + Exclusive_BF + "',complementry_BF='"
-                                + complementry_BF + "',bcg='" + bcg
-                                + "',opv1='" + opv1 + "',dpt1='" + dpt1
-                                + "',hepb1='" + hepb1 + "',opv2='" + opv2
-                                + "',dpt2='" + dpt2 + "',hepb2='" + hepb2
-                                + "',opv3='" + opv3 + "',dpt3='" + dpt3
-                                + "',hepb3='" + hepb3 + "',measeals='"
-                                + measeals + "',vitaminA='" + vitaminA
-                                + "',created_on='" + created_on
-                                + "',created_by=" + created_by
-                                + ",modified_on='" + modified_on
-                                + "',modified_by=" + modified_by + " ,AshaID="
-                                + AshaID + ",Facility='" + Facility
-                                + "',	opv4='" + opv4 + "',	hepb4='" + hepb4
-                                + "',Pentavalent1='" + Pentavalent1
-                                + "',	Pentavalent2='" + Pentavalent2
-                                + "',	Pentavalent3='" + Pentavalent3
-                                + "',		IPV='" + IPV + "',	DPTBooster='"
-                                + DPTBooster + "',OPVBooster='" + OPVBooster
-                                + "',MeaslesTwoDose=	'" + MeaslesTwoDose
-                                + "',VitaminAtwo='" + VitaminAtwo
-                                + "',	DPTBoostertwo='" + DPTBoostertwo
-                                + "',ChildTT=	'" + ChildTT + "',ANMID=" + ANMID
-                                + ",FacilityType=" + FacilityType
-                                + ",JEVaccine1='" + JEVaccine1
-                                + "',JEVaccine2='" + JEVaccine2
-                                + "',VitaminA3='" + VitaminA3 + "',VitaminA4='"
-                                + VitaminA4 + "',VitaminA5='" + VitaminA5
-                                + "',VitaminA6='" + VitaminA6 + "',VitaminA7='"
-                                + VitaminA7 + "',VitaminA8='" + VitaminA8
-                                + "',VitaminA9='" + VitaminA9 + "',TT2='" + TT2
-                                + "',IsEdited=0,IsUploaded=0 where ChildGUID='"
-                                + ChildGUID + "'";
-                        dataProvider.executeSql(sql);
-                    }
-                }
-            }
-            TblANCVisitArray = jsonObj.getJSONArray("tblANCVisit");
-            for (int i = 0; i < TblANCVisitArray.length(); i++) {
-                JSONObject ANCVisit = TblANCVisitArray.getJSONObject(i);
-
-                String PWGUID = "";
-                String VisitGUID = "";
-                int ByANMID = 0;
-                int ByAshaID = 0;
-                String MCTSID = "";
-                int Visit_No = 0;
-                int Trimester = 0;
-                String VisitDueDate = "";
-                String CheckupVisitDate = "";
-                int CheckupPlace = 0;
-                double BirthWeight = 0;
-                int BP = 0;
-                String BPResult = "";
-                double Hemoglobin = 0;
-                int UrineTest = 0;
-                int UrineSugar = 0;
-                int UrineAlbumin = 0;
-                String TTfirstDoseDate = "";
-                String TTsecondDoseDate = "";
-                String TTBoosterDate = "";
-                int VDRLTest = 0;
-                int HIVTest = 0;
-                int UltraSound = 0;
-                int UltraSoundConductedby = 0;
-                int IFARecieved = 0;
-                int NumberIFARecieved = 0;
-                String CreatedOn = "";
-                int CreatedBy = 0;
-                String UpdatedOn = "";
-                int UpdatedBy = 0;
-                int UltrasoundResult = 0;
-                String HomeVisitDate = "";
-                int TT1TT2last2yr = 0;
-                PWGUID = ANCVisit.getString("PWGUID");
-                VisitGUID = ANCVisit.getString("VisitGUID");
-                MCTSID = ANCVisit.getString("MCTSID");
-                VisitDueDate = ANCVisit.getString("VisitDueDate");
-                CheckupVisitDate = ANCVisit.getString("CheckupVisitDate");
-                BPResult = ANCVisit.getString("BPResult");
-                TTfirstDoseDate = ANCVisit.getString("TTfirstDoseDate");
-                TTsecondDoseDate = ANCVisit.getString("TTsecondDoseDate");
-                TTBoosterDate = ANCVisit.getString("TTboosterDate");
-                CreatedOn = ANCVisit.getString("CreatedOn");
-                UpdatedOn = ANCVisit.getString("UpdatedOn");
-                HomeVisitDate = ANCVisit.getString("HomeVisitDate");
-
-                if (ANCVisit.getString("ByANMID") != null
-                        && ANCVisit.getString("ByANMID").length() > 0
-                        && !ANCVisit.getString("ByANMID").equalsIgnoreCase(
-                        "null")) {
-                    ByANMID = Integer.valueOf(ANCVisit.getInt("ByANMID"));
-                }
-                if (ANCVisit.getString("ByAshaID") != null
-                        && ANCVisit.getString("ByAshaID").length() > 0
-                        && !ANCVisit.getString("ByAshaID").equalsIgnoreCase(
-                        "null")) {
-                    ByAshaID = Integer.valueOf(ANCVisit.getInt("ByAshaID"));
-                }
-                if (ANCVisit.getString("Visit_No") != null
-                        && ANCVisit.getString("Visit_No").length() > 0
-                        && !ANCVisit.getString("Visit_No").equalsIgnoreCase(
-                        "null")) {
-                    Visit_No = Integer.valueOf(ANCVisit.getInt("Visit_No"));
-                }
-                if (ANCVisit.getString("Trimester") != null
-                        && ANCVisit.getString("Trimester").length() > 0
-                        && !ANCVisit.getString("Trimester").equalsIgnoreCase(
-                        "null")) {
-                    Trimester = Integer.valueOf(ANCVisit.getInt("Trimester"));
-                }
-                if (ANCVisit.getString("CheckupPlace") != null
-                        && ANCVisit.getString("CheckupPlace").length() > 0
-                        && !ANCVisit.getString("CheckupPlace")
-                        .equalsIgnoreCase("null")) {
-                    CheckupPlace = Integer.valueOf(ANCVisit
-                            .getInt("CheckupPlace"));
-                }
-                if (ANCVisit.getString("BirthWeight") != null
-                        && ANCVisit.getString("BirthWeight").length() > 0
-                        && !ANCVisit.getString("BirthWeight").equalsIgnoreCase(
-                        "null")) {
-                    BirthWeight = Double
-                            .valueOf(ANCVisit.getInt("BirthWeight"));
-                }
-                if (ANCVisit.getString("BP") != null
-                        && ANCVisit.getString("BP").length() > 0
-                        && !ANCVisit.getString("BP").equalsIgnoreCase("null")) {
-                    BP = Integer.valueOf(ANCVisit.getInt("BP"));
-                }
-                if (ANCVisit.getString("Hemoglobin") != null
-                        && ANCVisit.getString("Hemoglobin").length() > 0
-                        && !ANCVisit.getString("Hemoglobin").equalsIgnoreCase(
-                        "null")) {
-                    Hemoglobin = Double.valueOf(ANCVisit.getInt("Hemoglobin"));
-                }
-                if (ANCVisit.getString("UrineTest") != null
-                        && ANCVisit.getString("UrineTest").length() > 0
-                        && !ANCVisit.getString("UrineTest").equalsIgnoreCase(
-                        "null")) {
-                    UrineTest = Integer.valueOf(ANCVisit.getInt("UrineTest"));
-                }
-                if (ANCVisit.getString("UrineSugar") != null
-                        && ANCVisit.getString("UrineSugar").length() > 0
-                        && !ANCVisit.getString("UrineSugar").equalsIgnoreCase(
-                        "null")) {
-                    UrineSugar = Integer.valueOf(ANCVisit.getInt("UrineSugar"));
-                }
-                if (ANCVisit.getString("UrineAlbumin") != null
-                        && ANCVisit.getString("UrineAlbumin").length() > 0
-                        && !ANCVisit.getString("UrineAlbumin")
-                        .equalsIgnoreCase("null")) {
-                    UrineAlbumin = Integer.valueOf(ANCVisit
-                            .getInt("UrineAlbumin"));
-                }
-                if (ANCVisit.getString("VDRLTest") != null
-                        && ANCVisit.getString("VDRLTest").length() > 0
-                        && !ANCVisit.getString("VDRLTest").equalsIgnoreCase(
-                        "null")) {
-                    VDRLTest = Integer.valueOf(ANCVisit.getInt("VDRLTest"));
-                }
-                if (ANCVisit.getString("HIVTest") != null
-                        && ANCVisit.getString("HIVTest").length() > 0
-                        && !ANCVisit.getString("HIVTest").equalsIgnoreCase(
-                        "null")) {
-                    HIVTest = Integer.valueOf(ANCVisit.getInt("HIVTest"));
-                }
-                if (ANCVisit.getString("UltraSound") != null
-                        && ANCVisit.getString("UltraSound").length() > 0
-                        && !ANCVisit.getString("UltraSound").equalsIgnoreCase(
-                        "null")) {
-                    UltraSound = Integer.valueOf(ANCVisit.getInt("UltraSound"));
-                }
-                if (ANCVisit.getString("UltraSoundConductedby") != null
-                        && ANCVisit.getString("UltraSoundConductedby").length() > 0
-                        && !ANCVisit.getString("UltraSoundConductedby")
-                        .equalsIgnoreCase("null")) {
-                    UltraSoundConductedby = Integer.valueOf(ANCVisit
-                            .getInt("UltraSoundConductedby"));
-                }
-                if (ANCVisit.getString("IFARecieved") != null
-                        && ANCVisit.getString("IFARecieved").length() > 0
-                        && !ANCVisit.getString("IFARecieved").equalsIgnoreCase(
-                        "null")) {
-                    IFARecieved = Integer.valueOf(ANCVisit
-                            .getInt("IFARecieved"));
-                }
-                if (ANCVisit.getString("NumberIFARecieved") != null
-                        && ANCVisit.getString("NumberIFARecieved").length() > 0
-                        && !ANCVisit.getString("NumberIFARecieved")
-                        .equalsIgnoreCase("null")) {
-                    NumberIFARecieved = Integer.valueOf(ANCVisit
-                            .getInt("NumberIFARecieved"));
-                }
-                if (ANCVisit.getString("CreatedBy") != null
-                        && ANCVisit.getString("CreatedBy").length() > 0
-                        && !ANCVisit.getString("CreatedBy").equalsIgnoreCase(
-                        "null")) {
-                    CreatedBy = Integer.valueOf(ANCVisit.getInt("CreatedBy"));
-                }
-                if (ANCVisit.getString("UpdatedBy") != null
-                        && ANCVisit.getString("UpdatedBy").length() > 0
-                        && !ANCVisit.getString("UpdatedBy").equalsIgnoreCase(
-                        "null")) {
-                    UpdatedBy = Integer.valueOf(ANCVisit.getInt("UpdatedBy"));
-                }
-                if (ANCVisit.getString("UltrasoundResult") != null
-                        && ANCVisit.getString("UltrasoundResult").length() > 0
-                        && !ANCVisit.getString("UltrasoundResult")
-                        .equalsIgnoreCase("null")) {
-                    UltrasoundResult = Integer.valueOf(ANCVisit
-                            .getInt("UltrasoundResult"));
-                }
-                if (ANCVisit.getString("TT1TT2last2yr") != null
-                        && ANCVisit.getString("TT1TT2last2yr").length() > 0
-                        && !ANCVisit.getString("TT1TT2last2yr")
-                        .equalsIgnoreCase("null")) {
-                    TT1TT2last2yr = Integer.valueOf(ANCVisit
-                            .getInt("TT1TT2last2yr"));
-                }
-                String sqlcount = "select count(*) from TblANCVisit  where VisitGUID='"
-                        + VisitGUID + "' and PWGUID='" + PWGUID + "'";
-                int count = dataProvider.getMaxRecord(sqlcount);
-                String sqlcount1 = "select count(*) from TblANCVisit  where VisitGUID='"
-                        + VisitGUID
-                        + "' and PWGUID='"
-                        + PWGUID
-                        + "' and IsEdited=1";
-                int count1 = dataProvider.getMaxRecord(sqlcount1);
-
-                String sql = "";
-                if (count == 0) {
-
-                    sql = "Insert into TblANCVisit(TT1TT2last2yr,PWGUID,VisitGUID,ByANMID,ByAshaID,MCTSID,Visit_No,Trimester,VisitDueDate,CheckupVisitDate,CheckupPlace,BirthWeight,BP,BPResult,Hemoglobin,UrineTest,UrineSugar,UrineAlbumin,TTfirstDoseDate,TTsecondDoseDate,TTBoosterDate,VDRLTest,HIVTest,UltraSound,UltraSoundConductedby,IFARecieved,NumberIFARecieved,CreatedOn,CreatedBy,UpdatedOn,UpdatedBy,UltrasoundResult,HomeVisitDate,IsEdited,IsUploaded)values("
-                            + TT1TT2last2yr
-                            + ",'"
-                            + PWGUID
-                            + "','"
-                            + VisitGUID
-                            + "',"
-                            + ByANMID
-                            + ","
-                            + ByAshaID
-                            + ",'"
-                            + MCTSID
-                            + "',"
-                            + Visit_No
-                            + ","
-                            + Trimester
-                            + ",'"
-                            + VisitDueDate
-                            + "','"
-                            + CheckupVisitDate
-                            + "',"
-                            + CheckupPlace
-                            + ","
-                            + BirthWeight
-                            + ","
-                            + BP
-                            + ",'"
-                            + BPResult
-                            + "',"
-                            + Hemoglobin
-                            + ","
-                            + UrineTest
-                            + ","
-                            + UrineSugar
-                            + ","
-                            + UrineAlbumin
-                            + ",'"
-                            + TTfirstDoseDate
-                            + "','"
-                            + TTsecondDoseDate
-                            + "','"
-                            + TTBoosterDate
-                            + "',"
-                            + VDRLTest
-                            + ","
-                            + HIVTest
-                            + ","
-                            + UltraSound
-                            + ","
-                            + UltraSoundConductedby
-                            + ","
-                            + IFARecieved
-                            + ","
-                            + NumberIFARecieved
-                            + ",'"
-                            + CreatedOn
-                            + "',"
-                            + CreatedBy
-                            + ",'"
-                            + UpdatedOn
-                            + "',"
-                            + UpdatedBy
-                            + ","
-                            + UltrasoundResult
-                            + ",'"
-                            + HomeVisitDate
-                            + "',0,0)";
-                    dataProvider.executeSql(sql);
-                } else {
-                    if (count1 == 0) {
-                        sql = "update TblANCVisit set TT1TT2last2yr="
-                                + TT1TT2last2yr + ", ByANMID=" + ByANMID
-                                + ",ByAshaID=" + ByAshaID + ",MCTSID='"
-                                + MCTSID + "',Visit_No=" + Visit_No
-                                + ",Trimester=" + Trimester + ",VisitDueDate='"
-                                + VisitDueDate + "',CheckupVisitDate='"
-                                + CheckupVisitDate + "',CheckupPlace="
-                                + CheckupPlace + ",BirthWeight=" + BirthWeight
-                                + ",BP=" + BP + ",BPResult='" + BPResult
-                                + "',Hemoglobin=" + Hemoglobin + ",UrineTest="
-                                + UrineTest + ",UrineSugar=" + UrineSugar
-                                + ",UrineAlbumin=" + UrineAlbumin
-                                + ",TTfirstDoseDate='" + TTfirstDoseDate
-                                + "',TTsecondDoseDate='" + TTsecondDoseDate
-                                + "',TTBoosterDate='" + TTBoosterDate
-                                + "',VDRLTest=" + VDRLTest + ",HIVTest="
-                                + HIVTest + ",UltraSound=" + UltraSound
-                                + ",UltraSoundConductedby="
-                                + UltraSoundConductedby + ",IFARecieved="
-                                + IFARecieved + ",NumberIFARecieved="
-                                + NumberIFARecieved + ",CreatedOn='"
-                                + CreatedOn + "',CreatedBy=" + CreatedBy
-                                + ",UpdatedOn='" + UpdatedOn
-                                + "',IsEdited=0,IsUploaded=0,UpdatedBy="
-                                + UpdatedBy + ",UltrasoundResult="
-                                + UltrasoundResult + ",HomeVisitDate='"
-                                + HomeVisitDate + "' where PWGUID='" + PWGUID
-                                + "' and VisitGUID='" + VisitGUID + "'";
-                        dataProvider.executeSql(sql);
-                    }
-                }
-            }
-
-            tblpregnantwomenArray = jsonObj.getJSONArray("tblPregnant_woman");
-            for (int i = 0; i < tblpregnantwomenArray.length(); i++) {
-                JSONObject pregnantwomen = tblpregnantwomenArray
-                        .getJSONObject(i);
-                String AltMobileNo = "";
-                String PWGUID = "";
-                String HHGUID = "";
-                String HHFamilyMemberGUID = "";
-                String PWName = "";
-                int ANMID = 0;
-                String PWImage = "";
-                int AshaID = 0;
-                String LMPDate = "";
-                String EDDDate = "";
-                String PWRegistrationDate = "";
-                int Regwithin12weeks = 0;
-                int RegweeksElaspsed = 0;
-                String HusbandName = "";
-                String Husband_GUID = "";
-                String MobileNo = "";
-                String MotherMCTSID = "";
-                String IFSCCode = "";
-                String Accountno = "";
-                int JSYBenificiaryYN = 0;
-                String JSYRegDate = "";
-                int JSYPaymentReceivedYN = 0;
-                String PWDOB = "";
-                int PWAgeYears = 0;
-                String PWAgeRefDate = "";
-                double PWWeight = 0;
-                int PWBloodGroup = 0;
-                String PastIllnessYN = "";
-                int TotalPregnancy = 0;
-                int LastPregnancyResult = 0;
-                int LastPregnancyComplication = 0;
-                int LTLPregnancyResult = 0;
-                int LTLPregnancyomplication = 0;
-                int PWHeight = 0;
-                int LastPregDeliveryPlace = 0;
-                int LasttolastPregDeliveryPlace = 0;
-                String ExpFacilityforDelivery = "";
-                String ExpFacilityforDeliveryName = "";
-                int VDRLTestYN = 0;
-                String VDRLResult = "";
-                int HIVTestYN = 0;
-                String HIVResult = "";
-                String Visit1Date = "";
-                String Visit2Date = "";
-                String Visit3Date = "";
-                String Visit4Date = "";
-                int ISAbortion = 0;
-                int IsPregnant = 0;
-                int AbortionFacilityType = 0;
-                int NoofANCVisitsDone = 0;
-                String LastANCVisitDate = "";
-                String TT1Date = "";
-                String TT2Date = "";
-                String TTBoosterDate = "";
-                String DangerSigns = "";
-                int RefferedYN = 0;
-                String DeliveryDateTime = "";
-                int DeliveryPlace = 0;
-                String DeliveryConductedBy = "";
-                int DeliveryType = 0;
-                String DeliveryComplication = "";
-                int MotherDeathCause = 0;
-                int DeliveryOutcome = 0;
-                String DTMFacilityDischarge = "";
-                String PaymentRecieved = "";
-                int PlaceofDeath = 0;
-                String DateofDeath = "";
-                String OtherPlaceofDeath = "";
-                String CreatedOn = "";
-                int CreatedBy = 0;
-                String UpdatedOn = "";
-                int UpdatedBy = 0;
-                int Education = 0;
-                int Abortion_FacilityName = 0;
-                PWGUID = pregnantwomen.getString("PWGUID");
-                AltMobileNo = pregnantwomen.getString("AltMobileNo");
-                HHGUID = pregnantwomen.getString("HHGUID");
-                HHFamilyMemberGUID = pregnantwomen
-                        .getString("HHFamilyMemberGUID");
-                PWName = pregnantwomen.getString("PWName");
-                PWImage = pregnantwomen.getString("PWImage");
-                LMPDate = pregnantwomen.getString("LMPDate");
-                EDDDate = pregnantwomen.getString("EDDDate");
-                PWRegistrationDate = pregnantwomen
-                        .getString("PWRegistrationDate");
-                HusbandName = pregnantwomen.getString("HusbandName");
-                Husband_GUID = pregnantwomen.getString("Husband_GUID");
-                MobileNo = pregnantwomen.getString("MobileNo");
-                MotherMCTSID = pregnantwomen.getString("MotherMCTSID");
-                IFSCCode = pregnantwomen.getString("IFSCCode");
-                Accountno = pregnantwomen.getString("Accountno");
-                JSYRegDate = pregnantwomen.getString("JSYRegDate");
-                PWDOB = pregnantwomen.getString("PWDOB");
-                PWAgeRefDate = pregnantwomen.getString("PWAgeRefDate");
-                ExpFacilityforDelivery = pregnantwomen
-                        .getString("ExpFacilityforDelivery");
-                ExpFacilityforDeliveryName = pregnantwomen
-                        .getString("ExpFacilityforDeliveryName");
-                VDRLResult = pregnantwomen.getString("VDRLResult");
-                HIVResult = pregnantwomen.getString("HIVResult");
-                Visit1Date = pregnantwomen.getString("Visit1Date");
-                Visit2Date = pregnantwomen.getString("Visit2Date");
-                Visit3Date = pregnantwomen.getString("Visit3Date");
-                Visit4Date = pregnantwomen.getString("Visit4Date");
-                LastANCVisitDate = pregnantwomen.getString("LastANCVisitDate");
-                TT1Date = pregnantwomen.getString("TT1Date");
-                TT2Date = pregnantwomen.getString("TT2Date");
-
-                TTBoosterDate = pregnantwomen.getString("TTBoosterDate");
-                DangerSigns = pregnantwomen.getString("DangerSigns");
-                DeliveryDateTime = pregnantwomen.getString("DeliveryDateTime");
-                DeliveryConductedBy = pregnantwomen
-                        .getString("DeliveryConductedBy");
-                DeliveryComplication = pregnantwomen
-                        .getString("DeliveryComplication");
-                DTMFacilityDischarge = pregnantwomen
-                        .getString("DTMFacilityDischarge");
-                PaymentRecieved = pregnantwomen.getString("PaymentRecieved");
-                DateofDeath = pregnantwomen.getString("DateofDeath");
-                OtherPlaceofDeath = pregnantwomen
-                        .getString("OtherPlaceofDeath");
-                CreatedOn = pregnantwomen.getString("CreatedOn");
-                UpdatedOn = pregnantwomen.getString("UpdatedOn");
-
-                if (pregnantwomen.getString("ANMID") != null
-                        && pregnantwomen.getString("ANMID").length() > 0
-                        && !pregnantwomen.getString("ANMID").equalsIgnoreCase(
-                        "null")) {
-                    ANMID = Integer.valueOf(pregnantwomen.getInt("ANMID"));
-                }
-                if (pregnantwomen.getString("AshaID") != null
-                        && pregnantwomen.getString("AshaID").length() > 0
-                        && !pregnantwomen.getString("AshaID").equalsIgnoreCase(
-                        "null")) {
-                    AshaID = Integer.valueOf(pregnantwomen.getInt("AshaID"));
-                }
-                if (pregnantwomen.getString("Regwithin12weeks") != null
-                        && pregnantwomen.getString("Regwithin12weeks").length() > 0
-                        && !pregnantwomen.getString("Regwithin12weeks")
-                        .equalsIgnoreCase("null")) {
-                    Regwithin12weeks = Integer.valueOf(pregnantwomen
-                            .getInt("Regwithin12weeks"));
-                }
-                if (pregnantwomen.getString("RegweeksElaspsed") != null
-                        && pregnantwomen.getString("RegweeksElaspsed").length() > 0
-                        && !pregnantwomen.getString("RegweeksElaspsed")
-                        .equalsIgnoreCase("null")) {
-                    RegweeksElaspsed = Integer.valueOf(pregnantwomen
-                            .getInt("RegweeksElaspsed"));
-                }
-                if (pregnantwomen.getString("JSYBenificiaryYN") != null
-                        && pregnantwomen.getString("JSYBenificiaryYN").length() > 0
-                        && !pregnantwomen.getString("JSYBenificiaryYN")
-                        .equalsIgnoreCase("null")) {
-                    JSYBenificiaryYN = Integer.valueOf(pregnantwomen
-                            .getInt("JSYBenificiaryYN"));
-                }
-                if (pregnantwomen.getString("JSYPaymentReceivedYN") != null
-                        && pregnantwomen.getString("JSYPaymentReceivedYN")
-                        .length() > 0
-                        && !pregnantwomen.getString("JSYPaymentReceivedYN")
-                        .equalsIgnoreCase("null")) {
-                    JSYPaymentReceivedYN = Integer.valueOf(pregnantwomen
-                            .getInt("JSYPaymentReceivedYN"));
-                }
-                if (pregnantwomen.getString("PWAgeYears") != null
-                        && pregnantwomen.getString("PWAgeYears").length() > 0
-                        && !pregnantwomen.getString("PWAgeYears")
-                        .equalsIgnoreCase("null")) {
-                    PWAgeYears = Integer.valueOf(pregnantwomen
-                            .getInt("PWAgeYears"));
-                }
-                if (pregnantwomen.getString("PWWeight") != null
-                        && pregnantwomen.getString("PWWeight").length() > 0
-                        && !pregnantwomen.getString("PWWeight")
-                        .equalsIgnoreCase("null")) {
-                    PWWeight = Double.valueOf(pregnantwomen.getInt("PWWeight"));
-                }
-                if (pregnantwomen.getString("PWBloodGroup") != null
-                        && pregnantwomen.getString("PWBloodGroup").length() > 0
-                        && !pregnantwomen.getString("PWBloodGroup")
-                        .equalsIgnoreCase("null")) {
-                    PWBloodGroup = Integer.valueOf(pregnantwomen
-                            .getInt("PWBloodGroup"));
-                }
-
-                PastIllnessYN = pregnantwomen.getString("PastIllnessYN");
-
-                if (pregnantwomen.getString("TotalPregnancy") != null
-                        && pregnantwomen.getString("TotalPregnancy").length() > 0
-                        && !pregnantwomen.getString("TotalPregnancy")
-                        .equalsIgnoreCase("null")) {
-                    TotalPregnancy = Integer.valueOf(pregnantwomen
-                            .getInt("TotalPregnancy"));
-                }
-                if (pregnantwomen.getString("LastPregnancyResult") != null
-                        && pregnantwomen.getString("LastPregnancyResult")
-                        .length() > 0
-                        && !pregnantwomen.getString("LastPregnancyResult")
-                        .equalsIgnoreCase("null")) {
-                    LastPregnancyResult = Integer.valueOf(pregnantwomen
-                            .getInt("LastPregnancyResult"));
-                }
-                if (pregnantwomen.getString("LastPregnancyComplication") != null
-                        && pregnantwomen.getString("LastPregnancyComplication")
-                        .length() > 0
-                        && !pregnantwomen
-                        .getString("LastPregnancyComplication")
-                        .equalsIgnoreCase("null")) {
-                    LastPregnancyComplication = Integer.valueOf(pregnantwomen
-                            .getInt("LastPregnancyComplication"));
-                }
-                if (pregnantwomen.getString("LTLPregnancyResult") != null
-                        && pregnantwomen.getString("LTLPregnancyResult")
-                        .length() > 0
-                        && !pregnantwomen.getString("LTLPregnancyResult")
-                        .equalsIgnoreCase("null")) {
-                    LTLPregnancyResult = Integer.valueOf(pregnantwomen
-                            .getInt("LTLPregnancyResult"));
-                }
-                if (pregnantwomen.getString("LTLPregnancyomplication") != null
-                        && pregnantwomen.getString("LTLPregnancyomplication")
-                        .length() > 0
-                        && !pregnantwomen.getString("LTLPregnancyomplication")
-                        .equalsIgnoreCase("null")) {
-                    LTLPregnancyomplication = Integer.valueOf(pregnantwomen
-                            .getInt("LTLPregnancyomplication"));
-                }
-                if (pregnantwomen.getString("PWHeight") != null
-                        && pregnantwomen.getString("PWHeight").length() > 0
-                        && !pregnantwomen.getString("PWHeight")
-                        .equalsIgnoreCase("null")) {
-                    PWHeight = Integer
-                            .valueOf(pregnantwomen.getInt("PWHeight"));
-                }
-                if (pregnantwomen.getString("LastPregDeliveryPlace") != null
-                        && pregnantwomen.getString("LastPregDeliveryPlace")
-                        .length() > 0
-                        && !pregnantwomen.getString("LastPregDeliveryPlace")
-                        .equalsIgnoreCase("null")) {
-                    LastPregDeliveryPlace = Integer.valueOf(pregnantwomen
-                            .getInt("LastPregDeliveryPlace"));
-                }
-                if (pregnantwomen.getString("LasttolastPregDeliveryPlace") != null
-                        && pregnantwomen.getString(
-                        "LasttolastPregDeliveryPlace").length() > 0
-                        && !pregnantwomen.getString(
-                        "LasttolastPregDeliveryPlace")
-                        .equalsIgnoreCase("null")) {
-                    LasttolastPregDeliveryPlace = Integer.valueOf(pregnantwomen
-                            .getInt("LasttolastPregDeliveryPlace"));
-                }
-                if (pregnantwomen.getString("VDRLTestYN") != null
-                        && pregnantwomen.getString("VDRLTestYN").length() > 0
-                        && !pregnantwomen.getString("VDRLTestYN")
-                        .equalsIgnoreCase("null")) {
-                    VDRLTestYN = Integer.valueOf(pregnantwomen
-                            .getInt("VDRLTestYN"));
-                }
-                if (pregnantwomen.getString("HIVTestYN") != null
-                        && pregnantwomen.getString("HIVTestYN").length() > 0
-                        && !pregnantwomen.getString("HIVTestYN")
-                        .equalsIgnoreCase("null")) {
-                    HIVTestYN = Integer.valueOf(pregnantwomen
-                            .getInt("HIVTestYN"));
-                }
-                if (pregnantwomen.getString("ISAbortion") != null
-                        && pregnantwomen.getString("ISAbortion").length() > 0
-                        && !pregnantwomen.getString("ISAbortion")
-                        .equalsIgnoreCase("null")) {
-                    ISAbortion = Integer.valueOf(pregnantwomen
-                            .getInt("ISAbortion"));
-                }
-                if (pregnantwomen.getString("IsPregnant") != null
-                        && pregnantwomen.getString("IsPregnant").length() > 0
-                        && !pregnantwomen.getString("IsPregnant")
-                        .equalsIgnoreCase("null")) {
-                    IsPregnant = Integer.valueOf(pregnantwomen
-                            .getInt("IsPregnant"));
-                }
-                if (pregnantwomen.getString("AbortionFacilityType") != null
-                        && pregnantwomen.getString("AbortionFacilityType")
-                        .length() > 0
-                        && !pregnantwomen.getString("AbortionFacilityType")
-                        .equalsIgnoreCase("null")) {
-                    AbortionFacilityType = Integer.valueOf(pregnantwomen
-                            .getInt("AbortionFacilityType"));
-                }
-                if (pregnantwomen.getString("NoofANCVisitsDone") != null
-                        && pregnantwomen.getString("NoofANCVisitsDone")
-                        .length() > 0
-                        && !pregnantwomen.getString("NoofANCVisitsDone")
-                        .equalsIgnoreCase("null")) {
-                    NoofANCVisitsDone = Integer.valueOf(pregnantwomen
-                            .getInt("NoofANCVisitsDone"));
-                }
-                if (pregnantwomen.getString("RefferedYN") != null
-                        && pregnantwomen.getString("RefferedYN").length() > 0
-                        && !pregnantwomen.getString("RefferedYN")
-                        .equalsIgnoreCase("null")) {
-                    RefferedYN = Integer.valueOf(pregnantwomen
-                            .getInt("RefferedYN"));
-                }
-                if (pregnantwomen.getString("DeliveryPlace") != null
-                        && pregnantwomen.getString("DeliveryPlace").length() > 0
-                        && !pregnantwomen.getString("DeliveryPlace")
-                        .equalsIgnoreCase("null")) {
-                    DeliveryPlace = Integer.valueOf(pregnantwomen
-                            .getInt("DeliveryPlace"));
-                }
-                if (pregnantwomen.getString("DeliveryType") != null
-                        && pregnantwomen.getString("DeliveryType").length() > 0
-                        && !pregnantwomen.getString("DeliveryType")
-                        .equalsIgnoreCase("null")) {
-                    DeliveryType = Integer.valueOf(pregnantwomen
-                            .getInt("DeliveryType"));
-                }
-                if (pregnantwomen.getString("MotherDeathCause") != null
-                        && pregnantwomen.getString("MotherDeathCause").length() > 0
-                        && !pregnantwomen.getString("MotherDeathCause")
-                        .equalsIgnoreCase("null")) {
-                    MotherDeathCause = Integer.valueOf(pregnantwomen
-                            .getInt("MotherDeathCause"));
-                }
-                if (pregnantwomen.getString("DeliveryOutcome") != null
-                        && pregnantwomen.getString("DeliveryOutcome").length() > 0
-                        && !pregnantwomen.getString("DeliveryOutcome")
-                        .equalsIgnoreCase("null")) {
-                    DeliveryOutcome = Integer.valueOf(pregnantwomen
-                            .getInt("DeliveryOutcome"));
-                }
-                if (pregnantwomen.getString("PlaceofDeath") != null
-                        && pregnantwomen.getString("PlaceofDeath").length() > 0
-                        && !pregnantwomen.getString("PlaceofDeath")
-                        .equalsIgnoreCase("null")) {
-                    PlaceofDeath = Integer.valueOf(pregnantwomen
-                            .getInt("PlaceofDeath"));
-                }
-                if (pregnantwomen.getString("CreatedBy") != null
-                        && pregnantwomen.getString("CreatedBy").length() > 0
-                        && !pregnantwomen.getString("CreatedBy")
-                        .equalsIgnoreCase("null")) {
-                    CreatedBy = Integer.valueOf(pregnantwomen
-                            .getInt("CreatedBy"));
-                }
-                if (pregnantwomen.getString("UpdatedBy") != null
-                        && pregnantwomen.getString("UpdatedBy").length() > 0
-                        && !pregnantwomen.getString("UpdatedBy")
-                        .equalsIgnoreCase("null")) {
-                    UpdatedBy = Integer.valueOf(pregnantwomen
-                            .getInt("UpdatedBy"));
-                }
-                if (pregnantwomen.getString("Education") != null
-                        && pregnantwomen.getString("Education").length() > 0
-                        && !pregnantwomen.getString("Education")
-                        .equalsIgnoreCase("null")) {
-                    Education = Integer.valueOf(pregnantwomen
-                            .getInt("Education"));
-                }
-                if (pregnantwomen.getString("Abortion_FacilityName") != null
-                        && pregnantwomen.getString("Abortion_FacilityName")
-                        .length() > 0
-                        && !pregnantwomen.getString("Abortion_FacilityName")
-                        .equalsIgnoreCase("null")) {
-                    Abortion_FacilityName = Integer.valueOf(pregnantwomen
-                            .getInt("Abortion_FacilityName"));
-                }
-
-                String sqlcount = "select count(*) from tblPregnant_woman where  PWGUID='"
-                        + PWGUID + "'";
-                int count = dataProvider.getMaxRecord(sqlcount);
-                String sqlcount1 = "select count(*) from tblPregnant_woman where  PWGUID='"
-                        + PWGUID + "' and IsEdited=1";
-                int count1 = dataProvider.getMaxRecord(sqlcount1);
-                String sql = "";
-                if (count == 0) {
-
-                    sql = "Insert into tblPregnant_woman(Education,AltMobileNo,IsPregnant,PWGUID,HHGUID,HHFamilyMemberGUID,PWName,ANMID,PWImage,AshaID,LMPDate,EDDDate,PWRegistrationDate,Regwithin12weeks,RegweeksElaspsed,HusbandName,Husband_GUID,MobileNo,MotherMCTSID,IFSCCode,Accountno,JSYBenificiaryYN,JSYRegDate,JSYPaymentReceivedYN,PWDOB,PWAgeYears,PWAgeRefDate,PWWeight,PWBloodGroup,PastIllnessYN,TotalPregnancy,LastPregnancyResult,LastPregnancyComplication,LTLPregnancyResult,LTLPregnancyomplication,PWHeight,LastPregDeliveryPlace,LasttolastPregDeliveryPlace,ExpFacilityforDelivery,ExpFacilityforDeliveryName,VDRLTestYN,VDRLResult,HIVTestYN,HIVResult,Visit1Date,Visit2Date,Visit3Date,Visit4Date,ISAbortion,AbortionFacilityType,NoofANCVisitsDone,LastANCVisitDate,TT1Date,TT2Date,TTBoosterDate,DangerSigns,RefferedYN,DeliveryDateTime,DeliveryPlace,DeliveryConductedBy,DeliveryType,DeliveryComplication,MotherDeathCause,DeliveryOutcome,DTMFacilityDischarge,PaymentRecieved,PlaceofDeath,DateofDeath,OtherPlaceofDeath,CreatedOn,CreatedBy,UpdatedOn,UpdatedBy,IsEdited,IsUploaded,Abortion_FacilityName)values("
-                            + Education
-                            + ",'"
-                            + AltMobileNo
-                            + "',"
-                            + IsPregnant
-                            + ",'"
-                            + PWGUID
-                            + "','"
-                            + HHGUID
-                            + "','"
-                            + HHFamilyMemberGUID
-                            + "','"
-                            + PWName
-                            + "',"
-                            + ANMID
-                            + ",'"
-                            + PWImage
-                            + "',"
-                            + AshaID
-                            + ",'"
-                            + LMPDate
-                            + "','"
-                            + EDDDate
-                            + "','"
-                            + PWRegistrationDate
-                            + "',"
-                            + Regwithin12weeks
-                            + ","
-                            + RegweeksElaspsed
-                            + ",'"
-                            + HusbandName
-                            + "','"
-                            + Husband_GUID
-                            + "','"
-                            + MobileNo
-                            + "','"
-                            + MotherMCTSID
-                            + "','"
-                            + IFSCCode
-                            + "','"
-                            + Accountno
-                            + "',"
-                            + JSYBenificiaryYN
-                            + ",'"
-                            + JSYRegDate
-                            + "',"
-                            + JSYPaymentReceivedYN
-                            + ",'"
-                            + PWDOB
-                            + "',"
-                            + PWAgeYears
-                            + ",'"
-                            + PWAgeRefDate
-                            + "',"
-                            + PWWeight
-                            + ","
-                            + PWBloodGroup
-                            + ",'"
-                            + PastIllnessYN
-                            + "',"
-                            + TotalPregnancy
-                            + ","
-                            + LastPregnancyResult
-                            + ","
-                            + LastPregnancyComplication
-                            + ","
-                            + LTLPregnancyResult
-                            + ","
-                            + LTLPregnancyomplication
-                            + ","
-                            + PWHeight
-                            + ","
-                            + LastPregDeliveryPlace
-                            + ","
-                            + LasttolastPregDeliveryPlace
-                            + ",'"
-                            + ExpFacilityforDelivery
-                            + "','"
-                            + ExpFacilityforDeliveryName
-                            + "',"
-                            + VDRLTestYN
-                            + ",'"
-                            + VDRLResult
-                            + "',"
-                            + HIVTestYN
-                            + ",'"
-                            + HIVResult
-                            + "','"
-                            + Visit1Date
-                            + "','"
-                            + Visit2Date
-                            + "','"
-                            + Visit3Date
-                            + "','"
-                            + Visit4Date
-                            + "',"
-                            + ISAbortion
-                            + ","
-                            + AbortionFacilityType
-                            + ","
-                            + NoofANCVisitsDone
-                            + ",'"
-                            + LastANCVisitDate
-                            + "','"
-                            + TT1Date
-                            + "','"
-                            + TT2Date
-                            + "','"
-                            + TTBoosterDate
-                            + "','"
-                            + DangerSigns
-                            + "',"
-                            + RefferedYN
-                            + ",'"
-                            + DeliveryDateTime
-                            + "',"
-                            + DeliveryPlace
-                            + ",'"
-                            + DeliveryConductedBy
-                            + "',"
-                            + DeliveryType
-                            + ",'"
-                            + DeliveryComplication
-                            + "',"
-                            + MotherDeathCause
-                            + ","
-                            + DeliveryOutcome
-                            + ",'"
-                            + DTMFacilityDischarge
-                            + "','"
-                            + PaymentRecieved
-                            + "',"
-                            + PlaceofDeath
-                            + ",'"
-                            + DateofDeath
-                            + "','"
-                            + OtherPlaceofDeath
-                            + "','"
-                            + CreatedOn
-                            + "',"
-                            + CreatedBy
-                            + ",'"
-                            + UpdatedOn
-                            + "',"
-                            + UpdatedBy
-                            + ",0,0," + Abortion_FacilityName + ")";
-                    dataProvider.executeSql(sql);
-                } else {
-                    if (count1 == 0) {
-                        sql = "update tblPregnant_woman set Education="
-                                + Education
-                                + ", IsPregnant="
-                                + IsPregnant
-                                + ",HHGUID='"
-                                + HHGUID
-                                + "',HHFamilyMemberGUID='"
-                                + HHFamilyMemberGUID
-                                + "',AltMobileNo='"
-                                + AltMobileNo
-                                + "',PWName='"
-                                + PWName
-                                + "',ANMID="
-                                + ANMID
-                                + ",PWImage='"
-                                + PWImage
-                                + "',AshaID="
-                                + AshaID
-                                + ",LMPDate='"
-                                + LMPDate
-                                + "',EDDDate='"
-                                + EDDDate
-                                + "',PWRegistrationDate='"
-                                + PWRegistrationDate
-                                + "',Regwithin12weeks="
-                                + Regwithin12weeks
-                                + ",RegweeksElaspsed="
-                                + RegweeksElaspsed
-                                + ",HusbandName='"
-                                + HusbandName
-                                + "',Husband_GUID='"
-                                + Husband_GUID
-                                + "',MobileNo='"
-                                + MobileNo
-                                + "',MotherMCTSID='"
-                                + MotherMCTSID
-                                + "',IFSCCode='"
-                                + IFSCCode
-                                + "',Accountno='"
-                                + Accountno
-                                + "',JSYBenificiaryYN="
-                                + JSYBenificiaryYN
-                                + ",JSYRegDate='"
-                                + JSYRegDate
-                                + "',JSYPaymentReceivedYN="
-                                + JSYPaymentReceivedYN
-                                + ",PWDOB='"
-                                + PWDOB
-                                + "',PWAgeYears="
-                                + PWAgeYears
-                                + ",PWAgeRefDate='"
-                                + PWAgeRefDate
-                                + "',PWWeight="
-                                + PWWeight
-                                + ",PWBloodGroup="
-                                + PWBloodGroup
-                                + ",PastIllnessYN='"
-                                + PastIllnessYN
-                                + "',TotalPregnancy="
-                                + TotalPregnancy
-                                + ",LastPregnancyResult="
-                                + LastPregnancyResult
-                                + ",LastPregnancyComplication="
-                                + LastPregnancyComplication
-                                + ",LTLPregnancyResult="
-                                + LTLPregnancyResult
-                                + ",LTLPregnancyomplication="
-                                + LTLPregnancyomplication
-                                + ",PWHeight="
-                                + PWHeight
-                                + ",LastPregDeliveryPlace="
-                                + LastPregDeliveryPlace
-                                + ",LasttolastPregDeliveryPlace="
-                                + LasttolastPregDeliveryPlace
-                                + ",ExpFacilityforDelivery='"
-                                + ExpFacilityforDelivery
-                                + "',ExpFacilityforDeliveryName='"
-                                + ExpFacilityforDeliveryName
-                                + "',VDRLTestYN="
-                                + VDRLTestYN
-                                + ",VDRLResult='"
-                                + VDRLResult
-                                + "',HIVTestYN="
-                                + HIVTestYN
-                                + ",HIVResult='"
-                                + HIVResult
-                                + "',Visit1Date='"
-                                + Visit1Date
-                                + "',Visit2Date='"
-                                + Visit2Date
-                                + "',Visit3Date='"
-                                + Visit3Date
-                                + "',Visit4Date='"
-                                + Visit4Date
-                                + "',ISAbortion="
-                                + ISAbortion
-                                + ",AbortionFacilityType="
-                                + AbortionFacilityType
-                                + ",NoofANCVisitsDone="
-                                + NoofANCVisitsDone
-                                + ",LastANCVisitDate='"
-                                + LastANCVisitDate
-                                + "',TT1Date='"
-                                + TT1Date
-                                + "',TT2Date='"
-                                + TT2Date
-                                + "',TTBoosterDate='"
-                                + TTBoosterDate
-                                + "',DangerSigns='"
-                                + DangerSigns
-                                + "',RefferedYN="
-                                + RefferedYN
-                                + ",DeliveryDateTime='"
-                                + DeliveryDateTime
-                                + "',DeliveryPlace="
-                                + DeliveryPlace
-                                + ",DeliveryConductedBy='"
-                                + DeliveryConductedBy
-                                + "',DeliveryType="
-                                + DeliveryType
-                                + ",DeliveryComplication='"
-                                + DeliveryComplication
-                                + "',MotherDeathCause="
-                                + MotherDeathCause
-                                + ",DeliveryOutcome="
-                                + DeliveryOutcome
-                                + ",DTMFacilityDischarge='"
-                                + DTMFacilityDischarge
-                                + "',PaymentRecieved='"
-                                + PaymentRecieved
-                                + "',PlaceofDeath="
-                                + PlaceofDeath
-                                + ",DateofDeath='"
-                                + DateofDeath
-                                + "',OtherPlaceofDeath='"
-                                + OtherPlaceofDeath
-                                + "',CreatedOn='"
-                                + CreatedOn
-                                + "',CreatedBy="
-                                + CreatedBy
-                                + ",UpdatedOn='"
-                                + UpdatedOn
-                                + "',UpdatedBy="
-                                + UpdatedBy
-                                + ",IsEdited=0,IsUploaded=0,Abortion_FacilityName="
-                                + Abortion_FacilityName + " where PWGUID='"
-                                + PWGUID + "'";
-                    }
-                }
-            }
-            tbl_DatesEdArray = jsonObj.getJSONArray("tbl_DatesEd");
-            for (int i = 0; i < tbl_DatesEdArray.length(); i++) {
-                JSONObject DatesEd = tbl_DatesEdArray.getJSONObject(i);
-
-                String HHSurveyGUID = "";
-                String HHFamilyMemberGUID = "";
-                String PWGUID = "";
-                String LmpDate = "";
-                String EDD = "";
-                String TT1Date = "";
-                String TT2Date = "";
-                String AncCheckupdate1 = "";
-                String AncCheckupdate3 = "";
-                String AncCheckupdate2 = "";
-                String AncCheckupdate4 = "";
-                String CreatedOn = "";
-                String UpdatedOn = "";
-                int CreatedBy = 0;
-                int IsEdited = 0;
-                int IsDeleted = 0;
-                int UpdatedBy = 0;
-                int AshaID = 0;
-                int ANMID = 0;
-                HHSurveyGUID = DatesEd.getString("HHSurveyGUID");
-                HHFamilyMemberGUID = DatesEd.getString("HHFamilyMemberGUID");
-                PWGUID = DatesEd.getString("PWGUID");
-                LmpDate = DatesEd.getString("LmpDate");
-                EDD = DatesEd.getString("EDD");
-                TT1Date = Validate.changeDateFormat(DatesEd
-                        .getString("TT1Date"));
-                TT2Date = Validate.changeDateFormat(DatesEd
-                        .getString("TT2Date"));
-                AncCheckupdate1 = Validate.changeDateFormat(DatesEd
-                        .getString("AncCheckupDate1"));
-                AncCheckupdate3 = Validate.changeDateFormat(DatesEd
-                        .getString("AncCheckupDate2"));
-                AncCheckupdate2 = Validate.changeDateFormat(DatesEd
-                        .getString("AncCheckupDate3"));
-                AncCheckupdate4 = Validate.changeDateFormat(DatesEd
-                        .getString("AncCheckupDate4"));
-                CreatedOn = DatesEd.getString("CreatedOn");
-                UpdatedOn = DatesEd.getString("UpdatedOn");
-                if (DatesEd.getString("CreatedBy") != null
-                        && DatesEd.getString("CreatedBy").length() > 0
-                        && !DatesEd.getString("CreatedBy").equalsIgnoreCase(
-                        "null")) {
-                    CreatedBy = Integer.valueOf(DatesEd.getInt("CreatedBy"));
-                }
-                // if (DatesEd.getString("IsEdited") != null
-                // && DatesEd.getString("IsEdited").length() > 0
-                // && !DatesEd.getString("IsEdited").equalsIgnoreCase(
-                // "null")) {
-                // IsEdited = Integer.valueOf(DatesEd.getInt("IsEdited"));
-                // }
-                if (DatesEd.getString("IsDeleted") != null
-                        && DatesEd.getString("IsDeleted").length() > 0
-                        && !DatesEd.getString("IsDeleted").equalsIgnoreCase(
-                        "null")) {
-                    IsDeleted = Integer.valueOf(DatesEd.getInt("IsDeleted"));
-                }
-                if (DatesEd.getString("UpdatedBy") != null
-                        && DatesEd.getString("UpdatedBy").length() > 0
-                        && !DatesEd.getString("UpdatedBy").equalsIgnoreCase(
-                        "null")) {
-                    UpdatedBy = Integer.valueOf(DatesEd.getInt("UpdatedBy"));
-                }
-                if (DatesEd.getString("AshaID") != null
-                        && DatesEd.getString("AshaID").length() > 0
-                        && !DatesEd.getString("AshaID")
-                        .equalsIgnoreCase("null")) {
-                    AshaID = Integer.valueOf(DatesEd.getInt("AshaID"));
-                }
-                if (DatesEd.getString("ANMID") != null
-                        && DatesEd.getString("ANMID").length() > 0
-                        && !DatesEd.getString("ANMID").equalsIgnoreCase("null")) {
-                    ANMID = Integer.valueOf(DatesEd.getInt("ANMID"));
-                }
-
-                String sqlcount = "select count(*) from tbl_DatesEd  where PWGUID='"
-                        + PWGUID + "'";
-                int count = dataProvider.getMaxRecord(sqlcount);
-                String sqlcount1 = "select count(*) from tbl_DatesEd  where PWGUID='"
-                        + PWGUID + "' and IsEdited=1";
-                int count1 = dataProvider.getMaxRecord(sqlcount1);
-
-                String sql = "";
-                if (count == 0) {
-
-                    sql = "Insert into tbl_DatesEd( HHSurveyGUID ,HHFamilyMemberGUID ,PWGUID ,LmpDate ,EDD ,TT1Date ,TT2Date ,AncCheckupdate1 ,AncCheckupdate3 ,AncCheckupdate2 ,AncCheckupdate4 ,CreatedOn ,UpdatedOn ,CreatedBy , IsEdited , IsDeleted , UpdatedBy , AshaID , ANMID)values( '"
-                            + HHSurveyGUID
-                            + "','"
-                            + HHFamilyMemberGUID
-                            + "','"
-                            + PWGUID
-                            + "','"
-                            + LmpDate
-                            + "','"
-                            + EDD
-                            + "','"
-                            + TT1Date
-                            + "','"
-                            + TT2Date
-                            + "','"
-                            + AncCheckupdate1
-                            + "','"
-                            + AncCheckupdate3
-                            + "','"
-                            + AncCheckupdate2
-                            + "','"
-                            + AncCheckupdate4
-                            + "','"
-                            + CreatedOn
-                            + "','"
-                            + UpdatedOn
-                            + "',"
-                            + CreatedBy
-                            + ","
-                            + IsEdited
-                            + ","
-                            + IsDeleted
-                            + ","
-                            + UpdatedBy + "," + AshaID + "," + ANMID + ")";
-
-                } else {
-                    if (count1 == 0) {
-                        sql = "update tbl_DatesEd set  HHSurveyGUID ='"
-                                + HHSurveyGUID + "',HHFamilyMemberGUID ='"
-                                + HHFamilyMemberGUID + "',LmpDate ='" + LmpDate
-                                + "',EDD ='" + EDD + "',TT1Date ='" + TT1Date
-                                + "',TT2Date ='" + TT2Date
-                                + "',AncCheckupdate1 ='" + AncCheckupdate1
-                                + "',AncCheckupdate3 ='" + AncCheckupdate2
-                                + "',AncCheckupdate2 ='" + AncCheckupdate3
-                                + "',AncCheckupdate4 ='" + AncCheckupdate4
-                                + "',CreatedOn ='" + CreatedOn
-                                + "',UpdatedOn ='" + UpdatedOn
-                                + "',CreatedBy =" + CreatedBy + ", IsEdited ="
-                                + IsEdited + ", IsDeleted =" + IsDeleted
-                                + ", UpdatedBy =" + UpdatedBy + ", AshaID ="
-                                + AshaID + ", ANMID  =" + ANMID
-                                + " where PWGUID='" + PWGUID + "'";
-
-                    }
-                }
-                dataProvider.executeSql(sql);
-            }
-
-            iMNCHDataDownload = 1;
-        } catch (Exception e) {
-            downloadmsg = e.getMessage();
-            e.printStackTrace();
-        }
-    }
 
     public void importtblChild(String UserName, String Password, String ashaid) {
 
@@ -6176,7 +4711,7 @@ public class Synchronization extends Activity {
 
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(4);
@@ -6184,6 +4719,7 @@ public class Synchronization extends Activity {
         nameValuePair.add(new BasicNameValuePair("password", Password));
         nameValuePair.add(new BasicNameValuePair("sFlag", "tblchild"));
         nameValuePair.add(new BasicNameValuePair("asha_id", ashaid));
+        nameValuePair.add(new BasicNameValuePair("lastdownload_date", tv_dateMnch1.getText().toString()));
 
         // Encoding POST data
         try {
@@ -6210,11 +4746,9 @@ public class Synchronization extends Activity {
             }
 
             try {
-
                 tblChildArray = jsonObj.getJSONArray("tblchild");
                 for (int i = 0; i < tblChildArray.length(); i++) {
                     JSONObject Child = tblChildArray.getJSONObject(i);
-
                     String pw_GUID = "";
                     String HHGUID = "";
                     String HHFamilyMemberGUID = "";
@@ -6283,7 +4817,9 @@ public class Synchronization extends Activity {
                     String VitaminA8 = "";
                     String VitaminA9 = "";
                     String TT2 = "";
-
+                    String MeaslesRubella = "";
+                    String IPV2 = "";
+                    int DeliveryType = 0;
                     Facility = Child.getString("Facility");
                     opv4 = Child.getString("opv4");
                     hepb4 = Child.getString("hepb4");
@@ -6338,6 +4874,9 @@ public class Synchronization extends Activity {
                     VitaminA8 = Child.getString("VitaminA8");
                     VitaminA9 = Child.getString("VitaminA9");
                     TT2 = Child.getString("TT2");
+                    MeaslesRubella = Child.getString("MeaslesRubella");
+                    IPV2 = Child.getString("IPV2");
+                    DeliveryType = Validate.returnIntegerValue(Child.getString("DeliveryType"));
 
                     if (Child.getString("child_id") != null
                             && Child.getString("child_id").length() > 0
@@ -6430,7 +4969,7 @@ public class Synchronization extends Activity {
                             + ChildGUID + "'";
                     int count = dataProvider.getMaxRecord(sqlcount);
                     String sqlcount1 = "select count(*) from tblChild  where ChildGUID='"
-                            + ChildGUID + "' and IsEdited=1";
+                            + ChildGUID + "' ";
                     int count1 = dataProvider.getMaxRecord(sqlcount1);
 
                     String sql = "";
@@ -6446,7 +4985,7 @@ public class Synchronization extends Activity {
                     } else {
                         if (count == 0) {
 
-                            sql = "Insert into tblChild(AshaID,ANMID,pw_GUID,Facility,opv4,hepb4,Pentavalent1,Pentavalent2,Pentavalent3,IPV,DPTBooster,OPVBooster,MeaslesTwoDose,VitaminAtwo,DPTBoostertwo,ChildTT,FacilityType,HHGUID,HHFamilyMemberGUID,Child_ID,ChildGUID,MotherGUID,Date_Of_Registration,Child_dob,Birth_time,Gender,Wt_of_child,place_of_birth,preTerm_fullTerm,mother_status,child_status,mother_death_dt,child_death_dt,child_mcts_id,child_name,cried_after_birth,breastfeeding_within1H,Exclusive_BF,complementry_BF,bcg,opv1,dpt1,hepb1,opv2,dpt2,hepb2,opv3,dpt3,hepb3,measeals,vitaminA,created_on,created_by,modified_on,modified_by,IsEdited,IsUploaded,JEVaccine1,JEVaccine2,VitaminA3,VitaminA4,VitaminA5,VitaminA6,VitaminA7,VitaminA8,VitaminA9,TT2)values("
+                            sql = "Insert into tblChild(AshaID,ANMID,pw_GUID,Facility,opv4,hepb4,Pentavalent1,Pentavalent2,Pentavalent3,IPV,DPTBooster,OPVBooster,MeaslesTwoDose,VitaminAtwo,DPTBoostertwo,ChildTT,FacilityType,HHGUID,HHFamilyMemberGUID,Child_ID,ChildGUID,MotherGUID,Date_Of_Registration,Child_dob,Birth_time,Gender,Wt_of_child,place_of_birth,preTerm_fullTerm,mother_status,child_status,mother_death_dt,child_death_dt,child_mcts_id,child_name,cried_after_birth,breastfeeding_within1H,Exclusive_BF,complementry_BF,bcg,opv1,dpt1,hepb1,opv2,dpt2,hepb2,opv3,dpt3,hepb3,measeals,vitaminA,created_on,created_by,modified_on,modified_by,IsEdited,IsUploaded,JEVaccine1,JEVaccine2,VitaminA3,VitaminA4,VitaminA5,VitaminA6,VitaminA7,VitaminA8,VitaminA9,TT2,MeaslesRubella,IPV2,DeliveryType)values("
                                     + AshaID
                                     + ","
                                     + ANMID
@@ -6575,7 +5114,10 @@ public class Synchronization extends Activity {
                                     + "','"
                                     + VitaminA9
                                     + "','"
-                                    + TT2 + "')";
+                                    + TT2 + "','"
+                                    + MeaslesRubella + "','"
+                                    + IPV2 + "','"
+                                    + DeliveryType + "')";
                             dataProvider.executeSql(sql);
 
                         } else {
@@ -6670,7 +5212,7 @@ public class Synchronization extends Activity {
                                         + Pentavalent2
                                         + "',	Pentavalent3='"
                                         + Pentavalent3
-                                        + "',		IPV='"
+                                        + "',IPV='"
                                         + IPV
                                         + "',	DPTBooster='"
                                         + DPTBooster
@@ -6708,6 +5250,12 @@ public class Synchronization extends Activity {
                                         + VitaminA9
                                         + "',TT2='"
                                         + TT2
+                                        + "',MeaslesRubella='"
+                                        + MeaslesRubella
+                                        + "',IPV2='"
+                                        + IPV2
+                                        + "',DeliveryType='"
+                                        + DeliveryType
                                         + "',IsEdited=0,IsUploaded=0 where ChildGUID='"
                                         + ChildGUID + "'";
                                 dataProvider.executeSql(sql);
@@ -6741,7 +5289,7 @@ public class Synchronization extends Activity {
 
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(4);
@@ -6749,6 +5297,7 @@ public class Synchronization extends Activity {
         nameValuePair.add(new BasicNameValuePair("password", Password));
         nameValuePair.add(new BasicNameValuePair("sFlag", "tblancvisit"));
         nameValuePair.add(new BasicNameValuePair("asha_id", ashaid));
+        nameValuePair.add(new BasicNameValuePair("lastdownload_date", tv_dateMnch1.getText().toString()));
 
         // Encoding POST data
         try {
@@ -6842,6 +5391,8 @@ public class Synchronization extends Activity {
                     int DangerSign = 0;
                     int CalciumReceived = 0;
                     int CalciumTablet = 0;
+                    int HighRisk = 0;
+                    String HighRiskDate = "";
 
                     if (ANCVisit.getString("AncVisitID") != null
                             && ANCVisit.getString("AncVisitID").length() > 0
@@ -7163,6 +5714,21 @@ public class Synchronization extends Activity {
                         TT1TT2last2yr = Integer.valueOf(ANCVisit
                                 .getInt("TT1TT2last2yr"));
                     }
+                    if (ANCVisit.getString("HighRisk") != null
+                            && ANCVisit.getString("HighRisk").length() > 0
+                            && !ANCVisit.getString("HighRisk")
+                            .equalsIgnoreCase("null")) {
+                        HighRisk = ANCVisit
+                                .getInt("HighRisk");
+                    }
+                    if (ANCVisit.getString("HighRiskDate") != null
+                            && ANCVisit.getString("HighRiskDate").length() > 0
+                            && !ANCVisit.getString("HighRiskDate")
+                            .equalsIgnoreCase("null")) {
+                        HighRiskDate = ANCVisit
+                                .getString("HighRiskDate");
+                    }
+
                     String sqlcount = "select count(*) from TblANCVisit  where VisitGUID='"
                             + VisitGUID + "' and PWGUID='" + PWGUID + "'";
                     int count = dataProvider.getMaxRecord(sqlcount);
@@ -7176,7 +5742,7 @@ public class Synchronization extends Activity {
                     String sql = "";
                     if (count == 0) {
 
-                        sql = "Insert into TblANCVisit(TT1TT2last2yr,PWGUID,VisitGUID,ByANMID,ByAshaID,MCTSID,Visit_No,Trimester,VisitDueDate,CheckupVisitDate,CheckupPlace,BirthWeight,BP,BPResult,Hemoglobin,UrineTest,UrineSugar,UrineAlbumin,TTfirstDoseDate,TTsecondDoseDate,TTBoosterDate,VDRLTest,HIVTest,UltraSound,UltraSoundConductedby,IFARecieved,NumberIFARecieved,CreatedOn,CreatedBy,UpdatedOn,UpdatedBy,UltrasoundResult,HomeVisitDate,IsEdited,IsUploaded,AncVisitID,PregWomenReg,McpCard,TT1,TT1date,TT2,TT2date,TTbooster,TTboosterDate1,Weight1,BP1,HB1,UrineTestsugar1,UrineTestAl1,IronTablet1,AncCheckup1,Weight1YN,BP1YN,HB1YN,UrineTestsugar1YN,UrineTestAl1YN,IronTablet1YN,AncCheckup1YN,DeliveryONhospYN,FamilyPlanning,DangerSign,CalciumReceived,CalciumTablet)values("
+                        sql = "Insert into TblANCVisit(TT1TT2last2yr,PWGUID,VisitGUID,ByANMID,ByAshaID,MCTSID,Visit_No,Trimester,VisitDueDate,CheckupVisitDate,CheckupPlace,BirthWeight,BP,BPResult,Hemoglobin,UrineTest,UrineSugar,UrineAlbumin,TTfirstDoseDate,TTsecondDoseDate,TTBoosterDate,VDRLTest,HIVTest,UltraSound,UltraSoundConductedby,IFARecieved,NumberIFARecieved,CreatedOn,CreatedBy,UpdatedOn,UpdatedBy,UltrasoundResult,HomeVisitDate,IsEdited,IsUploaded,AncVisitID,PregWomenReg,McpCard,TT1,TT1date,TT2,TT2date,TTbooster,TTboosterDate1,Weight1,BP1,HB1,UrineTestsugar1,UrineTestAl1,IronTablet1,AncCheckup1,Weight1YN,BP1YN,HB1YN,UrineTestsugar1YN,UrineTestAl1YN,IronTablet1YN,AncCheckup1YN,DeliveryONhospYN,FamilyPlanning,DangerSign,CalciumReceived,CalciumTablet,HighRisk,HighRiskDate)values("
                                 + TT1TT2last2yr
                                 + ",'"
                                 + PWGUID
@@ -7296,7 +5862,7 @@ public class Synchronization extends Activity {
                                 + DangerSign
                                 + ","
                                 + CalciumReceived
-                                + "," + CalciumTablet + ")";
+                                + "," + CalciumTablet + "," + HighRisk + ",'" + HighRiskDate + "')";
                         dataProvider.executeSql(sql);
                     } else {
                         if (count1 == 0) {
@@ -7351,7 +5917,9 @@ public class Synchronization extends Activity {
                                     + ",DangerSign=" + DangerSign
                                     + ",CalciumReceived=" + CalciumReceived
                                     + ",CalciumTablet=" + CalciumTablet
-                                    + " where PWGUID='" + PWGUID
+                                    + ",HighRisk=" + HighRisk
+                                    + ",HighRiskDate='" + HighRiskDate
+                                    + "' where PWGUID='" + PWGUID
                                     + "' and VisitGUID='" + VisitGUID + "'";
                             dataProvider.executeSql(sql);
                         }
@@ -7378,14 +5946,16 @@ public class Synchronization extends Activity {
         pregnantdownload = 0;
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(4);
         nameValuePair.add(new BasicNameValuePair("username", UserName));
         nameValuePair.add(new BasicNameValuePair("password", Password));
         nameValuePair.add(new BasicNameValuePair("sFlag", "tblpregnant_woman"));
+        nameValuePair.add(new BasicNameValuePair("IMEI", global.getIMEI()));
         nameValuePair.add(new BasicNameValuePair("asha_id", ashaid));
+        nameValuePair.add(new BasicNameValuePair("lastdownload_date", tv_dateMnch1.getText().toString()));
 
         // Encoding POST data
         try {
@@ -7573,8 +6143,8 @@ public class Synchronization extends Activity {
                     HHFamilyMemberGUID = pregnantwomen
                             .getString("HHFamilyMemberGUID");
                     PWName = pregnantwomen.getString("PWName");
-                    PWImage = pregnantwomen.getString("PWImage");
-                    LMPDate = pregnantwomen.getString("LMPDate");
+                    PWImage = Validate.returnStringValue(pregnantwomen.getString("PWImage"));
+                    LMPDate = Validate.returnStringValue(pregnantwomen.getString("LMPDate"));
                     EDDDate = pregnantwomen.getString("EDDDate");
                     PWRegistrationDate = pregnantwomen
                             .getString("PWRegistrationDate");
@@ -8282,7 +6852,7 @@ public class Synchronization extends Activity {
 
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(4);
@@ -8290,6 +6860,7 @@ public class Synchronization extends Activity {
         nameValuePair.add(new BasicNameValuePair("password", Password));
         nameValuePair.add(new BasicNameValuePair("sFlag", "tbl_datesed"));
         nameValuePair.add(new BasicNameValuePair("asha_id", ashaid));
+        nameValuePair.add(new BasicNameValuePair("lastdownload_date", tv_dateMnch1.getText().toString()));
 
         // Encoding POST data
         try {
@@ -8573,22 +7144,131 @@ public class Synchronization extends Activity {
         String sQueryDeleteanmasha = null;
         sQueryDeleteanmasha = "Delete from anmasha";
         dataProvider.executeSql(sQueryDeleteanmasha);
+        String sQueryDeletemstchc = "";
+        sQueryDeletemstchc = "Delete from mstchc";
+        dataProvider.executeSql(sQueryDeletemstchc);
+        String sQueryDeleteanmsubcenter = null;
+        sQueryDeleteanmsubcenter = "Delete from anmsubcenter";
+        dataProvider.executeSql(sQueryDeleteanmsubcenter);
+        String sqlmstashaactivity = "Delete from mstashaactivity";
+        dataProvider.executeSql(sqlmstashaactivity);
+
+    }
+
+    private void ClearMasterDataasha() {
+
+        String sQueryDeleteMstUserData = null;
+        sQueryDeleteMstUserData = "Delete from  MstUser where UserID='" + global.getsGlobalUserID() + "'";
+        dataProvider.executeSql(sQueryDeleteMstUserData);
+
+        String sQueryDeleteMstRoleData = null;
+        sQueryDeleteMstRoleData = "Delete from MstRole";
+        dataProvider.executeSql(sQueryDeleteMstRoleData);
+
+        String sQueryDeleteMstStateData = null;
+        sQueryDeleteMstStateData = "Delete from MstState";
+        dataProvider.executeSql(sQueryDeleteMstStateData);
+
+        String sQueryDeleteMstDistrictData = null;
+        sQueryDeleteMstDistrictData = "Delete from MstDistrict";
+        dataProvider.executeSql(sQueryDeleteMstDistrictData);
+
+        String sQueryDeleteMstBlockData = null;
+        sQueryDeleteMstBlockData = "Delete from MstBlock";
+        dataProvider.executeSql(sQueryDeleteMstBlockData);
+
+        String sQueryDeleteMstPanchayatData = null;
+        sQueryDeleteMstPanchayatData = "Delete from MstPanchayat";
+        dataProvider.executeSql(sQueryDeleteMstPanchayatData);
+
+        String sQueryDeleteMstVillageData = null;
+        sQueryDeleteMstVillageData = "Delete from MstVillage where VillageID in( select VillageID from ashavillage where ashaid='" + global.getsGlobalAshaCode() + "')";
+        dataProvider.executeSql(sQueryDeleteMstVillageData);
+
+        String sQueryDeleteMstCommonData = null;
+        sQueryDeleteMstCommonData = "Delete from MstCommon";
+        dataProvider.executeSql(sQueryDeleteMstCommonData);
+
+        String sQueryDeleteMstANMData = null;
+        sQueryDeleteMstANMData = "Delete from MstANM";
+        dataProvider.executeSql(sQueryDeleteMstANMData);
+
+        String sQueryDeleteMstASHAData = null;
+        sQueryDeleteMstASHAData = "Delete from MstASHA where  ASHAID='" + global.getsGlobalAshaCode() + "'";
+        dataProvider.executeSql(sQueryDeleteMstASHAData);
+
+        String sQueryDeleteMstSubCenterData = null;
+        sQueryDeleteMstSubCenterData = "Delete from MstSubCenter";
+        dataProvider.executeSql(sQueryDeleteMstSubCenterData);
+
+        String sQueryDeleteMstCatchmentSupervisor = null;
+        sQueryDeleteMstCatchmentSupervisor = "Delete from MstCatchmentSupervisor where MstCatchmentSupervisor.CHS_ID in (select CHS_ID from MstASHA where AshaID='" + global.getsGlobalAshaCode() + "')";
+        dataProvider.executeSql(sQueryDeleteMstCatchmentSupervisor);
+
+        String sQueryDeleteMstVersion = null;
+        sQueryDeleteMstVersion = "Delete from MstVersion";
+        dataProvider.executeSql(sQueryDeleteMstVersion);
+
+        String sQueryDeleteMstVersionTrack = null;
+        sQueryDeleteMstVersionTrack = "Delete from MstVersionTrack";
+        dataProvider.executeSql(sQueryDeleteMstVersionTrack);
+        // add herojit
+        String sQueryDeleteMst_tbl_Incentives = null;
+        sQueryDeleteMst_tbl_Incentives = "Delete from tbl_Incentive";
+        dataProvider.executeSql(sQueryDeleteMst_tbl_Incentives);
+
+        String sQueryMstVHND_PerformanceIndicator = null;
+        sQueryMstVHND_PerformanceIndicator = "Delete from MstVHND_PerformanceIndicator";
+        dataProvider.executeSql(sQueryMstVHND_PerformanceIndicator);
+
+        String sQueryDeleteMstVHND_DueListItems = null;
+        sQueryDeleteMstVHND_DueListItems = "Delete from MstVHND_DueListItems";
+        dataProvider.executeSql(sQueryDeleteMstVHND_DueListItems);
+
+        String sQueryDeleteVHND_Schedule = null;
+        sQueryDeleteVHND_Schedule = "Delete from VHND_Schedule where ASHA_ID='" + global.getsGlobalAshaCode() + "'";
+        dataProvider.executeSql(sQueryDeleteVHND_Schedule);
+        String sQueryDeletetblmedia = null;
+        sQueryDeletetblmedia = "Delete from tblmedia";
+        dataProvider.executeSql(sQueryDeletetblmedia);
+
+        String sQueryDeleteuserashamapping = "";
+        sQueryDeleteuserashamapping = "Delete from userashamapping";
+        dataProvider.executeSql(sQueryDeleteuserashamapping);
+
+        String sQueryDeleteashavillage = "";
+        sQueryDeleteashavillage = "Delete from ashavillage";
+        dataProvider.executeSql(sQueryDeleteashavillage);
+        String sQueryDeleteanmasha = null;
+        sQueryDeleteanmasha = "Delete from anmasha";
+        dataProvider.executeSql(sQueryDeleteanmasha);
+        String sQueryDeletemstchc = null;
+        sQueryDeletemstchc = "Delete from mstchc";
+        dataProvider.executeSql(sQueryDeletemstchc);
+        String sQueryDeleteanmsubcenter = null;
+        sQueryDeleteanmsubcenter = "Delete from anmsubcenter";
+        dataProvider.executeSql(sQueryDeleteanmsubcenter);
+        String sqlreport = "Delete from mstpdfreport";
+        dataProvider.executeSql(sqlreport);
+        String sqlmstashaactivity = "Delete from mstashaactivity";
+        dataProvider.executeSql(sqlmstashaactivity);
 
     }
 
     public void exportHH() {
-        HHSurveycount = dataProvider.getTblSurveyUploadcount();
 
-        // TODO Auto-generated method stub
-        if (HHSurveycount != null && HHSurveycount.size() > 0) {
-            if (isNetworkconn()) {
-                progressDialog = ProgressDialog.show(Synchronization.this, "",
-                        getResources().getString(R.string.Uploadingdata));
-                new Thread() {
+        if (isNetworkconn()) {
+            progressDialog = ProgressDialog.show(Synchronization.this, "",
+                    getResources().getString(R.string.Uploadingdata));
+            new Thread() {
 
-                    @Override
-                    public void run() {
-                        try {
+                @Override
+                public void run() {
+                    try {
+
+                        // TODO Auto-generated method stub
+                        HHSurveycount = dataProvider.getTblSurveyUploadcount();
+                        if (HHSurveycount != null && HHSurveycount.size() > 0) {
                             for (int i = 0; i < HHSurveycount.size(); i++) {
                                 if ((HHSurveycount != null && HHSurveycount
                                         .size() > 0)) {
@@ -8616,48 +7296,53 @@ public class Synchronization extends Activity {
                                     }
                                 }
                             }
-                        } catch (Exception exp) {
-                            downloadmsg = exp.getMessage();
-                            progressDialog.dismiss();
                         }
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                if (iDataUpload == 1) {
-                                    Toast.makeText(
-                                            Synchronization.this,
-                                            getResources()
-                                                    .getString(
-                                                            R.string.Datauploadsuccessfully),
-                                            Toast.LENGTH_LONG).show();
-                                    dataProvider.insertdownlaoddetail(1, "UploadHH", global.getUserID(), global.getsGlobalAshaCode(), global.getsGlobalANMCODE());
-                                    uploaddate();
-                                    count();
-                                } else {
-                                    Toast.makeText(Synchronization.this,
-                                            downloadmsg, Toast.LENGTH_LONG)
-                                            .show();
-
-                                }
-                            }
-                        });
-
+                    } catch (Exception exp) {
+                        downloadmsg = exp.getMessage();
                         progressDialog.dismiss();
                     }
-                }.start();
-            } else {
 
-                Toast.makeText(Synchronization.this,
-                        getResources().getString(R.string.NoNetworkAccess),
-                        Toast.LENGTH_LONG).show();
-            }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            if (iDataUpload == 1) {
+                                Toast.makeText(
+                                        Synchronization.this,
+                                        getResources()
+                                                .getString(
+                                                        R.string.Datauploadsuccessfully),
+                                        Toast.LENGTH_LONG).show();
+                                dataProvider.insertdownlaoddetail(1, "UploadHH", global.getUserID(), global.getsGlobalAshaCode(), global.getsGlobalANMCODE());
+                                uploaddate();
+                                if (global.getiGlobalRoleID() == 3) {
+                                    count();
+                                } else {
+                                    countashawise();
+                                }
+                            } else {
+                                Toast.makeText(Synchronization.this,
+                                        downloadmsg, Toast.LENGTH_LONG)
+                                        .show();
+
+                            }
+                        }
+                    });
+
+                    progressDialog.dismiss();
+                }
+            }.start();
         } else {
+
             Toast.makeText(Synchronization.this,
-                    getResources().getString(R.string.NothingforUpload),
+                    getResources().getString(R.string.NoNetworkAccess),
                     Toast.LENGTH_LONG).show();
         }
+//        } else {
+//            Toast.makeText(Synchronization.this,
+//                    getResources().getString(R.string.NothingforUpload),
+//                    Toast.LENGTH_LONG).show();
+//        }
 
     }
 
@@ -8698,6 +7383,7 @@ public class Synchronization extends Activity {
                                 exportMNCHdata();
                                 exportimage(pregnantwomen);
                                 exportAnswerdata();
+                                exportdownloaddetail();
 
                             }
                         } catch (Exception exp) {
@@ -8716,7 +7402,11 @@ public class Synchronization extends Activity {
                                             Toast.LENGTH_LONG).show();
                                     dataProvider.insertdownlaoddetail(2, "UploadMNCH", global.getUserID(), global.getsGlobalAshaCode(), global.getsGlobalANMCODE());
                                     uploaddate();
-                                    count();
+                                    if (global.getiGlobalRoleID() == 3) {
+                                        count();
+                                    } else {
+                                        countashawise();
+                                    }
                                 } else {
                                     Toast.makeText(Synchronization.this,
                                             downloadmsg, Toast.LENGTH_LONG)
@@ -8761,7 +7451,7 @@ public class Synchronization extends Activity {
 
             HttpClient httpClient = new DefaultHttpClient();
             // replace with your url
-            HttpPost httpPost = new HttpPost("URL");
+            HttpPost httpPost = new HttpPost("replace your URL");
             JSONObject jsonObjectcombined = new JSONObject();
             try {
 
@@ -8881,7 +7571,7 @@ public class Synchronization extends Activity {
                 HttpClient httpClient = new DefaultHttpClient();
                 // replace with your url
                 HttpPost httpPost = new HttpPost(
-                        "URL");
+                        "replace your URL");
                 JSONObject jsonObjectcombined = new JSONObject();
                 try {
 
@@ -9017,7 +7707,7 @@ public class Synchronization extends Activity {
     public void importimage(String imagename) {
 
         String ImageName = "";
-        String WebUrl = "URL";
+        String WebUrl = "replace your URL";
         if (imagename != null && imagename.length() > 10) {
 
             ImageName = imagename;
@@ -9030,10 +7720,9 @@ public class Synchronization extends Activity {
 
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
-        SoapPrimitive resultString = null;
-        String TAG1 = "Response";
+
         if (prg != null && prg.size() > 0) {
             for (int i = 0; i < prg.size(); i++) {
                 int iFlag = prg.get(i).getPWImage().length();
@@ -9140,7 +7829,7 @@ public class Synchronization extends Activity {
         try {
             HttpClient httpClient = new DefaultHttpClient();
             // replace with your url
-            HttpPost httpPost = new HttpPost("URL");
+            HttpPost httpPost = new HttpPost("replace your URL");
             JSONObject jsonObjectcombined = new JSONObject();
             try {
                 if (Child.size() > 0) {
@@ -9226,16 +7915,25 @@ public class Synchronization extends Activity {
                 try {
 
                     if (responseBody.contains("success")) {
-
-                        String sqltblChild = "Update tblChild set IsUploaded=1, IsEdited=0 where IsEdited=1";
-                        dataProvider.executeSql(sqltblChild);
-                        String sqltblPregnant_woman = "Update tblPregnant_woman set IsUploaded=1, IsEdited=0 where IsEdited=1 ";
-                        dataProvider.executeSql(sqltblPregnant_woman);
-                        String sqlTblANCVisit = "Update TblANCVisit set IsUploaded=1, IsEdited=0 where IsEdited=1 ";
-                        dataProvider.executeSql(sqlTblANCVisit);
-                        String sqltblhhupdate_Log = "Update tblhhupdate_Log set IsEdited=0 where IsEdited=1 ";
-                        dataProvider.executeSql(sqltblhhupdate_Log);
-
+                        if (global.getiGlobalRoleID() == 3) {
+                            String sqltblChild = "Update tblChild set IsUploaded=1, IsEdited=0 where  IsEdited=1";
+                            dataProvider.executeSql(sqltblChild);
+                            String sqltblPregnant_woman = "Update tblPregnant_woman set IsUploaded=1, IsEdited=0 where    IsEdited=1 ";
+                            dataProvider.executeSql(sqltblPregnant_woman);
+                            String sqlTblANCVisit = "Update TblANCVisit set IsUploaded=1, IsEdited=0 where   IsEdited=1 ";
+                            dataProvider.executeSql(sqlTblANCVisit);
+                            String sqltblhhupdate_Log = "Update tblhhupdate_Log set IsEdited=0 where IsEdited=1 ";
+                            dataProvider.executeSql(sqltblhhupdate_Log);
+                        } else {
+                            String sqltblChild = "Update tblChild set IsUploaded=1, IsEdited=0 where AshaID=" + global.getsGlobalAshaCode() + " and  IsEdited=1";
+                            dataProvider.executeSql(sqltblChild);
+                            String sqltblPregnant_woman = "Update tblPregnant_woman set IsUploaded=1, IsEdited=0 where AshaID=" + global.getsGlobalAshaCode() + " and   IsEdited=1 ";
+                            dataProvider.executeSql(sqltblPregnant_woman);
+                            String sqlTblANCVisit = "Update TblANCVisit set IsUploaded=1, IsEdited=0 where ByAshaID=" + global.getsGlobalAshaCode() + " and  IsEdited=1 ";
+                            dataProvider.executeSql(sqlTblANCVisit);
+                            String sqltblhhupdate_Log = "Update tblhhupdate_Log set IsEdited=0 where IsEdited=1 ";
+                            dataProvider.executeSql(sqltblhhupdate_Log);
+                        }
                         iDataUploadMNCH = 1;
 
                     } else {
@@ -9263,7 +7961,7 @@ public class Synchronization extends Activity {
         try {
             HttpClient httpClient = new DefaultHttpClient();
             // replace with your url
-            HttpPost httpPost = new HttpPost("URL");
+            HttpPost httpPost = new HttpPost("replace your URL");
             JSONObject jsonObjectcombined = new JSONObject();
             try {
 
@@ -9352,7 +8050,7 @@ public class Synchronization extends Activity {
         try {
             HttpClient httpClient = new DefaultHttpClient();
             // replace with your url
-            HttpPost httpPost = new HttpPost("URL");
+            HttpPost httpPost = new HttpPost("replace your URL");
             JSONObject jsonObjectcombined = new JSONObject();
             try {
                 if (VHNDDuelistnew.size() > 0) {
@@ -9401,10 +8099,15 @@ public class Synchronization extends Activity {
                 try {
 
                     if (responseBody.contains("success")) {
-                        iDataUploadfp = 1;
-                        String sqltblmstFPAns = "Update tblVHNDDuelist set IsUploaded=1 where IsUploaded=0";
-                        dataProvider.executeSql(sqltblmstFPAns);
-
+                        if (global.getiGlobalRoleID() == 3) {
+                            iDataUploadfp = 1;
+                            String sqltblmstFPAns = "Update tblVHNDDuelist set IsUploaded=1 where IsUploaded=0";
+                            dataProvider.executeSql(sqltblmstFPAns);
+                        } else {
+                            iDataUploadfp = 1;
+                            String sqltblmstFPAns = "Update tblVHNDDuelist set IsUploaded=1 where AshaID=" + global.getsGlobalAshaCode() + " and  IsUploaded=0";
+                            dataProvider.executeSql(sqltblmstFPAns);
+                        }
                     } else {
                         downloadmsg = responseBody;
                         iDataUploadfp = 0;
@@ -9429,7 +8132,7 @@ public class Synchronization extends Activity {
 
             HttpClient httpClient = new DefaultHttpClient();
             // replace with your url
-            HttpPost httpPost = new HttpPost("URL");
+            HttpPost httpPost = new HttpPost("replace your URL");
             JSONObject jsonObjectcombined = new JSONObject();
             try {
 
@@ -9489,13 +8192,21 @@ public class Synchronization extends Activity {
 
                 try {
                     if (responseBody.contains("success")) {
+                        if (global.getiGlobalRoleID() == 3) {
+                            String sqltblmstFPAns = "Update tblFP_followup set IsUploaded=1,IsEdited=0 where   IsEdited=1 ";
+                            dataProvider.executeSql(sqltblmstFPAns);
+                            String sqltblFP_visit = "Update tblFP_visit set IsUploaded=1,IsEdited=0 where   IsEdited=1 ";
+                            dataProvider.executeSql(sqltblFP_visit);
 
-                        String sqltblmstFPAns = "Update tblFP_followup set IsUploaded=1,IsEdited=0 where IsEdited=1 ";
-                        dataProvider.executeSql(sqltblmstFPAns);
-                        String sqltblFP_visit = "Update tblFP_visit set IsUploaded=1,IsEdited=0 where IsEdited=1 ";
-                        dataProvider.executeSql(sqltblFP_visit);
+                            iDataUploadfp = 1;
+                        } else {
+                            String sqltblmstFPAns = "Update tblFP_followup set IsUploaded=1,IsEdited=0 where AshaID=" + global.getsGlobalAshaCode() + " and  IsEdited=1 ";
+                            dataProvider.executeSql(sqltblmstFPAns);
+                            String sqltblFP_visit = "Update tblFP_visit set IsUploaded=1,IsEdited=0 where AshaID=" + global.getsGlobalAshaCode() + " and  IsEdited=1 ";
+                            dataProvider.executeSql(sqltblFP_visit);
 
-                        iDataUploadfp = 1;
+                            iDataUploadfp = 1;
+                        }
 
                     } else {
                         downloadmsg = responseBody;
@@ -9522,7 +8233,7 @@ public class Synchronization extends Activity {
 
             HttpClient httpClient = new DefaultHttpClient();
             // replace with your url
-            HttpPost httpPost = new HttpPost("URL");
+            HttpPost httpPost = new HttpPost("replace your URL");
             JSONObject jsonObjectcombined = new JSONObject();
             try {
 
@@ -9555,6 +8266,19 @@ public class Synchronization extends Activity {
                 } else {
                     JSONArray otherJsonArray = new JSONArray();
                     jsonObjectcombined.put("tblncdcbac", otherJsonArray);
+
+                }
+                String sqltblncdcbacdiagnosis = "select * from tblncdcbacdiagnosis where IsEdited=1";
+                ArrayList<HashMap<String, String>> data = null;
+                data = dataProvider.getDynamicVal(sqltblncdcbacdiagnosis);
+                if (data.size() > 0) {
+                    String json1 = new Gson().toJson(data);
+                    JSONArray JSONArray_mstFPFDetail = new JSONArray(json1);
+                    jsonObjectcombined.put("tblncdcbacdiagnosis",
+                            JSONArray_mstFPFDetail);
+                } else {
+                    JSONArray otherJsonArray = new JSONArray();
+                    jsonObjectcombined.put("tblncdcbacdiagnosis", otherJsonArray);
 
                 }
 
@@ -9593,15 +8317,25 @@ public class Synchronization extends Activity {
 
                 try {
                     if (responseBody.contains("success")) {
+                        if (global.getiGlobalRoleID() == 3) {
+                            String sqltblmstFPAns = "Update tblncdfollowup set IsEdited=0 where   IsEdited=1 ";
+                            dataProvider.executeSql(sqltblmstFPAns);
+                            String sqltblFP_visit = "Update tblncdscreening set IsEdited=0 where  IsEdited=1 ";
+                            dataProvider.executeSql(sqltblFP_visit);
+                            String sqltblncdcbac = "Update tblncdcbac set IsEdited=0 where   IsEdited=1 ";
+                            dataProvider.executeSql(sqltblncdcbac);
 
-                        String sqltblmstFPAns = "Update tblncdfollowup set IsEdited=0 where IsEdited=1 ";
-                        dataProvider.executeSql(sqltblmstFPAns);
-                        String sqltblFP_visit = "Update tblncdscreening set IsEdited=0 where IsEdited=1 ";
-                        dataProvider.executeSql(sqltblFP_visit);
-                        String sqltblncdcbac = "Update tblncdcbac set IsEdited=0 where IsEdited=1 ";
-                        dataProvider.executeSql(sqltblncdcbac);
+                            iDataUploadfp = 1;
+                        } else {
+                            String sqltblmstFPAns = "Update tblncdfollowup set IsEdited=0 where AshaID=" + global.getsGlobalAshaCode() + " and  IsEdited=1 ";
+                            dataProvider.executeSql(sqltblmstFPAns);
+                            String sqltblFP_visit = "Update tblncdscreening set IsEdited=0 where AshaID=" + global.getsGlobalAshaCode() + " and  IsEdited=1 ";
+                            dataProvider.executeSql(sqltblFP_visit);
+                            String sqltblncdcbac = "Update tblncdcbac set IsEdited=0 where AshaID=" + global.getsGlobalAshaCode() + " and  IsEdited=1 ";
+                            dataProvider.executeSql(sqltblncdcbac);
 
-                        iDataUploadfp = 1;
+                            iDataUploadfp = 1;
+                        }
 
                     } else {
                         downloadmsg = responseBody;
@@ -9658,7 +8392,11 @@ public class Synchronization extends Activity {
                                         Toast.LENGTH_LONG).show();
                                 dataProvider.insertdownlaoddetail(3, "UploadFP", global.getUserID(), global.getsGlobalAshaCode(), global.getsGlobalANMCODE());
                                 uploaddate();
-                                count();
+                                if (global.getiGlobalRoleID() == 3) {
+                                    count();
+                                } else {
+                                    countashawise();
+                                }
                             } else {
                                 Toast.makeText(Synchronization.this,
                                         downloadmsg, Toast.LENGTH_LONG).show();
@@ -9694,8 +8432,13 @@ public class Synchronization extends Activity {
                 @Override
                 public void run() {
                     try {
-
-                        exportNCDdata();
+                        if (global.getiGlobalRoleID() == 11) {
+                            exportchcncd();
+                            exportdownloaddetail();
+                        } else {
+                            exportNCDdata();
+                            exportdownloaddetail();
+                        }
 
                     } catch (Exception exp) {
                         downloadmsg = exp.getMessage();
@@ -9714,7 +8457,13 @@ public class Synchronization extends Activity {
                                         Toast.LENGTH_LONG).show();
                                 dataProvider.insertdownlaoddetail(4, "UploadNCD", global.getUserID(), global.getsGlobalAshaCode(), global.getsGlobalANMCODE());
                                 uploaddate();
-                                count();
+                                if (global.getiGlobalRoleID() == 11) {
+                                    countchc();
+                                } else if (global.getiGlobalRoleID() == 3) {
+                                    count();
+                                } else {
+                                    countashawise();
+                                }
                             } else {
                                 Toast.makeText(Synchronization.this,
                                         downloadmsg, Toast.LENGTH_LONG).show();
@@ -9773,7 +8522,11 @@ public class Synchronization extends Activity {
 
                                 dataProvider.insertdownlaoddetail(5, "UploadVHND", global.getUserID(), global.getsGlobalAshaCode(), global.getsGlobalANMCODE());
                                 uploaddate();
-                                count();
+                                if (global.getiGlobalRoleID() == 3) {
+                                    count();
+                                } else {
+                                    countashawise();
+                                }
                             } else {
                                 Toast.makeText(Synchronization.this,
                                         downloadmsg, Toast.LENGTH_LONG).show();
@@ -9816,7 +8569,7 @@ public class Synchronization extends Activity {
         iMNCHDataDownload = 0;
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(3);
@@ -10373,1100 +9126,6 @@ public class Synchronization extends Activity {
     }
 
     @SuppressWarnings("unused")
-    public void importAns(String UserName, String Password) {
-        // TODO Auto-generated method stub
-
-        String URL = GlobalString.URL1;
-        String NAMESPACE = GlobalString.NAMESPACE;
-        String SOAP_ACTION = GlobalString.SOAP_ACTION_DOWNLOAD_MASTER;
-        String METHOD_NAME = GlobalString.METHOD_NAME_DOWNLOAD_MASTER;
-
-        SoapPrimitive resultString;
-        String TAG1 = "Response";
-
-        SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-        request.addProperty("UserName", UserName);
-        request.addProperty("PassWord", Password);
-        request.addProperty("sFlag", "counseling");
-
-        request.addProperty("AuthenticationToken", UserName);
-        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
-                SoapEnvelope.VER12);
-        envelope.dotNet = true;
-        envelope.setOutputSoapObject(request);
-
-        HttpTransportSE httpTransport = new HttpTransportSE(URL, 300000);
-
-        SoapObject responses = null;
-        try {
-
-            httpTransport.call(SOAP_ACTION, envelope);
-            resultString = (SoapPrimitive) envelope.getResponse();
-
-            Log.i(TAG1, "Result Celsius: " + resultString);
-
-            JSONObject jsonObj = new JSONObject(resultString.toString());
-            // ClearAnsData();
-            Log.i(TAG1, "JsonObject: " + jsonObj);
-
-            tblmstimmunizationANSArray = jsonObj
-                    .getJSONArray("tblmstimmunizationANS");
-            for (int i = 0; i < tblmstimmunizationANSArray.length(); i++) {
-                JSONObject q_bankData = tblmstimmunizationANSArray
-                        .getJSONObject(i);
-                String Q1 = "";
-                int Q2 = 0;
-                int Q3 = 0;
-                int Q4 = 0;
-                int Q5 = 0;
-                int Q6 = 0;
-                int Q7 = 0;
-                int Q14 = 0;
-                int Q25 = 0;
-                int Q36 = 0;
-                int Q47 = 0;
-                int Q53 = 0;
-                int AshaID = 0;
-                int ANMID = 0;
-                String CreatedOn = "";
-                int CreatedBy = 0;
-                String UpdatedOn = "";
-                int UpdatedBy = 0;
-                String ImmunizationGUID = "";
-                String ChildGUID = "";
-                String TimeDuration = "";
-
-                if (q_bankData.getString("Q4") != null
-                        && q_bankData.getString("Q4").length() > 0
-                        && !q_bankData.getString("Q4").equalsIgnoreCase("null")) {
-                    Q4 = Integer.valueOf(q_bankData.getInt("Q4"));
-                }
-
-                if (q_bankData.getString("Q2") != null
-                        && q_bankData.getString("Q2").length() > 0
-                        && !q_bankData.getString("Q2").equalsIgnoreCase("null")) {
-                    Q2 = Integer.valueOf(q_bankData.getInt("Q2"));
-                }
-
-                if (q_bankData.getString("Q3") != null
-                        && q_bankData.getString("Q3").length() > 0
-                        && !q_bankData.getString("Q3").equalsIgnoreCase("null")) {
-                    Q3 = Integer.valueOf(q_bankData.getInt("Q3"));
-                }
-
-                if (q_bankData.getString("Q5") != null
-                        && q_bankData.getString("Q5").length() > 0
-                        && !q_bankData.getString("Q5").equalsIgnoreCase("null")) {
-                    Q5 = Integer.valueOf(q_bankData.getInt("Q5"));
-                }
-
-                if (q_bankData.getString("Q6") != null
-                        && q_bankData.getString("Q6").length() > 0
-                        && !q_bankData.getString("Q6").equalsIgnoreCase("null")) {
-                    Q6 = Integer.valueOf(q_bankData.getInt("Q6"));
-                }
-
-                if (q_bankData.getString("Q7") != null
-                        && q_bankData.getString("Q7").length() > 0
-                        && !q_bankData.getString("Q7").equalsIgnoreCase("null")) {
-                    Q7 = Integer.valueOf(q_bankData.getInt("Q7"));
-                }
-
-                if (q_bankData.getString("Q14") != null
-                        && q_bankData.getString("Q14").length() > 0
-                        && !q_bankData.getString("Q14")
-                        .equalsIgnoreCase("null")) {
-                    Q14 = Integer.valueOf(q_bankData.getInt("Q14"));
-                }
-
-                if (q_bankData.getString("Q25") != null
-                        && q_bankData.getString("Q25").length() > 0
-                        && !q_bankData.getString("Q25")
-                        .equalsIgnoreCase("null")) {
-                    Q25 = Integer.valueOf(q_bankData.getInt("Q25"));
-                }
-                if (q_bankData.getString("Q36") != null
-                        && q_bankData.getString("Q36").length() > 0
-                        && !q_bankData.getString("Q36")
-                        .equalsIgnoreCase("null")) {
-                    Q36 = Integer.valueOf(q_bankData.getInt("Q36"));
-                }
-                if (q_bankData.getString("Q47") != null
-                        && q_bankData.getString("Q47").length() > 0
-                        && !q_bankData.getString("Q47")
-                        .equalsIgnoreCase("null")) {
-                    Q47 = Integer.valueOf(q_bankData.getInt("Q47"));
-                }
-                if (q_bankData.getString("Q53") != null
-                        && q_bankData.getString("Q53").length() > 0
-                        && !q_bankData.getString("Q53")
-                        .equalsIgnoreCase("null")) {
-                    Q53 = Integer.valueOf(q_bankData.getInt("Q53"));
-                }
-                if (q_bankData.getString("CreatedBy") != null
-                        && q_bankData.getString("CreatedBy").length() > 0
-                        && !q_bankData.getString("CreatedBy").equalsIgnoreCase(
-                        "null")) {
-                    CreatedBy = Integer.valueOf(q_bankData.getInt("CreatedBy"));
-                }
-                if (q_bankData.getString("UpdatedBy") != null
-                        && q_bankData.getString("UpdatedBy").length() > 0
-                        && !q_bankData.getString("UpdatedBy").equalsIgnoreCase(
-                        "null")) {
-                    UpdatedBy = Integer.valueOf(q_bankData.getInt("UpdatedBy"));
-                }
-                if (q_bankData.getString("ANMID") != null
-                        && q_bankData.getString("ANMID").length() > 0
-                        && !q_bankData.getString("ANMID").equalsIgnoreCase(
-                        "null")) {
-                    ANMID = Integer.valueOf(q_bankData.getInt("ANMID"));
-                }
-                if (q_bankData.getString("AshaID") != null
-                        && q_bankData.getString("AshaID").length() > 0
-                        && !q_bankData.getString("AshaID").equalsIgnoreCase(
-                        "null")) {
-                    AshaID = Integer.valueOf(q_bankData.getInt("AshaID"));
-                }
-
-                TimeDuration = q_bankData.getString("TimeDuration");
-                ChildGUID = q_bankData.getString("ChildGUID");
-
-                ImmunizationGUID = q_bankData.getString("ImmunizationGUID");
-                CreatedOn = q_bankData.getString("CreatedOn");
-                UpdatedOn = q_bankData.getString("UpdatedOn");
-
-                String sqlcount = "select count(*) from tblmstimmunizationANS  ImmunizationGUID='"
-                        + ImmunizationGUID
-                        + "' and ChildGUID='"
-                        + ChildGUID
-                        + "'";
-                int count = dataProvider.getMaxRecord(sqlcount);
-                String sqlcount1 = "select count(*) from tblmstimmunizationANS  ImmunizationGUID='"
-                        + ImmunizationGUID
-                        + "' and ChildGUID='"
-                        + ChildGUID
-                        + "' and IsEdited=1";
-                int count1 = dataProvider.getMaxRecord(sqlcount1);
-                String sql = "";
-                if (count == 0) {
-                    sql = "insert into tblmstimmunizationANS (AshaID,ANMID,	Q1,	Q2,	Q3,	Q4,	Q5,	Q6,	Q7,	Q14,	Q25,	Q36,	Q47,CreatedOn,	CreatedBy,	UpdatedOn,	UpdatedBy,	ImmunizationGUID,	ChildGUID,	Q53,	TimeDuration,IsEdited)values("
-                            + AshaID
-                            + ","
-                            + ANMID
-                            + ",'"
-                            + Q1
-                            + "',"
-                            + Q2
-                            + ","
-                            + Q3
-                            + ",	"
-                            + Q4
-                            + ",	"
-                            + Q5
-                            + ",	"
-                            + Q6
-                            + ",	"
-                            + Q7
-                            + ","
-                            + Q14
-                            + ","
-                            + Q25
-                            + ","
-                            + Q36
-                            + ","
-                            + Q47
-                            + ",'"
-                            + CreatedOn
-                            + "',"
-                            + CreatedBy
-                            + ",'"
-                            + UpdatedOn
-                            + "',"
-                            + UpdatedBy
-                            + ",'"
-                            + ImmunizationGUID
-                            + "','"
-                            + ChildGUID
-                            + "',"
-                            + Q53
-                            + ",'" + TimeDuration + "',0)";
-
-                    dataProvider.executeSql(sql);
-                    Log.e("IMPORT DATA", "tblmstimmunizationANS ");
-                } else {
-                    if (count1 == 0) {
-                        sql = "update tblmstimmunizationANS set Q1=" + Q1
-                                + "',Q2=" + Q2 + ",Q3=" + Q3 + ",Q4=	" + Q4
-                                + ",Q5=	" + Q5 + ",Q6=	" + Q6 + ",Q7=	" + Q7
-                                + ",Q14=" + Q14 + ",Q25=" + Q25 + ",Q36=" + Q36
-                                + ",Q47=" + Q47 + ",CreatedOn='" + CreatedOn
-                                + "',CreatedBy=" + CreatedBy + ",UpdatedOn='"
-                                + UpdatedOn + "',UpdatedBy=" + UpdatedBy
-                                + ",Q53=" + Q53 + ",TimeDuration='"
-                                + TimeDuration
-                                + "',IsEdited=0 where ImmunizationGUID='"
-                                + ImmunizationGUID + "'and ChildGUID='"
-                                + ChildGUID + "'";
-
-                        dataProvider.executeSql(sql);
-                    }
-                }
-
-            }
-            tblPNChomevisit_ANSArray = jsonObj
-                    .getJSONArray("tblPNChomevisit_ANS");
-            for (int i = 0; i < tblPNChomevisit_ANSArray.length(); i++) {
-                JSONObject q_bankData = tblPNChomevisit_ANSArray
-                        .getJSONObject(i);
-                String PWGUID = "";
-                String ChildGUID = "";
-                String PNCGUID = "";
-                int VisitNo = 0;
-                String Q_0 = "";
-                int Q_1 = 0;
-                String Q_2 = "";
-                String Q_3 = "";
-                int Q_4 = 0;
-                int Q_5 = 0;
-                String Q_6 = "";
-                String Q_7 = "";
-                int Q_8 = 0;
-                int Q_9 = 0;
-                int Q_10 = 0;
-                int Q_12 = 0;
-                int Q_13 = 0;
-                int Q_14 = 0;
-                int Q_15 = 0;
-                int Q_16 = 0;
-                int Q_17 = 0;
-                float Q_18 = 0;
-                int Q_19 = 0;
-                int Q_20 = 0;
-                float Q_21 = 0;
-                int Q_22 = 0;
-                int Q_23 = 0;
-                int Q_24 = 0;
-                int Q_25 = 0;
-                int Q_26 = 0;
-                int Q_27 = 0;
-                int Q_28 = 0;
-                int Q_29 = 0;
-                int Q_30 = 0;
-                int Q_32 = 0;
-                int Q_33 = 0;
-                int Q_34 = 0;
-                int Q_35 = 0;
-                int Q_36 = 0;
-                int Q_37 = 0;
-                int Q_38 = 0;
-                int Q_38a = 0;
-                int Q_39 = 0;
-                int Q_40 = 0;
-                int Q_41 = 0;
-                int Q_43 = 0;
-                String Q_44 = "";
-                int Q_45 = 0;
-                int Q_46 = 0;
-                int Q_47 = 0;
-                String Q_48 = "";
-                int Q_49 = 0;
-                int Q_50 = 0;
-                int Q_52 = 0;
-                int Q_53 = 0;
-                int Q_54 = 0;
-                int Q_55 = 0;
-                int Q_56 = 0;
-                int Q_57 = 0;
-                int Q_58 = 0;
-                int Q_59 = 0;
-                int Q_60 = 0;
-                int CreatedBy = 0;
-                String CreatedOn = "";
-                int UpdatedBy = 0;
-                int ANMID = 0;
-                int AshaID = 0;
-                String UpdatedOn = "";
-
-                if (q_bankData.getString("Q_1") != null
-                        && q_bankData.getString("Q_1").length() > 0
-                        && !q_bankData.getString("Q_1")
-                        .equalsIgnoreCase("null")) {
-                    Q_1 = Integer.valueOf(q_bankData.getInt("Q_1"));
-                }
-
-                if (q_bankData.getString("Q_4") != null
-                        && q_bankData.getString("Q_4").length() > 0
-                        && !q_bankData.getString("Q_4")
-                        .equalsIgnoreCase("null")) {
-                    Q_4 = Integer.valueOf(q_bankData.getInt("Q_4"));
-                }
-
-                if (q_bankData.getString("Q_5") != null
-                        && q_bankData.getString("Q_5").length() > 0
-                        && !q_bankData.getString("Q_5")
-                        .equalsIgnoreCase("null")) {
-                    Q_5 = Integer.valueOf(q_bankData.getInt("Q_5"));
-                }
-
-                if (q_bankData.getString("Q_8") != null
-                        && q_bankData.getString("Q_8").length() > 0
-                        && !q_bankData.getString("Q_8")
-                        .equalsIgnoreCase("null")) {
-                    Q_8 = Integer.valueOf(q_bankData.getInt("Q_8"));
-                }
-                if (q_bankData.getString("Q_9") != null
-                        && q_bankData.getString("Q_9").length() > 0
-                        && !q_bankData.getString("Q_9")
-                        .equalsIgnoreCase("null")) {
-                    Q_9 = Integer.valueOf(q_bankData.getInt("Q_9"));
-                }
-                if (q_bankData.getString("Q_10") != null
-                        && q_bankData.getString("Q_10").length() > 0
-                        && !q_bankData.getString("Q_10").equalsIgnoreCase(
-                        "null")) {
-                    Q_10 = Integer.valueOf(q_bankData.getInt("Q_10"));
-                }
-                if (q_bankData.getString("Q_12") != null
-                        && q_bankData.getString("Q_12").length() > 0
-                        && !q_bankData.getString("Q_12").equalsIgnoreCase(
-                        "null")) {
-                    Q_12 = Integer.valueOf(q_bankData.getInt("Q_12"));
-                }
-                if (q_bankData.getString("Q_13") != null
-                        && q_bankData.getString("Q_13").length() > 0
-                        && !q_bankData.getString("Q_13").equalsIgnoreCase(
-                        "null")) {
-                    Q_13 = Integer.valueOf(q_bankData.getInt("Q_13"));
-                }
-
-                if (q_bankData.getString("Q_14") != null
-                        && q_bankData.getString("Q_14").length() > 0
-                        && !q_bankData.getString("Q_14").equalsIgnoreCase(
-                        "null")) {
-                    Q_14 = Integer.valueOf(q_bankData.getInt("Q_14"));
-                }
-
-                if (q_bankData.getString("Q_15") != null
-                        && q_bankData.getString("Q_15").length() > 0
-                        && !q_bankData.getString("Q_15").equalsIgnoreCase(
-                        "null")) {
-                    Q_15 = Integer.valueOf(q_bankData.getInt("Q_15"));
-                }
-
-                if (q_bankData.getString("Q_16") != null
-                        && q_bankData.getString("Q_16").length() > 0
-                        && !q_bankData.getString("Q_16").equalsIgnoreCase(
-                        "null")) {
-                    Q_16 = Integer.valueOf(q_bankData.getInt("Q_16"));
-                }
-
-                if (q_bankData.getString("Q_17") != null
-                        && q_bankData.getString("Q_17").length() > 0
-                        && !q_bankData.getString("Q_17").equalsIgnoreCase(
-                        "null")) {
-                    Q_17 = Integer.valueOf(q_bankData.getInt("Q_17"));
-                }
-
-                if (q_bankData.getString("Q_18") != null
-                        && q_bankData.getString("Q_18").length() > 0
-                        && !q_bankData.getString("Q_18").equalsIgnoreCase(
-                        "null")) {
-                    Q_18 = Float.valueOf(q_bankData.getString("Q_18"));
-                }
-
-                if (q_bankData.getString("Q_19") != null
-                        && q_bankData.getString("Q_19").length() > 0
-                        && !q_bankData.getString("Q_19").equalsIgnoreCase(
-                        "null")) {
-                    Q_19 = Integer.valueOf(q_bankData.getInt("Q_19"));
-                }
-
-                if (q_bankData.getString("Q_20") != null
-                        && q_bankData.getString("Q_20").length() > 0
-                        && !q_bankData.getString("Q_20").equalsIgnoreCase(
-                        "null")) {
-                    Q_20 = Integer.valueOf(q_bankData.getInt("Q_20"));
-                }
-
-                if (q_bankData.getString("Q_22") != null
-                        && q_bankData.getString("Q_22").length() > 0
-                        && !q_bankData.getString("Q_22").equalsIgnoreCase(
-                        "null")) {
-                    Q_22 = Integer.valueOf(q_bankData.getInt("Q_22"));
-                }
-                if (q_bankData.getString("Q_23") != null
-                        && q_bankData.getString("Q_23").length() > 0
-                        && !q_bankData.getString("Q_23").equalsIgnoreCase(
-                        "null")) {
-                    Q_23 = Integer.valueOf(q_bankData.getInt("Q_23"));
-                }
-                if (q_bankData.getString("Q_24") != null
-                        && q_bankData.getString("Q_24").length() > 0
-                        && !q_bankData.getString("Q_24").equalsIgnoreCase(
-                        "null")) {
-                    Q_24 = Integer.valueOf(q_bankData.getInt("Q_24"));
-                }
-                if (q_bankData.getString("Q_25") != null
-                        && q_bankData.getString("Q_25").length() > 0
-                        && !q_bankData.getString("Q_25").equalsIgnoreCase(
-                        "null")) {
-                    Q_25 = Integer.valueOf(q_bankData.getInt("Q_25"));
-                }
-                if (q_bankData.getString("Q_26") != null
-                        && q_bankData.getString("Q_26").length() > 0
-                        && !q_bankData.getString("Q_26").equalsIgnoreCase(
-                        "null")) {
-                    Q_26 = Integer.valueOf(q_bankData.getInt("Q_26"));
-                }
-                if (q_bankData.getString("Q_27") != null
-                        && q_bankData.getString("Q_27").length() > 0
-                        && !q_bankData.getString("Q_27").equalsIgnoreCase(
-                        "null")) {
-                    Q_27 = Integer.valueOf(q_bankData.getInt("Q_27"));
-                }
-                if (q_bankData.getString("Q_28") != null
-                        && q_bankData.getString("Q_28").length() > 0
-                        && !q_bankData.getString("Q_28").equalsIgnoreCase(
-                        "null")) {
-                    Q_28 = Integer.valueOf(q_bankData.getInt("Q_28"));
-                }
-                if (q_bankData.getString("Q_29") != null
-                        && q_bankData.getString("Q_29").length() > 0
-                        && !q_bankData.getString("Q_29").equalsIgnoreCase(
-                        "null")) {
-                    Q_29 = Integer.valueOf(q_bankData.getInt("Q_29"));
-                }
-                if (q_bankData.getString("Q_30") != null
-                        && q_bankData.getString("Q_30").length() > 0
-                        && !q_bankData.getString("Q_30").equalsIgnoreCase(
-                        "null")) {
-                    Q_30 = Integer.valueOf(q_bankData.getInt("Q_30"));
-                }
-                if (q_bankData.getString("Q_32") != null
-                        && q_bankData.getString("Q_32").length() > 0
-                        && !q_bankData.getString("Q_32").equalsIgnoreCase(
-                        "null")) {
-                    Q_32 = Integer.valueOf(q_bankData.getInt("Q_32"));
-                }
-                if (q_bankData.getString("Q_33") != null
-                        && q_bankData.getString("Q_33").length() > 0
-                        && !q_bankData.getString("Q_33").equalsIgnoreCase(
-                        "null")) {
-                    Q_33 = Integer.valueOf(q_bankData.getInt("Q_33"));
-                }
-                if (q_bankData.getString("Q_22") != null
-                        && q_bankData.getString("Q_22").length() > 0
-                        && !q_bankData.getString("Q_22").equalsIgnoreCase(
-                        "null")) {
-                    Q_22 = Integer.valueOf(q_bankData.getInt("Q_22"));
-                }
-                if (q_bankData.getString("Q_34") != null
-                        && q_bankData.getString("Q_34").length() > 0
-                        && !q_bankData.getString("Q_34").equalsIgnoreCase(
-                        "null")) {
-                    Q_34 = Integer.valueOf(q_bankData.getInt("Q_34"));
-                }
-                if (q_bankData.getString("Q_35") != null
-                        && q_bankData.getString("Q_35").length() > 0
-                        && !q_bankData.getString("Q_35").equalsIgnoreCase(
-                        "null")) {
-                    Q_35 = Integer.valueOf(q_bankData.getInt("Q_35"));
-                }
-                if (q_bankData.getString("Q_36") != null
-                        && q_bankData.getString("Q_36").length() > 0
-                        && !q_bankData.getString("Q_36").equalsIgnoreCase(
-                        "null")) {
-                    Q_36 = Integer.valueOf(q_bankData.getInt("Q_36"));
-                }
-                if (q_bankData.getString("Q_37") != null
-                        && q_bankData.getString("Q_37").length() > 0
-                        && !q_bankData.getString("Q_37").equalsIgnoreCase(
-                        "null")) {
-                    Q_37 = Integer.valueOf(q_bankData.getInt("Q_37"));
-                }
-                if (q_bankData.getString("Q_38") != null
-                        && q_bankData.getString("Q_38").length() > 0
-                        && !q_bankData.getString("Q_38").equalsIgnoreCase(
-                        "null")) {
-                    Q_38 = Integer.valueOf(q_bankData.getInt("Q_38"));
-                }
-                if (q_bankData.getString("Q_38a") != null
-                        && q_bankData.getString("Q_38a").length() > 0
-                        && !q_bankData.getString("Q_38a").equalsIgnoreCase(
-                        "null")) {
-                    Q_38a = Integer.valueOf(q_bankData.getInt("Q_38a"));
-                }
-                if (q_bankData.getString("Q_39") != null
-                        && q_bankData.getString("Q_39").length() > 0
-                        && !q_bankData.getString("Q_39").equalsIgnoreCase(
-                        "null")) {
-                    Q_39 = Integer.valueOf(q_bankData.getInt("Q_39"));
-                }
-                if (q_bankData.getString("Q_40") != null
-                        && q_bankData.getString("Q_40").length() > 0
-                        && !q_bankData.getString("Q_40").equalsIgnoreCase(
-                        "null")) {
-                    Q_40 = Integer.valueOf(q_bankData.getInt("Q_40"));
-                }
-                if (q_bankData.getString("Q_41") != null
-                        && q_bankData.getString("Q_41").length() > 0
-                        && !q_bankData.getString("Q_41").equalsIgnoreCase(
-                        "null")) {
-                    Q_41 = Integer.valueOf(q_bankData.getInt("Q_41"));
-                }
-                if (q_bankData.getString("Q_43") != null
-                        && q_bankData.getString("Q_43").length() > 0
-                        && !q_bankData.getString("Q_43").equalsIgnoreCase(
-                        "null")) {
-                    Q_43 = Integer.valueOf(q_bankData.getInt("Q_43"));
-                }
-                if (q_bankData.getString("Q_45") != null
-                        && q_bankData.getString("Q_45").length() > 0
-                        && !q_bankData.getString("Q_45").equalsIgnoreCase(
-                        "null")) {
-                    Q_45 = Integer.valueOf(q_bankData.getInt("Q_45"));
-                }
-                if (q_bankData.getString("Q_46") != null
-                        && q_bankData.getString("Q_46").length() > 0
-                        && !q_bankData.getString("Q_46").equalsIgnoreCase(
-                        "null")) {
-                    Q_46 = Integer.valueOf(q_bankData.getInt("Q_46"));
-                }
-                if (q_bankData.getString("Q_47") != null
-                        && q_bankData.getString("Q_47").length() > 0
-                        && !q_bankData.getString("Q_47").equalsIgnoreCase(
-                        "null")) {
-                    Q_47 = Integer.valueOf(q_bankData.getInt("Q_47"));
-                }
-                if (q_bankData.getString("Q_49") != null
-                        && q_bankData.getString("Q_49").length() > 0
-                        && !q_bankData.getString("Q_49").equalsIgnoreCase(
-                        "null")) {
-                    Q_49 = Integer.valueOf(q_bankData.getInt("Q_49"));
-                }
-                if (q_bankData.getString("Q_50") != null
-                        && q_bankData.getString("Q_50").length() > 0
-                        && !q_bankData.getString("Q_50").equalsIgnoreCase(
-                        "null")) {
-                    Q_50 = Integer.valueOf(q_bankData.getInt("Q_50"));
-                }
-                if (q_bankData.getString("Q_52") != null
-                        && q_bankData.getString("Q_52").length() > 0
-                        && !q_bankData.getString("Q_52").equalsIgnoreCase(
-                        "null")) {
-                    Q_52 = Integer.valueOf(q_bankData.getInt("Q_52"));
-                }
-                if (q_bankData.getString("Q_53") != null
-                        && q_bankData.getString("Q_53").length() > 0
-                        && !q_bankData.getString("Q_53").equalsIgnoreCase(
-                        "null")) {
-                    Q_53 = Integer.valueOf(q_bankData.getInt("Q_53"));
-                }
-                if (q_bankData.getString("Q_54") != null
-                        && q_bankData.getString("Q_54").length() > 0
-                        && !q_bankData.getString("Q_54").equalsIgnoreCase(
-                        "null")) {
-                    Q_54 = Integer.valueOf(q_bankData.getInt("Q_54"));
-                }
-                if (q_bankData.getString("Q_55") != null
-                        && q_bankData.getString("Q_55").length() > 0
-                        && !q_bankData.getString("Q_55").equalsIgnoreCase(
-                        "null")) {
-                    Q_55 = Integer.valueOf(q_bankData.getInt("Q_55"));
-                }
-                if (q_bankData.getString("Q_56") != null
-                        && q_bankData.getString("Q_56").length() > 0
-                        && !q_bankData.getString("Q_56").equalsIgnoreCase(
-                        "null")) {
-                    Q_56 = Integer.valueOf(q_bankData.getInt("Q_56"));
-                }
-                if (q_bankData.getString("Q_57") != null
-                        && q_bankData.getString("Q_57").length() > 0
-                        && !q_bankData.getString("Q_57").equalsIgnoreCase(
-                        "null")) {
-                    Q_57 = Integer.valueOf(q_bankData.getInt("Q_57"));
-                }
-                if (q_bankData.getString("Q_58") != null
-                        && q_bankData.getString("Q_58").length() > 0
-                        && !q_bankData.getString("Q_58").equalsIgnoreCase(
-                        "null")) {
-                    Q_58 = Integer.valueOf(q_bankData.getInt("Q_58"));
-                }
-                if (q_bankData.getString("Q_59") != null
-                        && q_bankData.getString("Q_59").length() > 0
-                        && !q_bankData.getString("Q_59").equalsIgnoreCase(
-                        "null")) {
-                    Q_59 = Integer.valueOf(q_bankData.getInt("Q_59"));
-                }
-                if (q_bankData.getString("Q_60") != null
-                        && q_bankData.getString("Q_60").length() > 0
-                        && !q_bankData.getString("Q_60").equalsIgnoreCase(
-                        "null")) {
-                    Q_60 = Integer.valueOf(q_bankData.getInt("Q_60"));
-                }
-                if (q_bankData.getString("Q_21") != null
-                        && q_bankData.getString("Q_21").length() > 0
-                        && !q_bankData.getString("Q_21").equalsIgnoreCase(
-                        "null")) {
-                    Q_21 = Integer.valueOf(q_bankData.getInt("Q_21"));
-                }
-                if (q_bankData.getString("ANMID") != null
-                        && q_bankData.getString("ANMID").length() > 0
-                        && !q_bankData.getString("ANMID").equalsIgnoreCase(
-                        "null")) {
-                    ANMID = Integer.valueOf(q_bankData.getInt("ANMID"));
-                }
-                if (q_bankData.getString("AshaID") != null
-                        && q_bankData.getString("AshaID").length() > 0
-                        && !q_bankData.getString("AshaID").equalsIgnoreCase(
-                        "null")) {
-                    AshaID = Integer.valueOf(q_bankData.getInt("AshaID"));
-                }
-
-                if (q_bankData.getString("CreatedBy") != null
-                        && q_bankData.getString("CreatedBy").length() > 0
-                        && !q_bankData.getString("CreatedBy").equalsIgnoreCase(
-                        "null")) {
-                    CreatedBy = Integer.valueOf(q_bankData.getInt("CreatedBy"));
-                }
-                if (q_bankData.getString("UpdatedBy") != null
-                        && q_bankData.getString("UpdatedBy").length() > 0
-                        && !q_bankData.getString("UpdatedBy").equalsIgnoreCase(
-                        "null")) {
-                    UpdatedBy = Integer.valueOf(q_bankData.getInt("UpdatedBy"));
-                }
-
-                Q_0 = q_bankData.getString("Q_0");
-                Q_2 = q_bankData.getString("Q_2");
-                Q_3 = q_bankData.getString("Q_3");
-
-                Q_6 = q_bankData.getString("Q_6");
-                Q_7 = q_bankData.getString("Q_7");
-                Q_44 = q_bankData.getString("Q_44");
-                Q_48 = q_bankData.getString("Q_48");
-                ChildGUID = q_bankData.getString("ChildGUID");
-
-                PWGUID = q_bankData.getString("PWGUID");
-                CreatedOn = q_bankData.getString("CreatedOn");
-                UpdatedOn = q_bankData.getString("UpdatedOn");
-
-                String sqlcount = "select count(*) from tblPNChomevisit_ANS  PNCGUID='"
-                        + PNCGUID + "' and ChildGUID='" + ChildGUID + "'";
-                int count = dataProvider.getMaxRecord(sqlcount);
-                String sqlcount1 = "select count(*) from tblPNChomevisit_ANS  PNCGUID='"
-                        + PNCGUID
-                        + "' and ChildGUID='"
-                        + ChildGUID
-                        + "' and IsEdited=1";
-                int count1 = dataProvider.getMaxRecord(sqlcount1);
-                String sql = "";
-                if (count == 0) {
-                    sql = "insert into tblPNChomevisit_ANS (AshaID,ANMID,PWGUID,ChildGUID,PNCGUID,VisitNo,Q_0,Q_1,Q_2,Q_3,Q_4,Q_5,Q_6,Q_7,Q_8,Q_9,Q_10,Q_12,Q_13,Q_14,Q_15,Q_16,Q_17,Q_18,Q_19,Q_20,Q_21,Q_22,Q_23,Q_24,Q_25,Q_26,Q_27,Q_28,Q_29,Q_30,Q_32,Q_33,Q_34,Q_35,Q_36,Q_37,Q_38,Q_38a,Q_39,Q_40,Q_41,Q_43,Q_44,Q_45,Q_46,Q_47,Q_48,Q_49,Q_50,Q_52,Q_53,Q_54,Q_55,Q_56,Q_57,Q_58,Q_59,Q_60,CreatedBy,CreatedOn,UpdatedBy,UpdatedOn,Audio_filename,IsEdited)values("
-                            + AshaID
-                            + ","
-                            + ANMID
-                            + ",'"
-                            + PWGUID
-                            + "','"
-                            + ChildGUID
-                            + "',	'"
-                            + PNCGUID
-                            + "',	"
-                            + VisitNo
-                            + ",	'"
-                            + Q_0
-                            + "',	"
-                            + Q_1
-                            + ",	'"
-                            + Q_2
-                            + "',	'"
-                            + Q_3
-                            + "',	"
-                            + Q_4
-                            + ",	"
-                            + Q_5
-                            + ",	"
-                            + Q_6
-                            + ",	'"
-                            + Q_7
-                            + "',"
-                            + Q_8
-                            + ","
-                            + Q_9
-                            + ","
-                            + Q_10
-                            + ","
-                            + Q_12
-                            + ","
-                            + Q_13
-                            + ",	"
-                            + Q_14
-                            + ","
-                            + Q_15
-                            + ","
-                            + Q_16
-                            + ","
-                            + Q_17
-                            + ","
-                            + Q_18
-                            + ","
-                            + Q_19
-                            + ","
-                            + Q_20
-                            + ","
-                            + Q_21
-                            + ","
-                            + Q_22
-                            + ","
-                            + Q_23
-                            + ","
-                            + Q_24
-                            + ",	"
-                            + Q_25
-                            + ","
-                            + Q_26
-                            + ",	"
-                            + Q_27
-                            + ",	"
-                            + Q_28
-                            + ",	"
-                            + Q_29
-                            + ",	"
-                            + Q_30
-                            + ",	"
-                            + Q_32
-                            + ",	"
-                            + Q_33
-                            + ",	"
-                            + Q_34
-                            + ",	"
-                            + Q_35
-                            + ",	"
-                            + Q_36
-                            + ",	"
-                            + Q_37
-                            + ",	"
-                            + Q_38
-                            + ","
-                            + Q_38a
-                            + ",	"
-                            + Q_39
-                            + ",	"
-                            + Q_40
-                            + ",	"
-                            + Q_41
-                            + ",	"
-                            + Q_43
-                            + ",	'"
-                            + Q_44
-                            + "',	"
-                            + Q_45
-                            + ",	"
-                            + Q_46
-                            + ",	"
-                            + Q_47
-                            + ",	'"
-                            + Q_48
-                            + "',	"
-                            + Q_49
-                            + ",	"
-                            + Q_50
-                            + ",	"
-                            + Q_52
-                            + ",	"
-                            + Q_53
-                            + ",	"
-                            + Q_54
-                            + ",	"
-                            + Q_55
-                            + ",	"
-                            + Q_56
-                            + ",	"
-                            + Q_57
-                            + ",	"
-                            + Q_58
-                            + ",	"
-                            + Q_59
-                            + ",	"
-                            + Q_60
-                            + ",	"
-                            + CreatedBy
-                            + ",	'"
-                            + CreatedOn
-                            + "',	" + UpdatedBy + ",	'" + UpdatedOn + "',0)";
-
-                    dataProvider.executeSql(sql);
-                } else {
-                    if (count == 0) {
-                        sql = "update tblPNChomevisit_ANS set PWGUID='"
-                                + PWGUID + "',	VisitNo=" + VisitNo + ",	Q_0='"
-                                + Q_0 + "',Q_1=	" + Q_1 + ",Q_2=	'" + Q_2
-                                + "',Q_3=	'" + Q_3 + "',Q_4=	" + Q_4 + ",Q_5=	"
-                                + Q_5 + ",Q_6=	" + Q_6 + ",Q_7=	'" + Q_7
-                                + "',Q_8=" + Q_8 + ",Q_9=" + Q_9 + ",Q_10="
-                                + Q_10 + ",Q_12=" + Q_12 + ",Q_13=" + Q_13
-                                + ",Q_14=	" + Q_14 + ",Q_15=" + Q_15 + ",Q_16="
-                                + Q_16 + ",Q_17=" + Q_17 + ",Q_18=" + Q_18
-                                + ",Q_19=" + Q_19 + ",Q_20=" + Q_20 + ",Q_21="
-                                + Q_21 + ",Q_22=" + Q_22 + ",Q_23=" + Q_23
-                                + ",Q_24=" + Q_24 + ",	Q_25=" + Q_25 + ",Q_26="
-                                + Q_26 + ",Q_27=	" + Q_27 + ",Q_28=	" + Q_28
-                                + ",Q_29=	" + Q_29 + ",Q_30=	" + Q_30
-                                + ",Q_32=	" + Q_32 + ",Q_33=	" + Q_33
-                                + ",Q_34=	" + Q_34 + ",Q_35=	" + Q_35
-                                + ",Q_36=	" + Q_36 + ",Q_37=	" + Q_37
-                                + ",Q_38=	" + Q_38 + ",Q_38a=" + Q_38a
-                                + ",Q_39=	" + Q_39 + ",Q_40=	" + Q_40
-                                + ",	Q_41=" + Q_41 + ",Q_43=	" + Q_43
-                                + ",Q_44=	'" + Q_44 + "',Q_45=	" + Q_45
-                                + ",Q_46=	" + Q_46 + ",Q_47=	" + Q_47
-                                + ",Q_48=	'" + Q_48 + "',Q_49=	" + Q_49
-                                + ",Q_50=	" + Q_50 + ",Q_52=	" + Q_52
-                                + ",Q_53=	" + Q_53 + ",Q_54=	" + Q_54
-                                + ",Q_55=	" + Q_55 + ",Q_56=	" + Q_56
-                                + ",Q_57=	" + Q_57 + ",Q_58=	" + Q_58
-                                + ",Q_59=	" + Q_59 + ",Q_60=	" + Q_60
-                                + ",CreatedBy=	" + CreatedBy + ",CreatedOn=	'"
-                                + CreatedOn + "',UpdatedBy=	" + UpdatedBy
-                                + ",	UpdatedOn='" + UpdatedOn + "',AshaID="
-                                + ANMID + ",ANMID=" + ANMID
-                                + "	,IsEdited=0 where ChildGUID='" + ChildGUID
-                                + "',	PNCGUID='" + PNCGUID + "'";
-                    }
-                }
-                Log.e("IMPORT DATA", "tblPNChomevisit_ANS ");
-
-            }
-            tblmstFPAnsArray = jsonObj.getJSONArray("tblmstFPAns");
-            for (int i = 0; i < tblmstFPAnsArray.length(); i++) {
-                JSONObject block = tblmstFPAnsArray.getJSONObject(i);
-                String FPAns_Guid = "";
-                String WomenName_Guid = "";
-                String VisitDate = "";
-                String Q1 = "";
-                String Q5 = "";
-                String Q6 = "";
-                String Q7 = "";
-                String Q8 = "";
-                String Q24 = "";
-                String Q36 = "";
-                String Q39 = "";
-                String Q52 = "";
-                String Q56 = "";
-                String Q59 = "";
-                String Q60 = "";
-                String Q61 = "";
-                String Q62 = "";
-                String Q20 = "";
-                String Q21 = "";
-                String Q37 = "";
-                String Q57 = "";
-                String Q76 = "";
-                int AshaID = 0;
-                int ANMID = 0;
-                int IsEdited = 0;
-                int IsUploaded = 0;
-                if (block.getString("AshaID") != null
-                        && block.getString("AshaID").length() > 0
-                        && !block.getString("AshaID").equalsIgnoreCase("null")) {
-                    AshaID = Integer.valueOf(block.getInt("AshaID"));
-                }
-                if (block.getString("ANMID") != null
-                        && block.getString("ANMID").length() > 0
-                        && !block.getString("ANMID").equalsIgnoreCase("null")) {
-                    ANMID = Integer.valueOf(block.getInt("ANMID"));
-                }
-
-                FPAns_Guid = block.getString("FPAns_Guid");
-                WomenName_Guid = block.getString("WomenName_Guid");
-                VisitDate = block.getString("VisitDate");
-                Q1 = block.getString("Q1");
-                Q5 = block.getString("Q5");
-                Q6 = block.getString("Q6");
-                Q7 = block.getString("Q7");
-                Q8 = block.getString("Q8");
-                Q24 = block.getString("Q24");
-                Q36 = block.getString("Q36");
-                Q39 = block.getString("Q39");
-                Q52 = block.getString("Q52");
-                Q56 = block.getString("Q56");
-                Q59 = block.getString("Q59");
-                Q60 = block.getString("Q60");
-                Q61 = block.getString("Q61");
-                Q62 = block.getString("Q62");
-                Q20 = block.getString("Q20");
-                Q21 = block.getString("Q21");
-                Q37 = block.getString("Q37");
-                Q57 = block.getString("Q57");
-                Q76 = block.getString("Q76");
-
-                String sql = "";
-                int count = 0;
-                String sql1 = "select count(*) from tblFP_visit where FPAns_Guid='"
-                        + FPAns_Guid + "' ";
-                count = dataProvider.getMaxRecord(sql1);
-
-                if (count == 0) {
-                    sql = "Insert into tblFP_visit( FPAns_Guid,WomenName_Guid,VisitDate,Q1,Q5,Q6,Q7,Q8,Q24,Q36,Q39,Q52,Q56,Q59,Q60,Q61,Q62,Q20,Q21,Q37,Q57,Q76,AshaID,ANMID,IsEdited,IsUploaded)values('"
-                            + FPAns_Guid
-                            + "','"
-                            + WomenName_Guid
-                            + "','"
-                            + VisitDate
-                            + "','"
-                            + Q1
-                            + "','"
-                            + Q5
-                            + "','"
-                            + Q6
-                            + "','"
-                            + Q7
-                            + "','"
-                            + Q8
-                            + "','"
-                            + Q24
-                            + "','"
-                            + Q36
-                            + "','"
-                            + Q39
-                            + "','"
-                            + Q52
-                            + "','"
-                            + Q56
-                            + "','"
-                            + Q59
-                            + "','"
-                            + Q60
-                            + "','"
-                            + Q61
-                            + "','"
-                            + Q62
-                            + "','"
-                            + Q20
-                            + "','"
-                            + Q21
-                            + "','"
-                            + Q37
-                            + "','"
-                            + Q57
-                            + "','"
-                            + Q76
-                            + "',"
-                            + AshaID
-                            + ","
-                            + ANMID + ",0,0)";
-                }
-                dataProvider.executeSql(sql);
-
-            }
-            tblmstFPFDetailArray = jsonObj.getJSONArray("tblmstFPFDetail");
-            for (int i = 0; i < tblmstFPFDetailArray.length(); i++) {
-                JSONObject block = tblmstFPFDetailArray.getJSONObject(i);
-                String WomenName = "";
-                String Hushband_name = "";
-                String PF_date = "";
-                String CurrF_date = "";
-                int MethodAdopted = 0;
-                int Pregnant = 0;
-                int Pregnant_test = 0;
-                String FPF_Guid = "";
-                String WomenName_Guid = "";
-                String Hushband_Guid = "";
-                String MethodadoptedDate = "";
-
-                int AshaID = 0;
-                int ANMID = 0;
-                int CreatedBy = 0;
-                String CreatedOn = "";
-                if (block.getString("MethodAdopted") != null
-                        && block.getString("MethodAdopted").length() > 0
-                        && !block.getString("MethodAdopted").equalsIgnoreCase(
-                        "null")) {
-                    MethodAdopted = Integer.valueOf(block
-                            .getInt("MethodAdopted"));
-                }
-                if (block.getString("Pregnant") != null
-                        && block.getString("Pregnant").length() > 0
-                        && !block.getString("Pregnant")
-                        .equalsIgnoreCase("null")) {
-                    Pregnant = Integer.valueOf(block.getInt("Pregnant"));
-                }
-                if (block.getString("Pregnant_test") != null
-                        && block.getString("Pregnant_test").length() > 0
-                        && !block.getString("Pregnant_test").equalsIgnoreCase(
-                        "null")) {
-                    Pregnant_test = Integer.valueOf(block
-                            .getInt("Pregnant_test"));
-                }
-                if (block.getString("AshaID") != null
-                        && block.getString("AshaID").length() > 0
-                        && !block.getString("AshaID").equalsIgnoreCase("null")) {
-                    AshaID = Integer.valueOf(block.getInt("AshaID"));
-                }
-                if (block.getString("ANMID") != null
-                        && block.getString("ANMID").length() > 0
-                        && !block.getString("ANMID").equalsIgnoreCase("null")) {
-                    ANMID = Integer.valueOf(block.getInt("ANMID"));
-                }
-                WomenName = block.getString("WomenName");
-                Hushband_name = block.getString("Hushband_name");
-                PF_date = block.getString("PF_date");
-                CurrF_date = block.getString("CurrF_date");
-                FPF_Guid = block.getString("FPF_Guid");
-                WomenName_Guid = block.getString("WomenName_Guid");
-                Hushband_Guid = block.getString("Hushband_Guid");
-                MethodadoptedDate = block.getString("MethodadoptedDate");
-                if (block.getString("CreatedBy") != null
-                        && block.getString("CreatedBy").length() > 0
-                        && !block.getString("CreatedBy").equalsIgnoreCase(
-                        "null")) {
-                    CreatedBy = Integer.valueOf(block.getInt("CreatedBy"));
-                }
-                CreatedOn = block.getString("CreatedOn");
-
-                int count = 0;
-                String sql1 = "select count(*) from tblFP_followup where FPF_Guid='"
-                        + FPF_Guid + "' ";
-                count = dataProvider.getMaxRecord(sql1);
-                String sql = "";
-                if (count == 0) {
-                    sql = "Insert into tblFP_followup(WomenName,Hushband_name,PF_date,CurrF_date,MethodAdopted,Pregnant,Pregnant_test,FPF_Guid,WomenName_Guid,Hushband_Guid, AshaID,ANMID,IsEdited,IsUploaded,MethodadoptedDate)values('"
-                            + WomenName
-                            + "','"
-                            + Hushband_name
-                            + "','"
-                            + PF_date
-                            + "','"
-                            + CurrF_date
-                            + "','"
-                            + MethodAdopted
-                            + "','"
-                            + Pregnant
-                            + "','"
-                            + Pregnant_test
-                            + "','"
-                            + FPF_Guid
-                            + "','"
-                            + WomenName_Guid
-                            + "','"
-                            + Hushband_Guid
-                            + "','"
-                            + AshaID
-                            + "','"
-                            + ANMID
-                            + "',0,0,'"
-                            + MethodadoptedDate + "')";
-                }
-                dataProvider.executeSql(sql);
-
-            }
-            downloadmsg = "data download successfully";
-        } catch (Exception e) {
-            downloadmsg = e.getMessage();
-            e.printStackTrace();
-
-        }
-    }
 
     public void importtblmstimmunizationANS(String UserName, String Password,
                                             String ashaid) {
@@ -11474,7 +9133,7 @@ public class Synchronization extends Activity {
         immucounsellingdownload = 0;
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(4);
@@ -11483,6 +9142,7 @@ public class Synchronization extends Activity {
         nameValuePair.add(new BasicNameValuePair("sFlag",
                 "tblmstimmunizationans"));
         nameValuePair.add(new BasicNameValuePair("asha_id", ashaid));
+        nameValuePair.add(new BasicNameValuePair("lastdownload_date", tv_datefp1.getText().toString()));
 
         // Encoding POST data
         try {
@@ -11999,7 +9659,7 @@ public class Synchronization extends Activity {
         // TODO Auto-generated method stub
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(4);
@@ -12008,6 +9668,7 @@ public class Synchronization extends Activity {
         nameValuePair
                 .add(new BasicNameValuePair("sFlag", "tblpnchomevisit_ans"));
         nameValuePair.add(new BasicNameValuePair("asha_id", ashaid));
+        nameValuePair.add(new BasicNameValuePair("lastdownload_date", tv_datefp1.getText().toString()));
 
         // Encoding POST data
         try {
@@ -12108,6 +9769,7 @@ public class Synchronization extends Activity {
                     int ANMID = 0;
                     int AshaID = 0;
                     String UpdatedOn = "";
+                    String Time = "";
 
                     if (q_bankData.getString("Q_1") != null
                             && q_bankData.getString("Q_1").length() > 0
@@ -12480,6 +10142,7 @@ public class Synchronization extends Activity {
                     PWGUID = q_bankData.getString("PWGUID");
                     CreatedOn = q_bankData.getString("CreatedOn");
                     UpdatedOn = q_bankData.getString("UpdatedOn");
+                    Time = q_bankData.getString("Createtime");
 
                     String sqlcount = "select count(*) from tblPNChomevisit_ANS where PNCGUID='"
                             + PNCGUID
@@ -12495,7 +10158,7 @@ public class Synchronization extends Activity {
                     int count1 = dataProvider.getMaxRecord(sqlcount1);
                     String sql = "";
                     if (count == 0) {
-                        sql = "insert into tblPNChomevisit_ANS (AshaID,ANMID,PWGUID,ChildGUID,PNCGUID,VisitNo,Q_0,Q_1,Q_2,Q_3,Q_4,Q_5,Q_6,Q_7,Q_8,Q_9,Q_10,Q_12,Q_13,Q_14,Q_15,Q_16,Q_17,Q_18,Q_19,Q_20,Q_21,Q_22,Q_23,Q_24,Q_25,Q_26,Q_27,Q_28,Q_29,Q_30,Q_32,Q_33,Q_34,Q_35,Q_36,Q_37,Q_38,Q_38a,Q_39,Q_40,Q_41,Q_43,Q_44,Q_45,Q_46,Q_47,Q_48,Q_49,Q_50,Q_52,Q_53,Q_54,Q_55,Q_56,Q_57,Q_58,Q_59,Q_60,CreatedBy,CreatedOn,UpdatedBy,UpdatedOn,IsEdited)values("
+                        sql = "insert into tblPNChomevisit_ANS (AshaID,ANMID,PWGUID,ChildGUID,PNCGUID,VisitNo,Q_0,Q_1,Q_2,Q_3,Q_4,Q_5,Q_6,Q_7,Q_8,Q_9,Q_10,Q_12,Q_13,Q_14,Q_15,Q_16,Q_17,Q_18,Q_19,Q_20,Q_21,Q_22,Q_23,Q_24,Q_25,Q_26,Q_27,Q_28,Q_29,Q_30,Q_32,Q_33,Q_34,Q_35,Q_36,Q_37,Q_38,Q_38a,Q_39,Q_40,Q_41,Q_43,Q_44,Q_45,Q_46,Q_47,Q_48,Q_49,Q_50,Q_52,Q_53,Q_54,Q_55,Q_56,Q_57,Q_58,Q_59,Q_60,CreatedBy,CreatedOn,UpdatedBy,UpdatedOn,IsEdited,Createtime)values("
                                 + AshaID
                                 + ","
                                 + ANMID
@@ -12630,7 +10293,8 @@ public class Synchronization extends Activity {
                                 + "',	"
                                 + UpdatedBy
                                 + ",	'"
-                                + UpdatedOn + "',0)";
+                                + UpdatedOn + "',0,	'"
+                                + Time + "')";
 
                     } else {
                         if (count1 == 0) {
@@ -12666,7 +10330,7 @@ public class Synchronization extends Activity {
                                     + ",Q_60=	" + Q_60 + ",CreatedBy=	"
                                     + CreatedBy + ",CreatedOn=	'" + CreatedOn
                                     + "',UpdatedBy=	" + UpdatedBy
-                                    + ",	UpdatedOn='" + UpdatedOn + "',AshaID="
+                                    + ",	UpdatedOn='" + UpdatedOn + "',	Createtime='" + Time + "',AshaID="
                                     + ANMID + ",ANMID=" + ANMID
                                     + "	,IsEdited=0 where ChildGUID='"
                                     + ChildGUID + "',	PNCGUID='" + PNCGUID
@@ -12697,7 +10361,7 @@ public class Synchronization extends Activity {
                                            String ashaid) {
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(3);
@@ -12875,7 +10539,7 @@ public class Synchronization extends Activity {
 
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(3);
@@ -13036,13 +10700,14 @@ public class Synchronization extends Activity {
         iMNCHDataDownload = 0;
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(3);
         nameValuePair.add(new BasicNameValuePair("username", UserName));
         nameValuePair.add(new BasicNameValuePair("password", Password));
         nameValuePair.add(new BasicNameValuePair("sFlag", "tblvhndduelist"));
+        nameValuePair.add(new BasicNameValuePair("lastdownload_date", tv_dateVHND1.getText().toString()));
 
         // Encoding POST data
         try {
@@ -13169,7 +10834,7 @@ public class Synchronization extends Activity {
                                 + ModifyOn
                                 + "','"
                                 + ModifyBy
-                                + "',0,"
+                                + "',1,"
                                 + ServiceType
                                 + ",'"
                                 + Name
@@ -13180,7 +10845,7 @@ public class Synchronization extends Activity {
                                 + MemberName + "',VaccineNames='"
                                 + VaccineNames + "',ModifyOn='" + ModifyOn
                                 + "',ModifyBy='" + ModifyBy
-                                + "', IsUploaded=0 ,Name='" + Name
+                                + "', IsUploaded=1 ,Name='" + Name
                                 + "',Actual_VHNDDate='" + Actual_VHNDDate
                                 + "' where BeneficiaryGUID='" + BeneficiaryGUID
                                 + "' and VillageId='" + VillageID
@@ -13213,7 +10878,7 @@ public class Synchronization extends Activity {
         fpvisitdownload = 0;
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(4);
@@ -13221,6 +10886,7 @@ public class Synchronization extends Activity {
         nameValuePair.add(new BasicNameValuePair("password", Password));
         nameValuePair.add(new BasicNameValuePair("sFlag", "tblfp_visit"));
         nameValuePair.add(new BasicNameValuePair("asha_id", ashaid));
+        nameValuePair.add(new BasicNameValuePair("lastdownload_date", tv_datefp1.getText().toString()));
 
         // Encoding POST data
         try {
@@ -13433,7 +11099,7 @@ public class Synchronization extends Activity {
         fpfollowupdownload = 0;
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(4);
@@ -13441,6 +11107,7 @@ public class Synchronization extends Activity {
         nameValuePair.add(new BasicNameValuePair("password", Password));
         nameValuePair.add(new BasicNameValuePair("sFlag", "tblfp_followup"));
         nameValuePair.add(new BasicNameValuePair("asha_id", ashaid));
+        nameValuePair.add(new BasicNameValuePair("lastdownload_date", tv_datefp1.getText().toString()));
 
         // Encoding POST data
         try {
@@ -13612,12 +11279,228 @@ public class Synchronization extends Activity {
 
     }
 
+    public void exportdownloaddetail() {
+        try {
+            HttpClient httpClient = new DefaultHttpClient();
+
+            // replace with your url
+            HttpPost httpPost = new HttpPost("replace your URL");
+            JSONObject jsonObjectcombined = new JSONObject();
+
+            try {
+                ArrayList<HashMap<String, String>> data = null;
+                String sql = "";
+                sql = "Select * from tblDowloadDetail where IsEdited=1";
+                data = dataProvider.getDynamicVal(sql);
+                if (data != null && data.size() > 0) {
+                    String json1 = new Gson().toJson(data);
+                    JSONArray JSONArray_mstFPAns = new JSONArray(json1);
+                    jsonObjectcombined.put("tbldowloaddetail",
+                            JSONArray_mstFPAns);
+                } else {
+                    JSONArray otherJsonArray = new JSONArray();
+                    jsonObjectcombined.put("tbldowloaddetail",
+                            otherJsonArray);
+
+                }
+
+
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            // Post Data
+            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
+
+            nameValuePair.add(new BasicNameValuePair("username", global
+                    .getsGlobalUserName()));
+
+            nameValuePair.add(new BasicNameValuePair("password", global
+                    .getsGlobalPassword()));
+
+            nameValuePair.add(new BasicNameValuePair("data", jsonObjectcombined
+                    .toString()));
+            nameValuePair.add(new BasicNameValuePair("IMEI", global.getIMEI()));
+            nameValuePair.add(new BasicNameValuePair("VersionName", global.getVersionName()));
+
+            try {
+                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair,
+                        HTTP.UTF_8));
+            } catch (UnsupportedEncodingException e) {
+                // log exception
+                e.printStackTrace();
+            }
+
+            // making POST request.
+            try {
+                HttpResponse response = httpClient.execute(httpPost);
+                String responseBody = EntityUtils
+                        .toString(response.getEntity());
+
+                try {
+
+                    if (responseBody.contains("success")) {
+                        String sqltblDowloadDetail = "Update tblDowloadDetail set IsEdited=0 where  IsEdited=1 ";
+                        dataProvider.executeSql(sqltblDowloadDetail);
+                    }
+
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+
+            } catch (ClientProtocolException e) {
+                // Log exception
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            downloadmsg = e.getMessage();
+            System.out.println(e);
+        }
+
+    }
+
+    public void exportchcncd() {
+        try {
+            HttpClient httpClient = new DefaultHttpClient();
+
+            // replace with your url
+            HttpPost httpPost = new HttpPost("replace your URL");
+            JSONObject jsonObjectcombined = new JSONObject();
+
+            try {
+                ArrayList<HashMap<String, String>> data = null;
+                ArrayList<HashMap<String, String>> data1 = null;
+                ArrayList<HashMap<String, String>> data2 = null;
+                ArrayList<HashMap<String, String>> data3 = null;
+                String sql = "", sql1 = "", sql2 = "", sql3 = "";
+                sql = "Select * from tblncdscreening where IsEdited=1";
+                data = dataProvider.getDynamicVal(sql);
+                sql1 = "Select * from tblncdscreeningmedicine where IsEdited=1";
+                data1 = dataProvider.getDynamicVal(sql1);
+                sql2 = "Select * from tblncdscreeningoutside where IsEdited=1";
+                data2 = dataProvider.getDynamicVal(sql2);
+                sql3 = "Select * from tblncdscreeningmedicineoutside where IsEdited=1";
+                data3 = dataProvider.getDynamicVal(sql3);
+                if (data != null && data.size() > 0) {
+                    String json1 = new Gson().toJson(data);
+                    JSONArray JSONArray_mstFPAns = new JSONArray(json1);
+                    jsonObjectcombined.put("tblncdscreening",
+                            JSONArray_mstFPAns);
+                } else {
+                    JSONArray otherJsonArray = new JSONArray();
+                    jsonObjectcombined.put("tblncdscreening",
+                            otherJsonArray);
+
+                }
+                if (data1 != null && data1.size() > 0) {
+                    String json1 = new Gson().toJson(data1);
+                    JSONArray JSONArray_mstFPAns = new JSONArray(json1);
+                    jsonObjectcombined.put("tblncdscreeningmedicine",
+                            JSONArray_mstFPAns);
+                } else {
+                    JSONArray otherJsonArray = new JSONArray();
+                    jsonObjectcombined.put("tblncdscreeningmedicine",
+                            otherJsonArray);
+
+                }
+                if (data2 != null && data2.size() > 0) {
+                    String json1 = new Gson().toJson(data2);
+                    JSONArray JSONArray_mstFPAns = new JSONArray(json1);
+                    jsonObjectcombined.put("tblncdscreeningoutside",
+                            JSONArray_mstFPAns);
+                } else {
+                    JSONArray otherJsonArray = new JSONArray();
+                    jsonObjectcombined.put("tblncdscreeningoutside",
+                            otherJsonArray);
+
+                }
+                if (data3 != null && data3.size() > 0) {
+                    String json1 = new Gson().toJson(data3);
+                    JSONArray JSONArray_mstFPAns = new JSONArray(json1);
+                    jsonObjectcombined.put("tblncdscreeningmedicineoutside",
+                            JSONArray_mstFPAns);
+                } else {
+                    JSONArray otherJsonArray = new JSONArray();
+                    jsonObjectcombined.put("tblncdscreeningmedicineoutside",
+                            otherJsonArray);
+
+                }
+
+
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            // Post Data
+            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
+
+            nameValuePair.add(new BasicNameValuePair("username", global
+                    .getsGlobalUserName()));
+
+            nameValuePair.add(new BasicNameValuePair("password", global
+                    .getsGlobalPassword()));
+
+            nameValuePair.add(new BasicNameValuePair("data", jsonObjectcombined
+                    .toString()));
+            nameValuePair.add(new BasicNameValuePair("IMEI", global.getIMEI()));
+            nameValuePair.add(new BasicNameValuePair("VersionName", global.getVersionName()));
+
+            try {
+                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair,
+                        HTTP.UTF_8));
+            } catch (UnsupportedEncodingException e) {
+                // log exception
+                e.printStackTrace();
+            }
+
+            // making POST request.
+            try {
+                HttpResponse response = httpClient.execute(httpPost);
+                String responseBody = EntityUtils
+                        .toString(response.getEntity());
+
+                try {
+
+                    if (responseBody.contains("success")) {
+                        String sqltblncdscreening = "Update tblncdscreening set IsEdited=0 where  IsEdited=1 ";
+                        dataProvider.executeSql(sqltblncdscreening);
+                        String sqltblncdscreeningMedicine = "Update tblncdscreeningmedicine set IsEdited=0 where  IsEdited=1 ";
+                        dataProvider.executeSql(sqltblncdscreeningMedicine);
+                        String sqltblncdscreeningOutside = "Update tblncdscreeningoutside set IsEdited=0 where  IsEdited=1 ";
+                        dataProvider.executeSql(sqltblncdscreeningOutside);
+                        String sqltblncdscreeningMedicineoutside = "Update tblncdscreeningmedicineoutside set IsEdited=0 where  IsEdited=1 ";
+                        dataProvider.executeSql(sqltblncdscreeningMedicineoutside);
+                        iDataUploadfp = 1;
+                    } else {
+                        downloadmsg = responseBody;
+                        iDataUploadfp = 0;
+                    }
+
+                } catch (Exception e) {
+                    System.out.println(e);
+                    downloadmsg = e.getMessage();
+                }
+
+            } catch (ClientProtocolException e) {
+                // Log exception
+                e.printStackTrace();
+                downloadmsg = e.getMessage();
+            }
+        } catch (Exception e) {
+            downloadmsg = e.getMessage();
+            System.out.println(e);
+        }
+
+    }
+
     public void exportAnswerdata() {
         try {
             HttpClient httpClient = new DefaultHttpClient();
 
             // replace with your url
-            HttpPost httpPost = new HttpPost("URL");
+            HttpPost httpPost = new HttpPost("replace your URL");
             JSONObject jsonObjectcombined = new JSONObject();
             try {
 
@@ -13680,12 +11563,17 @@ public class Synchronization extends Activity {
                 try {
 
                     if (responseBody.contains("success")) {
-
-                        String sqltblmstimmunizationANS = "Update tblmstimmunizationANS set IsEdited=0 where IsEdited=1 ";
-                        dataProvider.executeSql(sqltblmstimmunizationANS);
-                        String sqltblPNChomevisit_ANS = "Update tblPNChomevisit_ANS set IsEdited=0 where IsEdited=1 ";
-                        dataProvider.executeSql(sqltblPNChomevisit_ANS);
-
+                        if (global.getiGlobalRoleID() == 3) {
+                            String sqltblmstimmunizationANS = "Update tblmstimmunizationANS set IsEdited=0 where IsEdited=1 ";
+                            dataProvider.executeSql(sqltblmstimmunizationANS);
+                            String sqltblPNChomevisit_ANS = "Update tblPNChomevisit_ANS set IsEdited=0 where IsEdited=1 ";
+                            dataProvider.executeSql(sqltblPNChomevisit_ANS);
+                        } else {
+                            String sqltblmstimmunizationANS = "Update tblmstimmunizationANS set IsEdited=0 where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited=1 ";
+                            dataProvider.executeSql(sqltblmstimmunizationANS);
+                            String sqltblPNChomevisit_ANS = "Update tblPNChomevisit_ANS set IsEdited=0 where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited=1 ";
+                            dataProvider.executeSql(sqltblPNChomevisit_ANS);
+                        }
                         iDataUploadImmu = 1;
 
                     } else {
@@ -13709,7 +11597,7 @@ public class Synchronization extends Activity {
 
     public void count() {
         try {
-            String sql1 = "", sql2 = "", sql11 = "", sql12 = "", sql3 = "", sql4 = "", sql5 = "", sql6 = "", sql7 = "", sql8 = "", sql9 = "", sql10 = "", sql13 = "";
+            String sql1 = "", sql2 = "", sql11 = "", sql12 = "", sql3 = "", sql4 = "", sql5 = "", sql6 = "", sql7 = "", sql8 = "", sql9 = "", sql10 = "", sql13 = "", sql14 = "", sql15 = "";
             sql1 = "Select count(*) from Tbl_HHSurvey where IsEdited=1 ";
             sql2 = "Select count(*)  from Tbl_HHFamilyMember where IsEdited=1 ";
             sql3 = "Select count(*) from tblChild where IsEdited = 1";
@@ -13723,6 +11611,9 @@ public class Synchronization extends Activity {
             sql11 = "Select count(*) from tblncdscreening where IsEdited = 1";
             sql12 = "Select count(*) from tblncdfollowup where IsEdited = 1";
             sql13 = "Select count(*) from tblncdcbac where IsEdited = 1";
+            sql14 = "Select count(*) from tblincentivesurvey where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited = 1";
+            sql15 = "Select count(*) from tblashaincentivedetail where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited = 1";
+
             int fpcount = dataProvider.getMaxRecord(sql6)
                     + dataProvider.getMaxRecord(sql7);
             int hhcount = dataProvider.getMaxRecord(sql1)
@@ -13735,6 +11626,7 @@ public class Synchronization extends Activity {
             int vhndcount = dataProvider.getMaxRecord(sql10);
             int ncdcount = dataProvider.getMaxRecord(sql11)
                     + dataProvider.getMaxRecord(sql12) + dataProvider.getMaxRecord(sql13);
+            int inccount = dataProvider.getMaxRecord(sql14) + dataProvider.getMaxRecord(sql15);
             tv_uploadFP.setText(getResources().getString(R.string.uploadFP)
                     + " (" + fpcount + ")");
             tv_uploadHH.setText(getResources().getString(R.string.uploadHH)
@@ -13745,6 +11637,72 @@ public class Synchronization extends Activity {
                     + " (" + vhndcount + ")");
             tv_uploadNCD.setText(getResources().getString(R.string.uploadNCD)
                     + " (" + ncdcount + ")");
+            tv_uploadIncentive.setText(getResources().getString(R.string.upload_incentive)
+                    + " (" + inccount + ")");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void countchc() {
+        try {
+            String sql1 = "", sql2 = "";
+            sql1 = "Select count(*) from tblncdscreening where IsEdited = 1";
+            // sql2 = "Select count(*) from tblncdscreeningoutside where IsEdited = 1";
+            int ncdcount = dataProvider.getMaxRecord(sql1);
+            tv_uploadNCD.setText(getResources().getString(R.string.uploadNCD)
+                    + " (" + ncdcount + ")");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void countashawise() {
+        try {
+            String sql1 = "", sql2 = "", sql11 = "", sql12 = "", sql3 = "", sql4 = "", sql5 = "", sql6 = "", sql7 = "", sql8 = "", sql9 = "", sql10 = "", sql13 = "", sql14 = "", sql15 = "";
+            sql1 = "Select count(*) from Tbl_HHSurvey where ServiceProviderID=" + global.getsGlobalAshaCode() + " and IsEdited=1 ";
+            sql2 = "Select count(*)  from Tbl_HHFamilyMember where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited=1 ";
+            sql3 = "Select count(*) from tblChild where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited = 1";
+            sql4 = "Select count(*) from tblPregnant_woman where AshaID=" + global.getsGlobalAshaCode() + " and  IsEdited = 1";
+            sql5 = "Select count(*) from tblANCVisit where ByAshaID=" + global.getsGlobalAshaCode() + " and IsEdited = 1";
+            sql6 = "Select count(*)  from tblFP_followup where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited=1 ";
+            sql7 = "Select count(*) from tblFP_visit where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited = 1";
+            sql8 = "Select count(*) from tblPNChomevisit_ANS where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited = 1";
+            sql9 = "Select count(*) from tblmstimmunizationANS where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited = 1";
+            sql10 = "Select count(*) from tblVHNDDuelist where AshaID=" + global.getsGlobalAshaCode() + " and IsUploaded = 0";
+            sql11 = "Select count(*) from tblncdscreening where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited = 1";
+            sql12 = "Select count(*) from tblncdfollowup where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited = 1";
+            sql13 = "Select count(*) from tblncdcbac where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited = 1";
+            sql14 = "Select count(*) from tblincentivesurvey where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited = 1";
+            sql15 = "Select count(*) from tblashaincentivedetail where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited = 1";
+            int fpcount = dataProvider.getMaxRecord(sql6)
+                    + dataProvider.getMaxRecord(sql7);
+            int hhcount = dataProvider.getMaxRecord(sql1)
+                    + dataProvider.getMaxRecord(sql2);
+            int mnchcount = dataProvider.getMaxRecord(sql9)
+                    + dataProvider.getMaxRecord(sql3)
+                    + dataProvider.getMaxRecord(sql4)
+                    + dataProvider.getMaxRecord(sql5)
+                    + dataProvider.getMaxRecord(sql8);
+            int vhndcount = dataProvider.getMaxRecord(sql10);
+            int ncdcount = dataProvider.getMaxRecord(sql11)
+                    + dataProvider.getMaxRecord(sql12) + dataProvider.getMaxRecord(sql13);
+            int incentivecount = dataProvider.getMaxRecord(sql14)
+                    + dataProvider.getMaxRecord(sql15);
+            tv_uploadFP.setText(getResources().getString(R.string.uploadFP)
+                    + " (" + fpcount + ")");
+            tv_uploadHH.setText(getResources().getString(R.string.uploadHH)
+                    + " (" + hhcount + ")");
+            tv_uploadMNCH.setText(getResources().getString(R.string.uploadMNCH)
+                    + " (" + mnchcount + ")");
+            tv_VHNDUpload.setText(getResources().getString(R.string.VHNDUpload)
+                    + " (" + vhndcount + ")");
+            tv_uploadNCD.setText(getResources().getString(R.string.uploadNCD)
+                    + " (" + ncdcount + ")");
+            tv_uploadIncentive.setText(getResources().getString(R.string.upload_incentive)
+                    + " (" + incentivecount + ")");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -13753,18 +11711,21 @@ public class Synchronization extends Activity {
 
     public void uploaddate() {
         try {
-            String sql1 = "", sql2 = "", sql11 = "", sql3 = "", sql4 = "", sql5 = "", sql6 = "", sql7 = "", sql8 = "", sql9 = "", sql10 = "", sql13 = "", sqldate1 = "", sqldate2 = "", sqldate11 = "", sqldate12 = "", sqldate3 = "", sqldate4 = "", sqldate5 = "", sqldate6 = "", sqldate7 = "", sqldate8 = "", sqldate9 = "", sqldate10 = "", sqldate13 = "";
-            sql1 = "Select CreatedOn from tblDowloadDetail where ModuleID=1 order by UID DESC limit 1 ";
-            sql2 = "Select CreatedOn from tblDowloadDetail where ModuleID=2 order by UID DESC limit 1 ";
-            sql3 = "Select CreatedOn from tblDowloadDetail where ModuleID=3 order by UID DESC limit 1 ";
-            sql4 = "Select CreatedOn from tblDowloadDetail where ModuleID=4 order by UID DESC limit 1 ";
-            sql5 = "Select CreatedOn from tblDowloadDetail where ModuleID=5 order by UID DESC limit 1 ";
-            sql6 = "Select CreatedOn from tblDowloadDetail where ModuleID=6 order by UID DESC limit 1  ";
-            sql7 = "Select CreatedOn from tblDowloadDetail where ModuleID=7 order by UID DESC limit 1 ";
-            sql8 = "Select CreatedOn from tblDowloadDetail where ModuleID=8 order by UID DESC limit 1 ";
-            sql9 = "Select CreatedOn from tblDowloadDetail where ModuleID=9 order by UID DESC limit 1 ";
-            sql10 = "Select CreatedOn from tblDowloadDetail where ModuleID=10 order by UID DESC limit 1 ";
-            sql11 = "Select CreatedOn from tblDowloadDetail where ModuleID=11 order by UID DESC limit 1 ";
+            String sql1 = "", sql12 = "", sql2 = "", sql11 = "", sql3 = "", sql4 = "", sql5 = "", sql6 = "", sql7 = "", sql8 = "", sql9 = "", sql10 = "", sql13 = "", sqldate1 = "", sqldate2 = "", sqldate11 = "", sqldate12 = "", sqldate3 = "", sqldate4 = "", sqldate5 = "", sqldate6 = "", sqldate7 = "", sqldate8 = "", sqldate9 = "", sqldate10 = "", sqldate13 = "", sql14 = "", sql15 = "", sqldate14 = "", sqldate15 = "";
+            sql1 = "Select CreatedOn from tblDowloadDetail where ModuleID=1 and CreatedBy=" + global.getUserID() + " order by UID DESC limit 1 ";
+            sql2 = "Select CreatedOn from tblDowloadDetail where ModuleID=2  and CreatedBy=" + global.getUserID() + " order by UID DESC limit 1 ";
+            sql3 = "Select CreatedOn from tblDowloadDetail where ModuleID=3  and CreatedBy=" + global.getUserID() + " order by UID DESC limit 1 ";
+            sql4 = "Select CreatedOn from tblDowloadDetail where ModuleID=4  and CreatedBy=" + global.getUserID() + " order by UID DESC limit 1 ";
+            sql5 = "Select CreatedOn from tblDowloadDetail where ModuleID=5  and CreatedBy=" + global.getUserID() + " order by UID DESC limit 1 ";
+            sql6 = "Select CreatedOn from tblDowloadDetail where ModuleID=6  and CreatedBy=" + global.getUserID() + " order by UID DESC limit 1  ";
+            sql7 = "Select CreatedOn from tblDowloadDetail where ModuleID=7  and CreatedBy=" + global.getUserID() + " order by UID DESC limit 1 ";
+            sql8 = "Select CreatedOn from tblDowloadDetail where ModuleID=8  and CreatedBy=" + global.getUserID() + " order by UID DESC limit 1 ";
+            sql9 = "Select CreatedOn from tblDowloadDetail where ModuleID=9  and CreatedBy=" + global.getUserID() + " order by UID DESC limit 1 ";
+            sql10 = "Select CreatedOn from tblDowloadDetail where ModuleID=10  and CreatedBy=" + global.getUserID() + " order by UID DESC limit 1 ";
+            sql11 = "Select CreatedOn from tblDowloadDetail where ModuleID=11  and CreatedBy=" + global.getUserID() + " order by UID DESC limit 1 ";
+            sql12 = "Select CreatedOn from tblDowloadDetail where ModuleID=12  and CreatedBy=" + global.getUserID() + " order by UID DESC limit 1 ";
+            sql14 = "Select CreatedOn from tblDowloadDetail where ModuleID=13  and CreatedBy=" + global.getUserID() + " order by UID DESC limit 1 ";
+            sql15 = "Select CreatedOn from tblDowloadDetail where ModuleID=14  and CreatedBy=" + global.getUserID() + " order by UID DESC limit 1 ";
 
             sqldate1 = dataProvider.getRecord(sql1);
             sqldate2 = dataProvider.getRecord(sql2);
@@ -13777,18 +11738,30 @@ public class Synchronization extends Activity {
             sqldate9 = dataProvider.getRecord(sql9);
             sqldate10 = dataProvider.getRecord(sql10);
             sqldate11 = dataProvider.getRecord(sql11);
+            sqldate12 = dataProvider.getRecord(sql12);
+            sqldate14 = dataProvider.getRecord(sql14);
+            sqldate15 = dataProvider.getRecord(sql15);
 
+            tv_dateReferal.setText(getString(R.string.lastdownload) + "  " + Validate.changeDateFormat(sqldate12));
             tv_datehh.setText(getString(R.string.lastdownload) + "  " + Validate.changeDateFormat(sqldate7));
             tv_dateMnch.setText(getString(R.string.lastdownload) + "  " + Validate.changeDateFormat(sqldate6));
             tv_datefp.setText(getString(R.string.lastdownload) + "  " + Validate.changeDateFormat(sqldate8));
             tv_dateVHND.setText(getString(R.string.lastdownload) + "  " + Validate.changeDateFormat(sqldate10));
             tv_dateNCD.setText(getString(R.string.lastdownload) + "  " + Validate.changeDateFormat(sqldate9));
+            tv_datehh1.setText(sqldate7);
+            tv_dateMnch1.setText(sqldate6);
+            tv_datefp1.setText(sqldate8);
+            tv_dateVHND1.setText(sqldate10);
+            tv_dateNCD1.setText(sqldate9);
             tv_dateuploadNCD.setText(getString(R.string.lastupload) + "  " + Validate.changeDateFormat(sqldate4));
             tv_dateMaster.setText(getString(R.string.lastdownload) + "  " + Validate.changeDateFormat(sqldate11));
             tv_dateuploadVHND.setText(getString(R.string.lastupload) + "  " + Validate.changeDateFormat(sqldate5));
             tv_dateuploadFP.setText(getString(R.string.lastupload) + "  " + Validate.changeDateFormat(sqldate3));
             tv_dateuploadMNCH.setText(getString(R.string.lastupload) + "  " + Validate.changeDateFormat(sqldate2));
             tv_dateuploadHH.setText(getString(R.string.lastupload) + "  " + Validate.changeDateFormat(sqldate1));
+            tv_dateuploadIncentive.setText(getString(R.string.lastupload) + "  " + Validate.changeDateFormat(sqldate15));
+            tv_dateIncentive.setText(getString(R.string.lastdownload) + "  " + Validate.changeDateFormat(sqldate14));
+            tv_dateIncentive1.setText(sqldate14);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -13821,13 +11794,22 @@ public class Synchronization extends Activity {
 
     public String getIMEI(Activity activity) {
         try {
-            TelephonyManager telephonyManager = (TelephonyManager) activity
-                    .getSystemService(Context.TELEPHONY_SERVICE);
-            return telephonyManager.getDeviceId();
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_PHONE_STATE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                TelephonyManager telephonyManager = (TelephonyManager) activity
+                        .getSystemService(Context.TELEPHONY_SERVICE);
+
+                return telephonyManager.getDeviceId();
+            } else {
+                return "";
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             return "";
         }
+
+
     }
 
     public void exportdevicedata() {
@@ -13837,7 +11819,7 @@ public class Synchronization extends Activity {
                 HttpClient httpClient = new DefaultHttpClient();
                 // replace with your url
                 HttpPost httpPost = new HttpPost(
-                        "URL");
+                        "replace your URL");
                 JSONObject jsonObjectcombined = new JSONObject();
                 try {
 
@@ -13918,7 +11900,7 @@ public class Synchronization extends Activity {
         ncdfollowupdownload = 0;
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(4);
@@ -13926,6 +11908,7 @@ public class Synchronization extends Activity {
         nameValuePair.add(new BasicNameValuePair("password", Password));
         nameValuePair.add(new BasicNameValuePair("sFlag", "tblncdcbac"));
         nameValuePair.add(new BasicNameValuePair("asha_id", ashaid));
+        nameValuePair.add(new BasicNameValuePair("lastdownload_date", tv_dateNCD1.getText().toString()));
 
         // Encoding POST data
         try {
@@ -13966,12 +11949,137 @@ public class Synchronization extends Activity {
 
     }
 
+    public void importncdcbacdiagnosis(String UserName, String Password,
+                                       String ashaid) {
+        ncdfollowupdownload = 0;
+        HttpClient httpClient = new DefaultHttpClient();
+        // replace with your url
+        HttpPost httpPost = new HttpPost("replace your URL");
+
+        // Post Data
+        List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(4);
+        nameValuePair.add(new BasicNameValuePair("username", UserName));
+        nameValuePair.add(new BasicNameValuePair("password", Password));
+        nameValuePair.add(new BasicNameValuePair("sFlag", "tblncdcbacdiagnosis"));
+        nameValuePair.add(new BasicNameValuePair("asha_id", ashaid));
+        nameValuePair.add(new BasicNameValuePair("lastdownload_date", tv_dateNCD1.getText().toString()));
+
+        // Encoding POST data
+        try {
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+        } catch (UnsupportedEncodingException e) {
+            // log exception
+            e.printStackTrace();
+        }
+
+        // making POST request.
+        try {
+            String responseBody = "";
+            HttpResponse response = httpClient.execute(httpPost);
+            responseBody = EntityUtils.toString(response.getEntity());
+
+            JSONObject jsonObj = null;
+            try {
+                String[] Tablename = {"tblncdcbacdiagnosis"};
+                String[] condition[] = {{"NCDScreeningGUID"}, {"NCD_id"}};
+                jsonObj = new JSONObject(responseBody.toString());
+                dataProvider.ImportDataInMyWay(jsonObj, Tablename, condition);
+            } catch (JSONException e1) {
+
+                e1.printStackTrace();
+            }
+            ncdfollowupdownload = 1;
+
+
+        } catch (ClientProtocolException e) {
+            // Log exception
+            ncdfollowupdownload = 0;
+            e.printStackTrace();
+        } catch (IOException e2) {
+            // TODO Auto-generated catch block
+            ncdfollowupdownload = 0;
+            e2.printStackTrace();
+        }
+
+    }
+
+    public void importreferal(String UserName, String Password,
+                              String ashaid) {
+        try {
+            String[] Tablename = {"Tbl_HHSurvey", "Tbl_HHFamilyMember", "tblncdfollowup", "tblncdscreening", "tblncdcbac", "tblncdscreeningmedicine"};
+            String[] condition[] = {{"HHSurveyGUID"}, {"HHSurveyGUID", "HHFamilyMemberGUID"}, {"NCDFollowupGUID"}, {"NCDScreeningGUID"}, {"NCDCBACGUID"}, {"NCDScreeningGUID", "ID"}};
+            String MasterTag[] = {"tblhhsurvey", "tblhhfamilymember", "tblncdfollowup", "tblncdscreening", "tblncdcbac", "tblncdscreeningmedicine"};
+            for (int i = 0; i < Tablename.length; i++) {
+                importreferaltabledata(UserName, Password,
+                        ashaid, Tablename[i], condition[i], MasterTag[i]);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void importreferaltabledata(String UserName, String Password,
+                                       String ashaid, String name, String Condition[], String name1) {
+        ncdfollowupdownload = 0;
+        HttpClient httpClient = new DefaultHttpClient();
+        // replace with your url
+        HttpPost httpPost = new HttpPost("replace your URL");
+
+        // Post Data
+        List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(4);
+        nameValuePair.add(new BasicNameValuePair("username", UserName));
+        nameValuePair.add(new BasicNameValuePair("password", Password));
+        nameValuePair.add(new BasicNameValuePair("sFlag", name1));
+        nameValuePair.add(new BasicNameValuePair("asha_id", ashaid));
+
+        // Encoding POST data
+        try {
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+        } catch (UnsupportedEncodingException e) {
+            // log exception
+            e.printStackTrace();
+        }
+
+        // making POST request.
+        try {
+            String responseBody = "";
+            HttpResponse response = httpClient.execute(httpPost);
+            responseBody = EntityUtils.toString(response.getEntity());
+
+            JSONObject jsonObj = null;
+            try {
+                String[] Tablename = {name};
+                String[] Tablename1 = {name1};
+                String[] condition[] = {Condition};
+                jsonObj = new JSONObject(responseBody.toString());
+                dataProvider.ImportDataInMyWay(jsonObj, Tablename, condition, Tablename1);
+            } catch (JSONException e1) {
+
+                e1.printStackTrace();
+            }
+            ncdfollowupdownload = 1;
+
+
+        } catch (ClientProtocolException e) {
+            // Log exception
+            ncdfollowupdownload = 0;
+            e.printStackTrace();
+        } catch (IOException e2) {
+            // TODO Auto-generated catch block
+            ncdfollowupdownload = 0;
+            e2.printStackTrace();
+        }
+
+    }
+
     public void importncdfollowup(String UserName, String Password,
                                   String ashaid) {
         ncdfollowupdownload = 0;
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(4);
@@ -13979,6 +12087,7 @@ public class Synchronization extends Activity {
         nameValuePair.add(new BasicNameValuePair("password", Password));
         nameValuePair.add(new BasicNameValuePair("sFlag", "tblncdfollowup"));
         nameValuePair.add(new BasicNameValuePair("asha_id", ashaid));
+        nameValuePair.add(new BasicNameValuePair("lastdownload_date", tv_dateNCD1.getText().toString()));
 
         // Encoding POST data
         try {
@@ -14353,7 +12462,7 @@ public class Synchronization extends Activity {
                             + NCDFollowupGUID + "' and  IsEdited= 1";
                     int count1 = dataProvider.getMaxRecord(sqlcount1);
                     String sql = "";
-                    if (IsDeleted == 1 && count1 == 0) {
+                    if (IsDeleted == 1) {
 
                         String sqldelete1 = "delete from tblncdfollowup where NCDFollowupGUID='"
                                 + NCDFollowupGUID + "' ";
@@ -14551,7 +12660,7 @@ public class Synchronization extends Activity {
         ncdscreeningdownload = 0;
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(4);
@@ -14559,6 +12668,7 @@ public class Synchronization extends Activity {
         nameValuePair.add(new BasicNameValuePair("password", Password));
         nameValuePair.add(new BasicNameValuePair("sFlag", "tblncdscreening"));
         nameValuePair.add(new BasicNameValuePair("asha_id", ashaid));
+        nameValuePair.add(new BasicNameValuePair("lastdownload_date", tv_dateNCD1.getText().toString()));
 
         // Encoding POST data
         try {
@@ -14868,7 +12978,7 @@ public class Synchronization extends Activity {
                             + NCDScreeningGUID + "' and  IsEdited= 1";
                     int count1 = dataProvider.getMaxRecord(sqlcount1);
                     String sql = "";
-                    if (IsDeleted == 1 && count1 == 0) {
+                    if (IsDeleted == 1) {
                         String sqldelete = "delete from tblncdscreening where NCDScreeningGUID='"
                                 + NCDScreeningGUID + "' ";
                         dataProvider.executeSql(sqldelete);

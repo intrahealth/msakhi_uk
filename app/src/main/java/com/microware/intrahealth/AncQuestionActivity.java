@@ -111,7 +111,7 @@ public class AncQuestionActivity extends Activity {
                     if (Grp2.get(j).getQtext()
                             .equalsIgnoreCase((Questions).get(i).getQtext())) {
 
-                        // String element="";
+                        // Stri`ng element="";
                         Questions.get(i).setQtext("");
                         // Questions.remove(i+1);
                     }

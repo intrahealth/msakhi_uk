@@ -100,7 +100,7 @@ public class Anc_DueListadapter extends BaseAdapter {
         tv3.setText(Validate.changeDateFormat(hhsurvey.get(position).getLMPDate()));
         tv4.setText(Validate.changeDateFormat(hhsurvey.get(position).getEDDDate()));
         if (position % 2 == 0) {
-            GridRow.setBackgroundColor(context.getResources().getColor(R.color.lightgray));
+            GridRow.setBackgroundColor(context.getResources().getColor(R.color.LightPowderBlue));
         }
         GridRow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,8 +111,12 @@ public class Anc_DueListadapter extends BaseAdapter {
                     Intent i = new Intent(context, AncActivity.class);
                     global.setNotification_trackflag(1);
                     context.startActivity(i);
-                }else  if (flag == 7) {
-
+                }else  if (flag == 8) {
+                    global.setsGlobalPWGUID(hhsurvey
+                            .get(position).getPWGUID());
+                    Intent i = new Intent(context, AncActivity.class);
+                    global.setNotification_trackflag(1);
+                    context.startActivity(i);
                 }
             }
         });

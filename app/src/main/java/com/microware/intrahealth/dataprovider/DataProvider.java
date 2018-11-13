@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import com.microware.intrahealth.DatabaseHelper;
+import com.microware.intrahealth.Global;
 import com.microware.intrahealth.Validate;
 import com.microware.intrahealth.object.Child_Imunization_Object;
 import com.microware.intrahealth.object.MstANM;
@@ -65,6 +66,7 @@ public class DataProvider {
     public SQLiteDatabase dbIntraHealth;
     private Cursor cursor;
     private Context context;
+    Global global;
     private DatabaseHelper dbHelper;
     @SuppressWarnings("unused")
     private String getGlobalGUID;
@@ -78,6 +80,7 @@ public class DataProvider {
             DatabaseHelper dbHelper;
             dbHelper = DatabaseHelper.getInstance(context, DATABASE_NAME);
             dbIntraHealth = dbHelper.getDatabase();
+            global = (Global) context.getApplicationContext();
             cursor = null;
         } catch (Exception exp) {
 
@@ -86,14 +89,19 @@ public class DataProvider {
     }
 
     public void executeSql(String Sql) {
+
+        dbIntraHealth.beginTransaction();
         try {
             if (dbIntraHealth == null) {
                 dbIntraHealth = dbHelper.getDatabase();
             }
             dbIntraHealth.execSQL(Sql);
+            dbIntraHealth.setTransactionSuccessful();
         } catch (Exception exception) {
             Log.e("DataProvider",
                     "Error in executeSql :: " + exception.getMessage());
+        } finally {
+            dbIntraHealth.endTransaction();
         }
     }
 
@@ -239,10 +247,28 @@ public class DataProvider {
                     + " and  Tbl_HHFamilyMember.StatusID=1  and FamilyMemberName like '%"
                     + FamilyMemberName
                     + "%' and HHFamilyMemberGUID not in(Select HHFamilyMemberGUID from tblncdscreening where Status=1) order by cast(Tbl_HHSurvey.hhcode as int) ASC ";
+        } else if (flag == 4) {
+            sql = "select  FamilyMemberName,AgeAsOnYear,DateOfBirth,AprilAgeYear,AprilAgeMonth,HHFamilyMemberGUID,Spouse,Tbl_HHFamilyMember.HHSurveyGUID,Tbl_HHSurvey.hhcode as HHCode from Tbl_HHFamilyMember left join Tbl_HHSurvey on tbl_HHFamilyMember.HHSurveyGUID=Tbl_HHSurvey.HHSurveyGUID where Tbl_HHSurvey.IsActive=1 and    Tbl_HHSurvey.VillageID =" + VillageID + " and  Tbl_HHSurvey.serviceproviderid ="
+                    + AshaID
+                    + " and  Tbl_HHFamilyMember.StatusID=1 and HHFamilyMemberGUID  in(Select HHFamilyMemberGUID from tblncdscreening ) order by cast(Tbl_HHSurvey.hhcode as int) ASC";
+        } else if (flag == 5) {
+            sql = "select  FamilyMemberName,AgeAsOnYear,DateOfBirth,AprilAgeYear,AprilAgeMonth,HHFamilyMemberGUID,Spouse,Tbl_HHFamilyMember.HHSurveyGUID,Tbl_HHSurvey.hhcode as HHCode from Tbl_HHFamilyMember left join Tbl_HHSurvey on tbl_HHFamilyMember.HHSurveyGUID=Tbl_HHSurvey.HHSurveyGUID where Tbl_HHSurvey.IsActive=1 and    Tbl_HHSurvey.serviceproviderid ="
+                    + AshaID
+                    + " and  Tbl_HHFamilyMember.StatusID=1 and HHFamilyMemberGUID  in(Select HHFamilyMemberGUID from tblncdscreening ) order by cast(Tbl_HHSurvey.hhcode as int) ASC";
+        } else if (flag == 6) {
+            sql = "select  FamilyMemberName,AgeAsOnYear,DateOfBirth,AprilAgeYear,AprilAgeMonth,HHFamilyMemberGUID,Spouse,Tbl_HHFamilyMember.HHSurveyGUID,Tbl_HHSurvey.hhcode as HHCode from Tbl_HHFamilyMember left join Tbl_HHSurvey on tbl_HHFamilyMember.HHSurveyGUID=Tbl_HHSurvey.HHSurveyGUID where Tbl_HHSurvey.IsActive=1 and   Tbl_HHSurvey.VillageID =" + VillageID + " and   Tbl_HHSurvey.serviceproviderid ="
+                    + AshaID
+                    + " and  Tbl_HHFamilyMember.StatusID=1  and FamilyMemberName like '%"
+                    + FamilyMemberName
+                    + "%' and HHFamilyMemberGUID  in(Select HHFamilyMemberGUID from tblncdscreening ) order by cast(Tbl_HHSurvey.hhcode as int) ASC ";
         } else if (flag == 7) {
             sql = "select  FamilyMemberName,AgeAsOnYear,DateOfBirth,AprilAgeYear,AprilAgeMonth,HHFamilyMemberGUID,Spouse,Tbl_HHFamilyMember.HHSurveyGUID,Tbl_HHSurvey.hhcode as HHCode  from Tbl_HHFamilyMember inner join Tbl_HHSurvey  on tbl_HHFamilyMember.HHSurveyGUID=Tbl_HHSurvey.HHSurveyGUID where Tbl_HHSurvey.IsActive=1 and   Tbl_HHSurvey.serviceproviderid ="
                     + AshaID
                     + " and (Tbl_HHFamilyMember.HHFamilyMemberGUID  in (select  distinct(womenname_guid) from tblFP_visit ) or  Tbl_HHFamilyMember.HHFamilyMemberGUID  in (select  distinct(womenname_guid) from tblFP_followup )) ";
+        } else if (flag == 8) {
+            sql = "select  FamilyMemberName,AgeAsOnYear,DateOfBirth,AprilAgeYear,AprilAgeMonth,HHFamilyMemberGUID,Spouse,Tbl_HHFamilyMember.HHSurveyGUID,Tbl_HHSurvey.hhcode as HHCode from Tbl_HHFamilyMember left join Tbl_HHSurvey on tbl_HHFamilyMember.HHSurveyGUID=Tbl_HHSurvey.HHSurveyGUID where Tbl_HHSurvey.HHSurveyGUID='" + FamilyMemberName + "' and Tbl_HHSurvey.IsActive=1 and    Tbl_HHSurvey.serviceproviderid ="
+                    + AshaID
+                    + " and  Tbl_HHFamilyMember.StatusID=1  order by cast(Tbl_HHSurvey.hhcode as int) ASC";
         }
         cursor = null;
         try {
@@ -647,7 +673,7 @@ public class DataProvider {
     public ArrayList<tblhhupdate_Log> getAlldata() {
         ArrayList<tblhhupdate_Log> data = null;
         String sql = "";
-        sql = "select * from tblhhupdate_Log where IsEdited=1";
+        sql = "select * from tblhhupdate_Log where IsEdited=1 and UserID=" + global.getUserID() + "";
 
         cursor = null;
         try {
@@ -1035,7 +1061,7 @@ public class DataProvider {
                     + HHFamilyMemberGUID + "' and MigrationGUID='"
                     + MigrationGUID + "'";
         } else if (Flag == 2) {
-            sql = "Select * from tblMigration where IsEdited=1";
+            sql = "Select * from tblMigration where CreatedBy=" + global.getUserID() + " and  IsEdited=1";
         }
         cursor = null;
         try {
@@ -1143,10 +1169,10 @@ public class DataProvider {
             String CreatedOn = Validate.getcurrentdate();
             sql = "insert into tblPNChomevisit_ANS ("
                     + ansfield
-                    + ",ChildGUID,PNCGUID,VisitNo,IsEdited,CreatedOn,CreatedBy,AshaID,ANMID)values('"
+                    + ",ChildGUID,PNCGUID,VisitNo,IsEdited,CreatedOn,CreatedBy,AshaID,ANMID,Createtime)values('"
                     + dtaans + "','" + ChildGUID + "','" + pncguid + "',"
                     + visitno + ",1,'" + CreatedOn + "','" + id + "'," + AshaID
-                    + "," + ANMID + ")";
+                    + "," + ANMID + ",'" + Validate.gettime() + "')";
         } else {
             String UpdatedOn = Validate.getcurrentdate();
             sql = "update tblPNChomevisit_ANS set " + ansfield + "='" + dtaans
@@ -1460,11 +1486,15 @@ public class DataProvider {
 
     }
 
-    public ArrayList<MstASHA> getMstASHAname(int LanguageID) {
+    public ArrayList<MstASHA> getMstASHAname(int LanguageID, String ashaid, int flag) {
 
         ArrayList<MstASHA> data = null;
         String sql = "";
-        sql = "Select * from MstASHA where LanguageID =" + LanguageID + "  ";
+        if (flag == 1) {
+            sql = "Select * from MstASHA where LanguageID =" + LanguageID + " ";
+        } else if (flag == 2) {
+            sql = "Select * from MstASHA where LanguageID =" + LanguageID + " and ASHAID='" + ashaid + "' ";
+        }
         cursor = null;
         try {
             if (dbIntraHealth == null) {
@@ -2087,6 +2117,37 @@ public class DataProvider {
                         form.setCHS_ID(cursor.getInt(cursor
                                 .getColumnIndex("CHS_ID")));
                     }
+                    if (cursor.getString(cursor.getColumnIndex("IsActive")) == null
+                            || cursor
+                            .getString(cursor.getColumnIndex("IsActive"))
+                            .equalsIgnoreCase("null")) {
+
+                        form.setIsActive(0);
+                    } else {
+                        form.setIsActive(cursor.getInt(cursor
+                                .getColumnIndex("IsActive")));
+                    }
+                    if (cursor.getString(cursor
+                            .getColumnIndex("UpdatedOn")) == null
+                            || cursor.getString(
+                            cursor.getColumnIndex("UpdatedOn"))
+                            .equalsIgnoreCase("null")) {
+
+                        form.setUpdatedOn("");
+                    } else {
+                        form.setUpdatedOn(cursor.getString(cursor
+                                .getColumnIndex("UpdatedOn")));
+                    }
+                    if (cursor.getString(cursor.getColumnIndex("UpdatedBy")) == null
+                            || cursor.getString(
+                            cursor.getColumnIndex("UpdatedBy"))
+                            .equalsIgnoreCase("null")) {
+
+                        form.setUpdatedBy(0);
+                    } else {
+                        form.setUpdatedBy(cursor.getInt(cursor
+                                .getColumnIndex("UpdatedBy")));
+                    }
                     data.add(form);
                     cursor.moveToNext();
 
@@ -2105,7 +2166,11 @@ public class DataProvider {
     public ArrayList<Tbl_HHSurvey> getTblSurveyUploadcount() {
         ArrayList<Tbl_HHSurvey> data = null;
         String sql = "";
-        sql = "Select HHSurveyGUID  from Tbl_HHSurvey where IsEdited=1 or HHSurveyGUID in (Select HHSurveyGUID  from Tbl_HHFamilyMember where IsEdited=1 )";
+        if (global.getiGlobalRoleID() == 3) {
+            sql = "Select HHSurveyGUID  from Tbl_HHSurvey where ANMID=" + global.getsGlobalANMCODE() + " and  IsEdited=1 or HHSurveyGUID in (Select HHSurveyGUID  from Tbl_HHFamilyMember where ANMID=" + global.getsGlobalANMCODE() + " and  IsEdited=1 )";
+        } else if (global.getiGlobalRoleID() == 2) {
+            sql = "Select HHSurveyGUID  from Tbl_HHSurvey where ServiceProviderID=" + global.getsGlobalAshaCode() + " and  IsEdited=1 or HHSurveyGUID in (Select HHSurveyGUID  from Tbl_HHFamilyMember where ashaid=" + global.getsGlobalAshaCode() + " and  IsEdited=1 )";
+        }
         cursor = null;
         try {
             if (dbIntraHealth == null) {
@@ -2149,18 +2214,18 @@ public class DataProvider {
         ArrayList<Tbl_HHFamilyMember> familydata = null;
         String sql = "";
         if (Flag == 2) {
-            sql = "select * from Tbl_HHFamilyMember where HHSurveyGUID = '"
+            sql = "select *,case DOBAvailable when 1 then (julianday('now')  - julianday(DateOfBirth))/365  when 2 then AprilAgeYear+(strftime('%Y', 'now')-AgeAsOnYear) end as age from Tbl_HHFamilyMember where HHSurveyGUID = '"
                     + sHHSurveyGUID + "' and HHFamilyMemberGUID='"
-                    + HHFamilyMemberGUID + "'";
+                    + HHFamilyMemberGUID + "' order by age desc";
 
         } else if (Flag == 1) {
-            sql = "select * from Tbl_HHFamilyMember where HHSurveyGUID = '"
-                    + sHHSurveyGUID + "' and StatusID!=2";
+            sql = "select *,case DOBAvailable when 1 then (julianday('now')  - julianday(DateOfBirth))/365  when 2 then AprilAgeYear+(strftime('%Y', 'now')-AgeAsOnYear) end as age from Tbl_HHFamilyMember where HHSurveyGUID = '"
+                    + sHHSurveyGUID + "' order by age desc";
         } else if (Flag == 3) {
-            sql = "select * from Tbl_HHFamilyMember where HHSurveyGUID = '"
+            sql = "select *,case DOBAvailable when 1 then (julianday('now')  - julianday(DateOfBirth))/365  when 2 then AprilAgeYear+(strftime('%Y', 'now')-AgeAsOnYear) end as age from Tbl_HHFamilyMember where HHSurveyGUID = '"
                     + sHHSurveyGUID
                     + "' and StatusID!=2 and HHFamilyMemberGUID!='"
-                    + HHFamilyMemberGUID + "'";
+                    + HHFamilyMemberGUID + "' order by age desc";
         }
         cursor = null;
         try {
@@ -2826,6 +2891,27 @@ public class DataProvider {
                         form.setOther_Id_Name(cursor.getString(cursor
                                 .getColumnIndex("Other_Id_Name")));
                     }
+                    if (cursor.getString(cursor
+                            .getColumnIndex("UpdatedOn")) == null
+                            || cursor.getString(
+                            cursor.getColumnIndex("UpdatedOn"))
+                            .equalsIgnoreCase("null")) {
+
+                        form.setUpdatedOn("");
+                    } else {
+                        form.setUpdatedOn(cursor.getString(cursor
+                                .getColumnIndex("UpdatedOn")));
+                    }
+                    if (cursor.getString(cursor.getColumnIndex("UpdatedBy")) == null
+                            || cursor.getString(
+                            cursor.getColumnIndex("UpdatedBy"))
+                            .equalsIgnoreCase("null")) {
+
+                        form.setUpdatedBy(0);
+                    } else {
+                        form.setUpdatedBy(cursor.getInt(cursor
+                                .getColumnIndex("UpdatedBy")));
+                    }
 
                     data.add(form);
                     cursor.moveToNext();
@@ -2858,7 +2944,7 @@ public class DataProvider {
                 + ",VillageID=" + Villageid + ",HHStatusID=" + HHStatusID
                 + ",CasteID=" + Casteid + ",FinancialStatusID="
                 + FinancialStatusid + ",ServiceProviderID=" + ServiceProviderID
-                + ",UploadedOn='" + date + "',UploadedBy='" + UserID
+                + ",UpdatedOn='" + date + "',UpdatedBy='" + UserID
                 + "',IsEdited=1 ,IsUploaded=0,HHShortName='" + iHHShortName
                 + "',ReligionID=" + ireligionid + ",  CHS_ID=" + facilatorid
                 + ",Latitude='" + Latitude + "',Longitude='" + Longitude
@@ -2870,7 +2956,7 @@ public class DataProvider {
                 + "',Waste_Disposal='" + waste_Disposal + "',Drinking_Water='"
                 + drinking_Water + "',Electricity='" + electricity
                 + "',Cooking_Fuel='" + cooking_Fuel + "',House_Type='"
-                + house_Type + "'  where HHSurveyGUID='" + HHSurveyGUID + "'";
+                + house_Type + "',IsActive=1  where HHSurveyGUID='" + HHSurveyGUID + "'";
         // String sql1="Update  Tbl_HHFamilyMember set IsEdited=1 where ";
         try {
             executeSql(sql);
@@ -2890,7 +2976,7 @@ public class DataProvider {
                                int electricity, String cooking_Fuel, int house_Type) {
         // TODO Auto-generated method stub
         String sql = "";
-        sql = "Insert into Tbl_HHSurvey(SubCenterID,FamilyCode,MigrateInDate,MigrateOutDate,ANMID,VillageID,HHStatusID,ServiceProviderID,CasteID,FinancialStatusID,CreatedOn,CreatedBy,HHSurveyGUID,HHCode,IsTablet,IsEdited,IsUploaded,HHShortName,ReligionID,CHS_ID,Latitude,Longitude,Location,Hamlet,Anypremature_Death,Anypremature_DeathYes,Toilet,Waste_Disposal,Drinking_Water,Electricity,Cooking_Fuel,House_Type)values('"
+        sql = "Insert into Tbl_HHSurvey(SubCenterID,FamilyCode,MigrateInDate,MigrateOutDate,ANMID,VillageID,HHStatusID,ServiceProviderID,CasteID,FinancialStatusID,CreatedOn,CreatedBy,HHSurveyGUID,HHCode,IsTablet,IsEdited,IsUploaded,HHShortName,ReligionID,CHS_ID,Latitude,Longitude,Location,Hamlet,Anypremature_Death,Anypremature_DeathYes,Toilet,Waste_Disposal,Drinking_Water,Electricity,Cooking_Fuel,House_Type,IsActive)values('"
                 + subCenter
                 + "',"
                 + familySNo
@@ -2947,7 +3033,7 @@ public class DataProvider {
                 + electricity
                 + "','"
                 + cooking_Fuel
-                + "','" + house_Type + "' )";
+                + "','" + house_Type + "',1 )";
         try {
             executeSql(sql);
         } catch (Exception e) {
@@ -2977,8 +3063,8 @@ public class DataProvider {
                 + ",AgeAsOnYear=" + AgeAsOnYear + ",MotherGUID='" + motherName
                 + "',RelationID=" + relationid + ",StatusID=" + StatusID
                 + ",GenderID=" + genderid + ",MaritialStatusID="
-                + maritalStatusid + ",TargetID=" + targetid + ",UploadedOn='"
-                + CurrentDate + "',UploadedBy='" + UserID
+                + maritalStatusid + ",TargetID=" + targetid + ",UpdatedOn='"
+                + CurrentDate + "',UpdatedBy='" + UserID
                 + "',IsEdited=1,AshaID=" + AshaID + ",ANMID=" + ANMID
                 + ",IsUploaded=0 ,Registration_Date='" + Registration_Date
                 + "',Occupation='" + Occupation + "',Rsby_Beneficiary='"
@@ -2995,13 +3081,15 @@ public class DataProvider {
                 + globalHHSurveyGUID + "'";
 
         String sqlpregnantdata = "Update tblPregnant_woman set pwname='" + familyMemb + "',IsEdited=1  where HHfamilymemberguid='" + globalHHFamilyMemberGUID + "'";
-
+        String sqlchild = "Update tblChild set  child_name = '" + familyMemb + "', modified_on = '" + Validate.getcurrentdate() + "', modified_by = "
+                + UserID + ", IsEdited = 1 where ChildGUID = '" + globalHHFamilyMemberGUID + "'";
         try {
             //dbIntraHealth.execSQL(sql1);
 
             executeSql(sql);
             executeSql(sql1);
             executeSql(sqlpregnantdata);
+            executeSql(sqlchild);
         } catch (Exception e) {
             // TODO: handle exception
         }
@@ -3015,14 +3103,14 @@ public class DataProvider {
                 + DateOfDeath + "', NameofDeathplace='" + NameofDeathplace
                 + "',PlaceOfDeath=" + PlaceOfDeath + ",DeathVillage="
                 + DeathVillage
-                + ",IsEdited=1,IsUploaded=0   where HHSurveyGUID='"
+                + ",IsEdited=1,StatusID=2 ,IsUploaded=0 ,UpdatedOn='"
+                + Validate.getcurrentdate() + "',UpdatedBy='" + global.getUserID()
+                + "'  where HHSurveyGUID='"
                 + globalHHSurveyGUID + "' and HHFamilyMemberGUID='"
                 + globalHHFamilyMemberGUID + "'";
         String sql1 = "Update Tbl_HHSurvey set IsEdited=1  where HHSurveyGUID='"
                 + globalHHSurveyGUID + "'";
-        dbIntraHealth.execSQL(sql1);
-        sql1 = "update Tbl_HHFamilyMember set StatusID=2 where HHFamilyMemberGUID='"
-                + globalHHFamilyMemberGUID + "'";
+
 
         try {
             dbIntraHealth.execSQL(sql1);
@@ -3037,7 +3125,7 @@ public class DataProvider {
                                      int CreatedBy, String DateOfMigrationIn, String DateOfMigrationOut,
                                      String MigrationGUID, String HHFamilyMemberGUID) {
         String sql = "";
-        String sql1 = "";
+        String sql1 = "", sqlhh = "";
         if (Flag == "i") {
             sql = "insert into tblMigration (HHFamilyMemberGUID, DateOfMigrationIn,DateOfMigrationOut,MigrationGUID,CreatedOn,CreatedBy,IsEdited,IsUploaded) Values('"
                     + HHFamilyMemberGUID
@@ -3049,7 +3137,7 @@ public class DataProvider {
                     + MigrationGUID
                     + "','"
                     + CreatedOn + "'," + CreatedBy + ",1,0)";
-            sql1 = "update Tbl_HHFamilyMember set StatusID=3 where HHFamilyMemberGUID='"
+            sql1 = "update Tbl_HHFamilyMember set StatusID=3,IsEdited=1   where HHFamilyMemberGUID='"
                     + HHFamilyMemberGUID + "'";
         } else {
             sql = "update tblMigration set DateOfMigrationIn='"
@@ -3058,13 +3146,16 @@ public class DataProvider {
                     + " ,IsEdited=1,IsUploaded=0 where HHFamilyMemberGUID='"
                     + HHFamilyMemberGUID + "' and MigrationGUID='"
                     + MigrationGUID + "'";
-            sql1 = "update Tbl_HHFamilyMember set StatusID=1 where HHFamilyMemberGUID='"
+            sql1 = "update Tbl_HHFamilyMember set StatusID=1,IsEdited=1  where HHFamilyMemberGUID='"
                     + HHFamilyMemberGUID + "'";
+            sqlhh = "Update Tbl_HHSurvey set IsEdited=1,HHStatusID=1  where HHSurveyGUID='"
+                    + global.getGlobalHHSurveyGUID() + "'";
         }
         try {
 
             executeSql(sql);
             executeSql(sql1);
+            executeSql(sqlhh);
         } catch (Exception e) {
             // TODO: handle exception
             System.out.println(e + "error");
@@ -3152,12 +3243,12 @@ public class DataProvider {
         }
     }
 
-    public ArrayList<MstCatchmentSupervisor> getCatchsupervisor(int languageID) {
+    public ArrayList<MstCatchmentSupervisor> getCatchsupervisor(int languageID, int ashaid) {
 
         ArrayList<MstCatchmentSupervisor> data = null;
         String sql = "";
-        sql = "select * from MstCatchmentSupervisor where LanguageID = "
-                + languageID + "";
+        sql = "select MstCatchmentSupervisor.* from MstCatchmentSupervisor inner join MstASHA on  MstCatchmentSupervisor.CHS_ID=MstASHA.CHS_ID and MstASHA.LanguageID =" + languageID + " where MstCatchmentSupervisor.LanguageID =" + languageID + " and MstASHA.ASHAID= "
+                + ashaid + "";
         cursor = null;
         try {
             if (dbIntraHealth == null) {
@@ -3643,7 +3734,12 @@ public class DataProvider {
             sql = "Select * from tblANCVisit where PWGUID='" + PWGUID
                     + "' and VisitGUID='" + ANCVisitGUID + "'";
         } else if (flag == 2) {
-            sql = "Select * from tblANCVisit where IsEdited = 1";
+
+            if (global.getiGlobalRoleID() == 3) {
+                sql = "Select * from tblANCVisit where ByANMID=" + global.getsGlobalANMCODE() + " and  IsEdited = 1";
+            } else if (global.getiGlobalRoleID() == 2) {
+                sql = "Select * from tblANCVisit where ByAshaID=" + global.getsGlobalAshaCode() + " and IsEdited = 1";
+            }
         } else if (flag == 3) {
             sql = "Select * from tblANCVisit where PWGUID='" + PWGUID
                     + "' order by visit_no";
@@ -3944,6 +4040,25 @@ public class DataProvider {
                             .getColumnIndex("Weight1")));
 
                     form.setBP1(cursor.getFloat(cursor.getColumnIndex("BP1")));
+                    if (cursor.getString(cursor.getColumnIndex("HighRiskDate")) == null
+                            || cursor.getString(
+                            cursor.getColumnIndex("HighRiskDate"))
+                            .equalsIgnoreCase("null")) {
+                        form.setHighRiskDate("");
+                    } else {
+                        form.setHighRiskDate(Validate.changeDateFormatpadding(Validate
+                                .changeDateFormat(cursor.getString(cursor
+                                        .getColumnIndex("HighRiskDate")))));
+                    }
+                    if (cursor.getString(cursor.getColumnIndex("HighRisk")) == null
+                            || cursor.getString(
+                            cursor.getColumnIndex("HighRisk"))
+                            .equalsIgnoreCase("null")) {
+                        form.setHighRisk(0);
+                    } else {
+                        form.setHighRisk(cursor.getInt(cursor
+                                .getColumnIndex("HighRisk")));
+                    }
                     if (flag == 6) {
                         if (Date1.equalsIgnoreCase("")
                                 && Date2.equalsIgnoreCase("")
@@ -3981,11 +4096,13 @@ public class DataProvider {
     public ArrayList<tbl_DatesEd> gettbl_DatesEd() {
         ArrayList<tbl_DatesEd> DatesEd = null;
         String sql = "";
-
         sql = "select * from tbl_DatesEd";
-
+        if (global.getiGlobalRoleID() == 3) {
+            sql = "Select * from tbl_DatesEd where ANMID=" + global.getsGlobalANMCODE() + "";
+        } else if (global.getiGlobalRoleID() == 2) {
+            sql = "Select * from tbl_DatesEd where AshaID=" + global.getsGlobalAshaCode() + "";
+        }
         cursor = null;
-
         try {
             if (dbIntraHealth == null) {
                 dbIntraHealth = dbHelper.getDatabase();
@@ -4169,28 +4286,37 @@ public class DataProvider {
         ArrayList<tblChild> Child = null;
         String sql = "";
         if (Flag == 1) {
-            sql = "Select * from tblChild where ChildGUID = '" + ChildGUID
-                    + "' ";
+            sql = "Select * from tblChild where ChildGUID = '" + ChildGUID + "' ";
         } else if (Flag == 2) {
             sql = "Select * from tblChild   inner join Tbl_HHSurvey on tblChild.HHGUID=Tbl_HHSurvey.HHSurveyGUID  where   Tbl_HHSurvey.VillageID=" + VillageID + " and  tblChild.ashaid='" + ChildGUID
-                    + "' ORDER BY date(tblChild.child_dob) DESC ";
+                    + "'  and ((julianday('now')- julianday(tblChild.child_dob))/365) between 0 and 5  ORDER BY date(tblChild.child_dob) DESC ";
         } else if (Flag == 3) {
-            sql = "Select * from tblChild where IsEdited = 1";
+            if (global.getiGlobalRoleID() == 3) {
+                sql = "Select * from tblChild where ANMID==" + global.getsGlobalANMCODE() + " and  IsEdited = 1";
+            } else if (global.getiGlobalRoleID() == 2) {
+                sql = "Select * from tblChild where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited = 1";
+            }
         } else if (Flag == 4) {
             sql = "Select * from tblChild where pw_GUID='" + ChildGUID + "'";
         } else if (Flag == 5) {
             sql = "Select * from tblChild   inner join Tbl_HHSurvey on tblChild.HHGUID=Tbl_HHSurvey.HHSurveyGUID  where   Tbl_HHSurvey.VillageID=" + VillageID + " and  ashaid='" + ChildGUID
-                    + "' ORDER BY date(child_dob) DESC ";
+                    + "'   and ((julianday('now')- julianday(tblChild.child_dob))/365) between 0 and 1  ORDER BY date(child_dob) DESC ";
         } else if (Flag == 6) {
             sql = "Select * from tblChild";
         } else if (Flag == 7) {
             sql = ChildGUID;
         } else if (Flag == 8) {
-            sql = "Select child.* from tblChild child inner join Tbl_HHFamilyMember member on child.motherguid= member.HHFamilyMemberGUID inner join Tbl_HHSurvey on child.HHGUID=Tbl_HHSurvey.HHSurveyGUID  where   Tbl_HHSurvey.VillageID=" + VillageID + " and  child.ashaid='" + ChildGUID
-                    + "' and member.FamilyMemberName like '%" + name + "%' ORDER BY date(child_dob) DESC";
+            sql = "Select child.* from tblChild child inner join Tbl_HHFamilyMember member on child.ChildGUID= member.HHFamilyMemberGUID inner join Tbl_HHSurvey on child.HHGUID=Tbl_HHSurvey.HHSurveyGUID  where    child.ashaid='" + ChildGUID
+                    + "' and member.FamilyMemberName like '%" + name + "%'   and ((julianday('now')- julianday(child.child_dob))/365) between 0 and 1 ORDER BY date(child_dob) DESC";
         } else if (Flag == 9) {
             sql = "Select * from tblChild   inner join Tbl_HHSurvey on tblChild.HHGUID=Tbl_HHSurvey.HHSurveyGUID  where   tblChild.ashaid='" + ChildGUID
-                    + "' ORDER BY date(tblChild.child_dob) DESC ";
+                    + "'   and ((julianday('now')- julianday(tblChild.child_dob))/365) between 0 and 1  ORDER BY date(tblChild.child_dob) DESC ";
+        } else if (Flag == 10) {
+            sql = "Select tblChild.* from tblChild   inner join Tbl_HHSurvey on tblChild.HHGUID=Tbl_HHSurvey.HHSurveyGUID   inner join Tbl_HHFamilyMember member on tblChild.ChildGUID= member.HHFamilyMemberGUID where   tblChild.ashaid='" + ChildGUID
+                    + "' and member.FamilyMemberName like '%" + name + "%'  and ((julianday('now')- julianday(tblChild.child_dob))/365) between 0 and 5   ORDER BY date(tblChild.child_dob) DESC ";
+        } else if (Flag == 11) {
+            sql = "Select * from tblChild   inner join Tbl_HHSurvey on tblChild.HHGUID=Tbl_HHSurvey.HHSurveyGUID  where   tblChild.ashaid='" + ChildGUID
+                    + "'  and ((julianday('now')- julianday(tblChild.child_dob))/365) between 0 and 5  ORDER BY date(tblChild.child_dob) DESC ";
         }
 
         cursor = null;
@@ -4743,6 +4869,31 @@ public class DataProvider {
                         form.setTT2(cursor.getString(cursor
                                 .getColumnIndex("TT2")));
                     }
+                    if (cursor.getString(cursor.getColumnIndex("MeaslesRubella")) == null
+                            || cursor.getString(cursor.getColumnIndex("MeaslesRubella"))
+                            .equalsIgnoreCase("null")) {
+                        form.setMeaslesRubella("");
+                    } else {
+                        form.setMeaslesRubella(cursor.getString(cursor
+                                .getColumnIndex("MeaslesRubella")));
+                    }
+                    if (cursor.getString(cursor.getColumnIndex("IPV2")) == null
+                            || cursor.getString(cursor.getColumnIndex("IPV2"))
+                            .equalsIgnoreCase("null")) {
+                        form.setIPV2("");
+                    } else {
+                        form.setIPV2(cursor.getString(cursor
+                                .getColumnIndex("DeliveryType")));
+                    }
+                    if (cursor.getString(cursor.getColumnIndex("DeliveryType")) == null
+                            || cursor.getString(cursor.getColumnIndex("DeliveryType"))
+                            .equalsIgnoreCase("null")) {
+                        form.setDeliveryType(0);
+                    } else {
+                        form.setDeliveryType(cursor.getInt(cursor
+                                .getColumnIndex("DeliveryType")));
+                    }
+
                     Child.add(form);
                     cursor.moveToNext();
                 }
@@ -4765,12 +4916,12 @@ public class DataProvider {
                              String child_name, int breastfeeding_within1H, String bcg,
                              String opv1, String hepb1, String created_on, int created_by,
                              String modified_on, int modified_by, int FacilityType,
-                             String Facility) {
+                             String Facility, int DeliveryType) {
         // TODO Auto-generated method stub
 
         String sql = "";
         if (Flag == "I") {
-            sql = "Insert into tblChild(AshaID,ANMID,pw_GUID,HHGUID,HHFamilyMemberGUID,ChildGUID,MotherGUID,Date_Of_Registration,Child_dob,Gender,Wt_of_child,place_of_birth,child_mcts_id,child_name,breastfeeding_within1H,bcg,opv1,hepb1,created_on,created_by,modified_on,modified_by,IsEdited,FacilityType,Facility)values("
+            sql = "Insert into tblChild(AshaID,ANMID,pw_GUID,HHGUID,HHFamilyMemberGUID,ChildGUID,MotherGUID,Date_Of_Registration,Child_dob,Gender,Wt_of_child,place_of_birth,child_mcts_id,child_name,breastfeeding_within1H,bcg,opv1,hepb1,created_on,created_by,modified_on,modified_by,IsEdited,FacilityType,Facility,DeliveryType)values("
                     + AshaID
                     + ","
                     + ANMID
@@ -4818,6 +4969,8 @@ public class DataProvider {
                     + FacilityType
                     + ",'"
                     + Facility
+                    + "','"
+                    + DeliveryType
                     + "')";
             String sql1 = "update tblPregnant_woman set  IsPregnant=0,IsEdited=1  where PWGUID='"
                     + pw_GUID + "'";
@@ -4836,6 +4989,8 @@ public class DataProvider {
                     + Validate.changeDateFormat(bcg) + "',opv1='"
                     + Validate.changeDateFormat(opv1) + "',hepb1='"
                     + Validate.changeDateFormat(hepb1)
+                    + "',DeliveryType='"
+                    + DeliveryType
                     + "' where ChildGUID = '" + ChildGUID + "'";
         }
         try {
@@ -4856,10 +5011,10 @@ public class DataProvider {
                                 float Wt_of_child, int place_of_birth, String child_name,
                                 String created_on, int created_by, String modified_on,
                                 int modified_by, int FacilityType, String Facility, String bcg,
-                                String opv1, String hepb1) {
+                                String opv1, String hepb1, int DeliveryType) {
         String sql = "";
         if (Flag == "I") {
-            sql = "Insert into tblChild(AshaID,ANMID,pw_GUID,HHGUID,HHFamilyMemberGUID,ChildGUID,MotherGUID,Date_Of_Registration,Child_dob,Gender,Wt_of_child,place_of_birth,child_name,created_on,created_by,modified_on,modified_by,IsEdited,FacilityType,Facility,bcg,opv1,hepb1)values("
+            sql = "Insert into tblChild(AshaID,ANMID,pw_GUID,HHGUID,HHFamilyMemberGUID,ChildGUID,MotherGUID,Date_Of_Registration,Child_dob,Gender,Wt_of_child,place_of_birth,child_name,created_on,created_by,modified_on,modified_by,IsEdited,FacilityType,Facility,bcg,opv1,hepb1,DeliveryType)values("
                     + AshaID
                     + ","
                     + ANMID
@@ -4897,7 +5052,7 @@ public class DataProvider {
                     + FacilityType
                     + ",'"
                     + Facility
-                    + "','" + bcg + "','" + opv1 + "','" + hepb1 + "')";
+                    + "','" + bcg + "','" + opv1 + "','" + hepb1 + "','" + DeliveryType + "')";
         } else if (Flag == "U") {
             sql = "Update tblChild set FacilityType=" + FacilityType
                     + ",Facility='" + Facility + "',  Child_dob = '"
@@ -4907,7 +5062,7 @@ public class DataProvider {
                     + modified_on + "', modified_by = " + modified_by
                     + ",AshaID=" + AshaID + ",ANMID=" + ANMID
                     + ", IsEdited = 1 ,bcg='" + bcg + "',opv1='" + opv1
-                    + "',hepb1='" + hepb1 + "' where ChildGUID = '" + ChildGUID
+                    + "',hepb1='" + hepb1 + "' ,DeliveryType='" + DeliveryType + "' where ChildGUID = '" + ChildGUID
                     + "'";
         }
         try {
@@ -4934,7 +5089,9 @@ public class DataProvider {
                 + ", ISAbortion=" + ISAbortion + ", AbortionFacilityType="
                 + AbortionFacilityType + ",MaternalDeath=" + MaternalDeath
                 + ",DeliveryDateTime='" + DeliveryDateTime
-                + "',IsEdited=1 where PWGUID='" + PWGUID + "'";
+                + "',IsEdited=1,UpdatedOn='"
+                + Validate.getcurrentdate() + "',UpdatedBy="
+                + global.getUserID() + " where PWGUID='" + PWGUID + "'";
         try {
 
             executeSql(sql);
@@ -4955,7 +5112,12 @@ public class DataProvider {
             sql = "select * from tblFP_followup where WomenName_Guid='"
                     + FPF_Guid + "'  order by uid desc ";
         } else if (flag == 2) {
-            sql = "Select * from tblFP_followup where IsEdited = 1";
+            // sql = "Select * from tblFP_followup where IsEdited = 1";
+            if (global.getiGlobalRoleID() == 3) {
+                sql = "Select * from tblFP_followup where ANMID=" + global.getsGlobalANMCODE() + " and  IsEdited = 1";
+            } else if (global.getiGlobalRoleID() == 2) {
+                sql = "Select * from tblFP_followup where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited = 1";
+            }
         } else if (flag == 3) {
             sql = "select * from tblFP_followup where WomenName_Guid='"
                     + FPF_Guid
@@ -5435,7 +5597,12 @@ public class DataProvider {
             sql = "select * from tblFP_visit where WomenName_Guid='"
                     + WomenName_Guid + "'  order by uid desc ";
         } else if (flag == 1) {
-            sql = "Select * from tblFP_visit where IsEdited = 1";
+            //  sql = "Select * from tblFP_visit where IsEdited = 1";
+            if (global.getiGlobalRoleID() == 3) {
+                sql = "Select * from tblFP_visit where ANMID=" + global.getsGlobalANMCODE() + " and  IsEdited = 1";
+            } else if (global.getiGlobalRoleID() == 2) {
+                sql = "Select * from tblFP_visit where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited = 1";
+            }
         }
         cursor = null;
         try {
@@ -5730,7 +5897,12 @@ public class DataProvider {
         String sql = "";
 
         if (flag == 0) {
-            sql = "select * from tblmstimmunizationANS where IsEdited=1";
+            // sql = "select * from tblmstimmunizationANS where IsEdited=1";
+            if (global.getiGlobalRoleID() == 3) {
+                sql = "Select * from tblmstimmunizationANS where ANMID==" + global.getsGlobalANMCODE() + " and  IsEdited = 1";
+            } else if (global.getiGlobalRoleID() == 2) {
+                sql = "Select * from tblmstimmunizationANS where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited = 1";
+            }
         }
         cursor = null;
         try {
@@ -6187,7 +6359,12 @@ public class DataProvider {
         String sql = "";
 
         if (flag == 0) {
-            sql = "select * from tblPNChomevisit_ANS where IsEdited=1";
+            //sql = "select * from tblPNChomevisit_ANS where IsEdited=1";
+            if (global.getiGlobalRoleID() == 3) {
+                sql = "Select * from tblPNChomevisit_ANS where ANMID==" + global.getsGlobalANMCODE() + " and  IsEdited = 1";
+            } else if (global.getiGlobalRoleID() == 2) {
+                sql = "Select * from tblPNChomevisit_ANS where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited = 1";
+            }
         }
         cursor = null;
         try {
@@ -6886,6 +7063,9 @@ public class DataProvider {
                                 .getColumnIndex("ANMID")));
 
                     }
+                    form.setCreatetime(Validate.returnStringValue(cursor.getString(cursor
+                            .getColumnIndex("Createtime"))));
+
 
                     data.add(form);
                     cursor.moveToNext();
@@ -7021,10 +7201,14 @@ public class DataProvider {
                                 .getColumnIndex("Password")));
                     }
 
-                    form.setRoleID(cursor.getInt(cursor
-                            .getColumnIndex("RoleID")));
-                    form.setIsDeleted(cursor.getInt(cursor
-                            .getColumnIndex("IsDeleted")));
+                    form.setRoleID(Validate.returnIntegerValue(cursor.getString(cursor
+                            .getColumnIndex("RoleID"))));
+                    form.setIsDeleted(Validate.returnIntegerValue(cursor.getString(cursor
+                            .getColumnIndex("IsDeleted"))));
+                    form.setFirst_name(Validate.returnStringValue(cursor.getString(cursor
+                            .getColumnIndex("first_name"))));
+                    form.setLast_name(Validate.returnStringValue(cursor.getString(cursor
+                            .getColumnIndex("last_name"))));
 
                     Child.add(form);
                     cursor.moveToNext();
@@ -7155,11 +7339,11 @@ public class DataProvider {
 
     // // get Asha Code and name
 
-    public ArrayList<MstASHA> getashanameandCode(int iLangugaeFlag) {
+    public ArrayList<MstASHA> getashanameandCode(int iLangugaeFlag, int Userid) {
         ArrayList<MstASHA> Child = null;
         String sql = "";
 
-        sql = "select * from MstASHA where  LanguageID=" + iLangugaeFlag + "";
+        sql = "select * from MstASHA inner join userashamapping on MstASHA.ASHAID=userashamapping.AshaID where  LanguageID=" + iLangugaeFlag + " and userashamapping.UserID=" + Userid + "";
 
         cursor = null;
 
@@ -7231,16 +7415,17 @@ public class DataProvider {
         ArrayList<Child_Imunization_Object> Child = null;
         String sql = "";
         if (flag == 1) {
-            sql = "select tblPregnant_woman.PWName as womenname ,tblPregnant_woman.HusbandName as husbandname,Child_dob,ChildGUID,Gender,child_name,tblChild.HHGUID from tblChild left join tblPregnant_woman on tblChild.pw_GUID=tblPregnant_woman.PWGUID inner join  Tbl_HHSurvey on  tblChild.HHGUID=Tbl_HHSurvey.HHSurveyGUID where Tbl_HHSurvey.VillageID='" + childguid + "' and Tbl_HHSurvey.ServiceProviderID="
-                    + ashaid + "";
-        }
-        if (flag == 2) {
-            sql = "select tblPregnant_woman.PWName as womenname ,tblPregnant_woman.HusbandName as husbandname,Child_dob,ChildGUID,Gender,child_name,tblChild.HHGUID  from tblChild left join tblPregnant_woman on tblChild.pw_GUID=tblPregnant_woman.PWGUID left join  Tbl_HHSurvey on  tblChild.HHGUID=Tbl_HHSurvey.HHSurveyGUID where Tbl_HHSurvey.ServiceProviderID="
-                    + ashaid + " and childguid='" + childguid + "'";
-        }
-        if (flag == 3) {
-            sql = "select tblPregnant_woman.PWName as womenname ,tblPregnant_woman.HusbandName as husbandname,Child_dob,ChildGUID,Gender,child_name,tblChild.HHGUID from tblChild left join tblPregnant_woman on tblChild.pw_GUID=tblPregnant_woman.PWGUID inner join  Tbl_HHSurvey on  tblChild.HHGUID=Tbl_HHSurvey.HHSurveyGUID where   Tbl_HHSurvey.ServiceProviderID="
-                    + ashaid + "";
+            sql = "select tblPregnant_woman.PWName as womenname ,tblPregnant_woman.HusbandName as husbandname,Child_dob,ChildGUID,Gender,child_name,tblChild.HHGUID ,tblChild.HHFamilyMemberGUID,Wt_of_child from tblChild left join tblPregnant_woman on tblChild.pw_GUID=tblPregnant_woman.PWGUID inner join  Tbl_HHSurvey on  tblChild.HHGUID=Tbl_HHSurvey.HHSurveyGUID where Tbl_HHSurvey.VillageID='" + childguid + "' and Tbl_HHSurvey.ServiceProviderID="
+                    + ashaid + " and ((julianday('now')- julianday(tblChild.child_dob))/365) between 0 and 14 order by Date(Child_dob) desc";
+        } else if (flag == 2) {
+            sql = "select tblPregnant_woman.PWName as womenname ,tblPregnant_woman.HusbandName as husbandname,Child_dob,ChildGUID,Gender,child_name,tblChild.HHGUID,tblChild.HHFamilyMemberGUID,Wt_of_child  from tblChild left join tblPregnant_woman on tblChild.pw_GUID=tblPregnant_woman.PWGUID left join  Tbl_HHSurvey on  tblChild.HHGUID=Tbl_HHSurvey.HHSurveyGUID where Tbl_HHSurvey.ServiceProviderID="
+                    + ashaid + " and childguid='" + childguid + "' and ((julianday('now')- julianday(tblChild.child_dob))/365) between 0 and 14   order by Date(Child_dob) desc";
+        } else if (flag == 3) {
+            sql = "select tblPregnant_woman.PWName as womenname ,tblPregnant_woman.HusbandName as husbandname,Child_dob,ChildGUID,Gender,child_name,tblChild.HHGUID,tblChild.HHFamilyMemberGUID,Wt_of_child from tblChild left join tblPregnant_woman on tblChild.pw_GUID=tblPregnant_woman.PWGUID inner join  Tbl_HHSurvey on  tblChild.HHGUID=Tbl_HHSurvey.HHSurveyGUID where   Tbl_HHSurvey.ServiceProviderID="
+                    + ashaid + " and ((julianday('now')- julianday(tblChild.child_dob))/365) between 0 and 14  order by Date(Child_dob) desc";
+        } else if (flag == 4) {
+            sql = "select tblPregnant_woman.PWName as womenname ,tblPregnant_woman.HusbandName as husbandname,Child_dob,ChildGUID,Gender,child_name,tblChild.HHGUID,tblChild.HHFamilyMemberGUID,,Wt_of_child from tblChild left join tblPregnant_woman on tblChild.pw_GUID=tblPregnant_woman.PWGUID inner join  Tbl_HHSurvey on  tblChild.HHGUID=Tbl_HHSurvey.HHSurveyGUID inner join Tbl_HHFamilyMember member on tblChild.ChildGUID= member.HHFamilyMemberGUID where   Tbl_HHSurvey.ServiceProviderID="
+                    + ashaid + "  and member.FamilyMemberName like '%" + childguid + "%'  and ((julianday('now')- julianday(tblChild.child_dob))/365) between 0 and 14  order by Date(Child_dob) desc";
         }
         cursor = null;
 
@@ -7307,6 +7492,10 @@ public class DataProvider {
 
                     form.setChild_name(cursor.getString(cursor
                             .getColumnIndex("child_name")));
+                    form.setHHFamilyMemberGUID(cursor.getString(cursor
+                            .getColumnIndex("HHFamilyMemberGUID")));
+                    form.setWt_of_child(cursor.getString(cursor
+                            .getColumnIndex("Wt_of_child")));
 
                     Child.add(form);
                     cursor.moveToNext();
@@ -7389,7 +7578,7 @@ public class DataProvider {
         ArrayList<Child_Imunization_Object> Child = null;
         String sql = "";
 
-        sql = "Select  bcg,opv2,dpt1,hepb2,opv3,dpt2,hepb3,opv4,dpt3,hepb4,measeals,vitaminA,Pentavalent1,Pentavalent2,Pentavalent3,hepb1,DPTBooster,OPVBooster,MeaslesTwoDose,VitaminAtwo,DPTBoostertwo,ChildTT,opv1,IPV,  JEVaccine1,JEVaccine2,VitaminA3,VitaminA4,VitaminA5,VitaminA6,VitaminA7,VitaminA8,VitaminA9,TT2 from tblChild  where ChildGUID='"
+        sql = "Select  bcg,opv2,dpt1,hepb2,opv3,dpt2,hepb3,opv4,dpt3,hepb4,measeals,vitaminA,Pentavalent1,Pentavalent2,Pentavalent3,hepb1,DPTBooster,OPVBooster,MeaslesTwoDose,VitaminAtwo,DPTBoostertwo,ChildTT,opv1,IPV,  JEVaccine1,JEVaccine2,VitaminA3,VitaminA4,VitaminA5,VitaminA6,VitaminA7,VitaminA8,VitaminA9,TT2,MeaslesRubella,IPV2 from tblChild  where ChildGUID='"
                 + sChildGUID + "'";
 
         cursor = null;
@@ -7720,6 +7909,22 @@ public class DataProvider {
                     } else {
                         form.setTT2(cursor.getString(cursor
                                 .getColumnIndex("TT2")));
+                    }
+                    if (cursor.getString(cursor.getColumnIndex("MeaslesRubella")) == null
+                            || cursor.getString(cursor.getColumnIndex("MeaslesRubella"))
+                            .equalsIgnoreCase("null")) {
+                        form.setMeaslesRubella("");
+                    } else {
+                        form.setMeaslesRubella(cursor.getString(cursor
+                                .getColumnIndex("MeaslesRubella")));
+                    }
+                    if (cursor.getString(cursor.getColumnIndex("IPV2")) == null
+                            || cursor.getString(cursor.getColumnIndex("IPV2"))
+                            .equalsIgnoreCase("null")) {
+                        form.setIPV2("");
+                    } else {
+                        form.setIPV2(cursor.getString(cursor
+                                .getColumnIndex("IPV2")));
                     }
 
                     Child.add(form);
@@ -8962,15 +9167,17 @@ public class DataProvider {
         return re;
     }
 
-    public ArrayList<tbl_pregnantwomen> getNotificationdata(int flag) {
+    public ArrayList<tbl_pregnantwomen> getNotificationdata(int flag, String ashaid) {
         ArrayList<tbl_pregnantwomen> data = null;
         String sql = "";
         if (flag == 0) {
-            sql = "SELECT a.PWID,a.PWGUID,a.PWName,a.LMPDate,EDDDate,HusbandName,PWAgeYears from tblPregnant_woman a inner join tblANCVisit b on  cast(round((julianday('NOW')-julianday(a.lmpdate))/90+.5)  as int) =b.visit_no and  a.pwguid=b.pwguid where (checkupvisitdate in('',null) or  checkupvisitdate is null) and ispregnant=1 and HighRisk =1 order by b.pwguid";
+            sql = "SELECT a.PWID,a.PWGUID,a.PWName,a.LMPDate,EDDDate,HusbandName,PWAgeYears from tblPregnant_woman a inner join tblANCVisit b on  cast(round((julianday('NOW')-julianday(a.lmpdate))/90+.5)  as int) =b.visit_no and  a.pwguid=b.pwguid where a.AshaID='" + ashaid + "' and  (checkupvisitdate in('',null) or  checkupvisitdate is null) and ispregnant=1 and HighRisk =1 order by b.pwguid";
         } else if (flag == 1) {
-            sql = "Select c.place_of_birth PWID,c.ChildGUID PWGUID,c.CHILD_name HusbandName,p.FamilyMemberName PWName,c.childguid LMPDate,'' EDDDate,cast(round(julianday('NOW')-julianday(CHILD_dob)+.5) as int) PWAgeYears from tblchild  c inner join Tbl_HHFamilyMember p on p.HHFamilyMemberGUID=c.MotherGUID where  CASE WHEN  c.place_of_birth == 1 then PWAgeYears in(1,3,7,14,21,28,42) else PWAgeYears in(3,7,14,21,28,42) END   order by c.place_of_birth";
+            sql = "Select c.place_of_birth PWID,c.ChildGUID PWGUID,c.CHILD_name HusbandName,p.FamilyMemberName PWName,c.childguid LMPDate,'' EDDDate,cast(round(julianday('NOW')-julianday(CHILD_dob)+.5) as int) PWAgeYears from tblchild  c inner join Tbl_HHFamilyMember p on p.HHFamilyMemberGUID=c.MotherGUID where c.AshaID='" + ashaid + "' and  CASE WHEN  c.place_of_birth == 1 then PWAgeYears in(1,3,7,14,21,28,42) else PWAgeYears in(3,7,14,21,28,42) END   order by c.place_of_birth";
         } else if (flag == 2) {
-            sql = "SELECT PWID,PWGUID,PWName,LMPDate,EDDDate,HusbandName,PWAgeYears from tblPregnant_woman where cast(round((julianday('NOW')-julianday(lmpdate))+.5)  as int)>365  and ispregnant=1 order by LMPDate";
+            sql = "SELECT PWID,PWGUID,PWName,LMPDate,EDDDate,HusbandName,PWAgeYears from tblPregnant_woman where tblPregnant_woman.AshaID='" + ashaid + "' and cast(round((julianday('NOW')-julianday(lmpdate))+.5)  as int)>365  and ispregnant=1 order by LMPDate";
+        } else if (flag == 3) {
+            sql = "SELECT PWID,PWGUID,PWName,LMPDate,EDDDate,HusbandName,PWAgeYears from tblPregnant_woman where tblPregnant_woman.AshaID='" + ashaid + "' and cast(round((julianday(EDDDate)-julianday('NOW'))-.5)  as int) between 0 and 5   and ispregnant=1 order by LMPDate";
         }
         cursor = null;
         try {
@@ -9023,7 +9230,12 @@ public class DataProvider {
             sql = "SELECT * from tblVHNDDuelist where VHNDDate='" + guid
                     + "' and ServiceType=2 and AshaID='" + AshaID + "'";
         } else if (flag == 2) {
-            sql = "SELECT * from tblVHNDDuelist where IsUploaded = 0";
+            // sql = "SELECT * from tblVHNDDuelist where IsUploaded = 0";
+            if (global.getiGlobalRoleID() == 3) {
+                sql = "Select * from tblVHNDDuelist where ANMID=" + global.getsGlobalANMCODE() + " and  IsUploaded = 0";
+            } else if (global.getiGlobalRoleID() == 2) {
+                sql = "Select * from tblVHNDDuelist where AshaID=" + global.getsGlobalAshaCode() + " and IsUploaded = 0";
+            }
         }
         cursor = null;
         try {
@@ -9465,8 +9677,8 @@ public class DataProvider {
                     + "',Mother='" + motherName + "',StatusID='" + StatusID
                     + "',GenderID='" + genderid + "',MaritialStatusID='"
                     + maritalStatusid + "',TargetID='" + targetid
-                    + "',CreatedBy='" + UserID
-                    + "',IsTablet=1,IsEdited=1,IsUploaded=0,Createdon='"
+                    + "',UpdatedBy='" + UserID
+                    + "',IsTablet=1,IsEdited=1,IsUploaded=0,UpdatedOn='"
                     + Validate.getcurrentdate()
                     + "',Mother='" + MotherGUID + "' where HHFamilyMemberGUID='" + familyGUID
                     + "' and HHSurveyGUID='" + globalHHSurveyGUID + "'";
@@ -9495,7 +9707,12 @@ public class DataProvider {
             sql = "Select * from tblPregnant_woman inner join Tbl_HHSurvey  on tblPregnant_woman.hhguid = Tbl_HHSurvey.HHSurveyGUID where IsPregnant=1  and serviceproviderid="
                     + ashaid + " and  PWName like '%" + PWGUID + "%'";
         } else if (flag == 2) {
-            sql = "Select * from tblPregnant_woman where IsEdited = 1";
+
+            if (global.getiGlobalRoleID() == 3) {
+                sql = "Select * from tblPregnant_woman where ANMID==" + global.getsGlobalANMCODE() + " and  IsEdited = 1";
+            } else if (global.getiGlobalRoleID() == 2) {
+                sql = "Select * from tblPregnant_woman where AshaID=" + global.getsGlobalAshaCode() + " and IsEdited = 1";
+            }
         } else if (flag == 5) {
             sql = "Select * from tblPregnant_woman inner join Tbl_HHSurvey  on tblPregnant_woman.hhguid = Tbl_HHSurvey.HHSurveyGUID where IsPregnant=1  and serviceproviderid="
                     + ashaid + " ";
@@ -10166,8 +10383,8 @@ public class DataProvider {
             sql = "Select * from tblPregnant_woman join Tbl_HHFamilyMember on tblPregnant_woman.HHFamilyMemberGUID=Tbl_HHFamilyMember.HHFamilyMemberGUID inner join Tbl_HHSurvey  on Tbl_HHFamilyMember.HHSurveyGUID = Tbl_HHSurvey.HHSurveyGUID where Tbl_HHSurvey.IsActive=1 and  Tbl_HHFamilyMember.StatusID!=2  and serviceproviderid="
                     + ashaid + " and  PWGUID='" + PWGUID + "'";
         } else if (flag == 4) {
-            sql = "Select * from tblPregnant_woman inner join Tbl_HHSurvey  on tblPregnant_woman.hhguid = Tbl_HHSurvey.HHSurveyGUID where Tbl_HHSurvey.IsActive=1 and  IsPregnant=1  and serviceproviderid="
-                    + ashaid + " and Tbl_HHSurvey.VillageID =" + villageid + "  and  PWName like '%" + PWGUID + "%'";
+            sql = "Select * from tblPregnant_woman inner join Tbl_HHSurvey  on tblPregnant_woman.hhguid = Tbl_HHSurvey.HHSurveyGUID inner join Tbl_HHFamilyMember on tblPregnant_woman.HHFamilyMemberGUID=Tbl_HHFamilyMember.HHFamilyMemberGUID where Tbl_HHSurvey.IsActive=1 and  IsPregnant=1  and serviceproviderid="
+                    + ashaid + "   and Tbl_HHFamilyMember.FamilyMemberName like '%" + PWGUID + "%' ";
         } else if (flag == 2) {
             sql = "Select * from tblPregnant_woman where IsEdited = 1";
         } else if (flag == 5) {
@@ -10843,11 +11060,18 @@ public class DataProvider {
             sql = "select * from tblncdscreening  inner join Tbl_HHsurvey on tblncdscreening.HHSurveyGUID=Tbl_HHsurvey.HHSurveyGUID   where  Tbl_HHsurvey.VillageID=" + VillageID + " and  tblncdscreening.ashaid=" + ashaid + " and status==1 and name like '%"
                     + NCDGUID + "%' group by HHFamilyMemberGUID ";
         } else if (flag == 3) {
-            sql = "select * from tblncdscreening where isEdited=1";
+            // sql = "select * from tblncdscreening where isEdited=1";
+            if (global.getiGlobalRoleID() == 3) {
+                sql = "Select * from tblncdscreening where ANMID=" + global.getsGlobalANMCODE() + " and  isEdited = 1";
+            } else if (global.getiGlobalRoleID() == 2) {
+                sql = "Select * from tblncdscreening where AshaID=" + global.getsGlobalAshaCode() + " and isEdited = 1";
+            } else if (global.getiGlobalRoleID() == 11) {
+                sql = "Select * from tblncdscreening where  isEdited = 1";
+            }
         } else if (flag == 4) {
             sql = "select * from tblncdscreening where status==1 and HHFamilyMemberGUID='"
                     + NCDGUID + "' Order by Createdon DESC Limit 1 ";
-        }else if (flag == 5) {
+        } else if (flag == 5) {
             sql = "select * from tblncdscreening  inner join Tbl_HHsurvey on tblncdscreening.HHSurveyGUID=Tbl_HHsurvey.HHSurveyGUID   where   tblncdscreening.ashaid=" + ashaid + " and status==1 group by HHFamilyMemberGUID";
         }
         cursor = null;
@@ -11185,7 +11409,12 @@ public class DataProvider {
             sql = "select * from tblncdfollowup where HHFamilyMemberGUID='"
                     + GUID + "'";
         } else if (flag == 3) {
-            sql = "select * from tblncdfollowup where isEdited=1";
+            //sql = "select * from tblncdfollowup where isEdited=1";
+            if (global.getiGlobalRoleID() == 3) {
+                sql = "Select * from tblncdfollowup where ANMID=" + global.getsGlobalANMCODE() + " and  isEdited = 1";
+            } else if (global.getiGlobalRoleID() == 2) {
+                sql = "Select * from tblncdfollowup where AshaID=" + global.getsGlobalAshaCode() + " and isEdited = 1";
+            }
         }
         cursor = null;
         try {
@@ -11722,9 +11951,9 @@ public class DataProvider {
         if (flag.equalsIgnoreCase("I")) {
             sql = "Insert into tblncdfollowup(RegistrationNo,GuardianName,RegistrationDate,VillageID,HHFamilyMemberGUID,HHSurveyGUID,NCDScreeningGUID,NCDFollowupGUID,Name,NCDDiagnosis,RBS,BP,GFRecieved,GFother,GFProblem,GFProblemother,GFDiagnosisReason,GFDiagnosisReasonoth,GForPFDiagnosisReason,GForPFDiagnosisReasonoth,NCDMedicine,NCDMedicineYes,NCDMedicineYesoth,NCDMedicineNo,NCDMedicineNooth,CounsellingTips,Suggestion,IsEdited,CreatedBy,CreatedOn,UpdatedBy,UpdatedOn,AshaID,ANMID,Referal,MedicineGiven,MedicineContinue,MedicineWhere,ReferralYes,MedicineWhereOther)values('"
                     + registrationNo
-                    + "','" + registrationDate + "','"
+                    + "','"
                     + guardianName
-                    + "',"
+                    + "','" + registrationDate + "',"
                     + villageCode
                     + ",'"
                     + hHFamilyMemberGUID
@@ -11955,12 +12184,12 @@ public class DataProvider {
     public int InsertNCDCBAC(int VillageID, String HHFamilyMemberGUID, String HHSurveyGUID, String NCDCBACGUID, int Age,
                              int Smoke, int Alcohol, String Waist, int PhysicalActivity, int FamilyHistory, int Score,
                              int Breath, int Coughing, int BloodinSputum, int Fits, int OpeningMouth, int Ulcers,
-                             int AnyChangeTone, int LumpinBreast, int BloodStainedNipple, int BreastSize, int BleedingPeriods, int BleedingMenopause,
+                             int AnyChangeTone, int IPRisk, int LumpinBreast, int BloodStainedNipple, int BreastSize, int BleedingPeriods, int BleedingMenopause,
                              int BleedingIntercourse, int VaginalDischarge,
                              int Status, int AshaID, int ANMID, int userid, String flag) {
         String sql = "";
         if (flag.equalsIgnoreCase("I")) {
-            sql = "insert  into tblncdcbac(VillageID,HHFamilyMemberGUID,HHSurveyGUID,NCDCBACGUID,Age,Smoke,Alcohol,Waist,PhysicalActivity,FamilyHistory,Score,Breath,Coughing,BloodinSputum,Fits,OpeningMouth,Ulcers,AnyChangeTone,LumpinBreast,BloodStainedNipple,BreastSize,BleedingPeriods,BleedingMenopause,BleedingIntercourse,VaginalDischarge,Status,IsEdited,CreatedBy,CreatedOn,UpdatedBy,UpdatedOn,AshaID,ANMID)values('"
+            sql = "insert  into tblncdcbac(VillageID,HHFamilyMemberGUID,HHSurveyGUID,NCDCBACGUID,Age,Smoke,Alcohol,Waist,PhysicalActivity,FamilyHistory,Score,Breath,Coughing,BloodinSputum,Fits,OpeningMouth,Ulcers,AnyChangeTone,IPRisk,LumpinBreast,BloodStainedNipple,BreastSize,BleedingPeriods,BleedingMenopause,BleedingIntercourse,VaginalDischarge,Status,IsEdited,CreatedBy,CreatedOn,UpdatedBy,UpdatedOn,AshaID,ANMID)values('"
                     + VillageID
                     + "','"
                     + HHFamilyMemberGUID
@@ -11996,6 +12225,8 @@ public class DataProvider {
                     + Ulcers
                     + "','"
                     + AnyChangeTone
+                    + "','"
+                    + IPRisk
                     + "','"
                     + LumpinBreast
                     + "','"
@@ -12033,7 +12264,7 @@ public class DataProvider {
                     + FamilyHistory + "',Score='" + Score + "',Breath='"
                     + Breath + "',Coughing='" + Coughing
                     + "',BloodinSputum='" + BloodinSputum + "',Fits='" + Fits + "',OpeningMouth='"
-                    + OpeningMouth + "',Ulcers='" + Ulcers + "',AnyChangeTone='" + AnyChangeTone
+                    + OpeningMouth + "',Ulcers='" + Ulcers + "',AnyChangeTone='" + AnyChangeTone + "',IPRisk='" + IPRisk
                     + "',LumpinBreast='" + LumpinBreast
                     + "',BloodStainedNipple='" + BloodStainedNipple
                     + "',BreastSize='" + BreastSize + "',BleedingPeriods='"
@@ -12057,11 +12288,17 @@ public class DataProvider {
         }
     }
 
+
     public ArrayList<tblncdcbac> getncdcbac(String name, String NCDCBACGUID, int Flag) {
         ArrayList<tblncdcbac> cbac = null;
         String sql = "";
         if (Flag == 1) {
-            sql = "Select * from tblncdcbac where IsEdited=1";
+            // sql = "Select * from tblncdcbac where IsEdited=1";
+            if (global.getiGlobalRoleID() == 3) {
+                sql = "Select * from tblncdcbac where ANMID=" + global.getsGlobalANMCODE() + " and  isEdited = 1";
+            } else if (global.getiGlobalRoleID() == 2) {
+                sql = "Select * from tblncdcbac where AshaID=" + global.getsGlobalAshaCode() + " and isEdited = 1";
+            }
 
         }
 
@@ -12414,6 +12651,15 @@ public class DataProvider {
                         form.setANMID(cursor.getInt(cursor
                                 .getColumnIndex("ANMID")));
                     }
+                    if (cursor.getString(cursor.getColumnIndex("IPRisk")) == null
+                            || cursor.getString(
+                            cursor.getColumnIndex("IPRisk"))
+                            .equalsIgnoreCase("null")) {
+                        form.setIPRisk(0);
+                    } else {
+                        form.setIPRisk(cursor.getInt(cursor
+                                .getColumnIndex("IPRisk")));
+                    }
 
 
                     cbac.add(form);
@@ -12634,6 +12880,70 @@ public class DataProvider {
 
     }
 
+    public void ImportDataInMyWay(JSONObject jsonObj, String[] TableName, String[] ConditionTable[], String[] TableTag) {
+
+        for (int j = 0; j < TableName.length; j++) {
+            try {
+                JSONArray FormArray = jsonObj.getJSONArray(TableTag[j]);
+                String[] fieldname = ReturnMasterFieldValue(TableName[j]);
+                if (fieldname.length > 0) {
+                    dbIntraHealth.beginTransaction();
+                    try {
+                        ContentValues insertValues = new ContentValues();
+                        for (int k = 0; k < FormArray.length(); k++) {
+                            JSONObject Form = FormArray.getJSONObject(k);
+                            for (int i = 0; i < fieldname.length; i++) {
+                                if (!fieldname[i].equalsIgnoreCase("UID")) {
+                                    insertValues.put(fieldname[i], Validate.returnStringValue(Form.optString(fieldname[i])));
+                                }
+                            }
+                            String tableCon[] = ConditionTable[j];
+                            String con1 = " =? AND ";
+                            String con2 = " =?";
+                            String condition = "";
+                            String ConValue = "";
+                            String conditioncount = "";
+                            for (int m = 0; m < tableCon.length; m++) {
+                                if (m == tableCon.length - 1) {
+                                    condition = condition + tableCon[m] + con2;
+                                    ConValue = ConValue + Validate.returnStringValue(Form.optString(tableCon[m]));
+                                    conditioncount = conditioncount + tableCon[m] + "='" + Validate.returnStringValue(Form.optString(tableCon[m])) + "' AND ";
+
+                                } else {
+                                    condition = condition + tableCon[m] + con1;
+                                    ConValue = ConValue + Validate.returnStringValue(Form.optString(tableCon[m])) + ",";
+                                    conditioncount = conditioncount + tableCon[m] + "='" + Validate.returnStringValue(Form.optString(tableCon[m])) + "' AND ";
+
+                                }
+                            }
+
+
+                            String sqlcount = "Select count(*) from " + TableName[j] + " where " + conditioncount + "   IsEdited=1";
+                            int guidcount = getMaxRecord(sqlcount);
+                            if (guidcount == 0) {
+                                int iCount = dbIntraHealth.update(TableName[j], insertValues, condition, new String[]{ConValue});
+                                int abc = iCount;
+                                if (iCount <= 0) {
+                                    dbIntraHealth.insert(TableName[j], null, insertValues);
+                                }
+                            }
+                        }
+                        dbIntraHealth.setTransactionSuccessful();
+                        Log.e("insert  ", TableName[j]);
+                    } catch (Exception e) {
+                        Log.e("error  ", e.toString());
+                    } finally {
+                        dbIntraHealth.endTransaction();
+                    }
+                } else {
+                    ImportDataInMyWay(jsonObj, TableName, ConditionTable, TableTag);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public ArrayList<HashMap<String, String>> getDynamicVal(String sql) {
 
         ArrayList<HashMap<String, String>> data = null;
@@ -12652,7 +12962,7 @@ public class DataProvider {
 
                     for (int i = 0; i < cursor.getColumnNames().length; i++) {
 
-                        params.put(cursor.getColumnName(i), (cursor.getString(cursor.getColumnIndex(cursor.getColumnName(i)))));
+                        params.put(cursor.getColumnName(i), Validate.returnStringValue((cursor.getString(cursor.getColumnIndex(cursor.getColumnName(i))))));
                     }
 
                     data.add(params);
@@ -12670,5 +12980,329 @@ public class DataProvider {
         return data;
     }
 
+    public int InsertNCDCHC(String registrationNo, String campNo,
+                            String registrationDate, int blockCode, int villageCode,
+                            String hHFamilyMemberGUID, String hHSurveyGUID,
+                            String nCDScreeningGUID, String name, int age, int sex,
+                            String address, String mobileno, int occupation,
+                            String occupationother, String Anypastillness, int height,
+                            String weight, String bMI, String rBS, String bP,
+                            String othercomplication, String suspectedFor, int referredto,
+                            int referredBy, int status, int ashaID, int aNMID, int userID,
+                            String flag, int AnyOthcomplicationYes, String SuspectedAnyOther,
+                            int FBS, int PPGTest, String HbA1C, int UrineTest, int DiabeticStatus, int Diabetic) {
+        String sql = "";
+        if (flag.equalsIgnoreCase("I")) {
+            sql = "insert  into tblncdscreening(RegistrationNo,CampNo,RegistrationDate,BlockID,VillageID,HHFamilyMemberGUID,HHSurveyGUID,NCDScreeningGUID,Name,Age,Sex,Address,Mobileno,Occupation,Occupationother,Anypastillness,Height,Weight,BMI,RBS,BP,Othercomplication,SuspectedFor,Referredto,ReferredBy,Status,AshaID,ANMID,IsEdited,CreatedBy,CreatedOn,UpdatedBy,UpdatedOn,AnyOthcomplicationYes,SuspectedAnyOther,FBS,PPGTest,HbA1C,UrineTest,DiabeticStatus,Diabetic,ActivityDate)values('"
+                    + registrationNo
+                    + "','"
+                    + campNo
+                    + "','"
+                    + registrationDate
+                    + "','"
+                    + blockCode
+                    + "','"
+                    + villageCode
+                    + "','"
+                    + hHFamilyMemberGUID
+                    + "','"
+                    + hHSurveyGUID
+                    + "','"
+                    + nCDScreeningGUID
+                    + "','"
+                    + name
+                    + "','"
+                    + age
+                    + "','"
+                    + sex
+                    + "','"
+                    + address
+                    + "','"
+                    + mobileno
+                    + "','"
+                    + occupation
+                    + "','"
+                    + occupationother
+                    + "','"
+                    + Anypastillness
+                    + "','"
+                    + height
+                    + "','"
+                    + weight
+                    + "','"
+                    + bMI
+                    + "','"
+                    + rBS
+                    + "','"
+                    + bP
+                    + "','"
+                    + othercomplication
+                    + "','"
+                    + suspectedFor
+                    + "','"
+                    + referredto
+                    + "','"
+                    + referredBy
+                    + "','"
+                    + status
+                    + "','"
+                    + ashaID
+                    + "','"
+                    + aNMID
+                    + "',1,'"
+                    + userID
+                    + "','"
+                    + Validate.getcurrentdate()
+                    + "','"
+                    + userID
+                    + "','"
+                    + Validate.getcurrentdate()
+                    + "',"
+                    + AnyOthcomplicationYes
+                    + ",'"
+                    + SuspectedAnyOther
+                    + "',"
+                    + FBS
+                    + ","
+                    + PPGTest
+                    + ",'"
+                    + HbA1C
+                    + "',"
+                    + UrineTest
+                    + ","
+                    + DiabeticStatus
+                    + ","
+                    + Diabetic + ",'" + Validate.getcurrentdate()
+                    + "')";
+        } else {
+            sql = "update tblncdscreening set RegistrationNo='"
+                    + registrationNo + "',CampNo='" + campNo
+                    + "',RegistrationDate='" + registrationDate + "',Name='"
+                    + name + "',Age='" + age + "',Sex='" + sex + "',Address='"
+                    + address + "',Mobileno='" + mobileno + "',Occupation='"
+                    + occupation + "',Occupationother='" + occupationother
+                    + "',Height='" + height + "',Weight='" + weight + "',BMI='"
+                    + bMI + "',RBS='" + rBS + "',BP='" + bP
+                    + "',Othercomplication='" + othercomplication
+                    + "',Anypastillness='" + Anypastillness
+                    + "',SuspectedFor='" + suspectedFor + "',Referredto='"
+                    + referredto + "',ReferredBy='" + referredBy + "',Status='"
+                    + status + "',IsEdited=1,UpdatedBy='" + userID
+                    + "',UpdatedOn='" + Validate.getcurrentdate()
+                    + "',AshaID='" + ashaID + "',ANMID='" + aNMID
+                    + "' , AnyOthcomplicationYes=" + AnyOthcomplicationYes
+                    + ",SuspectedAnyOther='" + SuspectedAnyOther
+                    + "',FBS=" + FBS + ",PPGTest=" + PPGTest
+                    + ",HbA1C='" + HbA1C + "',UrineTest=" + UrineTest + ",DiabeticStatus="
+                    + DiabeticStatus + ",Diabetic=" + Diabetic + " where HHFamilyMemberGUID='" + hHFamilyMemberGUID
+                    + "' and CreatedOn='" + Validate.getcurrentdate() + "'";
+        }
 
+        try {
+            executeSql(sql);
+
+            return 1;
+        } catch (Exception e) {
+            // TODO: handle exception
+            return 0;
+        }
+    }
+
+
+    public int insertMedicine(String hhFamilyMemberGUID, String guid, String ID, String Quantity, int ashaID, int anmid, int userID) {
+        String sql = "";
+        sql = "insert  into tblncdscreeningmedicine(HHFamilyMemberGUID,NCDScreeningGUID,ID,Quantity,CreatedBy,CreatedOn,AshaID,ANMID,IsEdited)values('"
+                + hhFamilyMemberGUID
+                + "','"
+                + guid
+                + "','"
+                + ID
+                + "','"
+                + Quantity
+                + "','"
+                + userID
+                + "','"
+                + Validate.getcurrentdate()
+                + "','"
+                + ashaID
+                + "','"
+                + anmid + "' ,1)";
+
+        try {
+            executeSql(sql);
+
+            return 1;
+        } catch (Exception e) {
+            // TODO: handle exception
+            return 0;
+        }
+    }
+
+    public int InsertNCDCHCoutside(String ashaname, String village, String ncdScreeningGUID, String name, String adharcard, int DOBAvailable, String dob, int sex, String address, String mobileno, int occupation, String occupationother, String anypastillness, int height, String weight, String bmi, String bp, String othercomplication, String suspectedFor, int status, int userID, int anyOthcomplicationYes, String suspectedAnyOther, int fbs, int ppgTest, String hbA1C, int urineTest, int diabeticStatus, int diabetic) {
+        String sql = "";
+
+        sql = "insert  into tblncdscreeningoutside(Aadharcard,ASHAName,Village,NCDScreeningGUID,Name,DOBAvailable,DOB,Sex,Address,Mobileno,Occupation,Occupationother,Anypastillness,Height,Weight,BMI,BP,Othercomplication,SuspectedFor,Status,IsEdited,CreatedBy,CreatedOn,AnyOthcomplicationYes,SuspectedAnyOther,FBS,PPGTest,HbA1C,UrineTest,DiabeticStatus,Diabetic)values('"
+                + adharcard
+                + "','"
+                + ashaname
+                + "','"
+                + village
+                + "','"
+                + ncdScreeningGUID
+                + "','"
+                + name
+                + "','"
+                + DOBAvailable
+                + "','"
+                + dob
+                + "','"
+                + sex
+                + "','"
+                + address
+                + "','"
+                + mobileno
+                + "','"
+                + occupation
+                + "','"
+                + occupationother
+                + "','"
+                + anypastillness
+                + "','"
+                + height
+                + "','"
+                + weight
+                + "','"
+                + bmi
+                + "','"
+                + bp
+                + "','"
+                + othercomplication
+                + "','"
+                + suspectedFor
+                + "','"
+                + status
+                + "',1,'"
+                + userID
+                + "','"
+                + Validate.getcurrentdate()
+                + "','"
+                + anyOthcomplicationYes
+                + "','"
+                + suspectedAnyOther
+                + "','"
+                + fbs
+                + "','"
+                + ppgTest
+                + "','"
+                + hbA1C
+                + "','"
+                + urineTest
+                + "','"
+                + diabeticStatus
+                + "','"
+                + diabetic
+                + "')";
+
+
+        try {
+            executeSql(sql);
+
+            return 1;
+        } catch (Exception e) {
+            // TODO: handle exception
+            return 0;
+        }
+    }
+
+    public int insertMedicineoutside(String guid, String ID, String Quantity, int userID) {
+        String sql = "";
+        sql = "insert  into tblncdscreeningmedicineoutside(NCDScreeningGUID,ID,Quantity,CreatedBy,CreatedOn,IsEdited)values('"
+                + guid
+                + "','"
+                + ID
+                + "','"
+                + Quantity
+                + "','"
+                + userID
+                + "','"
+                + Validate.getcurrentdate()
+                + "',1)";
+
+        try {
+            executeSql(sql);
+
+            return 1;
+        } catch (Exception e) {
+            // TODO: handle exception
+            return 0;
+        }
+    }
+
+    public int insertIncetiveDetail(String incentiveSurveyGUID, int month, int year, int activityAmount, int activityTotal, int activityNo, String srno, int createdBy, int ashaID, int anmid, int afid, String flag, int AmtRecieved, String IncentiveGUID) {
+        String sql = "";
+        if (flag.equalsIgnoreCase("I")) {
+            sql = "Insert into tblashaincentivedetail(IncentiveSurveyGUID,Month,Year,ActivityAmount,ActivityTotal,ActivityNo,ActivitySrno,IsEdited,CreatedBy,CreatedOn,AshaID,ANMID,AFID,AmtRecieved,AFStatus,ANMStatus,BCPMStatus,IncentiveGUID)values('"
+                    + incentiveSurveyGUID + "','" + month + "','" + year + "','" + activityAmount + "','" + activityTotal + "','" + activityNo + "','" + srno + "',1,'" + createdBy + "','" + Validate.getcurrentdate() + "','" + ashaID + "','" + anmid + "','" + afid + "'," + AmtRecieved + ",0,0,0,'" + IncentiveGUID + "')";
+
+        } else {
+//            sql = "update  tblincentivesurveytemp setYear='" + year + "',Prasavno='" + prasavno + "',PrasavValue='" + prasavValue + "',Deathno='" + deathno + "',DeathValue='" + deathValue + "',Anemiano='" + anemiano + "',AnemiaValue='" + anemiaValue + "',HBNCno='" + hbnCno + "',HBNCValue='" + hbncValue + "',Childdeathno='" + childdeathno + "',ChilddeathValue='" + childdeathValue + "',Childbirthno='" + childbirthno + "',ChildbirthValue='" + childbirthValue + "',ANCUno='" + ancUno + "',ANCUValue='" + ancuValue + "',TotalIncentive='" + totalIncentive + "',IsEdited=1,UpdatedBy='" + updatedBy + "',UpdatedOn='" + Validate.getcurrentdate() + "',AshaID='" + ashaID + "',ANMID='" + anmid + "' where Year='"
+//                    + year
+//                    + "' and Mmonth='"
+//                    + month
+//                    + "' and CreatedOn='"
+//                    + Validate.getcurrentdate() + "' and CreatedBy='" + createdBy + "' ";
+        }
+        try {
+            executeSql(sql);
+
+            return 1;
+        } catch (Exception e) {
+            // TODO: handle exception
+            return 0;
+        }
+    }
+
+    public int insertIncetive(String incentiveSurveyGUID, int month, int year, int ashaStatus, int afStatus, int amStatus, int bcpmStatus, int claim, int notApproved, int isEdited, int createdBy, int ashaID, int anmid, int afid, String flag, int AmtRecieved) {
+        String sql = "";
+        if (flag.equalsIgnoreCase("I")) {
+            sql = "Insert into tblincentivesurvey(IncentiveSurveyGUID,Month,Year,AshaStatus,AFStatus,ANMStatus,BCPMStatus,Claim,NotApproved,IsEdited,CreatedBy,CreatedOn,AshaID,ANMID,AFID,AmtRecieved)values('"
+                    + incentiveSurveyGUID + "','" + month + "','" + year + "','" + ashaStatus + "','" + afStatus + "','" + amStatus + "','" + bcpmStatus + "','" + claim + "','" + notApproved + "',1,'" + createdBy + "','" + Validate.getcurrentdate() + "','" + ashaID + "','" + anmid + "','" + afid + "'," + AmtRecieved + ")";
+
+        } else {
+//            sql = "update  tblincentivesurvey setYear='" + year + "',Prasavno='" + ashaStatus + "',PrasavValue='" + prasavValue + "',Deathno='" + deathno + "',DeathValue='" + deathValue + "',Anemiano='" + anemiano + "',AnemiaValue='" + anemiaValue + "',HBNCno='" + hbnCno + "',HBNCValue='" + hbncValue + "',Childdeathno='" + childdeathno + "',ChilddeathValue='" + childdeathValue + "',Childbirthno='" + childbirthno + "',ChildbirthValue='" + childbirthValue + "',ANCUno='" + ancUno + "',ANCUValue='" + ancuValue + "',TotalIncentive='" + totalIncentive + "',IsEdited=1,UpdatedBy='" + updatedBy + "',UpdatedOn='" + Validate.getcurrentdate() + "',AshaID='" + ashaID + "',ANMID='" + anmid + "' where Year='"
+//                    + year
+//                    + "' and Mmonth='"
+//                    + month
+//                    + "' and CreatedOn='"
+//                    + Validate.getcurrentdate() + "' and CreatedBy='" + createdBy + "' ";
+        }
+        try {
+            executeSql(sql);
+
+            return 1;
+        } catch (Exception e) {
+            // TODO: handle exception
+            return 0;
+        }
+    }
+
+    public int InsertNCDetailsDiagnosis(int ncd_id, String detdate, int treatment, String predate, int test, int healthCenter, String hhFamilyMemberGUID, String hhSurveyGUID, String ncdScreeningGUID, int medicine, String reasonforClosing, int ashaID, int anmid, int userID, String flag) {
+        String sql = "";
+        if (flag.equalsIgnoreCase("I")) {
+            sql = "Insert into tblncdcbacdiagnosis(HHFamilyMemberGUID,HHSurveyGUID,NCDScreeningGUID,NCD_id,Det_date,Diagnosis,PrimaryDet_date,Det_status,Healthcenter,MedicineAvailability,Reasonforclose,IsEdited,CreatedBy,CreatedOn,AshaID,ANMID)values('"
+                    + hhFamilyMemberGUID + "','" + hhSurveyGUID + "','" + ncdScreeningGUID + "','" + ncd_id + "','" + detdate + "','" + treatment + "','" + predate + "','" + test + "','" + healthCenter + "','" + medicine + "','" + reasonforClosing + "',1,'" + userID + "','" + Validate.getcurrentdate() + "','" + ashaID + "','" + anmid + "')";
+
+        } else {
+            sql = "update  tblncdcbacdiagnosis set Det_date='" + detdate + "',Diagnosis='" + treatment + "',PrimaryDet_date='" + predate + "',Det_status='" + test + "',Healthcenter='" + healthCenter + "',MedicineAvailability='" + medicine + "',Reasonforclose='" + reasonforClosing + "',IsEdited=1,UpdatedBy='" + userID + "',UpdatedOn='" + Validate.getcurrentdate() + "',AshaID='" + ashaID + "',ANMID='" + anmid + "' where HHFamilyMemberGUID='" + hhFamilyMemberGUID
+                    + "' and CreatedOn='" + Validate.getcurrentdate() + "' and NCD_id='" + ncd_id + "' ";
+        }
+        try {
+            executeSql(sql);
+
+            return 1;
+        } catch (Exception e) {
+            // TODO: handle exception
+            return 0;
+        }
+    }
 }

@@ -52,7 +52,7 @@
                 android:layout_height="35dp"
                 android:layout_gravity="center"
                 android:layout_margin="2dp"
-                android:background="@drawable/edit" />
+                android:background="@drawable/counseling" />
 
             <TextView
                 android:layout_width="0dp"

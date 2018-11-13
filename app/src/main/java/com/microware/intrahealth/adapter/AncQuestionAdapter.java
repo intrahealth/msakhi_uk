@@ -156,8 +156,9 @@ public class AncQuestionAdapter extends BaseAdapter {
 		// }
 		String ans = Questions.get(CurrentPage).getOinfo();
 		tvQuestions.setText(Questions.get(CurrentPage).getQtext());
-		tvQuestions.setTextColor(Color.BLACK);
-		tvQuestions.setBackgroundColor(Color.GRAY);
+//		tvQuestions.setTextColor(Color.BLACK);
+//		tvQuestions.setBackgroundColor(Color.GRAY);
+//		tvQuestions.setTextSize(18);
 
 		if (Questions.get(CurrentPage).getY_qid() > 0) {
 			ansy.setText(String.valueOf(Questions.get(CurrentPage).getY_qid()));

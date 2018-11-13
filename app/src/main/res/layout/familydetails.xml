@@ -556,12 +556,13 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/MaritalStatus" />
-
                     <TextView
                         style="@style/SimpleText"
                         android:layout_width="0dp"
                         android:layout_height="fill_parent"
-                        android:layout_weight=".1" />
+                        android:layout_weight=".1"
+                        android:text="*"
+                        android:textColor="@color/Red" />
 
                     <Spinner
                         android:id="@+id/SpinMaritalStatus"

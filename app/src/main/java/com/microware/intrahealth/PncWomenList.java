@@ -4,19 +4,27 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.TypedValue;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -40,6 +48,7 @@ public class PncWomenList extends Activity {
     ArrayAdapter<String> adapter;
     public ArrayList<tblChild> Child = new ArrayList<tblChild>();
     int flag = 0;
+    ImageView Img_info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +60,7 @@ public class PncWomenList extends Activity {
         dataProvider = new DataProvider(this);
         global = (Global) getApplication();
         setTitle(global.getVersionName());
+        Img_info = (ImageView) findViewById(R.id.Img_info);
         // btnaddanc = (Button) findViewById(R.id.btnaddanc);
         // btncloseanc = (Button) findViewById(R.id.btncloseanc);
         gridanc = (GridView) findViewById(R.id.gridanc);
@@ -58,6 +68,7 @@ public class PncWomenList extends Activity {
         etFamilyIDSearch = (EditText) findViewById(R.id.etFamilyIDSearch);
         spinVillageName = (Spinner) findViewById(R.id.spinVillageName);
         // ltvWomenID = (TextView) findViewById(R.id.ltvWomenID);
+        etFamilyIDSearch.setHint(R.string.childname);
         ltvWomenName = (TextView) findViewById(R.id.ltvWomenName);
         ltvWomenName.setText(getResources().getString(R.string.Mothername) + "/" + getResources().getString(R.string.childname) + "/" + getResources().getString(R.string.DateOfBirth) + "/" + getResources().getString(R.string.Gender));
         totalcount = (TextView) findViewById(R.id.totalcount);
@@ -69,6 +80,14 @@ public class PncWomenList extends Activity {
         if (extras != null) {
             flag = extras.getInt("flag");
         }
+        Img_info.setVisibility(View.VISIBLE);
+        Img_info.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                CustomAlert();
+            }
+        });
         btnsearchFilter.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -138,6 +157,33 @@ public class PncWomenList extends Activity {
 
     }
 
+    public void CustomAlert() {
+
+        // Create custom dialog object
+        final Dialog dialog = new Dialog(this);
+        // hide to default title for Dialog
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        // inflate the layout dialog_layout.xml and set it as contentView
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.color_infoalert, null, false);
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+
+        wlp.gravity = Gravity.RIGHT;
+        wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        window.setAttributes(wlp);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setContentView(view);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+
+
+        // Display the dialog
+        dialog.show();
+
+    }
+
     private void fillVillageName(int Language) {
         Village = dataProvider.getMstVillageName(global.getsGlobalAshaCode(), Language, 0);
 
@@ -186,7 +232,7 @@ public class PncWomenList extends Activity {
             Child = dataProvider.gettblChild("", Woman_name, 1, 0);
         }
 
-        if (Child != null && Child.size() > 0) {
+        if (Child != null) {
 //			
             android.view.ViewGroup.LayoutParams params = gridanc
                     .getLayoutParams();

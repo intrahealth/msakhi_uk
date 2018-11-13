@@ -26,6 +26,7 @@
             android:text="@string/Immunization"
             android:textColor="@color/orangedark"
             android:textSize="22dp" />
+
         <Button
             android:id="@+id/btn_report"
             style="@style/ButtonText"
@@ -33,8 +34,8 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@drawable/btn_bg_custom"
-            android:paddingRight="2dp"
             android:onClick="onclickButton"
+            android:paddingRight="2dp"
             android:text="@string/report" />
 
         <TextView
@@ -44,6 +45,7 @@
             android:visibility="invisible" />
 
     </TableRow>
+
     <TableRow
         android:id="@+id/tbl_spinner"
         android:layout_width="match_parent"
@@ -80,6 +82,65 @@
             android:layout_height="fill_parent"
             android:layout_weight=".05" />
     </TableRow>
+
+    <TableRow
+
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05" />
+
+        <EditText
+            android:id="@+id/etFamily"
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:hint="@string/childname"
+            android:inputType="text"
+            android:maxLength="50"
+            android:padding="5dp"
+            android:paddingLeft="10dp" />
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.5">
+
+
+            <ImageView
+                android:id="@+id/btnCapture"
+                style="@style/ButtonText"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/qr"
+                android:text="@string/captureimage" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".5" />
+            <ImageView
+                android:id="@+id/Img_info"
+                style="@style/ButtonText"
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/information" />
+
+        </TableRow>
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05" />
+    </TableRow>
+
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="55dp"
@@ -105,9 +166,8 @@
 
         <TextView
             style="@style/Textview"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight=".6"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
             android:background="@drawable/textsheet"
             android:gravity="center"
             android:text="@string/Gender"
@@ -146,7 +206,7 @@
                 android:layout_width="0dp"
                 android:layout_height="1000dp"
                 android:layout_weight="4"
-                android:background="@color/White"></GridView>
+                android:background="@color/White"/>
 
 
         </TableRow>

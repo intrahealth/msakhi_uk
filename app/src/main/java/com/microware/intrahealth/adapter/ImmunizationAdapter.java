@@ -34,9 +34,10 @@ public class ImmunizationAdapter extends BaseAdapter {
 
     Context context;
     ArrayList<Child_Imunization_Object> ChildImmun = new ArrayList<Child_Imunization_Object>();
+    ArrayList<Child_Imunization_Object> ChildImmun1 = new ArrayList<Child_Imunization_Object>();
     ArrayList<Child_Imunization_Object> ChildImmun2 = new ArrayList<Child_Imunization_Object>();
     Global global;
-    TextView bcg, hep1, opv0, opv1, opv2, opv3, dpt1, dpt2, dpt3, hep0, hep2, hep3,
+    TextView tv_IPV2,bcg, hep1, opv0, opv1, opv2, opv3, dpt1, dpt2, dpt3, hep0, hep2, hep3,
             Pentavalent1, Pentavalent2, Pentavalent3, measles, vitamin, tv_ipv, tv_JEVaccine1, tv_opvbooster, tv_DPTBooster, tv_measles2, tv_JEVaccine2, tv_vitamintwo, tv_vitamin3, tv_vitamin4, tv_vitamin5, tv_vitamin6, tv_vitamin7, tv_vitamin8, tv_vitamin9, tv_DPTBoostersecond, tv_tt, tv_tt2;
     DataProvider dataProvider;
     Dialog PicVideo_PreviewPopUp;
@@ -86,30 +87,48 @@ public class ImmunizationAdapter extends BaseAdapter {
         TextView tvparentsname = (TextView) gridview
                 .findViewById(R.id.tvParentsname);
         TextView tvAge = (TextView) gridview.findViewById(R.id.tvAge);
-        TextView tvcounselling = (TextView) gridview.findViewById(R.id.tvcounselling);
+        TextView tv_count = (TextView) gridview.findViewById(R.id.tv_count);
+        ImageView btncounselling = (ImageView) gridview.findViewById(R.id.btncounselling);
         ImageView btnimmune = (ImageView) gridview.findViewById(R.id.btnimmune);
 
         String Sparentsname = "";
+        String sql1 = "select FamilyMemberName from tbl_HHFamilyMember where HHFamilyMemberGUID = '"
+                + ChildImmun.get(position).getHHFamilyMemberGUID() + "'";
 
-        if (ChildImmun.get(position).getWomenname() != null && ChildImmun.get(position).getWomenname().length() > 0) {
+        mothername = dataProvider.getRecord(sql1);
+//        String sname = "";
+        int count = 0;
+        String sqlcount = "select count(*) from tblmstimmunizationANS where ChildGUID = '"
+                + ChildImmun.get(position).getChildGUID() + "'";
 
-            mothername = ChildImmun.get(position).getWomenname();
-
+        count = dataProvider.getMaxRecord(sqlcount);
+        if (count > 0) {
+            tv_count.setVisibility(View.VISIBLE);
+            tv_count.setText(""+count);
         } else {
-
-            ChildImmun2 = dataProvider.gettblCHildImmunization();
-            if (ChildImmun2 != null && ChildImmun2.size() > 0) {
-
-                for (int i = 0; i < ChildImmun2.size(); i++) {
-                    if ((ChildImmun.get(position).getChildGUID()).equalsIgnoreCase(ChildImmun2.get(i).getChildGUID())) {
-                        mothername = ChildImmun2.get(i).getFamilyMemberName();
-
-                    }
-                }
-            }
+            tv_count.setVisibility(View.INVISIBLE);
         }
+//        tvcounselling.setText(sname);
 
-        Sparentsname = String.valueOf(ChildImmun.get(position).getChild_name() + "/" + mothername);
+//        if (ChildImmun.get(position).getWomenname() != null && ChildImmun.get(position).getWomenname().length() > 0) {
+//
+//            mothername = ChildImmun.get(position).getWomenname();
+//
+//        } else {
+//
+//            ChildImmun2 = dataProvider.gettblCHildImmunization();
+//            if (ChildImmun2 != null && ChildImmun2.size() > 0) {
+//
+//                for (int i = 0; i < ChildImmun2.size(); i++) {
+//                    if ((ChildImmun.get(position).getChildGUID()).equalsIgnoreCase(ChildImmun2.get(i).getChildGUID())) {
+//                        mothername = ChildImmun2.get(i).getFamilyMemberName();
+//
+//                    }
+//                }
+//            }
+//        }
+
+        Sparentsname = String.valueOf(ChildImmun.get(position).getChild_name() + "/" + Validate.returnStringValue(mothername));
 
         tvparentsname.setText(Sparentsname);
         String currentdate = Validate.getcurrentdate();
@@ -117,7 +136,7 @@ public class ImmunizationAdapter extends BaseAdapter {
         tvAge.setText(String.valueOf(age));
         global.setDateMonth(age);
 
-        tvcounselling.setOnClickListener(new OnClickListener() {
+        btncounselling.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -131,6 +150,40 @@ public class ImmunizationAdapter extends BaseAdapter {
                 context.startActivity(i);
             }
         });
+        long ageint = Validate.Daybetween(ChildImmun.get(position).getDob(), Validate.getcurrentdate());
+        if (ageint <= 28) {
+            tvparentsname.setBackgroundResource(R.drawable.childsheet1);
+            tvAge.setBackgroundResource(R.drawable.childsheet1);
+           // tvcounselling.setBackgroundResource(R.drawable.childsheet1);
+        } else if (ageint <= 365) {
+            tvparentsname.setBackgroundResource(R.drawable.childsheet2);
+            tvAge.setBackgroundResource(R.drawable.childsheet2);
+           // tvcounselling.setBackgroundResource(R.drawable.childsheet2);
+        } else if (ageint <= 730) {
+            tvparentsname.setBackgroundResource(R.drawable.childsheet3);
+            tvAge.setBackgroundResource(R.drawable.childsheet3);
+           // tvcounselling.setBackgroundResource(R.drawable.childsheet3);
+        } else if (ageint <= 1825) {
+            tvparentsname.setBackgroundResource(R.drawable.childsheet4);
+            tvAge.setBackgroundResource(R.drawable.childsheet4);
+           // tvcounselling.setBackgroundResource(R.drawable.childsheet4);
+        } else {
+            tvparentsname.setBackgroundResource(R.drawable.childsheet5);
+            tvAge.setBackgroundResource(R.drawable.childsheet5);
+            //tvcounselling.setBackgroundResource(R.drawable.childsheet5);
+        }
+//        String status = "Select StatusID from Tbl_HHFamilyMember where HHFamilyMemberGUID='"
+//                + ChildImmun.get(position).getChildGUID() + "'";
+//        String stat = dataProvider.getRecord(status);
+//        if(Validate.returnIntegerValue(stat)==3){
+//            tvparentsname.setBackgroundResource(R.drawable.yellowsheet);
+//            tvAge.setBackgroundResource(R.drawable.yellowsheet);
+//            tvcounselling.setBackgroundResource(R.drawable.yellowsheet);
+//        }else{
+//            tvparentsname.setBackgroundResource(R.drawable.whitesheet);
+//            tvAge.setBackgroundResource(R.drawable.whitesheet);
+//            tvcounselling.setBackgroundResource(R.drawable.whitesheet);
+//        }
         btnimmune.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -147,125 +200,131 @@ public class ImmunizationAdapter extends BaseAdapter {
 
     @SuppressWarnings("unused")
     public void showimmune(String ChildGUID) {
-        PicVideo_PreviewPopUp = new Dialog(context);
-        Window window = PicVideo_PreviewPopUp.getWindow();
-        //    PicVideo_PreviewPopUp.getWindow().setLayout(900, 400);
-        // PicVideo_PreviewPopUp.getWindow().setBackgroundDrawable(
-        // new ColorDrawable(Color.TRANSPARENT));
-        PicVideo_PreviewPopUp.getWindow().setBackgroundDrawableResource(
-                color.white);
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        Display display = wm.getDefaultDisplay();
-        DisplayMetrics metrics = new DisplayMetrics();
-        display.getMetrics(metrics);
-        Double width = metrics.widthPixels * 20.2;
-        Double height = metrics.heightPixels * 5.3;
-        Window win = PicVideo_PreviewPopUp.getWindow();
-        win.setLayout(width.intValue(), height.intValue());
-        //    window.requestFeature(Window.FEATURE_NO_TITLE);
+        try {
+            PicVideo_PreviewPopUp = new Dialog(context);
+            Window window = PicVideo_PreviewPopUp.getWindow();
+            //    PicVideo_PreviewPopUp.getWindow().setLayout(900, 400);
+            // PicVideo_PreviewPopUp.getWindow().setBackgroundDrawable(
+            // new ColorDrawable(Color.TRANSPARENT));
+            PicVideo_PreviewPopUp.getWindow().setBackgroundDrawableResource(
+                    color.white);
+            WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+            Display display = wm.getDefaultDisplay();
+            DisplayMetrics metrics = new DisplayMetrics();
+            display.getMetrics(metrics);
+            Double width = metrics.widthPixels * 20.2;
+            Double height = metrics.heightPixels * 5.3;
+            Window win = PicVideo_PreviewPopUp.getWindow();
+            win.setLayout(width.intValue(), height.intValue());
+            //    window.requestFeature(Window.FEATURE_NO_TITLE);
 
-        PicVideo_PreviewPopUp.setContentView(R.layout.vaccination);
-        PicVideo_PreviewPopUp.setCancelable(true);
-        PicVideo_PreviewPopUp.setCanceledOnTouchOutside(true);
-        bcg = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.bcg);
-        hep1 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.hep);
-        hep0 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.hep0);
-        hep2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.hep2);
-        hep3 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.hep3);
-        opv0 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.opv0);
-        opv1 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.opv1);
-        opv2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.opv2);
-        opv3 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.opv3);
-        dpt1 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.dpt1);
-        dpt2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.dpt2);
-        dpt3 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.dpt3);
-        Pentavalent1 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.Pentavalent1);
-        Pentavalent2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.Pentavalent2);
-        Pentavalent3 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.Pentavalent3);
-        measles = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.measles);
-        vitamin = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.vitamin);
-
-
-        tv_ipv = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_ipv);
-        tv_JEVaccine1 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_JEVaccine1);
-        tv_opvbooster = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_opvbooster);
-        tv_DPTBooster = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_DPTBooster);
-        tv_measles2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_measles2);
-        tv_JEVaccine2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_JEVaccine2);
-        tv_vitamintwo = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_vitamintwo);
-        tv_vitamin3 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_vitamin3);
-        tv_vitamin4 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_vitamin4);
-        tv_vitamin5 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_vitamin5);
-        tv_vitamin6 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_vitamin6);
-        tv_vitamin7 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_vitamin7);
-        tv_vitamin8 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_vitamin8);
-        tv_vitamin9 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_vitamin9);
-        tv_DPTBoostersecond = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_DPTBoostersecond);
-        tv_tt = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_tt);
-        tv_tt2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_tt2);
+            PicVideo_PreviewPopUp.setContentView(R.layout.vaccination);
+            PicVideo_PreviewPopUp.setCancelable(true);
+            PicVideo_PreviewPopUp.setCanceledOnTouchOutside(true);
+            tv_IPV2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_IPV2);
+            bcg = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.bcg);
+            hep1 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.hep);
+            hep0 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.hep0);
+            hep2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.hep2);
+            hep3 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.hep3);
+            opv0 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.opv0);
+            opv1 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.opv1);
+            opv2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.opv2);
+            opv3 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.opv3);
+            dpt1 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.dpt1);
+            dpt2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.dpt2);
+            dpt3 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.dpt3);
+            Pentavalent1 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.Pentavalent1);
+            Pentavalent2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.Pentavalent2);
+            Pentavalent3 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.Pentavalent3);
+            measles = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.measles);
+            vitamin = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.vitamin);
 
 
-        filldata(ChildGUID);
+            tv_ipv = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_ipv);
+            tv_JEVaccine1 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_JEVaccine1);
+            tv_opvbooster = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_opvbooster);
+            tv_DPTBooster = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_DPTBooster);
+            tv_measles2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_measles2);
+            tv_JEVaccine2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_JEVaccine2);
+            tv_vitamintwo = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_vitamintwo);
+            tv_vitamin3 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_vitamin3);
+            tv_vitamin4 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_vitamin4);
+            tv_vitamin5 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_vitamin5);
+            tv_vitamin6 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_vitamin6);
+            tv_vitamin7 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_vitamin7);
+            tv_vitamin8 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_vitamin8);
+            tv_vitamin9 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_vitamin9);
+            tv_DPTBoostersecond = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_DPTBoostersecond);
+            tv_tt = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_tt);
+            tv_tt2 = (TextView) PicVideo_PreviewPopUp.findViewById(R.id.tv_tt2);
 
-        PicVideo_PreviewPopUp.setOnCancelListener(new OnCancelListener() {
 
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                // TODO Auto-generated method stub
+            filldata(ChildGUID);
 
-                //((ImmunizationCounselling) context).fillgrid(1);
-            }
-        });
+            PicVideo_PreviewPopUp.setOnCancelListener(new OnCancelListener() {
 
-        PicVideo_PreviewPopUp.show();
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    // TODO Auto-generated method stub
+
+                    //((ImmunizationCounselling) context).fillgrid(1);
+                }
+            });
+
+            PicVideo_PreviewPopUp.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void filldata(String childGUID) {
         // TODO Auto-generated method stub
 
-        ChildImmun = dataProvider.ShowCHildImmunizationdata(childGUID);
+        ChildImmun1 = dataProvider.ShowCHildImmunizationdata(childGUID);
 
-        if (ChildImmun != null && ChildImmun.size() > 0) {
-            bcg.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getBcg())));
-            opv1.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getOpv2())));
-            dpt1.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0)
+        if (ChildImmun1 != null && ChildImmun1.size() > 0) {
+            bcg.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getBcg())));
+            opv1.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getOpv2())));
+            dpt1.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0)
                     .getDpt1())));
-            hep0.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getHepb2())));
-            opv2.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getOpv3())));
-            dpt2.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0)
+            hep0.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getHepb2())));
+            opv2.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getOpv3())));
+            dpt2.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0)
                     .getDpt2())));
-            hep2.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getHepb3())));
-            opv3.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getOpv4())));
-            dpt3.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0)
+            hep2.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getHepb3())));
+            opv3.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getOpv4())));
+            dpt3.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0)
                     .getDpt3())));
-            hep3.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getHepb4())));
-            measles.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getMeaseals())));
-            vitamin.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getVitaminA())));
-            Pentavalent1.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0)
+            hep3.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getHepb4())));
+            measles.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getMeaseals())));
+            vitamin.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getVitaminA())));
+            Pentavalent1.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0)
                     .getPentavalent1())));
-            Pentavalent2.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0)
+            Pentavalent2.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0)
                     .getPentavalent2())));
-            Pentavalent3.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0)
+            Pentavalent3.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0)
                     .getPentavalent3())));
-            opv0.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getOpv1())));
-            hep1.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getHepb1())));
-            tv_ipv.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getIPV())));
-            tv_JEVaccine1.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getJEVaccine1())));
-            tv_opvbooster.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getOPVBooster())));
-            tv_DPTBooster.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getDPTBooster())));
-            tv_measles2.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getMeaslesTwoDose())));
-            tv_JEVaccine2.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getJEVaccine2())));
-            tv_vitamintwo.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getVitaminAtwo())));
-            tv_vitamin3.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getVitaminA3())));
-            tv_vitamin4.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getVitaminA4())));
-            tv_vitamin5.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getVitaminA5())));
-            tv_vitamin6.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getVitaminA6())));
-            tv_vitamin7.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getVitaminA7())));
-            tv_vitamin8.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getVitaminA8())));
-            tv_vitamin9.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getVitaminA9())));
-            tv_DPTBoostersecond.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getDPTBoostertwo())));
-            tv_tt.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getChildTT())));
-            tv_tt2.setText(String.valueOf(Validate.changeDateFormat(ChildImmun.get(0).getTT2())));
+            opv0.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getOpv1())));
+            hep1.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getHepb1())));
+            tv_ipv.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getIPV())));
+            tv_JEVaccine1.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getJEVaccine1())));
+            tv_opvbooster.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getOPVBooster())));
+            tv_DPTBooster.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getDPTBooster())));
+            tv_measles2.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getMeaslesRubella())));
+            tv_JEVaccine2.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getJEVaccine2())));
+            tv_vitamintwo.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getVitaminAtwo())));
+            tv_vitamin3.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getVitaminA3())));
+            tv_vitamin4.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getVitaminA4())));
+            tv_vitamin5.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getVitaminA5())));
+            tv_vitamin6.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getVitaminA6())));
+            tv_vitamin7.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getVitaminA7())));
+            tv_vitamin8.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getVitaminA8())));
+            tv_vitamin9.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getVitaminA9())));
+            tv_DPTBoostersecond.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getDPTBoostertwo())));
+            tv_tt.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getChildTT())));
+            tv_tt2.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getTT2())));
+            tv_IPV2.setText(String.valueOf(Validate.changeDateFormat(ChildImmun1.get(0).getIPV2())));
 
 
         }

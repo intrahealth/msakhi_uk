@@ -1,0 +1,1059 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/White"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:text="@string/Anccheckup"
+        android:textColor="@color/Black"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:background="@color/LightsyncYellow"
+                        android:gravity="center"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_age"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:background="@color/LightGreen"
+                        android:gravity="left"
+                        android:textStyle="bold" />
+
+
+                </TableRow>
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:id="@+id/tv_lmp"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+
+                        android:gravity="left"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_height"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+
+                        android:gravity="center"
+                        android:textStyle="bold" />
+
+
+                </TableRow>
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:id="@+id/tv_edd"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:gravity="left"
+                        android:textStyle="bold" />
+
+                    <TextView
+
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:gravity="left"
+                        android:textStyle="bold" />
+
+
+                </TableRow>
+
+                <TableRow
+                    style="@style/tbl_SimpleText"
+                    android:background="#F79646">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:gravity="left" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left"
+                        android:text="1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left"
+                        android:text="2" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left"
+                        android:text="3" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left"
+                        android:text="4" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tbl_af"
+                    style="@style/tbl_SimpleText">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:gravity="left" />
+
+                    <TableRow
+                        style="@style/tbl_SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_weight=".2">
+
+                        <TextView
+                            android:id="@+id/tv_img1"
+                            style="@style/SimpleText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".1"
+                            android:text="1"
+                            android:visibility="invisible"/>
+
+                        <ImageView
+                            android:id="@+id/btn_Img1"
+                            style="@style/ButtonText"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/aforange_128dp" />
+
+                        <TextView
+                            style="@style/SimpleText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".1" />
+                    </TableRow>
+
+                    <TableRow
+                        style="@style/tbl_SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_weight=".2">
+
+                        <TextView
+                            android:id="@+id/tv_img2"
+                            style="@style/SimpleText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".1"
+                            android:text="1"
+                            android:visibility="invisible"/>
+
+                        <ImageView
+                            android:id="@+id/btn_Img2"
+                            style="@style/ButtonText"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/aforange_128dp" />
+
+                        <TextView
+                            style="@style/SimpleText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".1" />
+                    </TableRow>
+
+                    <TableRow
+                        style="@style/tbl_SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_weight=".2">
+
+                        <TextView
+                            android:id="@+id/tv_img3"
+                            style="@style/SimpleText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".1"
+                            android:text="1"
+                            android:visibility="invisible"/>
+
+                        <ImageView
+                            android:id="@+id/btn_Img3"
+                            style="@style/ButtonText"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/aforange_128dp" />
+
+                        <TextView
+                            style="@style/SimpleText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".1" />
+                    </TableRow>
+
+                    <TableRow
+                        style="@style/tbl_SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_weight=".2">
+
+                        <TextView
+                            android:id="@+id/tv_img4"
+                            style="@style/SimpleText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".1"
+                            android:text="1"
+                            android:visibility="invisible"/>
+
+                        <ImageView
+                            android:id="@+id/btn_Img4"
+                            style="@style/ButtonText"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/aforange_128dp" />
+
+                        <TextView
+                            style="@style/SimpleText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".1" />
+                    </TableRow>
+
+
+                </TableRow>
+
+                <TableRow
+                    style="@style/tbl_SimpleText"
+                    android:background="@drawable/ancreportsheet">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:gravity="left"
+                        android:text="@string/date" />
+
+                    <TextView
+                        android:id="@+id/anc_date1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/anc_date2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/anc_date3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/anc_date4"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+                </TableRow>
+
+                <TableRow
+                    style="@style/tbl_SimpleText"
+                    android:background="@drawable/ancreportsheet">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:gravity="left"
+                        android:text="@string/weight3" />
+
+                    <TextView
+                        android:id="@+id/weight1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/weight2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/weight3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/weight4"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left"
+                        android:text="@string/Height" />
+
+                    <TextView
+                        android:id="@+id/Height1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/Height2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/Height3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/Height4"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+                </TableRow>
+
+                <TableRow
+                    style="@style/tbl_SimpleText"
+                    android:background="@drawable/ancreportsheet">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left"
+                        android:text="@string/hb" />
+
+                    <TextView
+                        android:id="@+id/hb1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/hb2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/hb3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/hb4"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ancreportsheet">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left"
+                        android:text="@string/bp2" />
+
+                    <TextView
+                        android:id="@+id/bp1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/bp2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/bp3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/bp4"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+                </TableRow>
+
+                <TableRow
+                    style="@style/tbl_SimpleText"
+                    android:background="@drawable/ancreportsheet">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left"
+                        android:text="@string/UrineSugar" />
+
+                    <TextView
+                        android:id="@+id/us1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/us2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/us3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/us4"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ancreportsheet">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left"
+                        android:text="@string/UrineAlbumin" />
+
+                    <TextView
+                        android:id="@+id/ua1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/ua2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/ua3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/ua4"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+                </TableRow>
+
+                <TableRow
+                    style="@style/tbl_SimpleText"
+                    android:background="@color/PowderBlue"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left"
+                        android:text="@string/BMI" />
+
+                    <TextView
+                        android:id="@+id/BMI1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/BMI2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/BMI3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/BMI4"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ancreportsheet"
+                    android:minHeight="40dp">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left"
+                        android:text="@string/tt" />
+
+                    <TextView
+                        android:id="@+id/tt1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/tt2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/tt3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/tt4"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+                </TableRow>
+
+                <TableRow
+                    style="@style/tbl_SimpleText"
+                    android:background="@color/PowderBlue"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left"
+                        android:text="@string/ttseconddate" />
+
+                    <TextView
+                        android:id="@+id/tt21"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/tt22"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/tt23"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/tt24"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ancreportsheet">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left"
+                        android:text="@string/IFA" />
+
+                    <TextView
+                        android:id="@+id/IFA1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/IFA2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/IFA3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/IFA4"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+                </TableRow>
+
+                <TableRow
+                    style="@style/tbl_SimpleText"
+                    android:background="@drawable/ancreportsheet">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left"
+                        android:text="@string/calcium1" />
+
+                    <TextView
+                        android:id="@+id/calcium1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/calcium2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/calcium3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/calcium4"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left"
+                        android:text="@string/dangersigns" />
+
+                    <TextView
+                        android:id="@+id/dangersigns1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/dangersigns2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/dangersigns3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/dangersigns4"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+                </TableRow>
+
+                <TableRow
+                    style="@style/tbl_SimpleText"
+                    android:background="@color/PowderBlue"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left"
+                        android:text="@string/HRP1" />
+
+                    <TextView
+                        android:id="@+id/HRP1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/HRP2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/HRP3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+
+                    <TextView
+                        android:id="@+id/HRP4"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+
+                        android:gravity="left" />
+                </TableRow>
+
+                <TableRow
+                    style="@style/tbl_SimpleText"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/Red">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:gravity="left"
+                        android:text="@string/hrprep"
+                        android:textColor="@color/White"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/HRP"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:gravity="left"
+                        android:textColor="@color/White"
+                        android:textStyle="bold" />
+
+                    <TextView
+
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".6"
+                        android:background="@color/White"
+                        android:gravity="left" />
+
+
+                </TableRow>
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:gravity="left"
+                        android:text="@string/reason_for_hrp"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/HRPreason"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:gravity="left"
+                        android:textColor="@color/White"
+                        android:textStyle="bold" />
+
+
+                </TableRow>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

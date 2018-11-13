@@ -33,6 +33,7 @@
             android:layout_weight=".1"
             android:background="@color/PowderBlue" />
     </TableRow>
+
     <TableRow
         android:id="@+id/tbl_spin"
         android:layout_width="match_parent"
@@ -69,6 +70,61 @@
             android:layout_height="fill_parent"
             android:layout_weight=".1" />
     </TableRow>
+
+    <TableRow
+        android:id="@+id/tbl_date"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1" />
+
+        <TextView
+            android:id="@+id/tv_fromdate"
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".6"
+            android:background="@drawable/textbox"
+            android:gravity="center_vertical"
+            android:text="@string/from_date" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1" />
+
+        <TextView
+            android:id="@+id/tv_todate"
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".6"
+            android:background="@drawable/textbox"
+            android:gravity="center_vertical"
+            android:text="@string/ToDate" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1" />
+
+        <Button
+            android:id="@+id/btnshow"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".7"
+            android:background="@drawable/btn_bg_custom"
+            android:gravity="center"
+            android:text="@string/show_data" />
+
+
+    </TableRow>
+
     <TableRow
         android:id="@+id/tbl_btn"
         android:layout_width="match_parent"
@@ -96,12 +152,12 @@
             android:layout_weight=".01" />
     </TableRow>
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight=".1"
-        android:textColorHighlight="@color/Black"/>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="#A9A9A9" />
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -112,11 +168,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="10dp"
-                android:background="#A9A9A9" />
 
             <TableRow
                 style="@style/Divider"
@@ -128,9 +179,9 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight=".3"
-                    android:text="1."
                     android:gravity="top"
-                    />
+                    android:text="1." />
+
                 <TextView
 
                     android:id="@+id/textView29"
@@ -146,8 +197,7 @@
                     android:id="@+id/textView27"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
-                    android:layout_weight=".1"
-                    />
+                    android:layout_weight=".1" />
 
 
                 <TextView
@@ -177,55 +227,41 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_marginRight="2dp"
-
                     android:layout_weight="0.4"
                     android:gravity="center_vertical" />
 
                 <TextView
-
-
                     android:id="@+id/textView13"
                     style="@style/EditText"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_marginRight="2dp"
-
-
                     android:layout_weight="1"
                     android:gravity="center_vertical" />
 
                 <TextView
-
-
                     style="@style/SimpleText"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_marginRight="2dp"
-
                     android:layout_weight="0.4"
                     android:gravity="center_vertical" />
 
                 <TextView
-
                     style="@style/EditText"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
-
-
                     android:gravity="center_vertical" />
 
 
                 <TextView
-
-
                     style="@style/SimpleText"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
-
                     android:gravity="center"
                     android:text="@string/Total" />
 
@@ -236,7 +272,6 @@
                     android:layout_height="30dp"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
-
                     android:gravity="center" />
 
 
@@ -260,16 +295,14 @@
                 android:layout_marginTop="2dp">
 
                 <TextView
-
+                    style="@style/SimpleText"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight=".3"
-                    android:text="2."
                     android:gravity="top"
-                    style="@style/SimpleText"
-                    />
-                <TextView
+                    android:text="2." />
 
+                <TextView
                     android:id="@+id/textView26"
                     style="@style/SimpleText"
                     android:layout_width="0dp"
@@ -277,8 +310,6 @@
                     android:layout_weight="4.7"
                     android:gravity="top"
                     android:text="@string/Totalfamily" />
-
-
 
 
                 <TextView
@@ -292,7 +323,7 @@
             <TableRow
                 style="@style/Divider"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"                >
+                android:layout_height="40dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -391,25 +422,21 @@
 
 
                 <TextView
-
+                    style="@style/SimpleText"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight=".3"
-                    android:text="3."
                     android:gravity="top"
-                    style="@style/SimpleText"
-                    />
+                    android:text="3." />
 
                 <TextView
-
                     android:id="@+id/textView14"
                     style="@style/SimpleText"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="4.7"
                     android:gravity="top"
-                    android:text="@string/CheckupsCBAC" />
-
+                    android:text="@string/Populationinherarea" />
 
 
             </TableRow>
@@ -458,7 +485,6 @@
                     android:layout_height="fill_parent"
                     android:layout_marginRight="2dp"
                     android:layout_weight="0.4"
-
                     android:gravity="center"
                     android:text="@string/f" />
 
@@ -469,7 +495,6 @@
                     android:layout_height="30dp"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
-
                     android:gravity="center" />
 
                 <TextView
@@ -514,14 +539,13 @@
                 android:layout_marginTop="2dp">
 
                 <TextView
-
+                    style="@style/SimpleText"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight=".3"
-                    android:text="4."
                     android:gravity="top"
-                    style="@style/SimpleText"
-                    />
+                    android:text="4." />
+
                 <TextView
 
                     android:id="@+id/textView17"
@@ -530,9 +554,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="4.7"
                     android:gravity="top"
-                    android:text="@string/screeningConfirmation" />
-
-
+                    android:text="@string/CBACcompletedfortotalpersontilldate" />
 
 
             </TableRow>
@@ -575,14 +597,11 @@
                     android:gravity="center" />
 
                 <TextView
-
-
                     style="@style/SimpleText"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_marginRight="2dp"
                     android:layout_weight="0.4"
-
                     android:gravity="center"
                     android:text="@string/f" />
 
@@ -645,13 +664,12 @@
 
                 <TextView
 
+                    style="@style/SimpleText"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight=".3"
-                    android:text="5."
                     android:gravity="top"
-                    style="@style/SimpleText"
-                    />
+                    android:text="5." />
 
                 <TextView
 
@@ -661,14 +679,13 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="4.7"
                     android:gravity="top"
-                    android:text="@string/HTN" />
+                    android:text="@string/TotalpersonscreenedforNCDtilldate" />
 
             </TableRow>
 
             <TableRow
                 style="@style/Divider"
                 android:layout_width="match_parent"
-
                 android:layout_height="40dp">
 
                 <TextView
@@ -676,7 +693,6 @@
                     android:layout_height="fill_parent"
                     android:layout_weight=".1"
                     android:gravity="center"
-
                     android:textColor="@color/Black" />
 
                 <TextView
@@ -687,7 +703,6 @@
                     android:layout_height="fill_parent"
                     android:layout_marginRight="2dp"
                     android:layout_weight="0.4"
-
                     android:gravity="center"
                     android:text="@string/m" />
 
@@ -699,7 +714,6 @@
                     android:layout_height="30dp"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
-
                     android:gravity="center" />
 
                 <TextView
@@ -711,7 +725,6 @@
                     android:layout_height="fill_parent"
                     android:layout_marginRight="2dp"
                     android:layout_weight="0.4"
-
                     android:gravity="center"
                     android:text="@string/f" />
 
@@ -722,7 +735,6 @@
                     android:layout_height="30dp"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
-
                     android:gravity="center" />
 
                 <TextView
@@ -732,7 +744,6 @@
                     android:layout_height="fill_parent"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
-
                     android:gravity="center"
                     android:text="@string/Total" />
 
@@ -743,7 +754,6 @@
                     android:layout_height="30dp"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
-
                     android:gravity="center" />
 
 
@@ -763,15 +773,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="2dp">
+
                 <TextView
 
+                    style="@style/SimpleText"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight=".3"
-                    android:text="6."
                     android:gravity="top"
-                    style="@style/SimpleText"
-                    />
+                    android:text="6." />
 
                 <TextView
 
@@ -781,11 +791,131 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="4.7"
                     android:gravity="top"
-                    android:text="@string/DMfacility" />
+                    android:text="@string/Totalsuspectedpersonreferredfortreatment" />
 
 
+            </TableRow>
+
+            <TableRow
+                style="@style/Divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="30dp">
 
 
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".31" />
+
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="4.7"
+                    android:gravity="top"
+                    android:text="@string/for_diabetes" />
+
+            </TableRow>
+
+            <TableRow
+                style="@style/Divider"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1"
+                    android:textColor="@color/Black" />
+
+                <TextView
+                    android:id="@+id/textView22"
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:text="@string/m" />
+
+                <TextView
+
+                    android:id="@+id/tvmale6"
+                    style="@style/TextviewCircle"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+                <TextView
+
+
+                    android:id="@+id/textView47"
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:text="@string/f" />
+
+                <TextView
+                    android:id="@+id/tvfemale6"
+                    style="@style/TextviewCircle"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/Total" />
+
+                <TextView
+                    android:id="@+id/tvtotal6"
+                    style="@style/TextviewCircle"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
+            <TableRow
+                style="@style/Divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="30dp">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".31" />
+
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="4.7"
+                    android:gravity="top"
+                    android:text="@string/for_blood_pressure" />
 
             </TableRow>
 
@@ -802,70 +932,57 @@
                     android:textColor="@color/Black" />
 
                 <TextView
-
-                    android:id="@+id/textView22"
                     style="@style/SimpleText"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_marginRight="2dp"
                     android:layout_weight="0.4"
-
                     android:gravity="center"
                     android:text="@string/m" />
 
                 <TextView
-
-                    android:id="@+id/tvmale6"
+                    android:id="@+id/tvmaleBP6"
                     style="@style/TextviewCircle"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
-
                     android:gravity="center" />
 
                 <TextView
-
-
-                    android:id="@+id/textView47"
                     style="@style/SimpleText"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_marginRight="2dp"
                     android:layout_weight="0.4"
-
                     android:gravity="center"
                     android:text="@string/f" />
 
                 <TextView
-                    android:id="@+id/tvfemale6"
+                    android:id="@+id/tvfemaleBP6"
                     style="@style/TextviewCircle"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
-
                     android:gravity="center" />
 
                 <TextView
-
                     style="@style/SimpleText"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
-
                     android:gravity="center"
                     android:text="@string/Total" />
 
                 <TextView
-                    android:id="@+id/tvtotal6"
+                    android:id="@+id/tvtotalBP6"
                     style="@style/TextviewCircle"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
-
                     android:gravity="center" />
 
 
@@ -889,28 +1006,49 @@
 
                 <TextView
 
+                    style="@style/SimpleText"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight=".3"
-                    android:text="7."
                     android:gravity="top"
-                    style="@style/SimpleText"
-                    />
+                    android:text="7." />
 
                 <TextView
-
                     style="@style/SimpleText"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="4.7"
                     android:gravity="top"
-                    android:text="@string/HTNNCDfacility" />
+                    android:text="@string/Totalpersonhavingcontinued" />
 
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight=".01" />
+            </TableRow>
+
+            <TableRow
+                style="@style/Divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="30dp">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".31" />
+
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="4.7"
+                    android:gravity="top"
+                    android:text="@string/for_diabetes" />
+
             </TableRow>
 
             <TableRow
@@ -997,6 +1135,99 @@
                     android:layout_weight=".1" />
             </TableRow>
 
+            <TableRow
+                style="@style/Divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="30dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".31" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="4.7"
+                    android:gravity="top"
+                    android:text="@string/for_blood_pressure" />
+            </TableRow>
+
+            <TableRow
+                style="@style/Divider"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1"
+
+                    android:textColor="@color/Black" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:text="@string/m" />
+
+                <TextView
+                    android:id="@+id/tvmaleBP7"
+                    style="@style/TextviewCircle"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:text="@string/f" />
+
+                <TextView
+                    android:id="@+id/tvfemaleBP7"
+                    style="@style/TextviewCircle"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/Total" />
+
+                <TextView
+                    android:id="@+id/tvtotalBP7"
+                    style="@style/TextviewCircle"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dp"
@@ -1007,15 +1238,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="2dp">
+
                 <TextView
 
+                    style="@style/SimpleText"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight=".3"
-                    android:text="8."
                     android:gravity="top"
-                    style="@style/SimpleText"
-                    />
+                    android:text="8." />
 
 
                 <TextView
@@ -1026,11 +1257,31 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="4.7"
                     android:gravity="top"
-                    android:text="@string/DMFollowup" />
+                    android:text="@string/counselling_going_on_for_how_many_patient" />
 
 
+            </TableRow>
+
+            <TableRow
+                style="@style/Divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="30dp">
 
 
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".31" />
+
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="4.7"
+                    android:gravity="top"
+                    android:text="@string/for_diabetes" />
 
             </TableRow>
 
@@ -1118,6 +1369,100 @@
                     android:layout_weight=".1" />
             </TableRow>
 
+            <TableRow
+                style="@style/Divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="30dp">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".31" />
+
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="4.7"
+                    android:gravity="top"
+                    android:text="@string/for_blood_pressure" />
+            </TableRow>
+
+            <TableRow
+                style="@style/Divider"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1"
+                    android:textColor="@color/Black" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:text="@string/m" />
+
+                <TextView
+                    android:id="@+id/tvmaleBP8"
+                    style="@style/TextviewCircle"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:text="@string/f" />
+
+                <TextView
+                    android:id="@+id/tvfemaleBP8"
+                    style="@style/TextviewCircle"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/Total" />
+
+                <TextView
+                    android:id="@+id/tvtotalBP8"
+                    style="@style/TextviewCircle"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dp"
@@ -1131,23 +1476,44 @@
 
                 <TextView
                     android:id="@+id/textView28"
+                    style="@style/SimpleText"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight=".3"
-                    android:text="9."
                     android:gravity="top"
-                    style="@style/SimpleText"
-                    />
+                    android:text="9." />
 
                 <TextView
-
                     android:id="@+id/textView19"
                     style="@style/SimpleText"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="4.7"
                     android:gravity="top"
-                    android:text="@string/HTNFollowup" />
+                    android:text="@string/convertedashealthyperson" />
+
+            </TableRow>
+
+            <TableRow
+                style="@style/Divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="30dp">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".31" />
+
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="4.7"
+                    android:gravity="top"
+                    android:text="@string/for_diabetes" />
 
             </TableRow>
 
@@ -1229,6 +1595,100 @@
                     android:layout_weight=".1" />
             </TableRow>
 
+            <TableRow
+                style="@style/Divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="30dp">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".31" />
+
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="4.7"
+                    android:gravity="top"
+                    android:text="@string/for_blood_pressure" />
+            </TableRow>
+
+            <TableRow
+                style="@style/Divider"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1"
+                    android:textColor="@color/Black" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:text="@string/m" />
+
+                <TextView
+                    android:id="@+id/tvmaleBP9"
+                    style="@style/TextviewCircle"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:text="@string/f" />
+
+                <TextView
+                    android:id="@+id/tvfemaleBP9"
+                    style="@style/TextviewCircle"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/Total" />
+
+                <TextView
+                    android:id="@+id/tvtotalBP9"
+                    style="@style/TextviewCircle"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".1" />
+            </TableRow>
+
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dp"
@@ -1237,7 +1697,7 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="100dp" />
+                android:layout_height="150dp" />
         </LinearLayout>
     </ScrollView>
 

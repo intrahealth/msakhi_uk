@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <TableRow
         android:id="@+id/GridRow"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tvQuestions"
@@ -15,28 +15,27 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="@drawable/textbox"
+            android:background="@color/Gray"
             android:gravity="center"
             android:textColor="@color/Black"
-            android:textSize="18dp"/>
+            android:textSize="22dp" />
     </TableRow>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TableRow
                 android:id="@+id/tbldatemonth"
                 style="@style/CustomTheme"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:visibility="gone"
-                >
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tvDOB"
@@ -47,22 +46,21 @@
                     android:background="@drawable/textbox"
                     android:gravity="center"
                     android:textColor="@color/Black"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp" />
             </TableRow>
 
             <RadioGroup
                 android:id="@+id/rdgrp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
-            </RadioGroup>
+                android:orientation="vertical"></RadioGroup>
 
             <TableRow
                 android:id="@+id/tblrdgrp2"
                 style="@style/CustomTheme"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:visibility="gone" >
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tv"
@@ -90,7 +88,7 @@
                 style="@style/CustomTheme"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:visibility="gone" >
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tvtm"
@@ -117,7 +115,7 @@
                 android:id="@+id/tblrdgrp3"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:visibility="gone" >
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tvQuestions2"
@@ -148,22 +146,22 @@
                 android:id="@+id/ans"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:textSize="18dp"/>
+                android:textSize="18dp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/ansy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:textSize="18dp"/>
+                android:textSize="18dp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/ansn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:textSize="18dp"/>
+                android:textSize="18dp"
+                android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
 

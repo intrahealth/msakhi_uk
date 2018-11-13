@@ -42,7 +42,7 @@ public class Survey_Activity extends Activity {
 
     ImageView btnsearch, btnadd;
     Spinner spinVillageName;
-    TextView totalcount;
+    TextView totalcount, totalmigartecount;
     EditText etSearch;
     GridView HHSurveyGrid;
     DataProvider dataProvider;
@@ -51,7 +51,8 @@ public class Survey_Activity extends Activity {
     ArrayList<Tbl_HHSurvey> hhsurvey = new ArrayList<Tbl_HHSurvey>();
     ArrayList<MstVillage> Village = new ArrayList<MstVillage>();
     ArrayAdapter<String> adapter;
-Button btn_report;
+    Button btn_report;
+
     // private EasyTracker easyTracker2 = null;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +67,7 @@ Button btn_report;
         btnsearch = (ImageView) findViewById(R.id.btnsearch);
         btn_report = (Button) findViewById(R.id.btn_report);
         totalcount = (TextView) findViewById(R.id.totalcount);
+        totalmigartecount = (TextView) findViewById(R.id.totalmigartecount);
         btnadd = (ImageView) findViewById(R.id.btnadd);
         etSearch = (EditText) findViewById(R.id.etSearch);
         HHSurveyGrid = (GridView) findViewById(R.id.HHSurveyGrid);
@@ -135,16 +137,16 @@ Button btn_report;
         spinVillageName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-               // etSearch.setText("");
+                // etSearch.setText("");
                 if (pos == 1) {
                     fillgridsearch("", 4, 0);
-                } else if(pos>1) {
+                } else if (pos > 1) {
                     VillageID = Village.get(
                             spinVillageName.getSelectedItemPosition() - 2)
                             .getVillageID();
                     fillgridsearch("", 4, VillageID);
 
-                }else{
+                } else {
                     VillageID = 0;
                     fillgridsearch("", 1, VillageID);
                 }
@@ -210,14 +212,79 @@ Button btn_report;
                 localTime, dateStrings);
 //        AsyncTaskRunner runner = new AsyncTaskRunner(0, 0);
 //        runner.execute();
-                fillgrid1();
+        fillgrid1();
 
     }
 
     public void fillgridsearch(String HHCode, int flag, int VillageID) {
         hhsurvey.clear();
+        String sql = "", sqlMIGmember = "", sqlmember = "";
+        int ashaid = Validate.returnIntegerValue(global.getsGlobalAshaCode());
+        if (flag == 1) {
+            sql = "select count(*) from Tbl_HHSurvey where IsActive=1 and (HHStatusID=2 or HHStatusID=3) and ServiceProviderID = "
+                    + ashaid + "  and (VillageID in (select VillageID from ashavillage where ashaid ="
+                    + ashaid + "  ) or VillageID=0) order by cast(HHCode as int) ASC";
+            sqlMIGmember = "select  count(*) from Tbl_HHSurvey inner join Tbl_HHFamilyMember  on Tbl_HHSurvey.HHSurveyGUID=Tbl_HHFamilyMember.HHSurveyGUID where Tbl_HHSurvey.IsActive=1 and  Tbl_HHFamilyMember.StatusID=3 and GenderID between 1 and 2 and Tbl_HHSurvey.ServiceProviderID = "
+                    + ashaid + " and (VillageID in (select VillageID from ashavillage where ashaid ="
+                    + ashaid + "  ) or VillageID=0)";
+            sqlmember = "select  count(*) from Tbl_HHSurvey inner join Tbl_HHFamilyMember  on Tbl_HHSurvey.HHSurveyGUID=Tbl_HHFamilyMember.HHSurveyGUID where Tbl_HHSurvey.IsActive=1 and  Tbl_HHFamilyMember.StatusID=1 and GenderID between 1 and 2  and Tbl_HHSurvey.ServiceProviderID = "
+                    + ashaid + " and (VillageID in (select VillageID from ashavillage where ashaid ="
+                    + ashaid + "  ) or VillageID=0)";
+        } else if (flag == 2) {
+            sql = "select count(*) from Tbl_HHSurvey where IsActive=1 and (HHStatusID=2 or HHStatusID=3) and HHSurveyGUID = '"
+                    + HHCode + "'";
+        } else if (flag == 3) {
+
+            sql = "select Count(distinct(b.HHSurveyGUID)) from tbl_hhfamilymember a inner join Tbl_HHSurvey b on a.HHSurveyGUID = b.HHSurveyGUID where b.IsActive=1 and (b.HHCode  like '%"
+                    + HHCode
+                    + "%' or( a.FamilyMemberName like '%"
+                    + HHCode
+                    + "%' and a.relationid=1)) and b.ServiceProviderID = "
+                    + ashaid + " and (b.HHStatusID=2 or b.HHStatusID=3) and  b.VillageID = " + VillageID + "";
+            sqlMIGmember = "select Count(b.HHSurveyGUID) from tbl_hhfamilymember a inner join Tbl_HHSurvey b on a.HHSurveyGUID = b.HHSurveyGUID where b.IsActive=1 and (b.HHCode  like '%"
+                    + HHCode
+                    + "%' or( a.FamilyMemberName like '%"
+                    + HHCode
+                    + "%' and a.relationid=1)) and b.ServiceProviderID = "
+                    + ashaid + " and a.StatusID=3 and  b.VillageID = " + VillageID + "";
+            sqlmember = "select Count(b.HHSurveyGUID) from tbl_hhfamilymember a inner join Tbl_HHSurvey b on a.HHSurveyGUID = b.HHSurveyGUID where b.IsActive=1 and (b.HHCode  like '%"
+                    + HHCode
+                    + "%' or( a.FamilyMemberName like '%"
+                    + HHCode
+                    + "%' and a.relationid=1)) and b.ServiceProviderID = "
+                    + ashaid + " and a.StatusID=1  and  b.VillageID = " + VillageID + "";
+        } else if (flag == 4) {
+            sql = "select count(*) from Tbl_HHSurvey where IsActive=1 and (HHStatusID=2 or HHStatusID=3) and ServiceProviderID = " + ashaid + " and VillageID = " + VillageID + " order by cast(HHCode as int) ASC";
+            sqlMIGmember = "select  count(*) from Tbl_HHSurvey inner join Tbl_HHFamilyMember  on Tbl_HHSurvey.HHSurveyGUID=Tbl_HHFamilyMember.HHSurveyGUID where Tbl_HHSurvey.IsActive=1 and  Tbl_HHFamilyMember.StatusID=3 and GenderID between 1 and 2 and Tbl_HHSurvey.ServiceProviderID = "
+                    + ashaid + " and VillageID = " + VillageID + "";
+            sqlmember = "select  count(*) from Tbl_HHSurvey inner join Tbl_HHFamilyMember  on Tbl_HHSurvey.HHSurveyGUID=Tbl_HHFamilyMember.HHSurveyGUID where Tbl_HHSurvey.IsActive=1 and  Tbl_HHFamilyMember.StatusID=1 and GenderID between 1 and 2  and Tbl_HHSurvey.ServiceProviderID = "
+                    + ashaid + " and VillageID = " + VillageID + "";
+        } else if (flag == 5) {
+            sql = "select Count(distinct(b.HHSurveyGUID)) from tbl_hhfamilymember a inner join Tbl_HHSurvey b on a.HHSurveyGUID = b.HHSurveyGUID where b.IsActive=1 and (b.HHCode  like '%"
+                    + HHCode
+                    + "%' or( a.FamilyMemberName like '%"
+                    + HHCode
+                    + "%' and a.relationid=1)) and (b.HHStatusID=2 or b.HHStatusID=3) and b.ServiceProviderID = "
+                    + ashaid + "  ";
+            sqlMIGmember = "select Count((b.HHSurveyGUID) from tbl_hhfamilymember a inner join Tbl_HHSurvey b on a.HHSurveyGUID = b.HHSurveyGUID where b.IsActive=1 and (b.HHCode  like '%"
+                    + HHCode
+                    + "%' or( a.FamilyMemberName like '%"
+                    + HHCode
+                    + "%' and a.relationid=1)) and  a.StatusID=3 and b.ServiceProviderID = "
+                    + ashaid + "  ";
+            sqlmember = "select Count(b.HHSurveyGUID) from tbl_hhfamilymember a inner join Tbl_HHSurvey b on a.HHSurveyGUID = b.HHSurveyGUID where b.IsActive=1 and (b.HHCode  like '%"
+                    + HHCode
+                    + "%' or( a.FamilyMemberName like '%"
+                    + HHCode
+                    + "%' and a.relationid=1)) and  a.StatusID=1 and b.ServiceProviderID = "
+                    + ashaid + "  ";
+        }
+        int migratecount = 0, migratememcount = 0, memcount = 0;
+        migratecount = dataProvider.getMaxRecord(sql);
+        migratememcount = dataProvider.getMaxRecord(sqlMIGmember);
+        memcount = dataProvider.getMaxRecord(sqlmember);
         hhsurvey = dataProvider.getHHSurveyData("%" + HHCode + "%", flag,
-                Integer.valueOf(global.getsGlobalAshaCode()), VillageID);
+                Validate.returnIntegerValue(global.getsGlobalAshaCode()), VillageID);
         if (hhsurvey != null) {
             // android.view.ViewGroup.LayoutParams params = HHSurveyGrid
             // .getLayoutParams();
@@ -232,18 +299,43 @@ Button btn_report;
 
             HHSurveyGrid
                     .setAdapter(new Survey_Activity_adapter(this, hhsurvey));
+            totalmigartecount.setText(getResources().getString(
+                    R.string.MigratedHouseholds)
+                    + " -" + migratecount + " /" + migratememcount);
             totalcount.setText(getResources().getString(
                     R.string.totalcountfamily)
-                    + " -" + String.valueOf(hhsurvey.size()));
+                    + " -" + String.valueOf(hhsurvey.size() + " /" + memcount));
         } else {
+
+            totalmigartecount.setText(getString(R.string.MigratedHouseholds)
+                    + " -" + 0 + " /" + 0);
+            totalcount.setText(getResources().getString(
+                    R.string.totalcountfamily)
+                    + " -" + 0 + " /" + 0);
             HHSurveyGrid
                     .setAdapter(new Survey_Activity_adapter(this, hhsurvey));
         }
     }
+
     public void fillgrid1() {
         hhsurvey.clear();
+        String sql = "", sqlMIGmember = "", sqlmember = "";
+        int ashaid = Validate.returnIntegerValue(global.getsGlobalAshaCode());
+        sql = "select count(*) from Tbl_HHSurvey where IsActive=1 and (HHStatusID=2 or HHStatusID=3) and ServiceProviderID = "
+                + ashaid + "  and (VillageID in (select VillageID from ashavillage where ashaid ="
+                + ashaid + "  ) or VillageID=0) order by cast(HHCode as int) ASC";
+        sqlMIGmember = "select  count(*) from Tbl_HHSurvey inner join Tbl_HHFamilyMember  on Tbl_HHSurvey.HHSurveyGUID=Tbl_HHFamilyMember.HHSurveyGUID where Tbl_HHSurvey.IsActive=1 and  Tbl_HHFamilyMember.StatusID=3 and GenderID between 1 and 2 and Tbl_HHSurvey.ServiceProviderID = "
+                + ashaid + " and (VillageID in (select VillageID from ashavillage where ashaid ="
+                + ashaid + "  ) or VillageID=0)";
+        sqlmember = "select  count(*) from Tbl_HHSurvey inner join Tbl_HHFamilyMember  on Tbl_HHSurvey.HHSurveyGUID=Tbl_HHFamilyMember.HHSurveyGUID where Tbl_HHSurvey.IsActive=1 and  Tbl_HHFamilyMember.StatusID=1 and GenderID between 1 and 2  and Tbl_HHSurvey.ServiceProviderID = "
+                + ashaid + " and (VillageID in (select VillageID from ashavillage where ashaid ="
+                + ashaid + "  ) or VillageID=0)";
+        int migratecount = 0, migratememcount = 0, memcount = 0;
         hhsurvey = dataProvider.getHHSurveyData("", 1,
-                Integer.valueOf(global.getsGlobalAshaCode()), 0);
+                Validate.returnIntegerValue(global.getsGlobalAshaCode()), 0);
+        migratecount = dataProvider.getMaxRecord(sql);
+        migratememcount = dataProvider.getMaxRecord(sqlMIGmember);
+        memcount = dataProvider.getMaxRecord(sqlmember);
         if (hhsurvey != null) {
             // android.view.ViewGroup.LayoutParams params = HHSurveyGrid
             // .getLayoutParams();
@@ -258,20 +350,26 @@ Button btn_report;
 
             HHSurveyGrid
                     .setAdapter(new Survey_Activity_adapter(this, hhsurvey));
+            totalmigartecount.setText(getResources().getString(
+                    R.string.MigratedHouseholds)
+                    + " -" + migratecount + " /" + migratememcount);
             totalcount.setText(getResources().getString(
                     R.string.totalcountfamily)
-                    + " -" + String.valueOf(hhsurvey.size()));
+                    + " -" + String.valueOf(hhsurvey.size() + " /" + memcount));
         } else {
-//            totalcount.setText(getResources().getString(
-//                    R.string.totalcountfamily)
-//                    + " -" + String.valueOf(hhsurvey.size()));
+            totalmigartecount.setText(getResources().getString(
+                    R.string.MigratedHouseholds)
+                    + " -" + 0 + " /" + 0);
+            totalcount.setText(getResources().getString(
+                    R.string.totalcountfamily)
+                    + " - " + 0 + " /" + 0);
             HHSurveyGrid
                     .setAdapter(new Survey_Activity_adapter(this, hhsurvey));
         }
     }
 
     private void fillVillageName(int Language) {
-        Village = dataProvider.getMstVillageName(global.getsGlobalAshaCode(), Language,0);
+        Village = dataProvider.getMstVillageName(global.getsGlobalAshaCode(), Language, 0);
 
         String sValue[] = new String[Village.size() + 2];
         sValue[0] = getResources().getString(R.string.select);

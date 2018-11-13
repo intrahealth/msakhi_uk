@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TableRow
+        android:id="@+id/GridRow"
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05"
+            android:visibility="invisible" />
+
+        <TableRow
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.7"
+            android:background="@drawable/textbox">
+
+            <ImageView
+                android:id="@+id/btnhousehold"
+                android:layout_width="45dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/household" />
+
+            <TextView
+                android:id="@+id/tvParentsname"
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textbox"
+                android:gravity="center" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/textbox">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".05" />
+
+            <ImageView
+                android:id="@+id/btn_gender"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".05" />
+
+            <ImageView
+                android:id="@+id/btn_status"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".05" />
+        </TableRow>
+
+        <TextView
+            android:id="@+id/tvChildDob"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".7"
+            android:background="@drawable/textbox"
+            android:gravity="center" />
+
+        <ImageView
+            android:id="@+id/btnDelete"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/deleteicon"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05"
+            android:visibility="invisible" />
+    </TableRow>
+
+</LinearLayout>

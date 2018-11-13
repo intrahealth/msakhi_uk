@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/White">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="20dp"></TableRow>
+
+
+    <TableRow style="@style/tablerow">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05" />
+
+        <TextView
+            style="@style/heading2"
+            android:layout_width="0dp"
+            android:layout_weight=".4"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="@string/Year" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05" />
+
+        <TextView
+            android:id="@+id/tv_year"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".6"
+            android:background="@drawable/textbox1" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05" />
+
+        <TextView
+            style="@style/heading2"
+            android:layout_width="0dp"
+            android:layout_weight=".4"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="@string/month" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05" />
+
+
+        <TextView
+            android:id="@+id/tv_month"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".6"
+            android:background="@drawable/textbox1" />
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/textbox"></TableRow>
+    <TableRow style="@style/tablerow"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05" />
+
+        <TextView
+            style="@style/heading2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/gridbox"
+            android:text="@string/TotalClaimed" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05" />
+
+        <TextView
+            android:id="@+id/tv_totalclaimed"
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@drawable/textbox1"
+            android:layout_gravity="center"
+          android:paddingLeft="5dp"/>
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05" />
+    </TableRow>
+
+    <TableRow style="@style/tablerow"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05" />
+
+        <TextView
+            style="@style/heading2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/gridbox"
+            android:text="@string/TotalApproved" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05" />
+
+        <TextView
+            android:id="@+id/tv_totalapproved"
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@drawable/textbox1"
+            android:layout_gravity="center"
+            android:paddingLeft="5dp" />
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05" />
+    </TableRow>
+
+
+    <TableRow style="@style/tablerow">
+
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="@drawable/textbox1"
+            android:layout_gravity="center"
+            android:text="@string/Activitycode" />
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_weight=".4"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="@drawable/textbox1"
+            android:layout_gravity="center"
+            android:text="@string/claimed" />
+
+
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_weight=".3"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="@drawable/textbox1"
+            android:layout_gravity="center"
+            android:text="@string/ANM" />
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_weight=".3"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="@drawable/textbox1"
+            android:layout_gravity="center"
+            android:text="@string/BCM" />
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_weight=".3"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="@drawable/textbox1"
+            android:layout_gravity="center"
+            android:text="@string/BAM"
+            android:visibility="gone"/>
+
+
+
+
+    </TableRow>
+
+
+    <TableRow
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/textbox">
+
+        <android.support.v7.widget.RecyclerView
+
+            android:id="@+id/recyclerview_ashadata"
+            style="@style/NewSimpleTextWeight"/>
+
+    </TableRow>
+
+    <TableRow style="@style/tablerow"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05" />
+
+        <TextView
+            style="@style/heading2"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:textColor="@color/Red"
+            android:background="@color/White"
+            android:text="@string/reason_for_not_approvingshow" />
+
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".05" />
+    </TableRow>
+
+
+
+</LinearLayout>
+
+
+

@@ -51,8 +51,27 @@ public class Tbl_HHFamilyMember {
 	private int Other_Id_Type;
 	private String Other_Id;
 	private String  Other_Id_Name;
-	
-	
+	private String UpdatedOn;
+	private int UpdatedBy;
+
+	public String getUpdatedOn() {
+		return UpdatedOn;
+	}
+
+	public void setUpdatedOn(String updatedOn) {
+		UpdatedOn = updatedOn;
+	}
+
+	public int getUpdatedBy() {
+		return UpdatedBy;
+	}
+
+	public void setUpdatedBy(int updatedBy) {
+		UpdatedBy = updatedBy;
+	}
+
+
+
 	public int getOther_Id_Type() {
 		return Other_Id_Type;
 	}

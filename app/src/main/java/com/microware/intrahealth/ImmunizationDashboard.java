@@ -19,92 +19,93 @@ import android.widget.Button;
 
 public class ImmunizationDashboard extends Activity {
 
-	Button btnimmunized, btncounselling;
+    Button btnimmunized, btncounselling;
 
-	DataProvider dataProvider;
-	Global global;
+    DataProvider dataProvider;
+    Global global;
 
-	// private EasyTracker easyTracker1 = null;
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
+    // private EasyTracker easyTracker1 = null;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        super.onCreate(savedInstanceState);
 
-		// requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-		setContentView(R.layout.immunizationdashboard);
+        // requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+        setContentView(R.layout.immunizationdashboard);
 
-		// send our data!
-		global = (Global) getApplication();
-		setTitle(global.getVersionName());
-		dataProvider = new DataProvider(this);
-		btnimmunized = (Button) findViewById(R.id.btnimmunized);
-		btncounselling = (Button) findViewById(R.id.btncounselling);
-		btnimmunized.setOnClickListener(new OnClickListener() {
+        // send our data!
+        global = (Global) getApplication();
+        setTitle(global.getVersionName());
+        dataProvider = new DataProvider(this);
+        btnimmunized = (Button) findViewById(R.id.btnimmunized);
+        btncounselling = (Button) findViewById(R.id.btncounselling);
+        btncounselling.setText(getResources().getString(R.string.counselling) + getResources().getString(R.string.upto14year));
+        btnimmunized.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent i = new Intent(ImmunizationDashboard.this,
-						ImunizationChildList.class);
-				startActivity(i);
-			}
-		});
-		Tracker t = ((Global) getApplication())
-				.getTracker(TrackerName.APP_TRACKER);
-		t.setScreenName("Immunization Dashboard");
-		t.send(new HitBuilders.AppViewBuilder().build());
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent i = new Intent(ImmunizationDashboard.this,
+                        ImunizationChildList.class);
+                startActivity(i);
+            }
+        });
+        Tracker t = ((Global) getApplication())
+                .getTracker(TrackerName.APP_TRACKER);
+        t.setScreenName("Immunization Dashboard");
+        t.send(new HitBuilders.AppViewBuilder().build());
 
-		Calendar cal = Calendar.getInstance();
-		Date currentLocalTime = cal.getTime();
-		SimpleDateFormat date1 = new SimpleDateFormat("HH:mm a");
+        Calendar cal = Calendar.getInstance();
+        Date currentLocalTime = cal.getTime();
+        SimpleDateFormat date1 = new SimpleDateFormat("HH:mm a");
 
-		String localTime = date1.format(currentLocalTime);
-		String immunize_GUID = Validate.random();
-		global.setImmunize_GUID(immunize_GUID);
-		long date = System.currentTimeMillis();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		String dateStrings = sdf.format(date);
-		dataProvider.getUserLogin(immunize_GUID, global.getUserID(),
-				"Immunization", "Immunization", localTime, dateStrings);
-		btncounselling.setOnClickListener(new OnClickListener() {
+        String localTime = date1.format(currentLocalTime);
+        String immunize_GUID = Validate.random();
+        global.setImmunize_GUID(immunize_GUID);
+        long date = System.currentTimeMillis();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String dateStrings = sdf.format(date);
+        dataProvider.getUserLogin(immunize_GUID, global.getUserID(),
+                "Immunization", "Immunization", localTime, dateStrings);
+        btncounselling.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent i = new Intent(ImmunizationDashboard.this,
-						ImmunizationCounselling.class);
-				startActivity(i);
-			}
-		});
-	}
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent i = new Intent(ImmunizationDashboard.this,
+                        ImmunizationCounselling.class);
+                startActivity(i);
+            }
+        });
+    }
 
-	protected void onStart() {
-		// TODO Auto-generated method stub
-		super.onStart();
-		GoogleAnalytics.getInstance(ImmunizationDashboard.this)
-				.reportActivityStart(this);
-	}
+    protected void onStart() {
+        // TODO Auto-generated method stub
+        super.onStart();
+        GoogleAnalytics.getInstance(ImmunizationDashboard.this)
+                .reportActivityStart(this);
+    }
 
-	@Override
-	protected void onStop() {
-		// TODO Auto-generated method stub
-		super.onStop();
-		GoogleAnalytics.getInstance(ImmunizationDashboard.this)
-				.reportActivityStop(this);
-	}
+    @Override
+    protected void onStop() {
+        // TODO Auto-generated method stub
+        super.onStop();
+        GoogleAnalytics.getInstance(ImmunizationDashboard.this)
+                .reportActivityStop(this);
+    }
 
-	public void onBackPressed() {
-		// TODO Auto-generated method stub
-		super.onBackPressed();
+    public void onBackPressed() {
+        // TODO Auto-generated method stub
+        super.onBackPressed();
 
-		Calendar cal = Calendar.getInstance();
-		Date currentLocalTime = cal.getTime();
-		SimpleDateFormat date1 = new SimpleDateFormat("HH:mm a");
+        Calendar cal = Calendar.getInstance();
+        Date currentLocalTime = cal.getTime();
+        SimpleDateFormat date1 = new SimpleDateFormat("HH:mm a");
 
-		String endTime = date1.format(currentLocalTime);
-		dataProvider.getUserLoginUpdate(global.getImmunize_GUID(), endTime);
-		Intent i = new Intent(ImmunizationDashboard.this, MCH_Dashboard.class);
-		finish();
-		startActivity(i);
-	}
+        String endTime = date1.format(currentLocalTime);
+        dataProvider.getUserLoginUpdate(global.getImmunize_GUID(), endTime);
+        Intent i = new Intent(ImmunizationDashboard.this, MCH_Dashboard.class);
+        finish();
+        startActivity(i);
+    }
 }

@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -28,10 +29,15 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.microware.intrahealth.Global.TrackerName;
 import com.microware.intrahealth.dataprovider.DataProvider;
 import com.microware.intrahealth.object.MstANM;
@@ -53,11 +59,14 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -65,8 +74,12 @@ import android.os.StrictMode;
 
 import android.support.v4.app.ActivityCompat;
 
+import android.support.v4.content.ContextCompat;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -78,19 +91,15 @@ public class Login extends Activity {
     DatabaseHelper dbHelper;
     @SuppressWarnings("unused")
     private static SQLiteDatabase dbIntraHealth;
-    int iFPDataDownload;
-    public ArrayList<tblmstFPAns> mstFPAns = new ArrayList<tblmstFPAns>();
-    JSONArray tblmstFPAnsArray = null;
+
 
     private static final String IMAGE_DIRECTORY_NAME = "msakhi/Media";
-    public ArrayList<tblmstFPFDetail> mstFPFDetail = new ArrayList<tblmstFPFDetail>();
-    JSONArray tblmstFPFDetailArray = null;
-    public ArrayList<tblmstANCQues> mstANCQues = new ArrayList<tblmstANCQues>();
+
     JSONArray tblmstANCQuesArray = null;
     JSONArray tblmstFPQuesArray = null;
-    public ArrayList<tblmstFPQues> tblmstFPQues = new ArrayList<tblmstFPQues>();
+
     JSONArray tblmstimmunizationQuesArray = null;
-    public ArrayList<tblmstimmunizationQues> tblmstimmunizationQues = new ArrayList<tblmstimmunizationQues>();
+
     public ArrayList<TblMstuser> tblUsermst = new ArrayList<TblMstuser>();
     public ArrayList<MstState> MstState = new ArrayList<MstState>();
     JSONArray Mst_tbl_Incentives = null;
@@ -100,22 +109,24 @@ public class Login extends Activity {
     public ArrayList<MstANM> tblAnmcode = new ArrayList<MstANM>();
 
     public ArrayList<MstASHA> tblASHACode = new ArrayList<MstASHA>();
-    public ArrayList<q_bank> q_bank = new ArrayList<q_bank>();
+
     JSONArray q_bankArray = null;
     JSONArray tblmediaarray = null;
-    public static final int GRANTED = 0;
-    public static final int DENIED = 1;
-    public static final int BLOCKED_OR_NEVER_ASKED = 2;
-    int iDataUploadfp;
+
     Button btnStart;
     TextView tv_fname, tv_version;
     EditText etUsername, etPassword;
     DataProvider dataProvider;
     ProgressDialog progressDialog;
     JSONArray MstUserArray = null;
+
     JSONArray MstuserashamappingArray = null;
     JSONArray anmashaArray = null;
     JSONArray ashavillageArray = null;
+    JSONArray anmsubcenterArray = null;
+    JSONArray mstpdfreportArray = null;
+    JSONArray mstashaactivityArray = null;
+    JSONArray mstchc = null;
     JSONArray MstRoleArray = null;
     JSONArray MstStateArray = null;
     JSONArray MstDistrictArray = null;
@@ -131,30 +142,20 @@ public class Login extends Activity {
     JSONArray MstSubCenterVillageMappingArray = null;
     JSONArray MstCatchmentAreaArray = null;
     public int iDownloadMaster = 0;
+    String Downloadmsg = "";
     Activity activity;
-    int REQUEST_CAMERA = 1;
-    int REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
-    static final Integer LOCATION = 0x1;
-    static final Integer WRITE_EXST = 0x3;
-    static final Integer READ_EXST = 0x4;
-    static final Integer Camera = 0x5;
-    static final Integer GPS_SETTINGS = 0x7;
     String mVersionNumber;
-    private static final int READ_REQUEST_CODE = 42;
-
-
-    public String getVersion() {
-
-        Context mContext = getApplicationContext();
-        try {
-            String pkg = mContext.getPackageName();
-            mVersionNumber = mContext.getPackageManager()
-                    .getPackageInfo(pkg, 0).versionName;
-        } catch (NameNotFoundException e) {
-            mVersionNumber = "?";
-        }
-        return " Version " + mVersionNumber;
-    }
+    String sUserName = "";
+    String sPassword = "";
+    int iRoleid = 0;
+    int PERMISSION_ALL = 1;
+    Validate validate;
+    String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_PHONE_STATE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA, Manifest.permission.INTERNET,
+            Manifest.permission.ACCESS_FINE_LOCATION};
+    String newVersion = null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -169,6 +170,7 @@ public class Login extends Activity {
         tv_version.setText(String.valueOf(getVersion()));
         btnStart = (Button) findViewById(R.id.btnStart);
         dataProvider = new DataProvider(this);
+        validate = new Validate(this);
 
         ConnectivityManager connMgrCheckConnection = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfoCheckConnection = connMgrCheckConnection
@@ -181,21 +183,17 @@ public class Login extends Activity {
             t.setScreenName("Login Screen");
             t.send(new HitBuilders.AppViewBuilder().build());
         }
-        int PERMISSION_ALL = 1;
-        String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_PHONE_STATE,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.CAMERA, Manifest.permission.INTERNET,
-                Manifest.permission.ACCESS_FINE_LOCATION};
 
-        if (!hasPermissions(this, PERMISSIONS)) {
-            ActivityCompat
-                    .requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
-        }
+
+//        if (!hasPermissions(this, PERMISSIONS)) {
+//            ActivityCompat
+//                    .requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
+//        }
         // startActivityForResult(new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE),
         // READ_REQUEST_CODE);
         String sql1 = "";
         try {
+
 
             int roleid = 0;
             sql1 = "select count(UserID) from MstUser  ";
@@ -206,8 +204,7 @@ public class Login extends Activity {
                 roleid = dataProvider.getcountRecord(sql);
 
                 if (roleid == 3) {
-
-                    String fname = "Select ANMName from MstANM ";
+                    String fname = "Select ANMName from MstANM  where languageId=2";
                     String fullname = dataProvider.getRecord(fname);
                     if (fullname.length() > 0) {
                         String uname = fullname;
@@ -216,7 +213,7 @@ public class Login extends Activity {
                     }
 
                 } else if (roleid == 2) {
-                    String fname = "Select ASHAName from MstASHA ";
+                    String fname = "Select ASHAName from MstASHA  where languageId=2 ";
                     String fullname = dataProvider.getRecord(fname);
                     if (fullname.length() > 0) {
                         String uname = fullname;
@@ -238,13 +235,16 @@ public class Login extends Activity {
                     .permitAll().build();// .Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+        if (validate.RetriveSharepreferenceString("name").toString().length() > 0) {
+            String name = validate.RetriveSharepreferenceString("name") + "/" + validate.RetriveSharepreferenceString("Username");
+            tv_fname.setText(name);
+        }
         btnStart.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                backup();
 
-                String sUserName = "";
-                String sPassword = "";
+                backup();
+                backup1();
                 if (etUsername != null
                         && etUsername.getText() != null
                         && !Validate.isTextValid(etUsername.getText()
@@ -259,54 +259,88 @@ public class Login extends Activity {
                     sPassword = etPassword.getText().toString();
                 }
                 global.setLanguage(2);
+                String rolesql = "Select RoleID from MstUser";
                 String sql = "Select count(UserID) from MstUser";
+                String usersql = "select count(UserID) from MstUser where UserName='"
+                        + sUserName
+                        + "' and Password='"
+                        + sPassword
+                        + "' ";
                 int iCount = dataProvider.getMaxRecord(sql);
+                String sRoleid = dataProvider.getRecord(rolesql);
+                if (sRoleid != null && sRoleid.length() > 0) {
+                    iRoleid = Validate.returnIntegerValue(sRoleid);
+                }
+                int userCount = dataProvider.getMaxRecord(usersql);
+                if (iCount < 4) {
+                    if (iCount == 0) {
 
-                if (iCount == 0) {
-
-                    downloaddata(sUserName, sPassword);
+                        downloaddata(sUserName, sPassword, 1);
 
 
-                } else {
+                    } else if (iCount <= 2 && iCount > 0 && userCount == 0 && iRoleid == 2) {
+                        Login.this.runOnUiThread(new Runnable() {
+                            public void run() {
+                                AlertDialog.Builder builder1 = new AlertDialog.Builder(
+                                        Login.this);
+                                builder1.setMessage(R.string.addanotheruser);
+                                builder1.setCancelable(false);
+                                builder1.setPositiveButton(
+                                        getResources().getString(R.string.yes),
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog,
+                                                                int id) {
+                                                dialog.cancel();
+                                                try {
 
-                    Boolean isSDPresent = android.os.Environment
-                            .getExternalStorageState().equals(
-                                    android.os.Environment.MEDIA_MOUNTED);
-                    if (isSDPresent) {
-                        // backup();
-                    }
-                    String sql1 = "";
-                    try {
-                        sql1 = "select count(UserID) from MstUser where UserName='"
-                                + sUserName
-                                + "' and Password='"
-                                + sPassword
-                                + "' ";
-                    } catch (Exception e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                    int iCount1 = dataProvider.getMaxRecord(sql1);
-                    if (iCount1 == 1) {
+                                                    if (isNetworkconn()) {
+                                                        downloaddata(sUserName, sPassword, iRoleid);
+                                                    } else
+                                                        showNewWorkError();
 
+                                                } catch (Exception e) {
+                                                    // TODO: handle exception
+                                                    Toast.makeText(
+                                                            Login.this,
+                                                            e.getMessage().toString(),
+                                                            Toast.LENGTH_LONG).show();
+                                                }
+
+                                            }
+                                        });
+
+                                builder1.setNegativeButton(
+                                        getResources().getString(R.string.no),
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog,
+                                                                int id) {
+                                                dialog.cancel();
+                                            }
+                                        });
+
+                                AlertDialog alert11 = builder1.create();
+                                alert11.show();
+                            }
+                        });
+
+                    } else if (iCount > 0 && userCount > 0) {
                         tblUsermst = dataProvider.tblmstUser(sUserName,
                                 sPassword);
 
                         if (tblUsermst != null && tblUsermst.size() > 0) {
 
                             int iroleid = 0;
-
                             global.setsGlobalUserName(tblUsermst.get(0)
                                     .getUserNameL());
                             global.setsGlobalPassword(tblUsermst.get(0)
                                     .getPassword());
                             global.setsGlobalUserID(String.valueOf(tblUsermst
                                     .get(0).getUserID()));
+                            validate.SaveSharepreferenceString("Username", tblUsermst
+                                    .get(0).getUserNameL());
                             global.setUserID(tblUsermst.get(0).getUserID());
                             global.setiGlobalRoleID(tblUsermst.get(0)
                                     .getRoleID());
-
-                            iroleid = tblUsermst.get(0).getRoleID();
                             MstState = dataProvider.getstate(1);
                             if (MstState != null && MstState.size() > 0) {
                                 global.setStateCode(MstState.get(0)
@@ -314,82 +348,246 @@ public class Login extends Activity {
                                 global.setStateName(MstState.get(0)
                                         .getStateName());
                             }
+                            iroleid = tblUsermst.get(0).getRoleID();
 
-                            if (iroleid == 3) {
+                            if (iroleid == 4) {
+                                global.setiGlobalRoleID(iroleid);
+                                ArrayList<HashMap<String, String>> data;
+                                String sqlaf = "select * from MstCatchmentSupervisor where LanguageID='" + global.getLanguage() + "'";
+                                data = dataProvider.getDynamicVal(sqlaf);
+                                if (data != null && data.size() > 0) {
+                                    validate.SaveSharepreferenceString("name", data.get(0).get("SupervisorName"));
+                                    validate.SaveSharepreferenceString("AFID", data.get(0).get("CHS_ID"));
 
-                                tblAnmcode = dataProvider.getMstANM(1);
-                                if (tblAnmcode != null && tblAnmcode.size() > 0) {
-                                    global.setsGlobalANMCODE(String
-                                            .valueOf(tblAnmcode.get(0)
-                                                    .getANMID()));
-                                    global.setsGlobalANMName(tblAnmcode.get(0)
-                                            .getANMName());
-                                    global.setAnmidasAnmCode(String
-                                            .valueOf(tblAnmcode.get(0)
-                                                    .getANMCode()));
                                 }
+                                global.setiGlobalRoleID(iroleid);
+                                Intent intent = new Intent(Login.this, AFAshaList.class);
+                                startActivity(intent);
+                            } else {
+                                if (iroleid == 3) {
 
-                            } else if (iroleid == 2) {
-                                tblASHACode = dataProvider
-                                        .getashanameandCode(1);
-                                if (tblASHACode != null
-                                        && tblASHACode.size() > 0) {
-                                    global.setsGlobalAshaCode(String
-                                            .valueOf(tblASHACode.get(0)
-                                                    .getASHAID()));
-                                    tblAnmcode = dataProvider.getMstANM(1);
-                                    if (tblAnmcode != null
-                                            && tblAnmcode.size() > 0) {
+                                    tblAnmcode = dataProvider.getMstANM(2);
+                                    if (tblAnmcode != null && tblAnmcode.size() > 0) {
                                         global.setsGlobalANMCODE(String
                                                 .valueOf(tblAnmcode.get(0)
                                                         .getANMID()));
-                                        global.setsGlobalANMName(tblAnmcode
-                                                .get(0).getANMName());
+                                        global.setsGlobalANMName(tblAnmcode.get(0)
+                                                .getANMName());
                                         global.setAnmidasAnmCode(String
                                                 .valueOf(tblAnmcode.get(0)
                                                         .getANMCode()));
+                                        validate.SaveSharepreferenceString("name", tblAnmcode.get(0)
+                                                .getANMName());
+
                                     }
 
+                                } else if (iroleid == 11) {
+                                    ArrayList<HashMap<String, String>> chcdata = null;
+                                    String sqlchc = "Select * from mstchc where LanguageID=2";
+                                    chcdata = dataProvider.getDynamicVal(sqlchc);
+                                    if (chcdata != null && chcdata.size() > 0) {
+                                        global.setCHCID(Validate.returnIntegerValue(chcdata.get(0).get("CHCID")));
+                                        global.setCHCName(tblUsermst.get(0).getFirst_name() + " " + tblUsermst.get(0).getLast_name());
+                                        validate.SaveSharepreferenceString("name", tblUsermst.get(0).getFirst_name() + " " + tblUsermst.get(0).getLast_name());
+                                    }
+
+                                } else if (iroleid == 2) {
+                                    tblASHACode = dataProvider
+                                            .getashanameandCode(2, global.getUserID());
+                                    if (tblASHACode != null
+                                            && tblASHACode.size() > 0) {
+                                        global.setsGlobalAshaCode(String
+                                                .valueOf(tblASHACode.get(0)
+                                                        .getASHAID()));
+                                        global.setsGlobalAshaName(tblASHACode.get(0)
+                                                .getASHAName());
+                                        validate.SaveSharepreferenceString("name", tblASHACode.get(0)
+                                                .getASHAName());
+
+                                    }
+                                    tblAnmcode = dataProvider.getMstANM(2);
+                                    if (tblAnmcode != null && tblAnmcode.size() > 0) {
+                                        global.setsGlobalANMCODE(String
+                                                .valueOf(tblAnmcode.get(0)
+                                                        .getANMID()));
+                                        global.setsGlobalANMName(tblAnmcode.get(0)
+                                                .getANMName());
+                                        global.setAnmidasAnmCode(String
+                                                .valueOf(tblAnmcode.get(0)
+                                                        .getANMCode()));
+
+                                    }
+                                    //tv_fname.setText(global.getsGlobalAshaName());
                                 }
+
+
+                                Calendar cal = Calendar.getInstance();
+                                Date currentLocalTime = cal.getTime();
+                                SimpleDateFormat date1 = new SimpleDateFormat(
+                                        "HH:mm a");
+
+                                String localTime = date1.format(currentLocalTime);
+                                String Login_GUID = Validate.random();
+                                global.setLogin_GUID(String.valueOf(Login_GUID));
+
+                                long date = System.currentTimeMillis();
+                                SimpleDateFormat sdf = new SimpleDateFormat(
+                                        "dd-MM-yyyy");
+                                String dateStrings = sdf.format(date);
+                                dataProvider.getUserLogin(Login_GUID, tblUsermst
+                                                .get(0).getUserID(), "Login", "Login",
+                                        localTime, dateStrings);
+                                Intent in = new Intent(Login.this,
+                                        Dashboard_Activity.class);
+                                global.setNotification_flag(1);
+                                global.setMsg_flag(1);
+                                finish();
+                                startActivity(in);
                             }
-                            Calendar cal = Calendar.getInstance();
-                            Date currentLocalTime = cal.getTime();
-                            SimpleDateFormat date1 = new SimpleDateFormat(
-                                    "HH:mm a");
-
-                            String localTime = date1.format(currentLocalTime);
-                            String Login_GUID = Validate.random();
-                            global.setLogin_GUID(String.valueOf(Login_GUID));
-
-                            long date = System.currentTimeMillis();
-                            SimpleDateFormat sdf = new SimpleDateFormat(
-                                    "dd-MM-yyyy");
-                            String dateStrings = sdf.format(date);
-                            global.setUserID(tblUsermst.get(0).getUserID());
-                            dataProvider.getUserLogin(Login_GUID, tblUsermst
-                                            .get(0).getUserID(), "Login", "Login",
-                                    localTime, dateStrings);
-                            Intent in = new Intent(Login.this,
-                                    Dashboard_Activity.class);
-                            global.setNotification_flag(1);
-                            global.setMsg_flag(1);
-                            finish();
-                            startActivity(in);
+                        } else {
+                            Toast.makeText(getApplicationContext(),
+                                    "Invalid user", Toast.LENGTH_SHORT).show();
                         }
-
                     } else {
-                        Toast.makeText(getApplicationContext(), "Invalid user",
-                                Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),
+                                "Multiuser limit Exceeded", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "Multiuser limit Exceeded", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
+//        if (isNetworkconn()) {
+////            GetVersionCode runner = new GetVersionCode();
+////            runner.execute();
+//        }
+
+    }
+
+    public String getVersion() {
+
+        Context mContext = getApplicationContext();
+        try {
+            String pkg = mContext.getPackageName();
+            mVersionNumber = mContext.getPackageManager()
+                    .getPackageInfo(pkg, 0).versionName;
+        } catch (NameNotFoundException e) {
+            mVersionNumber = "?";
+        }
+        return " Version " + mVersionNumber;
+    }
+
+//    public void initializeFirebase() {
+//        if (FirebaseApp.getApps(getApplicationContext()).isEmpty()) {
+//            FirebaseApp.initializeApp(getApplicationContext(), FirebaseOptions.fromResource(getApplicationContext()));
+//        }
+//        final FirebaseRemoteConfig config = FirebaseRemoteConfig.getInstance();
+//        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+//                .setDeveloperModeEnabled(BuildConfig.DEBUG)
+//                .build();
+//        config.setConfigSettings(configSettings);
+//    }
+
+    private class GetVersionCode extends AsyncTask<Void, String, String> {
+        ProgressDialog dialog = new ProgressDialog(Login.this);
+
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // TODO Auto-generated method stub
+
+            dialog.setMessage("Data Fetching...");
+            dialog.setCancelable(false);
+            dialog.setCanceledOnTouchOutside(false);
+            // dialog.setMax(100);
+            dialog.setIndeterminate(true);
+            dialog.show();
+
+            // dialog.show(Survey_Activity.this,
+            //
+            // getResources().getString(R.string.app_name), getResources()
+            // .getString(R.string.DataLoading), true, true);
+
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            String onlineVersion = null;
+
+            try {
+                newVersion = getApplicationContext().getPackageManager()
+                        .getPackageInfo(Login.this.getPackageName(), 0).versionName;
+                onlineVersion = Jsoup.connect("https://play.google.com/store/apps/details?id=" + Login.this.getPackageName() + "&hl=it")
+                        .timeout(5000)
+                        .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
+                        .referrer("http://www.google.com")
+                        .get()
+                        .select(".hAyfc .htlgb")
+                        .get(7)
+                        .ownText();
+                return onlineVersion;
+            } catch (Exception e) {
+                return onlineVersion;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String onlineVersion) {
+            super.onPostExecute(onlineVersion);
+            dialog.dismiss();
+            try {
+                if (onlineVersion != null && !onlineVersion.isEmpty() && newVersion != null && !newVersion.isEmpty()) {
+                    if (!Validate.returnStringValue(onlineVersion).equalsIgnoreCase(Validate.returnStringValue(newVersion))) {
+                        showUpdateDialog();
                     }
                 }
+                Log.d("update", "Current version " + newVersion + "playstore version " + onlineVersion);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void showUpdateDialog() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("A New Update is Available");
+        builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://play.google.com/store/apps/details?id="
+                                + getPackageName())));
+                dialog.dismiss();
             }
         });
 
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                finish();
+                startActivity(intent);
+            }
+        });
+
+        builder.setCancelable(false);
+        builder.show();
     }
 
     public void onResume() {
         super.onResume();
         try {
+            if (isNetworkconn()) {
+                GetVersionCode runner = new GetVersionCode();
+                runner.execute();
+            }
+            if (!hasPermissions(this, PERMISSIONS)) {
+                ActivityCompat
+                        .requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
+            }
             if (android.provider.Settings.System.getInt(getContentResolver(),
                     android.provider.Settings.System.AUTO_TIME, 1) == 1) {
 
@@ -408,7 +606,7 @@ public class Login extends Activity {
                             }
                         });
 
-                //alertDialog.setIcon(R.drawable.msakhi_logo);
+                //alertDialog.setIcon(R.drawable.3);
                 alertDialog.show();
                 alertDialog.setCancelable(false);
                 // will close the app if the device
@@ -517,11 +715,11 @@ public class Login extends Activity {
         dataProvider.executeSql(sQueryDeleteanmasha);
     }
 
-    public void downloaddata(String sUserName, String sPassword) {
+    public void downloaddata(String sUserName, String sPassword, int flag) {
         try {
 
             if (isNetworkconn()) {
-                importmaster(sUserName, sPassword);
+                importmaster(sUserName, sPassword, flag);
 
             } else
                 showNewWorkError();
@@ -539,7 +737,7 @@ public class Login extends Activity {
 
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("URL");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(3);
@@ -1095,7 +1293,7 @@ public class Login extends Activity {
 
         try {
             String iImagePath, imageurl;
-            imageurl = "ULR";
+            imageurl = "replace your URL" + file;
             URL url = new URL(imageurl);
             URLConnection conection = url.openConnection();
             conection.connect();
@@ -1177,7 +1375,7 @@ public class Login extends Activity {
 
     }
 
-    public void importmaster(final String sUserName, final String sPassword) {
+    public void importmaster(final String sUserName, final String sPassword, final int flag) {
 
         progressDialog = ProgressDialog.show(Login.this, "", getResources()
                 .getString(R.string.DataLoading));
@@ -1186,9 +1384,15 @@ public class Login extends Activity {
             @Override
             public void run() {
                 try {
+                    if (flag == 1) {
+                        importMasterdata(sUserName, sPassword);
+                        importQuestion(sUserName, sPassword);
+                    } else if (flag == 2) {
+                        String anmidsql = "Select ANMID from MstANM limit 1";
 
-                    importMasterdata(sUserName, sPassword);
-                    importQuestion(sUserName, sPassword);
+                        String anmid = dataProvider.getRecord(anmidsql);
+                        importMasterdata(sUserName, sPassword, flag, anmid);
+                    }
 
                 } catch (Exception exp) {
                     progressDialog.dismiss();
@@ -1200,104 +1404,144 @@ public class Login extends Activity {
                     public void run() {
                         // TODO Auto-generated method stub
 
-                        // if (iDownloadMaster == 1) {
-                        tblUsermst = dataProvider.tblmstUser(sUserName,
-                                sPassword);
+                        if (iDownloadMaster == 1) {
+                            tblUsermst = dataProvider.tblmstUser(sUserName,
+                                    sPassword);
 
-                        if (tblUsermst != null && tblUsermst.size() > 0) {
+                            if (tblUsermst != null && tblUsermst.size() > 0) {
 
-                            int iroleid = 0;
+                                int iroleid = 0;
 
-                            global.setsGlobalUserName(tblUsermst.get(0)
-                                    .getUserNameL());
-                            global.setsGlobalPassword(tblUsermst.get(0)
-                                    .getPassword());
-                            global.setsGlobalUserID(String.valueOf(tblUsermst
-                                    .get(0).getUserID()));
-                            global.setUserID(tblUsermst.get(0).getUserID());
-                            global.setiGlobalRoleID(tblUsermst.get(0)
-                                    .getRoleID());
-                            MstState = dataProvider.getstate(1);
-                            if (MstState != null && MstState.size() > 0) {
-                                global.setStateCode(MstState.get(0)
-                                        .getStateCode());
-                                global.setStateName(MstState.get(0)
-                                        .getStateName());
-                            }
-                            iroleid = tblUsermst.get(0).getRoleID();
-                            if (iroleid == 3) {
-
-                                tblAnmcode = dataProvider.getMstANM(1);
-                                if (tblAnmcode != null && tblAnmcode.size() > 0) {
-                                    global.setsGlobalANMCODE(String
-                                            .valueOf(tblAnmcode.get(0)
-                                                    .getANMID()));
-                                    global.setsGlobalANMName(tblAnmcode.get(0)
-                                            .getANMName());
-                                    global.setAnmidasAnmCode(String
-                                            .valueOf(tblAnmcode.get(0)
-                                                    .getANMCode()));
-
+                                global.setsGlobalUserName(tblUsermst.get(0)
+                                        .getUserNameL());
+                                global.setsGlobalPassword(tblUsermst.get(0)
+                                        .getPassword());
+                                global.setsGlobalUserID(String.valueOf(tblUsermst
+                                        .get(0).getUserID()));
+                                global.setUserID(tblUsermst.get(0).getUserID());
+                                global.setiGlobalRoleID(tblUsermst.get(0)
+                                        .getRoleID());
+                                validate.SaveSharepreferenceString("Username", tblUsermst
+                                        .get(0).getUserNameL());
+                                MstState = dataProvider.getstate(1);
+                                if (MstState != null && MstState.size() > 0) {
+                                    global.setStateCode(MstState.get(0)
+                                            .getStateCode());
+                                    global.setStateName(MstState.get(0)
+                                            .getStateName());
                                 }
+                                iroleid = tblUsermst.get(0).getRoleID();
 
-                            } else if (iroleid == 2) {
-                                tblASHACode = dataProvider
-                                        .getashanameandCode(1);
-                                if (tblASHACode != null
-                                        && tblASHACode.size() > 0) {
-                                    global.setsGlobalAshaCode(String
-                                            .valueOf(tblASHACode.get(0)
-                                                    .getASHAID()));
-                                }
-                                tblAnmcode = dataProvider.getMstANM(1);
-                                if (tblAnmcode != null && tblAnmcode.size() > 0) {
-                                    global.setsGlobalANMCODE(String
-                                            .valueOf(tblAnmcode.get(0)
-                                                    .getANMID()));
-                                    global.setsGlobalANMName(tblAnmcode.get(0)
-                                            .getANMName());
-                                    global.setAnmidasAnmCode(String
-                                            .valueOf(tblAnmcode.get(0)
-                                                    .getANMCode()));
-                                }
 
+                                if (iroleid == 4) {
+                                    global.setiGlobalRoleID(iroleid);
+                                    ArrayList<HashMap<String, String>> data;
+                                    String sqlaf = "select * from MstCatchmentSupervisor where LanguageID=2";
+                                    data = dataProvider.getDynamicVal(sqlaf);
+                                    if (data != null && data.size() > 0) {
+                                        validate.SaveSharepreferenceString("name", data.get(0).get("SupervisorName"));
+                                        validate.SaveSharepreferenceString("AFID", data.get(0).get("CHS_ID"));
+
+                                    }
+
+                                    Intent intent = new Intent(Login.this, AFAshaList.class);
+                                    intent.putExtra("flag",1);
+                                    finish();
+                                    startActivity(intent);
+                                } else {
+                                    if (iroleid == 3) {
+
+                                        tblAnmcode = dataProvider.getMstANM(2);
+                                        if (tblAnmcode != null && tblAnmcode.size() > 0) {
+                                            global.setsGlobalANMCODE(String
+                                                    .valueOf(tblAnmcode.get(0)
+                                                            .getANMID()));
+                                            global.setsGlobalANMName(tblAnmcode.get(0)
+                                                    .getANMName());
+                                            global.setAnmidasAnmCode(String
+                                                    .valueOf(tblAnmcode.get(0)
+                                                            .getANMCode()));
+
+                                            validate.SaveSharepreferenceString("name", tblAnmcode.get(0)
+                                                    .getANMName());
+                                        }
+
+                                    } else if (iroleid == 11) {
+                                        ArrayList<HashMap<String, String>> chcdata = null;
+                                        String sqlchc = "Select * from mstchc where LanguageID=2";
+                                        chcdata = dataProvider.getDynamicVal(sqlchc);
+                                        if (chcdata != null && chcdata.size() > 0) {
+                                            global.setCHCID(Validate.returnIntegerValue(chcdata.get(0).get("CHCID")));
+
+                                            validate.SaveSharepreferenceString("name", tblUsermst.get(0).getFirst_name() + " " + tblUsermst.get(0).getLast_name());
+                                            global.setCHCName(tblUsermst.get(0).getFirst_name() + " " + tblUsermst.get(0).getLast_name());
+                                        }
+
+                                    } else if (iroleid == 2) {
+                                        tblASHACode = dataProvider
+                                                .getashanameandCode(2, global.getUserID());
+                                        if (tblASHACode != null
+                                                && tblASHACode.size() > 0) {
+                                            global.setsGlobalAshaCode(String
+                                                    .valueOf(tblASHACode.get(0)
+                                                            .getASHAID()));
+                                            validate.SaveSharepreferenceString("name", tblASHACode.get(0)
+                                                    .getASHAName());
+                                        }
+                                        tblAnmcode = dataProvider.getMstANM(2);
+                                        if (tblAnmcode != null && tblAnmcode.size() > 0) {
+                                            global.setsGlobalANMCODE(String
+                                                    .valueOf(tblAnmcode.get(0)
+                                                            .getANMID()));
+                                            global.setsGlobalANMName(tblAnmcode.get(0)
+                                                    .getANMName());
+                                            global.setAnmidasAnmCode(String
+                                                    .valueOf(tblAnmcode.get(0)
+                                                            .getANMCode()));
+                                        }
+
+                                    }
+
+                                    String fname = "Select ASHAName from MstASHA where languageId=2";
+                                    String fullname = dataProvider.getRecord(fname);
+                                    if (fullname.length() > 0) {
+                                        String uname = fullname;
+                                        tv_fname.setText(uname);
+                                        global.setsGlobalAshaName(uname);
+                                    }
+
+                                    Calendar cal = Calendar.getInstance();
+                                    Date currentLocalTime = cal.getTime();
+                                    SimpleDateFormat date1 = new SimpleDateFormat(
+                                            "HH:mm a");
+
+                                    String localTime = date1.format(currentLocalTime);
+                                    String Login_GUID = Validate.random();
+                                    global.setLogin_GUID(String.valueOf(Login_GUID));
+
+                                    long date = System.currentTimeMillis();
+                                    SimpleDateFormat sdf = new SimpleDateFormat(
+                                            "dd-MM-yyyy");
+                                    String dateStrings = sdf.format(date);
+                                    dataProvider.getUserLogin(Login_GUID, tblUsermst
+                                                    .get(0).getUserID(), "Login", "Login",
+                                            localTime, dateStrings);
+                                    Intent in = new Intent(Login.this,
+                                            Dashboard_Activity.class);
+                                    global.setNotification_flag(1);
+                                    global.setMsg_flag(1);
+                                    finish();
+                                    startActivity(in);
+                                }
+                            } else {
+                                Toast.makeText(getApplicationContext(),
+                                        "Invalid user", Toast.LENGTH_SHORT).show();
                             }
 
-                            String fname = "Select ASHAName from MstASHA ";
-                            String fullname = dataProvider.getRecord(fname);
-                            if (fullname.length() > 0) {
-                                String uname = fullname;
-                                tv_fname.setText(uname);
-                                global.setsGlobalAshaName(uname);
-                            }
-
-                            Calendar cal = Calendar.getInstance();
-                            Date currentLocalTime = cal.getTime();
-                            SimpleDateFormat date1 = new SimpleDateFormat(
-                                    "HH:mm a");
-
-                            String localTime = date1.format(currentLocalTime);
-                            String Login_GUID = Validate.random();
-                            global.setLogin_GUID(String.valueOf(Login_GUID));
-
-                            long date = System.currentTimeMillis();
-                            SimpleDateFormat sdf = new SimpleDateFormat(
-                                    "dd-MM-yyyy");
-                            String dateStrings = sdf.format(date);
-                            dataProvider.getUserLogin(Login_GUID, tblUsermst
-                                            .get(0).getUserID(), "Login", "Login",
-                                    localTime, dateStrings);
-                            Intent in = new Intent(Login.this,
-                                    Dashboard_Activity.class);
-                            global.setNotification_flag(1);
-                            global.setMsg_flag(1);
-                            finish();
-                            startActivity(in);
                         } else {
                             Toast.makeText(getApplicationContext(),
-                                    "Invalid user", Toast.LENGTH_SHORT).show();
+                                    Downloadmsg, Toast.LENGTH_LONG).show();
                         }
-
                     }
                 });
                 progressDialog.dismiss();
@@ -1315,12 +1559,15 @@ public class Login extends Activity {
 
         HttpClient httpClient = new DefaultHttpClient();
         // replace with your url
-        HttpPost httpPost = new HttpPost("ULR");
+        HttpPost httpPost = new HttpPost("replace your URL");
 
         // Post Data
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
         nameValuePair.add(new BasicNameValuePair("username", UserName));
         nameValuePair.add(new BasicNameValuePair("password", Password));
+        nameValuePair.add(new BasicNameValuePair("user_role", "0"));
+        nameValuePair.add(new BasicNameValuePair("anmid", ""));
+        nameValuePair.add(new BasicNameValuePair("imei", getIMEI(this)));
 
         // Encoding POST data
         try {
@@ -1342,7 +1589,8 @@ public class Login extends Activity {
                 jsonObj = new JSONObject(responseBody.toString());
 
             } catch (JSONException e1) {
-
+                Downloadmsg = responseBody;
+                iDownloadMaster = 0;
                 e1.printStackTrace();
             }
 
@@ -2542,7 +2790,148 @@ public class Login extends Activity {
                     dataProvider.executeSql(sql);
 
                 }
+                mstchc = jsonObj.getJSONArray("mstchc");
+                for (int i = 0; i < mstchc.length(); i++) {
+                    JSONObject mstchcobj = mstchc.getJSONObject(i);
+                    int UID = 0;
+                    int CHCID = 0;
+                    String CHCCode = "";
+                    String CHCName = "";
+                    int LanguageID = 0;
+                    int IsDeleted = 0;
 
+                    UID = Validate.returnIntegerValue(mstchcobj.getString("UID"));
+                    CHCID = Validate.returnIntegerValue(mstchcobj.getString("CHCID"));
+                    LanguageID = Validate.returnIntegerValue(mstchcobj.getString("LanguageID"));
+                    IsDeleted = Validate.returnIntegerValue(mstchcobj.getString("IsDeleted"));
+                    CHCCode = mstchcobj.getString("CHCCode");
+                    CHCName = mstchcobj.getString("CHCName");
+                    String sql = "";
+                    sql = "Insert into mstchc(UID,CHCID,CHCCode,CHCName,LanguageID,IsDeleted)values("
+                            + UID
+                            + ",'"
+                            + CHCID
+                            + "','"
+                            + CHCCode
+                            + "','"
+                            + CHCName
+                            + "',"
+                            + LanguageID
+                            + ","
+                            + IsDeleted + ")";
+                    dataProvider.executeSql(sql);
+
+                }
+                anmsubcenterArray = jsonObj.getJSONArray("anmsubcenter");
+                for (int i = 0; i < anmsubcenterArray.length(); i++) {
+                    JSONObject anmsubcenter = anmsubcenterArray.getJSONObject(i);
+                    int ANMSubCenterUID = 0;
+                    int ANMID = 0;
+                    int SubCenterID = 0;
+                    int SubCenterCode = 0;
+                    ANMSubCenterUID = Validate.returnIntegerValue(anmsubcenter.getString("ANMSubCenterUID"));
+                    ANMID = Validate.returnIntegerValue(anmsubcenter.getString("ANMID"));
+                    SubCenterID = Validate.returnIntegerValue(anmsubcenter.getString("SubCenterID"));
+                    SubCenterCode = Validate.returnIntegerValue(anmsubcenter.getString("SubCenterCode"));
+
+
+                    String sql = "";
+                    sql = "Insert into anmsubcenter(ANMSubCenterUID,ANMID,SubCenterID,SubCenterCode)values("
+                            + ANMSubCenterUID
+                            + ",'"
+                            + ANMID
+                            + "','"
+                            + SubCenterID
+                            + "',"
+                            + SubCenterCode
+                            + ")";
+                    dataProvider.executeSql(sql);
+
+                }
+                mstpdfreportArray = jsonObj.getJSONArray("mstpdfreport");
+                for (int i = 0; i < mstpdfreportArray.length(); i++) {
+                    JSONObject mstpdfreport = mstpdfreportArray.getJSONObject(i);
+                    int UID = 0;
+                    int ReportID = 0;
+                    String ReportName = "";
+                    int IsActive = 0;
+                    UID = Validate.returnIntegerValue(mstpdfreport.optString("UID"));
+                    ReportID = Validate.returnIntegerValue(mstpdfreport.optString("ReportID"));
+                    ReportName = Validate.returnStringValue(mstpdfreport.optString("ReportName"));
+                    IsActive = Validate.returnIntegerValue(mstpdfreport.optString("IsActive"));
+
+
+                    String sql = "";
+                    sql = "Insert into mstpdfreport(UID,ReportID,ReportName,IsActive)values("
+                            + UID
+                            + ",'"
+                            + ReportID
+                            + "','"
+                            + ReportName
+                            + "',"
+                            + IsActive
+                            + ")";
+                    dataProvider.executeSql(sql);
+
+                }
+                mstashaactivityArray = jsonObj.getJSONArray("mstashaactivity");
+                for (int i = 0; i < mstashaactivityArray.length(); i++) {
+                    JSONObject mstashaactivity = mstashaactivityArray.getJSONObject(i);
+                    int UID;
+                    int SeqID;
+                    String Qsrno;
+                    int QuesID;
+                    String Activity;
+                    String Createdon;
+                    String Updatedon;
+                    String AreaType;
+                    int Amount;
+                    int CreatedBy;
+                    int LangaugeID;
+                    int Qtype;
+                    UID = Validate.returnIntegerValue(mstashaactivity.optString("UID"));
+                    SeqID = Validate.returnIntegerValue(mstashaactivity.optString("SeqID"));
+                    Qsrno = Validate.returnStringValue(mstashaactivity.optString("Qsrno"));
+                    QuesID = Validate.returnIntegerValue(mstashaactivity.optString("QuesID"));
+                    Activity = Validate.returnStringValue(mstashaactivity.optString("Activity"));
+                    Createdon = Validate.returnStringValue(mstashaactivity.optString("Createdon"));
+                    Updatedon = Validate.returnStringValue(mstashaactivity.optString("Updatedon"));
+                    AreaType = Validate.returnStringValue(mstashaactivity.optString("AreaType"));
+                    Amount = Validate.returnIntegerValue(mstashaactivity.optString("Amount"));
+                    CreatedBy = Validate.returnIntegerValue(mstashaactivity.optString("CreatedBy"));
+                    LangaugeID = Validate.returnIntegerValue(mstashaactivity.optString("LangaugeID"));
+                    Qtype = Validate.returnIntegerValue(mstashaactivity.optString("Qtype"));
+
+
+                    String sql = "";
+                    sql = "Insert into mstashaactivity(UID,SeqID,Qsrno,QuesID,Activity,Createdon,Updatedon,AreaType,Amount,CreatedBy,LangaugeID,Qtype)values("
+                            + UID
+                            + ",'"
+                            + SeqID
+                            + "','"
+                            + Qsrno
+                            + "','"
+                            + QuesID
+                            + "','"
+                            + Activity
+                            + "','"
+                            + Createdon
+                            + "','"
+                            + Updatedon
+                            + "','"
+                            + AreaType
+                            + "','"
+                            + Amount
+                            + "','"
+                            + CreatedBy
+                            + "','"
+                            + LangaugeID
+                            + "','"
+                            + Qtype
+                            + "')";
+                    dataProvider.executeSql(sql);
+
+                }
                 MstUserArray = jsonObj.getJSONArray("tblusers");
                 for (int i = 0; i < MstUserArray.length(); i++) {
                     JSONObject user = MstUserArray.getJSONObject(i);
@@ -2550,7 +2939,493 @@ public class Login extends Activity {
                     int iRoleID = 1;
                     String sPassword = null;
                     String sUserName = null;
+
                     int iIsDeleted = 0;
+                    int is_temp = 0;
+                    String firstname = null;
+                    String lastname = null;
+                    if (user.getString("user_id") != null
+                            && user.getString("user_id").length() > 0
+                            && !user.getString("user_id").equalsIgnoreCase(
+                            "null")) {
+                        iUserID = Integer.valueOf(user.getInt("user_id"));
+                    }
+                    if (user.getString("is_temp") != null
+                            && user.getString("is_temp").length() > 0
+                            && !user.getString("is_temp").equalsIgnoreCase(
+                            "null")) {
+                        is_temp = Integer.valueOf(user.getInt("is_temp"));
+                    }
+                    if (user.getString("user_role") != null
+                            && user.getString("user_role").length() > 0
+                            && !user.getString("user_role").equalsIgnoreCase(
+                            "null")) {
+                        iRoleID = Integer.valueOf(user.getInt("user_role"));
+                    }
+                    sUserName = user.getString("user_name");
+                    sPassword = Password;
+                    firstname = Validate.returnStringValue(user.optString("first_name"));
+                    lastname = Validate.returnStringValue(user.optString("last_name"));
+                    String sql = "";
+                    sql = "Insert into MstUser(UserID,UserName,RoleID,Password,IsDeleted,is_temp,first_name,last_name)values("
+                            + iUserID
+                            + ",'"
+                            + sUserName
+                            + "',"
+                            + iRoleID
+                            + ",'" + sPassword + "'," + iIsDeleted + "," + is_temp + ",'" + firstname + "','" + lastname + "')";
+                    dataProvider.executeSql(sql);
+
+                }
+
+                iDownloadMaster = 1;
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                Downloadmsg = responseBody;
+                iDownloadMaster = 0;
+            }
+            iDownloadMaster = 1;
+        } catch (IOException e) {
+            // Log exception
+            e.printStackTrace();
+            Downloadmsg = e.toString();
+            iDownloadMaster = 0;
+        }
+    }
+
+    public String getIMEI(Activity activity) {
+        try {
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_PHONE_STATE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                TelephonyManager telephonyManager = (TelephonyManager) activity
+                        .getSystemService(Context.TELEPHONY_SERVICE);
+
+                return telephonyManager.getDeviceId();
+            } else {
+                return "";
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
+
+    }
+
+    public void importMasterdata(String UserName, String Password, int roleid, String anmid) {
+        // TODO Auto-generated method stub
+
+        HttpClient httpClient = new DefaultHttpClient();
+        // replace with your url
+        HttpPost httpPost = new HttpPost("replace your URL");
+
+        // Post Data
+        List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
+        nameValuePair.add(new BasicNameValuePair("username", UserName));
+        nameValuePair.add(new BasicNameValuePair("password", Password));
+        nameValuePair.add(new BasicNameValuePair("user_role", ("" + roleid)));
+        nameValuePair.add(new BasicNameValuePair("anmid", anmid));
+        nameValuePair.add(new BasicNameValuePair("imei", getIMEI(this)));
+        // Encoding POST data
+        try {
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+        } catch (UnsupportedEncodingException e) {
+            // log exception
+            e.printStackTrace();
+        }
+
+        // making POST request.
+        try {
+            String responseBody = "";
+            HttpResponse response = httpClient.execute(httpPost);
+            responseBody = EntityUtils.toString(response.getEntity());
+
+            JSONObject jsonObj = null;
+            try {
+
+                jsonObj = new JSONObject(responseBody.toString());
+
+            } catch (JSONException e1) {
+                Downloadmsg = responseBody;
+                iDownloadMaster = 0;
+                e1.printStackTrace();
+            }
+
+            try {
+                VHND_Schedule = jsonObj.getJSONArray("vhnd_schedule");
+                for (int i = 0; i < VHND_Schedule.length(); i++) {
+                    JSONObject VHND_DuelistSchedule = VHND_Schedule
+                            .getJSONObject(i);
+                    int Schedule_ID = 0;
+                    int SubCenter_ID = 0;
+                    int ANM_ID = 0;
+                    int ASHA_ID = 0;
+                    int Village_ID = 0;
+                    String AW_Name = null;
+                    String Frequency = null;
+                    int Year = 0;
+                    int Occurence = 0;
+                    int Days = 0;
+                    String Jan = "";
+                    String Feb = "";
+                    String Mar = "";
+                    String Apr = "";
+                    String May = "";
+                    String Jun = "";
+                    String Jul = "";
+                    String Aug = "";
+                    String Sep = "";
+                    String Oct = "";
+                    String Nov = "";
+                    String Dec = "";
+                    String active = null;
+                    String createdOn = null;
+                    int createdBy = 0;
+                    String updatedOn = null;
+                    int updatedBy = 0;
+                    String Year_Type = null;
+                    if (VHND_DuelistSchedule.getString("Schedule_ID") != null
+                            && VHND_DuelistSchedule.getString("Schedule_ID")
+                            .length() > 0
+                            && !VHND_DuelistSchedule.getString("Schedule_ID")
+                            .equalsIgnoreCase("null")) {
+                        Schedule_ID = Integer.valueOf(VHND_DuelistSchedule
+                                .getInt("Schedule_ID"));
+                    }
+                    if (VHND_DuelistSchedule.getString("SubCenter_ID") != null
+                            && VHND_DuelistSchedule.getString("SubCenter_ID")
+                            .length() > 0
+                            && !VHND_DuelistSchedule.getString("SubCenter_ID")
+                            .equalsIgnoreCase("null")) {
+                        SubCenter_ID = Integer.valueOf(VHND_DuelistSchedule
+                                .getInt("SubCenter_ID"));
+                    }
+                    if (VHND_DuelistSchedule.getString("ANM_ID") != null
+                            && VHND_DuelistSchedule.getString("ANM_ID")
+                            .length() > 0
+                            && !VHND_DuelistSchedule.getString("ANM_ID")
+                            .equalsIgnoreCase("null")) {
+                        ANM_ID = Integer.valueOf(VHND_DuelistSchedule
+                                .getInt("ANM_ID"));
+                    }
+                    if (VHND_DuelistSchedule.getString("ASHA_ID") != null
+                            && VHND_DuelistSchedule.getString("ASHA_ID")
+                            .length() > 0
+                            && !VHND_DuelistSchedule.getString("ASHA_ID")
+                            .equalsIgnoreCase("null")) {
+                        ASHA_ID = Integer.valueOf(VHND_DuelistSchedule
+                                .getInt("ASHA_ID"));
+                    }
+                    if (VHND_DuelistSchedule.getString("Village_ID") != null
+                            && VHND_DuelistSchedule.getString("Village_ID")
+                            .length() > 0
+                            && !VHND_DuelistSchedule.getString("Village_ID")
+                            .equalsIgnoreCase("null")) {
+                        Village_ID = Integer.valueOf(VHND_DuelistSchedule
+                                .getInt("Village_ID"));
+                    }
+                    AW_Name = VHND_DuelistSchedule.getString("AW_Name");
+                    Frequency = VHND_DuelistSchedule.getString("Frequency");
+                    if (VHND_DuelistSchedule.getString("Year") != null
+                            && VHND_DuelistSchedule.getString("Year").length() > 0
+                            && !VHND_DuelistSchedule.getString("Year")
+                            .equalsIgnoreCase("null")) {
+                        Year = Integer.valueOf(VHND_DuelistSchedule
+                                .getInt("Year"));
+                    }
+                    if (VHND_DuelistSchedule.getString("Occurence") != null
+                            && VHND_DuelistSchedule.getString("Occurence")
+                            .length() > 0
+                            && !VHND_DuelistSchedule.getString("Occurence")
+                            .equalsIgnoreCase("null")) {
+                        Occurence = Integer.valueOf(VHND_DuelistSchedule
+                                .getInt("Occurence"));
+                    }
+                    if (VHND_DuelistSchedule.getString("Days") != null
+                            && VHND_DuelistSchedule.getString("Days").length() > 0
+                            && !VHND_DuelistSchedule.getString("Days")
+                            .equalsIgnoreCase("null")) {
+                        Days = Integer.valueOf(VHND_DuelistSchedule
+                                .getInt("Days"));
+                    }
+                    Jan = VHND_DuelistSchedule.getString("Jan");
+                    Feb = VHND_DuelistSchedule.getString("Feb");
+                    Mar = VHND_DuelistSchedule.getString("Mar");
+                    Apr = VHND_DuelistSchedule.getString("Apr");
+                    May = VHND_DuelistSchedule.getString("May");
+                    Jun = VHND_DuelistSchedule.getString("Jun");
+                    Jul = VHND_DuelistSchedule.getString("Jul");
+                    Aug = VHND_DuelistSchedule.getString("Aug");
+                    Sep = VHND_DuelistSchedule.getString("Sep");
+                    Oct = VHND_DuelistSchedule.getString("Oct");
+                    Nov = VHND_DuelistSchedule.getString("Nov");
+                    Dec = VHND_DuelistSchedule.getString("Dec");
+                    active = VHND_DuelistSchedule.getString("active");
+                    createdOn = VHND_DuelistSchedule.getString("createdOn");
+                    if (VHND_DuelistSchedule.getString("createdBy") != null
+                            && VHND_DuelistSchedule.getString("createdBy")
+                            .length() > 0
+                            && !VHND_DuelistSchedule.getString("createdBy")
+                            .equalsIgnoreCase("null")) {
+                        createdBy = Integer.valueOf(VHND_DuelistSchedule
+                                .getInt("createdBy"));
+                    }
+                    updatedOn = VHND_DuelistSchedule.getString("updatedOn");
+                    if (VHND_DuelistSchedule.getString("updatedBy") != null
+                            && VHND_DuelistSchedule.getString("updatedBy")
+                            .length() > 0
+                            && !VHND_DuelistSchedule.getString("updatedBy")
+                            .equalsIgnoreCase("null")) {
+                        updatedBy = Integer.valueOf(VHND_DuelistSchedule
+                                .getInt("updatedBy"));
+                    }
+                    Year_Type = VHND_DuelistSchedule.getString("Year_Type");
+                    String sql = "", sql1 = "";
+                    sql = "Insert into VHND_Schedule(Schedule_ID,SubCenter_ID,ANM_ID,ASHA_ID,Village_ID,AW_Name,Frequency,Occurence,Days,Year,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec,active,createdOn,createdBy,updatedOn,updatedBy,Year_Type)values('"
+                            + Schedule_ID
+                            + "','"
+                            + SubCenter_ID
+                            + "','"
+                            + ANM_ID
+                            + "','"
+                            + ASHA_ID
+                            + "','"
+                            + Village_ID
+                            + "','"
+                            + AW_Name
+                            + "','"
+                            + Frequency
+                            + "','"
+                            + Occurence
+                            + "','"
+                            + Days
+                            + "','"
+                            + Year
+                            + "','"
+                            + Jan
+                            + "','"
+                            + Feb
+                            + "','"
+                            + Mar
+                            + "','"
+                            + Apr
+                            + "','"
+                            + May
+                            + "','"
+                            + Jun
+                            + "','"
+                            + Jul
+                            + "','"
+                            + Aug
+                            + "','"
+                            + Sep
+                            + "','"
+                            + Oct
+                            + "','"
+                            + Nov
+                            + "','"
+                            + Dec
+                            + "','"
+                            + active
+                            + "','"
+                            + createdOn
+                            + "','"
+                            + createdBy
+                            + "','"
+                            + updatedOn
+                            + "','"
+                            + updatedBy + "','" + Year_Type + "')";
+                    dataProvider.executeSql(sql);
+                    for (int k = 0; k <= 11; k++) {
+                        String VHND_ID = Validate.random();
+                        String Month[] = {Jan, Feb, Mar, Apr, May, Jun, Jul,
+                                Aug, Sep, Oct, Nov, Dec};
+                        sql1 = "Insert into tbl_VHNDPerformance(VHND_ID,SS_ID,VillageId,AshaID,ANMID,Date,CreatedOn,CreatedBy,ModifyOn,ModifyBy,Isuploaded)values('"
+                                + VHND_ID
+                                + "','"
+                                + SubCenter_ID
+                                + "','"
+                                + Village_ID
+                                + "','"
+                                + ASHA_ID
+                                + "','"
+                                + ANM_ID
+                                + "','"
+                                + Month[k]
+                                + "','"
+                                + createdOn
+                                + "','"
+                                + createdBy
+                                + "','"
+                                + updatedOn
+                                + "','"
+                                + updatedBy + "',0)";
+                        dataProvider.executeSql(sql1);
+                    }
+
+                }
+
+                MstVillageArray = jsonObj.getJSONArray("mstvillage");
+                for (int i = 0; i < MstVillageArray.length(); i++) {
+                    JSONObject village = MstVillageArray.getJSONObject(i);
+                    int iVillageID = 0;
+                    String sStateCode = "";
+                    String sDistrictCode = "";
+                    String sBlockCode = "";
+                    String sPanchayatCode = "";
+                    String sVillageCode = "";
+                    String sVillage = "";
+                    int iLanguageID = 0;
+                    int iIsDeleted = 0;
+                    if (village.getString("VillageID") != null
+                            && village.getString("VillageID").length() > 0
+                            && !village.getString("VillageID")
+                            .equalsIgnoreCase("null")) {
+                        iVillageID = Integer.valueOf(village
+                                .getInt("VillageID"));
+                    }
+                    sStateCode = village.getString("StateCode");
+                    sDistrictCode = village.getString("DistrictCode");
+                    sBlockCode = village.getString("BlockCode");
+                    sPanchayatCode = village.getString("PanchayatCode");
+                    sVillageCode = village.getString("VillageCode");
+                    sVillage = village.getString("VillageName");
+                    if (village.getString("LanguageID") != null
+                            && village.getString("LanguageID").length() > 0
+                            && !village.getString("LanguageID")
+                            .equalsIgnoreCase("null")) {
+                        iLanguageID = Integer.valueOf(village
+                                .getInt("LanguageID"));
+                    }
+                    String sqlcount = "Select count(*) from MstVillage where VillageID=" + iVillageID + " and LanguageID=" + iLanguageID + "";
+
+                    int iCount = dataProvider.getMaxRecord(sqlcount);
+                    if (iCount == 0) {
+                        String sql = "";
+                        sql = "Insert into MstVillage(VillageID,StateCode,DistrictCode,BlockCode,PanchayatCode,VillageCode,VillageName,LanguageID,IsDeleted)values("
+                                + iVillageID
+                                + ",'"
+                                + sStateCode
+                                + "','"
+                                + sDistrictCode
+                                + "','"
+                                + sBlockCode
+                                + "','"
+                                + sPanchayatCode
+                                + "','"
+                                + sVillageCode
+                                + "','"
+                                + sVillage
+                                + "',"
+                                + iLanguageID
+                                + ","
+                                + iIsDeleted
+                                + ")";
+                        dataProvider.executeSql(sql);
+                    }
+                }
+
+                MstCatchmentSupervisorArray = jsonObj
+                        .getJSONArray("mstcatchmentsupervisor");
+                for (int i = 0; i < MstCatchmentSupervisorArray.length(); i++) {
+                    JSONObject mothertongue = MstCatchmentSupervisorArray
+                            .getJSONObject(i);
+
+                    int LanguageID = 0;
+                    int CHS_ID = 0;
+                    int SubCenterID = 0;
+                    String SupervisorCode = "";
+                    String SupervisorName = "";
+                    int IsDeleted = 0;
+
+                    LanguageID = Integer.valueOf(mothertongue
+                            .getInt("LanguageID"));
+                    CHS_ID = Integer.valueOf(mothertongue.getInt("CHS_ID"));
+                    SubCenterID = Integer.valueOf(mothertongue
+                            .getInt("SubCenterID"));
+                    SupervisorCode = mothertongue.getString("SupervisorCode");
+                    SupervisorName = mothertongue.getString("SupervisorName");
+                    IsDeleted = Integer.valueOf(mothertongue
+                            .getInt("IsDeleted"));
+                    String sqlcount = "Select count(*) from MstCatchmentSupervisor where CHS_ID=" + CHS_ID + " and LanguageID=" + LanguageID + "";
+
+                    int iCount = dataProvider.getMaxRecord(sqlcount);
+                    if (iCount == 0) {
+                        String sql = "";
+                        sql = "Insert into MstCatchmentSupervisor(LanguageID,CHS_ID,SubCenterID,SupervisorCode,SupervisorName,IsDeleted)values("
+                                + LanguageID
+                                + ","
+                                + CHS_ID
+                                + ","
+                                + SubCenterID
+                                + ",'"
+                                + SupervisorCode
+                                + "','"
+                                + SupervisorName
+                                + "'," + IsDeleted + ")";
+                        dataProvider.executeSql(sql);
+
+                    }
+                }
+                MstASHAArray = jsonObj.getJSONArray("mstasha");
+                for (int i = 0; i < MstASHAArray.length(); i++) {
+                    JSONObject mothertongue = MstASHAArray.getJSONObject(i);
+                    int iASHAID = 0;
+                    String sANMCode = "";
+                    String sASHACode = "";
+                    String sASHAName = "";
+                    int iLanguageID = 0;
+                    int iIsDeleted = 0;
+                    int iCHS_ID = 0;
+
+                    iASHAID = Integer.valueOf(mothertongue.getInt("ASHAID"));
+                    sANMCode = mothertongue.getString("ANMCode");
+                    sASHACode = mothertongue.getString("ASHACode");
+                    sASHAName = mothertongue.getString("ASHAName");
+                    if (mothertongue.getString("LanguageID") != null
+                            && mothertongue.getString("LanguageID").length() > 0
+                            && !mothertongue.getString("LanguageID")
+                            .equalsIgnoreCase("null")) {
+                        iLanguageID = Integer.valueOf(mothertongue
+                                .getInt("LanguageID"));
+                    }
+                    if (mothertongue.getString("CHS_ID") != null
+                            && mothertongue.getString("CHS_ID").length() > 0
+                            && !mothertongue.getString("CHS_ID")
+                            .equalsIgnoreCase("null")) {
+                        iCHS_ID = Integer
+                                .valueOf(mothertongue.getInt("CHS_ID"));
+                    }
+
+                    String sql = "";
+                    sql = "Insert into MstASHA(ASHAID,ANMCode,ASHACode,ASHAName,LanguageID,CHS_ID,IsDeleted)values("
+                            + iASHAID
+                            + ",'"
+                            + sANMCode
+                            + "','"
+                            + sASHACode
+                            + "','"
+                            + sASHAName
+                            + "',"
+                            + iLanguageID
+                            + ","
+                            + iCHS_ID + "," + iIsDeleted + ")";
+                    dataProvider.executeSql(sql);
+
+                }
+                MstUserArray = jsonObj.getJSONArray("tblusers");
+                for (int i = 0; i < MstUserArray.length(); i++) {
+                    JSONObject user = MstUserArray.getJSONObject(i);
+                    int iUserID = 0;
+                    int iRoleID = 1;
+                    String sPassword = null;
+                    String sUserName = null;
+                    String firstname = null;
+                    String lastname = null;
+                    int iIsDeleted = 0;
+                    int is_temp = 0;
                     if (user.getString("user_id") != null
                             && user.getString("user_id").length() > 0
                             && !user.getString("user_id").equalsIgnoreCase(
@@ -2563,17 +3438,24 @@ public class Login extends Activity {
                             "null")) {
                         iRoleID = Integer.valueOf(user.getInt("user_role"));
                     }
+                    if (user.getString("is_temp") != null
+                            && user.getString("is_temp").length() > 0
+                            && !user.getString("is_temp").equalsIgnoreCase(
+                            "null")) {
+                        is_temp = Integer.valueOf(user.getInt("is_temp"));
+                    }
                     sUserName = user.getString("user_name");
                     sPassword = Password;
-
+                    firstname = Validate.returnStringValue(user.optString("firs_tname"));
+                    lastname = Validate.returnStringValue(user.optString("last_name"));
                     String sql = "";
-                    sql = "Insert into MstUser(UserID,UserName,RoleID,Password,IsDeleted)values("
+                    sql = "Insert into MstUser(UserID,UserName,RoleID,Password,IsDeleted,is_temp,first_name,last_name)values("
                             + iUserID
                             + ",'"
                             + sUserName
                             + "',"
                             + iRoleID
-                            + ",'" + sPassword + "'," + iIsDeleted + ")";
+                            + ",'" + sPassword + "'," + iIsDeleted + "," + is_temp + ",'" + firstname + "','" + lastname + "')";
                     dataProvider.executeSql(sql);
 
                 }
@@ -2582,11 +3464,15 @@ public class Login extends Activity {
             } catch (JSONException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
+                Downloadmsg = responseBody;
+                iDownloadMaster = 0;
             }
             iDownloadMaster = 1;
         } catch (IOException e) {
             // Log exception
             e.printStackTrace();
+            Downloadmsg = e.toString();
+            iDownloadMaster = 0;
         }
     }
 
@@ -2656,6 +3542,63 @@ public class Login extends Activity {
             File outputFile = new File(sdcard, ss + "_1");
             File outputFile1 = new File(sdcard, ss);
             sdcard.mkdirs();
+
+            if (!outputFile.exists()) {
+                // sdcard.createNewFile();
+                outputFile.createNewFile();
+                outputFile1.createNewFile();
+                File data = Environment.getDataDirectory();
+                File inputFile = new File(data, "data/" + getPackageName()
+                        + "/databases/" + "IntraHealth");
+                InputStream input1 = new FileInputStream(inputFile);
+                OutputStream output1 = new FileOutputStream(outputFile1);
+                byte[] buffer = new byte[1024];
+
+                int length;
+                while ((length = input1.read(buffer)) > 0) {
+                    output1.write(buffer, 0, length);
+                }
+                output1.flush();
+                output1.close();
+                input1.close();
+            }
+
+            File data = Environment.getDataDirectory();
+            File inputFile = new File(data, "data/" + getPackageName()
+                    + "/databases/" + "IntraHealth");
+            InputStream input = new FileInputStream(inputFile);
+            OutputStream output = new FileOutputStream(outputFile);
+            byte[] buffer = new byte[1024];
+
+            int length;
+            while ((length = input.read(buffer)) > 0) {
+                output.write(buffer, 0, length);
+            }
+            output.flush();
+            output.close();
+            input.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // throw new Error("Copying Failed");
+        }
+    }
+
+    public void backup1() {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd", Locale.US);
+            String ss = sdf.format(new Date());
+            ss = "IntraHealthdb" + ss;
+            String raw = null;
+
+            raw = String.valueOf(Environment.getExternalStorageDirectory());
+
+
+            File sdcard = new File(raw + "/msakhi/");
+            File outputFile = new File(sdcard, ss + "_1");
+            File outputFile1 = new File(sdcard, ss);
+            if (!sdcard.exists()) {
+                sdcard.mkdirs();
+            }
 
             if (!outputFile.exists()) {
                 // sdcard.createNewFile();

@@ -15,10 +15,10 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="@drawable/textbox"
+            android:background="@color/Gray"
             android:gravity="center"
             android:textColor="@color/Black"
-            android:textSize="18dp"/>
+            android:textSize="22dp"/>
     </TableRow>
 
     <ScrollView

@@ -1,0 +1,247 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/OffWhite">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+
+
+            </TableRow>
+
+            <TableRow style="@style/tablerow">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".02" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:background="@color/accentcolor"
+                    android:text="@string/Year" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".02" />
+
+                <Spinner
+                    android:id="@+id/spin_year"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:background="@drawable/checkbox" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".02" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:background="@color/accentcolor"
+                    android:text="@string/month" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".02" />
+
+                <Spinner
+                    android:id="@+id/spin_month"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:background="@drawable/checkbox"
+
+                    />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".02" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+
+                >
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+
+                android:background="@drawable/checkbox">
+
+
+            </TableRow>
+
+            <LinearLayout
+                style="@style/tablerow"
+                android:background="@drawable/checkbox">
+
+                <TableRow style="@style/tablerow">
+
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".4"
+                        android:background="@color/OffWhite"
+                        android:text="@string/Year" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".4"
+                        android:background="@color/OffWhite"
+                        android:text="@string/month" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".5"
+                        android:background="@color/OffWhite"
+                        android:text="@string/Totalasha" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".5"
+                        android:background="@color/OffWhite"
+                        android:text="@string/claimed" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".7"
+                        android:background="@color/OffWhite"
+                        android:text="@string/notapproved" />
+
+
+                </TableRow>
+            </LinearLayout>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1.5"
+                android:background="@drawable/checkbox">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_anmreport1"
+                    style="@style/NewSimpleTextWeight" />
+
+
+            </TableRow>
+
+            <TableRow style="@style/tablerow">
+
+
+                <TextView
+                    style="@style/heading1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+
+                    android:layout_weight=".4"
+                    android:background="@color/DarkOrange"
+                    android:text="@string/Year" />
+
+                <TextView
+                    style="@style/heading1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+
+                    android:layout_weight=".4"
+                    android:background="@color/DarkOrange"
+                    android:text="@string/claimed" />
+
+                <TextView
+                    style="@style/heading1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight=".5"
+                    android:background="@color/DarkOrange"
+                    android:text="@string/Amountreceived" />
+
+                <TextView
+                    style="@style/heading1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight=".5"
+                    android:background="@color/DarkOrange"
+                    android:text="@string/notapproved" />
+
+                <TextView
+                    style="@style/heading1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight=".7"
+                    android:background="@color/DarkOrange"
+                    android:text="@string/Pending" />
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".5">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_anmreport2"
+                    style="@style/NewSimpleTextWeight" />
+
+
+            </TableRow>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

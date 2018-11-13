@@ -718,7 +718,7 @@ public class homevisit3 extends Activity {
 				try {
 					String name = ja.getJSONObject(0).getString("PregWomenReg");
 					System.out.print("name" + name);
-					int value = Integer.valueOf(name);
+					int value = Validate.returnIntegerValue(name);
 					tvdata.setText(String.valueOf(value));
 					if (value == 1) {
 						radioyes.setChecked(true);
@@ -735,7 +735,7 @@ public class homevisit3 extends Activity {
 					String name = ja.getJSONObject(0).getString("McpCard");
 					System.out.print("name" + name);
 
-					int value = Integer.valueOf(name);
+					int value = Validate.returnIntegerValue(name);
 					tvdata.setText(String.valueOf(value));
 					if (value == 1) {
 
@@ -757,7 +757,7 @@ public class homevisit3 extends Activity {
 
 					String name2 = ja.getJSONObject(0).getString("TT1date");
 					System.out.print("name" + name2);
-					int value = Integer.valueOf(name);
+					int value = Validate.returnIntegerValue(name);
 					tvdata.setText(String.valueOf(value));
 
 					if (value == 1) {
@@ -784,7 +784,7 @@ public class homevisit3 extends Activity {
 					String name2 = ja.getJSONObject(0).getString("TT2date");
 					System.out.print("name" + name);
 
-					int value = Integer.valueOf(name);
+					int value = Validate.returnIntegerValue(name);
 					tvdata.setText(String.valueOf(value));
 					// tvdatatv.setText(name2);
 
@@ -812,7 +812,7 @@ public class homevisit3 extends Activity {
 					String name2 = ja.getJSONObject(0).getString(
 							"TTboosterDate1");
 					System.out.print("name" + name);
-					int value = Integer.valueOf(name);
+					int value = Validate.returnIntegerValue(name);
 					tvdata.setText(String.valueOf(value));
 					tvdatatv.setText(name2);
 
@@ -841,7 +841,7 @@ public class homevisit3 extends Activity {
 					String name2 = ja.getJSONObject(0).getString("Weight1");
 					System.out.print("name" + name);
 					tvdatatv.setText(name2);
-					int value = Integer.valueOf(name);
+					int value = Validate.returnIntegerValue(name);
 					tvdata.setText(String.valueOf(value));
 					if (value == 1) {
 						radioyes.setChecked(true);
@@ -861,7 +861,7 @@ public class homevisit3 extends Activity {
 			// String name2 = ja.getJSONObject(0).getString("Weight2");
 			// dataet=Float.valueOf(name2);
 			// System.out.print("name"+name);
-			// int value=Integer.valueOf(name);
+			// int value=Validate.returnIntegerValue(name);
 			// data=value;
 			// if(value==1){
 			// radioyes.setChecked(true);
@@ -881,7 +881,7 @@ public class homevisit3 extends Activity {
 			// String name2 = ja.getJSONObject(0).getString("Weight3");
 			// dataet=Float.valueOf(name2);
 			// System.out.print("name"+name);
-			// int value=Integer.valueOf(name);
+			// int value=Validate.returnIntegerValue(name);
 			// data=value;
 			// if(value==1){
 			// radioyes.setChecked(true);
@@ -901,7 +901,7 @@ public class homevisit3 extends Activity {
 			// String name2 = ja.getJSONObject(0).getString("Weight4");
 			// dataet=Float.valueOf(name2);
 			// System.out.print("name"+name);
-			// int value=Integer.valueOf(name);
+			// int value=Validate.returnIntegerValue(name);
 			// data=value;
 			// if(value==1){
 			// radioyes.setChecked(true);
@@ -921,7 +921,7 @@ public class homevisit3 extends Activity {
 					String name2 = ja.getJSONObject(0).getString("BP1");
 					tvdatatv.setText(name2);
 					System.out.print("name" + name);
-					int value = Integer.valueOf(name);
+					int value = Validate.returnIntegerValue(name);
 					tvdata.setText(String.valueOf(value));
 					if (value == 1) {
 						radioyes.setChecked(true);
@@ -941,7 +941,7 @@ public class homevisit3 extends Activity {
 			// String name2 = ja.getJSONObject(0).getString("BP2");
 			// dataet=Float.valueOf(name2);
 			// System.out.print("name"+name);
-			// int value=Integer.valueOf(name);
+			// int value=Validate.returnIntegerValue(name);
 			// data=value;
 			// if(value==1){
 			// radioyes.setChecked(true);
@@ -961,7 +961,7 @@ public class homevisit3 extends Activity {
 			// String name2 = ja.getJSONObject(0).getString("BP3");
 			// dataet=Float.valueOf(name2);
 			// System.out.print("name"+name);
-			// int value=Integer.valueOf(name);
+			// int value=Validate.returnIntegerValue(name);
 			// data=value;
 			// if(value==1){
 			// radioyes.setChecked(true);
@@ -982,7 +982,7 @@ public class homevisit3 extends Activity {
 			// String name2 = ja.getJSONObject(0).getString("BP4");
 			// dataet=Float.valueOf(name2);
 			// System.out.print("name"+name);
-			// int value=Integer.valueOf(name);
+			// int value=Validate.returnIntegerValue(name);
 			// data=value;
 			// if(value==1){
 			// radioyes.setChecked(true);
@@ -1003,7 +1003,7 @@ public class homevisit3 extends Activity {
 					String name2 = ja.getJSONObject(0).getString("HB1");
 					tvdatatv.setText(name2);
 					System.out.print("name" + name);
-					int value = Integer.valueOf(name);
+					int value = Validate.returnIntegerValue(name);
 					tvdata.setText(String.valueOf(value));
 					if (value == 1) {
 						radiodone.setChecked(true);
@@ -1024,7 +1024,7 @@ public class homevisit3 extends Activity {
 			// String name2 = ja.getJSONObject(0).getString("HB2");
 			// dataet=Float.valueOf(name2);
 			// System.out.print("name"+name);
-			// int value=Integer.valueOf(name);
+			// int value=Validate.returnIntegerValue(name);
 			// data=value;
 			// if(value==1){
 			// radiodone.setChecked(true);
@@ -1045,7 +1045,7 @@ public class homevisit3 extends Activity {
 			// String name2 = ja.getJSONObject(0).getString("HB3");
 			// dataet=Float.valueOf(name2);
 			// System.out.print("name"+name);
-			// int value=Integer.valueOf(name);
+			// int value=Validate.returnIntegerValue(name);
 			// data=value;
 			// if(value==1){
 			// radiodone.setChecked(true);
@@ -1066,7 +1066,7 @@ public class homevisit3 extends Activity {
 			// String name2 = ja.getJSONObject(0).getString("HB4");
 			// dataet=Float.valueOf(name2);
 			// System.out.print("name"+name);
-			// int value=Integer.valueOf(name);
+			// int value=Validate.returnIntegerValue(name);
 			// data=value;
 			// if(value==1){
 			// radiodone.setChecked(true);
@@ -1088,7 +1088,7 @@ public class homevisit3 extends Activity {
 							"UrineTestsugar1");
 					tvdatatv.setText(name2);
 					System.out.print("name" + name);
-					int value = Integer.valueOf(name);
+					int value = Validate.returnIntegerValue(name);
 					tvdata.setText(String.valueOf(value));
 					if (value == 1) {
 						radioyes.setChecked(true);
@@ -1108,7 +1108,7 @@ public class homevisit3 extends Activity {
 			// String name2 = ja.getJSONObject(0).getString("UrineTestsugar2");
 			// dataet=Float.valueOf(name2);
 			// System.out.print("name"+name);
-			// int value=Integer.valueOf(name);
+			// int value=Validate.returnIntegerValue(name);
 			// data=value;
 			// if(value==1){
 			// radioyes.setChecked(true);
@@ -1128,7 +1128,7 @@ public class homevisit3 extends Activity {
 			// String name2 = ja.getJSONObject(0).getString("UrineTestsugar3");
 			// dataet=Float.valueOf(name2);
 			// System.out.print("name"+name);
-			// int value=Integer.valueOf(name);
+			// int value=Validate.returnIntegerValue(name);
 			// data=value;
 			// if(value==1){
 			// radioyes.setChecked(true);
@@ -1148,7 +1148,7 @@ public class homevisit3 extends Activity {
 			// String name2 = ja.getJSONObject(0).getString("UrineTestsugar4");
 			// dataet=Float.valueOf(name2);
 			// System.out.print("name"+name);
-			// int value=Integer.valueOf(name);
+			// int value=Validate.returnIntegerValue(name);
 			// data=value;
 			// if(value==1){
 			// radioyes.setChecked(true);
@@ -1170,7 +1170,7 @@ public class homevisit3 extends Activity {
 							.getString("UrineTestAl1");
 					tvdatatv.setText(name2);
 					System.out.print("name" + name);
-					int value = Integer.valueOf(name);
+					int value = Validate.returnIntegerValue(name);
 					tvdata.setText(String.valueOf(value));
 					if (value == 1) {
 						radioyes.setChecked(true);
@@ -1190,7 +1190,7 @@ public class homevisit3 extends Activity {
 			// String name2 = ja.getJSONObject(0).getString("UrineTestAl2");
 			// dataet=Float.valueOf(name2);
 			// System.out.print("name"+name);
-			// int value=Integer.valueOf(name);
+			// int value=Validate.returnIntegerValue(name);
 			// data=value;
 			// if(value==1){
 			// radioyes.setChecked(true);
@@ -1210,7 +1210,7 @@ public class homevisit3 extends Activity {
 			// String name2 = ja.getJSONObject(0).getString("UrineTestAl3");
 			// dataet=Float.valueOf(name2);
 			// System.out.print("name"+name);
-			// int value=Integer.valueOf(name);
+			// int value=Validate.returnIntegerValue(name);
 			// data=value;
 			// if(value==1){
 			// radioyes.setChecked(true);
@@ -1230,7 +1230,7 @@ public class homevisit3 extends Activity {
 			// String name2 = ja.getJSONObject(0).getString("UrineTestAl4");
 			// dataet=Float.valueOf(name2);
 			// System.out.print("name"+name);
-			// int value=Integer.valueOf(name);
+			// int value=Validate.returnIntegerValue(name);
 			// data=value;
 			// if(value==1){
 			// radioyes.setChecked(true);
@@ -1251,7 +1251,7 @@ public class homevisit3 extends Activity {
 					String name2 = ja.getJSONObject(0).getString("IronTablet1");
 					tvdatatv.setText(name2);
 					System.out.print("name" + name);
-					int value = Integer.valueOf(name);
+					int value = Validate.returnIntegerValue(name);
 					tvdata.setText(String.valueOf(value));
 					if (value == 1) {
 						radiogiven.setChecked(true);
@@ -1271,7 +1271,7 @@ public class homevisit3 extends Activity {
 			// String name2 = ja.getJSONObject(0).getString("IronTablet2");
 			// dataet=Float.valueOf(name2);
 			// System.out.print("name"+name);
-			// int value=Integer.valueOf(name);
+			// int value=Validate.returnIntegerValue(name);
 			// data=value;
 			// if(value==1){
 			// radiogiven.setChecked(true);
@@ -1291,7 +1291,7 @@ public class homevisit3 extends Activity {
 			// String name2 = ja.getJSONObject(0).getString("IronTablet3");
 			// dataet=Float.valueOf(name2);
 			// System.out.print("name"+name);
-			// int value=Integer.valueOf(name);
+			// int value=Validate.returnIntegerValue(name);
 			// data=value;
 			// if(value==1){
 			// radiogiven.setChecked(true);
@@ -1311,7 +1311,7 @@ public class homevisit3 extends Activity {
 			// String name2 = ja.getJSONObject(0).getString("IronTablet4");
 			// dataet=Float.valueOf(name2);
 			// System.out.print("name"+name);
-			// int value=Integer.valueOf(name);
+			// int value=Validate.returnIntegerValue(name);
 			// data=value;
 			// if(value==1){
 			// radiogiven.setChecked(true);
@@ -1336,7 +1336,7 @@ public class homevisit3 extends Activity {
 					// tvdateans.setText(Validate.changeDateFormat(name2));
 					// }
 					System.out.print("name" + name);
-					int value = Integer.valueOf(name);
+					int value = Validate.returnIntegerValue(name);
 					tvdata.setText(String.valueOf(value));
 					if (value == 1) {
 						radiodone.setChecked(true);
@@ -1365,7 +1365,7 @@ public class homevisit3 extends Activity {
 			// // tvdateans.setText(Validate.changeDateFormat(name2));
 			// // }
 			// System.out.print("name"+name);
-			// int value=Integer.valueOf(name);
+			// int value=Validate.returnIntegerValue(name);
 			// tvdata.setText(String.valueOf(value));
 			// if(value==1){
 			// radiodone.setChecked(true);
@@ -1390,7 +1390,7 @@ public class homevisit3 extends Activity {
 					// String name2 =
 					// ja.getJSONObject(0).getString("AncCheckup4");
 					System.out.print("name" + name);
-					int value = Integer.valueOf(name);
+					int value = Validate.returnIntegerValue(name);
 					tvdata.setText(String.valueOf(value));
 					if (value == 1) {
 						radioyes.setChecked(true);
@@ -1410,7 +1410,7 @@ public class homevisit3 extends Activity {
 					// String name2 =
 					// ja.getJSONObject(0).getString("AncCheckup4");
 					System.out.print("name" + name);
-					int value = Integer.valueOf(name);
+					int value = Validate.returnIntegerValue(name);
 					tvdata.setText(String.valueOf(value));
 					if (value == 1) {
 						radioaftersometime.setChecked(true);
@@ -1904,7 +1904,7 @@ public class homevisit3 extends Activity {
 		int tempdata = 0;
 		if (tvdata.getText() != null
 				&& tvdata.getText().toString().length() > 0) {
-			tempdata = Integer.valueOf(tvdata.getText().toString());
+			tempdata = Validate.returnIntegerValue(tvdata.getText().toString());
 		}
 		if (currentPage == 66 && tempdata == 1) {
 			mViewPager.setCurrentItem(103, true);
@@ -1918,7 +1918,7 @@ public class homevisit3 extends Activity {
 		int newdata = 0;
 		// =Validate.getcurrentdate();
 		if (data.length() > 0) {
-			newdata = Integer.valueOf(data);
+			newdata = Validate.returnIntegerValue(data);
 		}
 		float dataet = 0;
 		if (pos == 0) {

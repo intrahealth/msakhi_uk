@@ -1,0 +1,297 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/OffWhite">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TableRow style="@style/tablerow"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/Silver"
+                    android:gravity="center"
+                    android:text="@string/Approval"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="10dp">
+
+
+            </TableRow>
+
+            <TableRow style="@style/tablerow">
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".02" />
+
+                <TextView
+                    style="@style/heading2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:gravity="center"
+                    android:background="@color/accentcolor"
+                    android:text="@string/Year" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".02" />
+
+                <TextView
+                    android:id="@+id/tv_year"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:background="@drawable/checkbox" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".02" />
+
+                <TextView
+                    style="@style/heading2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:gravity="center"
+                    android:background="@color/accentcolor"
+                    android:text="@string/month" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".02" />
+
+                <TextView
+                    android:id="@+id/tv_month"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:background="@drawable/checkbox"
+
+                    />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".02" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+
+                >
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+
+                android:background="@drawable/checkbox">
+
+
+            </TableRow>
+
+            <TableRow style="@style/tablerow">
+
+
+                <Button
+                    android:id="@+id/btn_Approveall"
+                    style="@style/ButtonText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".6"
+                    android:background="@drawable/btn_bg_customgreen"
+                    android:gravity="center"
+                    android:text="@string/Approveall" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".02"
+
+                    />
+
+
+                <Button
+                    android:id="@+id/btn_Approveselected"
+                    style="@style/ButtonText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".6"
+                    android:background="@drawable/btn_bg_customgreen"
+                    android:gravity="center"
+                    android:text="@string/Approveselected" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".02"
+
+                    />
+
+
+                <Button
+                    android:id="@+id/btn_notapproved"
+                    style="@style/ButtonText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".6"
+                    android:background="@drawable/btn_bg_customred"
+                    android:gravity="center"
+                    android:text="@string/notapproved"
+                    android:textColor="@color/White" />
+
+                <TextView
+                    style="@style/SimpleText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".02"
+
+                    />
+
+
+                <Button
+                    android:id="@+id/btn_save"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".7"
+                    android:background="@color/MidnightBlue"
+                    android:text="@string/save"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:textColor="@color/White"
+                    android:visibility="gone"/>
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+
+                android:background="@drawable/checkbox">
+
+
+            </TableRow>
+
+
+            <LinearLayout
+                style="@style/tablerow"
+                android:background="@drawable/checkbox">
+
+                <TableRow style="@style/tablerow">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".02"
+
+                        />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".2"
+
+
+                        />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".4"
+                        android:gravity="center"
+                        android:background="@drawable/checkbox"
+                        android:text="@string/Asha" />
+
+
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".5"
+                        android:gravity="center"
+                        android:background="@drawable/checkbox"
+                        android:text="@string/claimed" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".9"
+                        android:gravity="center"
+                        android:background="@drawable/checkbox"
+                        android:text="@string/Approval" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".02"
+
+                        />
+
+                </TableRow>
+            </LinearLayout>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/checkbox">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_afreport"
+                    style="@style/NewSimpleTextWeight" />
+
+
+            </TableRow>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

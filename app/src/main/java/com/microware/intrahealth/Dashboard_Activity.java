@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -11,8 +12,11 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
 import com.microware.intrahealth.Global.TrackerName;
+import com.microware.intrahealth.Incentive.Anmreport_AA_Activity;
+import com.microware.intrahealth.Incentive.Incentive_Tab_Activity;
 import com.microware.intrahealth.adapter.Anc_DueListadapter;
 import com.microware.intrahealth.adapter.HBNCadapter;
+import com.microware.intrahealth.adapter.Userlistadapter;
 import com.microware.intrahealth.dataprovider.DataProvider;
 import com.microware.intrahealth.object.tblChild;
 import com.microware.intrahealth.object.tblPNChomevisit_ANS;
@@ -20,11 +24,13 @@ import com.microware.intrahealth.object.tbl_pregnantwomen;
 
 import android.R.integer;
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.PendingIntent;
+import android.content.ActivityNotFoundException;
 import android.content.ClipData.Item;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -36,20 +42,26 @@ import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StatFs;
 import android.os.SystemClock;
+import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
+import android.text.Html;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -60,10 +72,13 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 @SuppressLint("InflateParams")
 public class Dashboard_Activity extends Activity {
 
-    Button btnLanguage, hh, mnch, cd, ncd, ah, fp, incentives, sync, vhnd, rd;
+    Button btnLanguage, hh, mnch, cd, ncd, ah, fp, incentives, vhnd, rd, btnCapture;
     // LinearLayout layoutsurvey, layoutsync,layoutmch;
     // TextView tvDashboardSynchronisation,tvDashboardSurvey;
     DataProvider dataProvider;
@@ -74,6 +89,7 @@ public class Dashboard_Activity extends Activity {
     String username = "";
     int iRoleID = 0;
     @SuppressWarnings("unused")
+    ImageView sync;
     private Menu menu;
     ConnectivityManager connMgrCheckConnection;
     NetworkInfo networkInfoCheckConnection;
@@ -82,11 +98,11 @@ public class Dashboard_Activity extends Activity {
     LinearLayout ll1, ll2;// Add Herojit
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
     Date date = new Date();
-    GridView gridanc, gridanc1, gridHrpanc;
+    GridView gridanc, gridanc1, gridHrpanc, griddelivery_date;
     String CurrentDate = "", MonthNo_C = "", MonthNo_A = "", VHNDDate = "";
-    ImageView uttarakhand, jharkhand;
+    ImageView uttarakhand, jharkhand, User;
     int statecode = 0;
-    TableRow tbl_hrp1, tbl_hrp, tbl_hbnc, tbl_hbnc1, tbl_anc, tbl_anc1;
+    TableRow tbl_hrp1, tbl_hrp, tbl_hbnc, tbl_hbnc1, tbl_anc, tbl_anc1, tbl_delivery_date, tbl_delivery_date1;
     ArrayList<tbl_pregnantwomen> Pregnant_woman;
     ArrayList<tblChild> child;
     ArrayList<tbl_pregnantwomen> member = new ArrayList<tbl_pregnantwomen>();
@@ -94,20 +110,25 @@ public class Dashboard_Activity extends Activity {
     ArrayList<tblPNChomevisit_ANS> PNChomevisit = new ArrayList<tblPNChomevisit_ANS>();
     String[] arr = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
             "Sep", "Oct", "Nov", "Dec"};
+    Validate validate;
+    static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
 
     // private EasyTracker easyTracker1 = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-
         // requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-        setContentView(R.layout.dashboard1);
-
+        setContentView(R.layout.dashboard2);
         setTitle(getVersion());
+        ActionBar actBar = getActionBar();
+        actBar.setDisplayHomeAsUpEnabled(true);
+        actBar.setHomeAsUpIndicator(R.drawable.appicon);
         // send our data!
         ll1 = (LinearLayout) findViewById(R.id.ll1);
         ll2 = (LinearLayout) findViewById(R.id.ll2);
+        User = (ImageView) findViewById(R.id.User);
+        btnCapture = (Button) findViewById(R.id.btnCapture);
         uttarakhand = (ImageView) findViewById(R.id.uttarakhand);
         jharkhand = (ImageView) findViewById(R.id.jharkhand);
         btnLanguage = (Button) findViewById(R.id.btnLanguage);
@@ -128,6 +149,7 @@ public class Dashboard_Activity extends Activity {
         // ll2.setVisibility(View.VISIBLE);
 
         dataProvider = new DataProvider(this);
+        validate = new Validate(this);
         global = (Global) getApplication();
         // global.setLanguage(2);
         iRoleID = global.getiGlobalRoleID();
@@ -138,32 +160,25 @@ public class Dashboard_Activity extends Activity {
             if (global.getStateCode() != null
                     && global.getStateCode().length() > 0) {
 
-                statecode = Integer.valueOf(global.getStateCode());
+                statecode = Validate.returnIntegerValue(global.getStateCode());
             }
             if (statecode == 20) {
                 hh = (Button) findViewById(R.id.hh1);
-
                 ncd = (Button) findViewById(R.id.ncd1);
-
-                sync = (Button) findViewById(R.id.sync1);
-
+                sync = (ImageView) findViewById(R.id.sync);
                 rd = (Button) findViewById(R.id.rd1);
-
                 ll1.setVisibility(View.GONE);
                 ll2.setVisibility(View.VISIBLE);
                 uttarakhand.setVisibility(View.GONE);
                 jharkhand.setVisibility(View.VISIBLE);
             } else if (statecode == 5) {
                 hh = (Button) findViewById(R.id.hh);
-
                 ncd = (Button) findViewById(R.id.ncd);
-
-                sync = (Button) findViewById(R.id.sync);
-
+                sync = (ImageView) findViewById(R.id.sync);
                 rd = (Button) findViewById(R.id.rd);
                 ll1.setVisibility(View.VISIBLE);
                 ll2.setVisibility(View.GONE);
-                ncd.setEnabled(false);
+                // ncd.setEnabled(false);
             }
 
         } catch (Exception e) {
@@ -203,19 +218,19 @@ public class Dashboard_Activity extends Activity {
         // t.set("userid", dimensionValue);
         username = global.getsGlobalUserName();
         if (global.getLanguage() == 1) {
-            btnLanguage.setText("hi");
+            btnLanguage.setText("हिंदी");
             global.setLanguage(1);
             changeLang("en");
 
         } else if (global.getLanguage() == 2) {
-            btnLanguage.setText("en");
+            btnLanguage.setText("En");
             global.setLanguage(2);
             changeLang("hi");
 
         } else {
             // String sLanguage = "";
             // sLanguage = "hi";
-            sCurrentLanguage = "en";
+            sCurrentLanguage = "En";
             btnLanguage.setText(sCurrentLanguage);
             global.setLanguage(2);
             changeLang("hi");
@@ -231,16 +246,16 @@ public class Dashboard_Activity extends Activity {
                 // TODO Auto-generated method stub
                 String sLang = "";
                 sLang = btnLanguage.getText().toString();
-                if (sLang.equalsIgnoreCase("en")) {
+                if (sLang.equalsIgnoreCase("En")) {
 
                     global.setLanguage(1);
-                    btnLanguage.setText("hi");
+                    btnLanguage.setText("हिंदी");
                     changeLang("en");
 
-                } else if (sLang.equalsIgnoreCase("hi")) {
+                } else if (sLang.equalsIgnoreCase("हिंदी")) {
 
                     global.setLanguage(2);
-                    btnLanguage.setText("en");
+                    btnLanguage.setText("En");
                     changeLang("hi");
 
                 }
@@ -260,7 +275,7 @@ public class Dashboard_Activity extends Activity {
 
                     i.putExtra("Flag", 1);
                     startActivity(i);
-                } else {
+                } else if (iRoleID == 2) {
                     Intent i = new Intent(Dashboard_Activity.this,
                             Survey_Activity.class);
                     finish();
@@ -280,7 +295,7 @@ public class Dashboard_Activity extends Activity {
 
                     i.putExtra("Flag", 2);
                     startActivity(i);
-                } else {
+                } else if (iRoleID == 2 || iRoleID == 4) {
                     Intent i = new Intent(Dashboard_Activity.this,
                             MCH_Dashboard.class);
                     finish();
@@ -299,22 +314,34 @@ public class Dashboard_Activity extends Activity {
 
                     i.putExtra("Flag", 6);
                     startActivity(i);
-                } else {
-                //
-                Intent i = new Intent(Dashboard_Activity.this, NCD_AA.class);
-                finish();
-                startActivity(i);}
+                } else if (iRoleID == 2) {
+                    Intent i = new Intent(Dashboard_Activity.this, NCD_AA.class);
+                    finish();
+                    startActivity(i);
+                } else if (iRoleID == 11) {
+
+                    Intent i = new Intent(Dashboard_Activity.this, AshaListForCHC.class);
+                    finish();
+                    startActivity(i);
+                }
             }
         });
         sync.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View arg0) {
                 // TODO Auto-generated method stub
-
-                Intent i = new Intent(Dashboard_Activity.this,
-                        Synchronization.class);
-                finish();
-                startActivity(i);
+                if (iRoleID == 4) {
+                    Intent i = new Intent(Dashboard_Activity.this,
+                            AFAshaList.class);
+                    i.putExtra("flag",2);
+                    finish();
+                    startActivity(i);
+                } else {
+                    Intent i = new Intent(Dashboard_Activity.this,
+                            Synchronization.class);
+                    finish();
+                    startActivity(i);
+                }
             }
         });
         fp.setOnClickListener(new OnClickListener() {
@@ -330,7 +357,7 @@ public class Dashboard_Activity extends Activity {
 
                     i.putExtra("Flag", 3);
                     startActivity(i);
-                } else {
+                } else if (iRoleID == 2) {
                     Intent i = new Intent(Dashboard_Activity.this, FP_AA.class);
                     finish();
                     startActivity(i);
@@ -343,11 +370,19 @@ public class Dashboard_Activity extends Activity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
+                if (iRoleID == 3) {
+                    Intent i = new Intent(Dashboard_Activity.this,
+                            Report_Module.class);
+                    finish();
+                    startActivity(i);
+                } else if (iRoleID == 2) {
+                    Intent i = new Intent(Dashboard_Activity.this,
+                            Report_Module.class);
+                    finish();
+                    startActivity(i);
+                } else if (iRoleID == 11) {
 
-                Intent i = new Intent(Dashboard_Activity.this,
-                        Report_Module.class);
-                finish();
-                startActivity(i);
+                }
 
             }
         });
@@ -356,18 +391,31 @@ public class Dashboard_Activity extends Activity {
 
             @Override
             public void onClick(View v) {
-                if (iRoleID == 3) {
-                    Intent i = new Intent(Dashboard_Activity.this,
-                            AshaListForAnm.class);
-                    finish();
+//                if (iRoleID == 3) {
+//                    Intent i = new Intent(Dashboard_Activity.this,
+//                            AshaListForAnm.class);
+//                    finish();
+//
+//                    i.putExtra("Flag", 5);
+//                    startActivity(i);
+//                } else if (iRoleID == 2) {
+//                    Intent i = new Intent(Dashboard_Activity.this,
+//                            Incentives.class);
+//                    finish();
+//                    startActivity(i);
+//                }
+                if (global.getiGlobalRoleID() == 2) {
+                    Intent in = new Intent(Dashboard_Activity.this,
+                            Incentive_Tab_Activity.class);
 
-                    i.putExtra("Flag", 5);
-                    startActivity(i);
-                } else {
-                    Intent i = new Intent(Dashboard_Activity.this,
-                            Incentives.class);
                     finish();
-                    startActivity(i);
+                    startActivity(in);
+                } else if (global.getiGlobalRoleID() == 3) {
+                    Intent in = new Intent(Dashboard_Activity.this,
+                            Anmreport_AA_Activity.class);
+
+                    finish();
+                    startActivity(in);
                 }
             }
         });
@@ -383,7 +431,7 @@ public class Dashboard_Activity extends Activity {
 
                     i.putExtra("Flag", 4);
                     startActivity(i);
-                } else {
+                } else if (iRoleID == 2) {
                     // Intent i = new Intent(Dashboard_Activity.this,
                     // VHND_Record.class);
                     Intent i = new Intent(Dashboard_Activity.this,
@@ -403,7 +451,8 @@ public class Dashboard_Activity extends Activity {
         hbnccount = dataProvider.getcountRecord(sql)
                 + dataProvider.getcountRecord(sql1);
         String sql2 = "SELECT count(pwguid)  from tblPregnant_woman where  IsPregnant=1 and cast(round(julianday(EDDDate)-julianday('NOW')+.5) as int) between 0 and 2";
-        pregcount = dataProvider.getMaxRecord(sql2);
+        String sql21 = "SELECT count(pwguid)  from tblPregnant_woman where  IsPregnant=1 and cast(round(julianday('NOW')-julianday(lmpdate)+.5) as int)>365";
+        pregcount = dataProvider.getMaxRecord(sql2) + dataProvider.getMaxRecord(sql21);
         String sql3 = "SELECT count(a.pwguid) cnt,visit_no  from tblPregnant_woman a inner join tblANCVisit b on  cast(round((julianday('NOW')-julianday(a.lmpdate))/90+.5)  as int) =b.visit_no and  a.pwguid=b.pwguid where homevisitdate in('',null) and ispregnant=1 order by b.pwguid";
 
         String sql4 = "SELECT count(a.pwguid) cnt,visit_no  from tblPregnant_woman a inner join tblANCVisit b on  cast(round((julianday('NOW')-julianday(a.lmpdate))/90+.5)  as int) =b.visit_no and  a.pwguid=b.pwguid where checkupvisitdate in('',null)and ispregnant=1 order by b.pwguid";
@@ -440,14 +489,166 @@ public class Dashboard_Activity extends Activity {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            //732595911713 utkarsh
         }
         if (global.getMsg_flag() == 1) {
             if (iRoleID == 2) {
                 showCustomAlert(global.getsGlobalAshaName());
+                updateashaid();
             } else if (iRoleID == 3) {
                 showCustomAlert(global.getsGlobalANMName());
+            } else if (iRoleID == 11) {
+                showCustomAlert(global.getCHCName());
             }
             global.setMsg_flag(0);
+        }
+        User.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (global.getiGlobalRoleID() == 3 || global.getiGlobalRoleID() == 2) {
+                    Intent i = new Intent(Dashboard_Activity.this,
+                            UserDetail.class);
+                    finish();
+                    startActivity(i);
+                } else {
+                    Toast.makeText(Dashboard_Activity.this, R.string.ThisUserNotAllow, Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
+        if (global.getiGlobalRoleID() == 3 || global.getiGlobalRoleID() == 2) {
+            btnCapture.setVisibility(View.VISIBLE);
+        } else {
+            btnCapture.setVisibility(View.INVISIBLE);
+        }
+        btnCapture.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    // start the scanning activity from the
+                    // com.google.zxing.client.android.SCAN intent
+                    Intent intent = new Intent(ACTION_SCAN);
+                    intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+                    startActivityForResult(intent, 0);
+                } catch (ActivityNotFoundException anfe) {
+                    // on catch, show the download dialog
+                    showDialog(Dashboard_Activity.this,
+                            getResources().getString(R.string.NoScannerFound),
+                            getResources().getString(R.string.Downloadscanner),
+                            getResources().getString(R.string.Yes),
+                            getResources().getString(R.string.no)).show();
+                }
+            }
+        });
+
+    }
+
+
+    private static AlertDialog showDialog(final Activity act,
+                                          CharSequence title, CharSequence message, CharSequence buttonYes,
+                                          CharSequence buttonNo) {
+        AlertDialog.Builder downloadDialog = new AlertDialog.Builder(act);
+        downloadDialog.setTitle(title);
+        downloadDialog.setMessage(message);
+        downloadDialog.setPositiveButton(buttonYes,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Uri uri = Uri.parse("market://search?q=pname:"
+                                + "com.google.zxing.client.android");
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        try {
+                            act.startActivity(intent);
+                        } catch (ActivityNotFoundException anfe) {
+
+                        }
+                    }
+                });
+        downloadDialog.setNegativeButton(buttonNo,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+        return downloadDialog.show();
+    }
+
+    // on ActivityResult method
+    @SuppressWarnings("unused")
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                // get the extras that are returned from the intent
+
+                String contents = intent.getStringExtra("SCAN_RESULT");
+                String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
+
+
+                show(contents);
+            }
+        }
+    }
+
+    private void show(String XMLData) {
+        String PWGUID = "", ChildGUID = "";
+        try {
+            JSONObject jsonObj = new JSONObject(XMLData);
+            JSONArray data = jsonObj.getJSONArray("data");
+
+            if (data != null && data.length() > 0) {
+                JSONObject Form = data.getJSONObject(0);
+                PWGUID = Form.optString("PWGUID");
+                String sql = "";
+                sql = "Select count(*) from tblPregnant_woman  where PWGUID='"
+                        + PWGUID + "' and  IsPregnant=1  ";
+                int count = dataProvider.getMaxRecord(sql);
+
+                ChildGUID = Form.optString("ChildGUID");
+                String sql1 = "";
+                sql1 = "Select count(*) from tblChild  where ChildGUID='"
+                        + ChildGUID + "'";
+                int count1 = dataProvider.getMaxRecord(sql1);
+                if (count > 0) {
+                    if (global.getiGlobalRoleID() == 3) {
+                        String sqlASHA = "";
+                        sqlASHA = "Select ashaid from tblPregnant_woman  where PWGUID='"
+                                + PWGUID + "' and  IsPregnant=1  ";
+                        String ashaid = dataProvider.getRecord(sqlASHA);
+                        global.setsGlobalAshaCode(ashaid);
+                    }
+                    global.setsGlobalPWGUID(PWGUID);
+                    validate.SaveSharepreferenceInt("QR", 1);
+                    Intent i = new Intent(Dashboard_Activity.this, AncActivity.class);
+
+                    startActivity(i);
+                } else if (count1 > 0) {
+                    if (global.getiGlobalRoleID() == 3) {
+                        String sqlASHA = "";
+                        sqlASHA = "Select ashaid from tblChild  where ChildGUID='"
+                                + ChildGUID + "'";
+                        String ashaid = dataProvider.getRecord(sqlASHA);
+                        global.setsGlobalAshaCode(ashaid);
+                    }
+                    String mothername = Form.optString("PWName");
+                    String fathername = Form.optString("HusbandName");
+                    String ChildName = Form.optString("child_name");
+                    String DOB = Form.optString("child_dob");
+                    validate.SaveSharepreferenceInt("QR", 1);
+                    Intent intent = new Intent(Dashboard_Activity.this, Immunization_Entry.class);
+                    intent.putExtra("MotherName", mothername);
+                    intent.putExtra("HusbandName", fathername);
+                    intent.putExtra("ChildGUID", ChildGUID);
+                    intent.putExtra("ChildName", ChildName);
+                    intent.putExtra("DOB", DOB);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, R.string.ancrecorddoesnotexist, Toast.LENGTH_LONG).show();
+                }
+            } else {
+                Toast.makeText(this, R.string.QRCodeisinvalid, Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            Toast.makeText(this, R.string.QRCodeisinvalid, Toast.LENGTH_LONG).show();
+
         }
 
     }
@@ -458,10 +659,10 @@ public class Dashboard_Activity extends Activity {
         global = (Global) getApplicationContext();
         try {
             String pkg = mContext.getPackageName();
-            mVersionNumber = getResources().getString(R.string.app_name) + " " +mContext.getPackageManager()
+            mVersionNumber = getResources().getString(R.string.app_name) + " " + mContext.getPackageManager()
                     .getPackageInfo(pkg, 0).versionName;
         } catch (PackageManager.NameNotFoundException e) {
-            mVersionNumber = getResources().getString(R.string.app_name) + " " +"?";
+            mVersionNumber = getResources().getString(R.string.app_name) + " " + "?";
         }
         global.setVersionName(mVersionNumber);
         return mVersionNumber;
@@ -520,7 +721,7 @@ public class Dashboard_Activity extends Activity {
         ah.setText(R.string.ah);
         fp.setText(R.string.fp);
         incentives.setText(R.string.incentives);
-        sync.setText(R.string.synchronization);
+        //  sync.setText(R.string.synchronization);
         vhnd.setText(R.string.vhnd);
         rd.setText(R.string.rd);
 
@@ -528,10 +729,20 @@ public class Dashboard_Activity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (global.getiGlobalRoleID() == 3) {
-            menu.add(0, 0, 1, global.getsGlobalANMName()).setShowAsAction(
+        if (global.getiGlobalRoleID() == 11) {
+            menu.add(0, 0, 2, global.getCHCName()).setShowAsAction(
                     MenuItem.SHOW_AS_ACTION_IF_ROOM);
-            menu.add(0, 1, 2, "History").setIcon(R.drawable.logout1)
+            menu.add(0, 1, 3, "History").setIcon(R.drawable.logout)
+                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        } else if (global.getiGlobalRoleID() == 3) {
+            menu.add(0, 0, 2, global.getsGlobalANMName()).setShowAsAction(
+                    MenuItem.SHOW_AS_ACTION_IF_ROOM);
+            menu.add(0, 1, 3, "History").setIcon(R.drawable.logout)
+                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        } else if (global.getiGlobalRoleID() == 4) {
+            menu.add(0, 0, 2, validate.RetriveSharepreferenceString("name")).setShowAsAction(
+                    MenuItem.SHOW_AS_ACTION_IF_ROOM);
+            menu.add(0, 1, 3, "History").setIcon(R.drawable.logout)
                     .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         } else {
             if (statecode == 20) {
@@ -539,30 +750,30 @@ public class Dashboard_Activity extends Activity {
                 // .setIcon(R.drawable.bell)
                 // .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
-                menu.add(0, 0, 1, global.getsGlobalAshaName()).setShowAsAction(
+                menu.add(0, 0, 2, global.getsGlobalAshaName()).setShowAsAction(
                         MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
-                menu.add(0, 1, 2, "History").setIcon(R.drawable.logout1)
+                menu.add(0, 1, 3, "History").setIcon(R.drawable.logout)
                         .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
             } else {
                 if (total == 0) {
-                    menu.add(0, 0, 0, global.getsGlobalAshaName())
+                    menu.add(0, 0, 1, global.getsGlobalAshaName())
                             .setIcon(R.drawable.bell)
                             .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
-                    menu.add(0, 0, 1, global.getsGlobalAshaName())
+                    menu.add(0, 0, 2, global.getsGlobalAshaName())
                             .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
-                    menu.add(0, 1, 2, "History").setIcon(R.drawable.logout1)
+                    menu.add(0, 1, 3, "History").setIcon(R.drawable.logout)
                             .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
                 } else {
-                    menu.add(0, 0, 0, global.getsGlobalAshaName())
+                    menu.add(0, 0, 1, global.getsGlobalAshaName())
                             .setIcon(R.drawable.bell1)
                             .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-                    menu.add(1, 1, 1, global.getsGlobalAshaName())
+                    menu.add(1, 1, 2, global.getsGlobalAshaName())
                             .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
-                    menu.add(0, 2, 2, "").setIcon(R.drawable.logout1)
+                    menu.add(0, 2, 3, "").setIcon(R.drawable.logout)
                             .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
                 }
             }
@@ -580,9 +791,24 @@ public class Dashboard_Activity extends Activity {
 
         switch (item.getOrder()) {
             case 0:
+                if (global.getiGlobalRoleID() == 3 || global.getiGlobalRoleID() == 2) {
+                    Customappdetail();
+                }
+                break;
+
+            case 1:
                 CustomAlertANCVisitDetails();
                 break;
             case 2:
+                if (item.getTitle().equals(validate.RetriveSharepreferenceString("Username"))) {
+                    item.setTitle(validate.RetriveSharepreferenceString("name"));
+
+                } else {
+                    item.setTitle(validate.RetriveSharepreferenceString("Username"));
+
+                }
+                break;
+            case 3:
                 CustomAlert();
 
                 break;
@@ -797,9 +1023,9 @@ public class Dashboard_Activity extends Activity {
         String mon[] = {};
         mon = CurrentDate.split("-");
         final int monthi, Days, Year;
-        Year = Integer.valueOf(mon[0]);
-        monthi = Integer.valueOf(mon[1]) - 1;
-        Days = Integer.valueOf(mon[2]);
+        Year = Validate.returnIntegerValue(mon[0]);
+        monthi = Validate.returnIntegerValue(mon[1]) - 1;
+        Days = Validate.returnIntegerValue(mon[2]);
         if (Days > 0 && monthi > 0 && monthi != 11) {
             MonthNo_C = aa[monthi];
             MonthNo_A = aa[monthi + 1];
@@ -862,7 +1088,7 @@ public class Dashboard_Activity extends Activity {
                                     + MonthNo_A
                                     + ")-julianday('NOW'))  as int) <=7) and Year='"
                                     + Year + "'";
-                            NoofDay_C = Integer.valueOf(dataProvider
+                            NoofDay_C = Validate.returnIntegerValue(dataProvider
                                     .getRecord(sql2));
                         }
                         if (count6 != 0) {
@@ -876,7 +1102,7 @@ public class Dashboard_Activity extends Activity {
                                     + MonthNo_C
                                     + ")-julianday('NOW'))  as int) <=7) and Year='"
                                     + Year + "'";
-                            NoofDay_A = Integer.valueOf(dataProvider
+                            NoofDay_A = Validate.returnIntegerValue(dataProvider
                                     .getRecord(sql3));
                         }
                         String Date = "", Month = "";
@@ -906,7 +1132,7 @@ public class Dashboard_Activity extends Activity {
                         if (count == 0) {
                             FlagNo = 1;
                             global.setVHND_ID(Validate.random());
-                            // Save_VHND(Integer.valueOf(VillageID), Date, "I");
+                            // Save_VHND(Validate.returnIntegerValue(VillageID), Date, "I");
                         } else {
                             String sqll = "select VHND_ID from tbl_VHND_DueList where ASHAID="
                                     + global.getsGlobalAshaCode()
@@ -916,7 +1142,7 @@ public class Dashboard_Activity extends Activity {
                             String VHNDID = dataProvider.getRecord(sqll);
                             global.setVHND_ID(VHNDID);
                             FlagNo = 2;
-                            // Save_VHND(Integer.valueOf(VillageID), Date, "U");
+                            // Save_VHND(Validate.returnIntegerValue(VillageID), Date, "U");
                         }
                         // global.setVHND_ID(Validate.random());
                         global.setVHND_Date(Date);
@@ -1024,6 +1250,7 @@ public class Dashboard_Activity extends Activity {
         gridHrpanc = (GridView) dialog.findViewById(R.id.gridHrpanc);
         gridanc = (GridView) dialog.findViewById(R.id.gridanc);
         gridanc1 = (GridView) dialog.findViewById(R.id.gridanc1);
+        griddelivery_date = (GridView) dialog.findViewById(R.id.griddelivery_date);
         TextView tvVhndbaby_name = (TextView) dialog
                 .findViewById(R.id.tvVhndbaby_name);
 
@@ -1033,6 +1260,8 @@ public class Dashboard_Activity extends Activity {
         tbl_hbnc1 = (TableRow) dialog.findViewById(R.id.tbl_hbnc1);
         tbl_anc = (TableRow) dialog.findViewById(R.id.tbl_anc);
         tbl_anc1 = (TableRow) dialog.findViewById(R.id.tbl_anc1);
+        tbl_delivery_date = (TableRow) dialog.findViewById(R.id.tbl_delivery_date);
+        tbl_delivery_date1 = (TableRow) dialog.findViewById(R.id.tbl_delivery_date1);
         // pwindo = new PopupWindow(view, 700, 1000, true);
         // pwindo.showAtLocation(view, Gravity.CENTER, 0, 0);
 
@@ -1040,6 +1269,7 @@ public class Dashboard_Activity extends Activity {
         fillgrid();
         fillHBNCgrid();
         fillgridanc();
+        fillgridancdate();
         vhnd(tvVhndbaby_name);
         // code comes here
 
@@ -1048,10 +1278,11 @@ public class Dashboard_Activity extends Activity {
 
     }
 
+
     public void fillgridanc() {
         int flag = 0;
 
-        member = dataProvider.getNotificationdata(2);
+        member = dataProvider.getNotificationdata(2, global.getsGlobalAshaCode());
 
         if (member != null && member.size() > 0) {
 
@@ -1072,10 +1303,34 @@ public class Dashboard_Activity extends Activity {
         }
     }
 
+    public void fillgridancdate() {
+        int flag = 0;
+
+        member = dataProvider.getNotificationdata(3, global.getsGlobalAshaCode());
+
+        if (member != null && member.size() > 0) {
+
+            android.view.ViewGroup.LayoutParams params = griddelivery_date
+                    .getLayoutParams();
+            Resources r = getResources();
+            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                    50, r.getDisplayMetrics());
+            int hi = Math.round(px);
+            int gridHeight1 = 0;
+            gridHeight1 = hi * member.size();
+            params.height = gridHeight1;
+            griddelivery_date.setLayoutParams(params);
+            griddelivery_date.setAdapter(new Anc_DueListadapter(this, member, 8));
+        } else {
+            tbl_delivery_date.setVisibility(View.GONE);
+            tbl_delivery_date1.setVisibility(View.GONE);
+        }
+    }
+
     public void fillgrid() {
         int flag = 0;
 
-        member = dataProvider.getNotificationdata(0);
+        member = dataProvider.getNotificationdata(0, global.getsGlobalAshaCode());
 
         if (member != null && member.size() > 0) {
 
@@ -1096,10 +1351,75 @@ public class Dashboard_Activity extends Activity {
         }
     }
 
+    public void Customappdetail() {
+
+        // Create custom dialog object
+        final Dialog dialog = new Dialog(this);
+        // hide to default title for Dialog
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        // inflate the layout dialog_layout.xml and set it as contentView
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.appdetail, null, false);
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+
+        // wlp.gravity = Gravity.VERTICAL_GRAVITY_MASK;
+        wlp.gravity = Gravity.LEFT | Gravity.TOP;
+        wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        window.setAttributes(wlp);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setContentView(view);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        TextView tv_asha = (TextView) dialog.findViewById(R.id.tv_asha);
+        TextView tv_ashaname = (TextView) dialog.findViewById(R.id.tv_ashaname);
+        TextView tv_anm = (TextView) dialog.findViewById(R.id.tv_anm);
+        TextView tv_subcenter = (TextView) dialog.findViewById(R.id.tv_subcenter);
+        TextView tv_village = (TextView) dialog.findViewById(R.id.tv_village);
+
+        if (global.getiGlobalRoleID() == 3) {
+            tv_asha.setVisibility(View.GONE);
+            tv_ashaname.setVisibility(View.GONE);
+            tv_anm.setText(validate.RetriveSharepreferenceString("name") + "(" + validate.RetriveSharepreferenceString("Username") + ")");
+            String sqlvill = "select b.Villagename from ashavillage a inner join MstVillage b on a.villageid= b.villageid  inner join anmasha c on c.ashaid=a.ashaid where b.Languageid=" + global.getLanguage() + " and c.anmid='" + global.getsGlobalANMCODE() + "'";
+            ArrayList<HashMap<String, String>> data = null;
+            String sqlvillname = "";
+            data = dataProvider.getDynamicVal(sqlvill);
+            if (data != null) {
+                for (int i = 0; i < data.size(); i++) {
+                    sqlvillname = sqlvillname + data.get(i).get("Villagename") + "<br>";
+                }
+            }
+            tv_subcenter.setText(Html.fromHtml(sqlvillname));
+        } else {
+            tv_asha.setText(getString(R.string.Asha) + " :");
+            tv_ashaname.setText(validate.RetriveSharepreferenceString("name") + "(" + validate.RetriveSharepreferenceString("Username") + ")");
+            tv_anm.setText(global.getsGlobalANMName());
+            String sqlvill = "select b.VillageName from ashavillage a inner join MstVillage b on a.villageid= b.villageid where b.Languageid=" + global.getLanguage() + " and ashaid='" + global.getsGlobalAshaCode() + "'";
+            ArrayList<HashMap<String, String>> data = null;
+            String sqlvillname = "";
+            data = dataProvider.getDynamicVal(sqlvill);
+            if (data != null) {
+                for (int i = 0; i < data.size(); i++) {
+                    sqlvillname = sqlvillname + data.get(i).get("VillageName") + "<br>";
+                }
+            }
+            tv_village.setText(Html.fromHtml(sqlvillname));
+        }
+        String sqlsub = "select  subcentername from MstSubCenter where Languageid=" + global.getLanguage() + "";
+        String subcentername = dataProvider.getRecord(sqlsub);
+        tv_subcenter.setText(subcentername);
+
+        // Display the dialog
+        dialog.show();
+
+    }
+
     public void fillHBNCgrid() {
         int flag = 0;
         try {
-            hbncmember = dataProvider.getNotificationdata(1);
+            hbncmember = dataProvider.getNotificationdata(1, global.getsGlobalAshaCode());
             PNChomevisit = dataProvider.getpncdata("", "", 0, 3);
             for (int i = hbncmember.size() - 1; i >= 0; i--) {
                 for (int j = PNChomevisit.size() - 1; j >= 0; j--) {
@@ -1184,20 +1504,20 @@ public class Dashboard_Activity extends Activity {
         try {
             String date = Validate.getcurrentdate();
             String[] ss = date.split("-");
-            int mnth = Integer.valueOf(ss[1]);
-            int yr = Integer.valueOf(ss[0]);
+            int mnth = Validate.returnIntegerValue(ss[1]);
+            int yr = Validate.returnIntegerValue(ss[0]);
             if (mnth == 1 || mnth == 2 || mnth == 3) {
                 yr = yr - 1;
             }
             String sql = "select " + arr[mnth - 1]
-                    + " from VHND_Schedule where year=" + yr + "";
+                    + " from VHND_Schedule where year=" + yr + " and ASHA_ID='" + global.getsGlobalAshaCode() + "'";
             String currmnthdate = dataProvider.getRecord(sql);
             if (mnth == 12) {
                 mnth = 0;
             }
 
             String sql1 = "select " + arr[mnth]
-                    + " from VHND_Schedule where year=" + yr + "";
+                    + " from VHND_Schedule where year=" + yr + " and ASHA_ID='" + global.getsGlobalAshaCode() + "'";
             String nextmnthdate = dataProvider.getRecord(sql1);
             String currmnthdate1 = dataProvider
                     .getRecord("select   cast(julianday('" + currmnthdate
@@ -1205,8 +1525,8 @@ public class Dashboard_Activity extends Activity {
             String nextmnthdate1 = dataProvider
                     .getRecord("select   cast(julianday('" + nextmnthdate
                             + "')-julianday('" + date + "') as int ) as day");
-            int day = Integer.valueOf(currmnthdate1);
-            int day1 = Integer.valueOf(nextmnthdate1);
+            int day = Validate.returnIntegerValue(currmnthdate1);
+            int day1 = Validate.returnIntegerValue(nextmnthdate1);
             if (day < 7 && day > 0) {
                 txt.setText(getResources().getString(R.string.nextvhnd)
                         + Validate.changeDateFormat(currmnthdate));
@@ -1236,33 +1556,36 @@ public class Dashboard_Activity extends Activity {
         try {
             String date = Validate.getcurrentdate();
             String[] ss = date.split("-");
-            int mnth = Integer.valueOf(ss[1]);
-            int yr = Integer.valueOf(ss[0]);
+            int mnth = Validate.returnIntegerValue(ss[1]);
+            int yr = Validate.returnIntegerValue(ss[0]);
             if (mnth == 1 || mnth == 2 || mnth == 3) {
                 yr = yr - 1;
             }
             String sql = "select " + arr[mnth - 1]
-                    + " from VHND_Schedule where year=" + yr + "";
+                    + " from VHND_Schedule where year=" + yr + "  and ASHA_ID='" + global.getsGlobalAshaCode() + "'";
             String currmnthdate = dataProvider.getRecord(sql);
 
             String daysql = dataProvider.getRecord("select   cast(julianday('"
                     + currmnthdate + "')-julianday('" + date
                     + "') as int ) as day");
-
-            int day = Integer.valueOf(daysql);
+            int day = 100, day1 = 100;
+            if (daysql != null && daysql.length() > 0) {
+                day = Validate.returnIntegerValue(daysql);
+            }
             if (mnth == 12) {
                 mnth = 0;
             }
 
             String sql1 = "select " + arr[mnth]
-                    + " from VHND_Schedule where year=" + yr + "";
+                    + " from VHND_Schedule where year=" + yr + "  and ASHA_ID='" + global.getsGlobalAshaCode() + "'";
             String nextmnthdate = dataProvider.getRecord(sql1);
 
             String nextmnthdate1 = dataProvider
                     .getRecord("select   cast(julianday('" + nextmnthdate
                             + "')-julianday('" + date + "') as int ) as day");
-
-            int day1 = Integer.valueOf(nextmnthdate1);
+            if (nextmnthdate1 != null && nextmnthdate1.length() > 0) {
+                day1 = Validate.returnIntegerValue(nextmnthdate1);
+            }
 
             if (day < 7 && day >= 0) {
                 String villagesql = "select village_id from VHND_Schedule where year="
@@ -1284,15 +1607,15 @@ public class Dashboard_Activity extends Activity {
                 int VillageID = 0, AshaID = 0, ANMID = 0;
                 if (!villageid.equalsIgnoreCase("null")
                         && villageid.length() > 0) {
-                    VillageID = Integer.valueOf(villageid);
+                    VillageID = Validate.returnIntegerValue(villageid);
                 }
                 if (!global.getsGlobalAshaCode().equalsIgnoreCase("null")
                         && global.getsGlobalAshaCode().length() > 0) {
-                    AshaID = Integer.valueOf(global.getsGlobalAshaCode());
+                    AshaID = Validate.returnIntegerValue(global.getsGlobalAshaCode());
                 }
                 if (!global.getsGlobalANMCODE().equalsIgnoreCase("null")
                         && global.getsGlobalANMCODE().length() > 0) {
-                    ANMID = Integer.valueOf(global.getsGlobalANMCODE());
+                    ANMID = Validate.returnIntegerValue(global.getsGlobalANMCODE());
                 }
 
                 Pregnant_woman = dataProvider.getPregnantWomendata(sql, 6, 0);
@@ -1388,7 +1711,7 @@ public class Dashboard_Activity extends Activity {
                         + "')-julianday(Child_dob))as int) between 480 and 730)) and AshaID="
                         + AshaID + "";
 
-                child = dataProvider.gettblChild("", sql, 7,0);
+                child = dataProvider.gettblChild("", sql, 7, 0);
                 for (int i = 0; i < child.size(); i++) {
                     String VaccineNames = "", MemberGUID = "", HHGUID = "", MemberName = "", name = "", Flag = "";
                     try {
@@ -1453,15 +1776,15 @@ public class Dashboard_Activity extends Activity {
                 int VillageID = 0, AshaID = 0, ANMID = 0;
                 if (!villageid.equalsIgnoreCase("null")
                         && villageid.length() > 0) {
-                    VillageID = Integer.valueOf(villageid);
+                    VillageID = Validate.returnIntegerValue(villageid);
                 }
                 if (!global.getsGlobalAshaCode().equalsIgnoreCase("null")
                         && global.getsGlobalAshaCode().length() > 0) {
-                    AshaID = Integer.valueOf(global.getsGlobalAshaCode());
+                    AshaID = Validate.returnIntegerValue(global.getsGlobalAshaCode());
                 }
                 if (!global.getsGlobalANMCODE().equalsIgnoreCase("null")
                         && global.getsGlobalANMCODE().length() > 0) {
-                    ANMID = Integer.valueOf(global.getsGlobalANMCODE());
+                    ANMID = Validate.returnIntegerValue(global.getsGlobalANMCODE());
                 }
 
                 Pregnant_woman = dataProvider.getPregnantWomendata(sql, 6, 0);
@@ -1557,7 +1880,7 @@ public class Dashboard_Activity extends Activity {
                         + "')-julianday(Child_dob))as int) between 480 and 730)) and AshaID="
                         + AshaID + "";
 
-                child = dataProvider.gettblChild("", sql, 7,0);
+                child = dataProvider.gettblChild("", sql, 7, 0);
                 for (int i = 0; i < child.size(); i++) {
                     String VaccineNames = "", MemberGUID = "", HHGUID = "", MemberName = "", name = "", Flag = "";
                     try {
@@ -1647,6 +1970,7 @@ public class Dashboard_Activity extends Activity {
                 pendingIntent = PendingIntent
                         .getBroadcast(this, 0, myIntent, 0);
 
+
                 AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
                 // alarmManager.setInexactRepeating(alarmType, timetoRefresh,
                 // interval, pendingIntent);
@@ -1667,15 +1991,50 @@ public class Dashboard_Activity extends Activity {
 
     public String getIMEI(Activity activity) {
         try {
-            TelephonyManager telephonyManager = (TelephonyManager) activity
-                    .getSystemService(Context.TELEPHONY_SERVICE);
-            return telephonyManager.getDeviceId();
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_PHONE_STATE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                TelephonyManager telephonyManager = (TelephonyManager) activity
+                        .getSystemService(Context.TELEPHONY_SERVICE);
+
+                return telephonyManager.getDeviceId();
+            } else {
+                return "";
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             return "";
         }
 
 
+    }
+
+    public void updateashaid() {
+        try {
+            String sqlancdataupdate = "", sqlTbl_HHFamilyMember = "", sqlTbl_HHSurvey = "", sqltblANCVisit = "", sqltblChild = "", sqltblPNChomevisit_ANS = "", sqltblPregnant_woman = "", sqltblFP_followup = "", sqltblFP_visit = "";
+            sqlTbl_HHFamilyMember = "update Tbl_HHFamilyMember set AshaID='" + global.getsGlobalAshaCode() + "',ANMID='" + global.getsGlobalANMCODE() + "' where CreatedBy='" + global.getsGlobalUserID() + "' and (AshaID is null or AshaID=0) ";
+            sqlTbl_HHSurvey = "update Tbl_HHSurvey set ServiceProviderID='" + global.getsGlobalAshaCode() + "',ANMID='" + global.getsGlobalANMCODE() + "' where CreatedBy='" + global.getsGlobalUserID() + "' and (ServiceProviderID is null or ServiceProviderID=0) ";
+            sqltblANCVisit = "update tblANCVisit set ByAshaID='" + global.getsGlobalAshaCode() + "',ByANMID='" + global.getsGlobalANMCODE() + "' where CreatedBy='" + global.getsGlobalUserID() + "' and (ByAshaID is null or ByAshaID=0) ";
+            sqltblChild = "update tblChild set AshaID='" + global.getsGlobalAshaCode() + "',ANMID='" + global.getsGlobalANMCODE() + "' where created_by='" + global.getsGlobalUserID() + "' and (AshaID is null or AshaID=0) ";
+            sqltblPregnant_woman = "update tblPregnant_woman set AshaID='" + global.getsGlobalAshaCode() + "',ANMID='" + global.getsGlobalANMCODE() + "' where CreatedBy='" + global.getsGlobalUserID() + "' and (AshaID is null or AshaID=0) ";
+            sqltblPNChomevisit_ANS = "update tblPNChomevisit_ANS set AshaID='" + global.getsGlobalAshaCode() + "',ANMID='" + global.getsGlobalANMCODE() + "' where CreatedBy='" + global.getsGlobalUserID() + "' and (AshaID is null or AshaID=0) ";
+            sqltblFP_followup = "update tblFP_followup set AshaID='" + global.getsGlobalAshaCode() + "',ANMID='" + global.getsGlobalANMCODE() + "' where CreatedBy='" + global.getsGlobalUserID() + "' and (AshaID is null or AshaID=0) ";
+            sqltblFP_visit = "update tblFP_visit set AshaID='" + global.getsGlobalAshaCode() + "',ANMID='" + global.getsGlobalANMCODE() + "' where CreatedBy='" + global.getsGlobalUserID() + "' and (AshaID is null or AshaID=0) ";
+            sqlancdataupdate = "update tblpregnant_woman set  ispregnant=0,IsEdited=1 where ispregnant=1 and PWGUID in (select tblpregnant_woman.PWGUID as PWGUID from tblpregnant_woman inner join tblchild on tblchild.pw_GUID=tblpregnant_woman.PWGUID where ispregnant=1)";
+            dataProvider.executeSql(sqlTbl_HHSurvey);
+            dataProvider.executeSql(sqlTbl_HHFamilyMember);
+            dataProvider.executeSql(sqltblPregnant_woman);
+            dataProvider.executeSql(sqltblANCVisit);
+            dataProvider.executeSql(sqltblChild);
+            dataProvider.executeSql(sqltblPNChomevisit_ANS);
+            dataProvider.executeSql(sqltblFP_visit);
+            dataProvider.executeSql(sqltblFP_followup);
+            dataProvider.executeSql(sqlancdataupdate);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
     }
 
 

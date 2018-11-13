@@ -1,0 +1,973 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+    <TableRow
+        style="@style/tbl_SimpleText"
+        android:background="@color/LightsyncYellow">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1" />
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/ChildReportHBNC" />
+
+        <TextView
+            android:id="@+id/tv_village"
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/sVillage" />
+
+        <Spinner
+            android:id="@+id/spinVillageName"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:imeOptions="actionNext"
+            android:inputType="textCapSentences"
+            android:maxLength="50" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".1" />
+    </TableRow>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/ll_jhhide"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1.6"
+                        android:gravity="center"
+                        android:text="@string/hbnc_visit_children_42_days"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    style="@style/tbl_SimpleText"
+                    android:background="@color/LightBlue">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical"
+                        android:text="@string/visit" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical"
+                        android:text="@string/Visit_Done" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical"
+                        android:text="@string/visit_not_done" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/zerodays" />
+
+
+                    <TextView
+                        android:id="@+id/tv_0dayschildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_0daysHBNC"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_0daysHBNCnot"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                </TableRow>
+
+                <TableRow
+                    style="@style/tbl_SimpleText"
+                    android:background="@color/LightBlue">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/threedays" />
+
+
+                    <TextView
+                        android:id="@+id/tv_3dayschildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_3daysHBNC"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_3daysHBNCnot"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                </TableRow>
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/sevendays" />
+
+
+                    <TextView
+                        android:id="@+id/tv_7dayschildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_7daysHBNC"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_7daysHBNCnot"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                </TableRow>
+
+                <TableRow
+                    style="@style/tbl_SimpleText"
+                    android:background="@color/LightBlue">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/fourteendays" />
+
+
+                    <TextView
+                        android:id="@+id/tv_14dayschildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_14daysHBNC"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_14daysHBNCnot"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                </TableRow>
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/twentyonedays" />
+
+
+                    <TextView
+                        android:id="@+id/tv_21dayschildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_21daysHBNC"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_21daysHBNCnot"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                </TableRow>
+
+                <TableRow
+                    style="@style/tbl_SimpleText"
+                    android:background="@color/LightBlue">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/twentyeightdays" />
+
+
+                    <TextView
+                        android:id="@+id/tv_28dayschildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_28daysHBNC"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_28daysHBNCnot"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                </TableRow>
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="@string/Fourteetwodays" />
+
+
+                    <TextView
+                        android:id="@+id/tv_42dayschildren"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_42daysHBNC"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_42daysHBNCnot"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                </TableRow>
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+
+
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1.6"
+                        android:gravity="center"
+                        android:text="@string/hbnc_visit_children_42_days_and_2yrs"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow
+                    style="@style/tbl_SimpleText"
+                    android:background="@color/LightBlue">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical"
+                        android:text="@string/visit" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical"
+                        android:text="@string/Children" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical"
+                        android:text="@string/Visit_Done" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical"
+                        android:text="@string/visit_done" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+                </TableRow>
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="1st" />
+
+
+                    <TextView
+                        android:id="@+id/tv_0dayschildren1"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_0daysHBNC1"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_0daysHBNCnot1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                </TableRow>
+
+                <TableRow
+                    style="@style/tbl_SimpleText"
+                    android:background="@color/LightBlue">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="2nd" />
+
+
+                    <TextView
+                        android:id="@+id/tv_3dayschildren2"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_3daysHBNC2"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_3daysHBNCnot2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                </TableRow>
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="3rd" />
+
+
+                    <TextView
+                        android:id="@+id/tv_7dayschildren3"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_7daysHBNC3"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_7daysHBNCnot3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                </TableRow>
+
+                <TableRow
+                    style="@style/tbl_SimpleText"
+                    android:background="@color/LightBlue">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="4th" />
+
+
+                    <TextView
+                        android:id="@+id/tv_14dayschildren4"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_14daysHBNC4"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_14daysHBNCnot4"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                </TableRow>
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="5th" />
+
+
+                    <TextView
+                        android:id="@+id/tv_21dayschildren5"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_21daysHBNC5"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_21daysHBNCnot5"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                </TableRow>
+
+                <TableRow
+                    style="@style/tbl_SimpleText"
+                    android:background="@color/LightBlue">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="6th" />
+
+
+                    <TextView
+                        android:id="@+id/tv_28dayschildren6"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_28daysHBNC6"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_28daysHBNCnot6"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                </TableRow>
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="7th" />
+
+
+                    <TextView
+                        android:id="@+id/tv_42dayschildren7"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_42daysHBNC7"
+                        style="@style/EditText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".8"
+                        android:gravity="center_vertical" />
+
+
+                    <TextView
+                        android:id="@+id/tv_42daysHBNCnot7"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.8"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".1" />
+
+                </TableRow>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

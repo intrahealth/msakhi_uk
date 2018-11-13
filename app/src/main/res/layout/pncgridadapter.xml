@@ -31,7 +31,14 @@
                 android:layout_weight="1"
                 android:background="@drawable/textbox"
                 android:textColor="#00688B" />
-
+            <ImageView
+                android:id="@+id/report"
+                style="@style/Textview"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/ancreport"
+                android:visibility="gone"/>
 
         </TableRow>
 
@@ -46,7 +53,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.8"
-                android:visibility="gone"></GridView>
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/tvGridhide"

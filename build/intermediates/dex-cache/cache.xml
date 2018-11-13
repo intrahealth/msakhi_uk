@@ -3,120 +3,813 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\libs\ksoap2-android-assembly-3.0.0-jar-with-dependencies.jar"
-        jumboMode="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-gass-12.0.1.aar\e01d725dbf435e81e6758156f810ea69\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
         optimize="true"
-        revision="25.0.2"
-        sha1="224c93f1824fa17b96db7250c2e5e2703d45e052">
-        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\2\ksoap2-android-assembly-3.0.0-jar-with-dependencies_e1c7505a1d23d863d8e2f8a0abc04269f818ab78\classes.dex" />
+        revision="26.0.2"
+        sha1="912098f1836f71ca32622260bb888d5aff5c05e4">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\66\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\libs\libGoogleAnalyticsV2.jar"
-        jumboMode="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\16080312495cddd731a0e5c67de78382\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
         optimize="true"
-        revision="25.0.2"
+        revision="26.0.2"
+        sha1="a37fc31c5ceeaa4532a37358add1b189d8db4af1">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\82af73a71797b86970ab486db9edabc4\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b739661c7142579d33f42801cfb71882cd217727">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\62\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\firebase-config-12.0.1.aar\07c26633077af2ac5a878ab678123c59\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="17416595f24a1bdf3137c973445003d95aeb2525">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\30\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\jitendra\2018\September\IntraHealth\app\libs\java-json.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="edad9c5de6fb8df07c535a47045956026011ffa3">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-fido-12.0.1.aar\ecfc00ac7decabebc548c5fc31bcf7ce\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6a6d51b8249cdc1bbf7908b7aae60612ff7eba2c">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\34\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\modules-2\files-2.1\android.arch.core\common\1.0.0\a2d487452376193fc8c103dd2b9bd5f2b1b44563\common-1.0.0.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a2d487452376193fc8c103dd2b9bd5f2b1b44563">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\134\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-ads-lite-12.0.1.aar\9fda159a545c5ec62cb735a2abf36901\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d03ab1939f3b9e97bbcbc2f2fa0ff14c77a6b0ac">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\21\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\ecde1b5766e7d929d87a537071d99452\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b4d6fbbb48b42dd03fd9c5a09b3b7a53266df6ed">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\19\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-wearable-12.0.1.aar\2bef76010eb6a5ea12c9c13d1b1a1d05\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3b4f6cc6ce5d50a6be2446e95453df67c775d9c2">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\53\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\jitendra\2018\September\IntraHealth\app\libs\libGoogleAnalyticsV2.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
         sha1="6c48a1a1621e55c66fa6a381642916385c9dd781">
-        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\2\libGoogleAnalyticsV2_54b493a812e45c44b1ea4318da4e6887889554e4\classes.dex" />
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\6\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-gcm-12.0.1.aar\51b25bc7f8ffe9ca04d85823edfffbda\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
         optimize="true"
-        revision="25.0.2"
-        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_b98aed7e273712d29d873d756fe729cfe8a37962\classes.dex" />
+        revision="26.0.2"
+        sha1="e3a3c8dc3e6db5655f5affc2ceb7f630f75450c0">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\38\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\libs\android-support-design.jar"
-        jumboMode="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\firebase-database-connection-12.0.1.aar\5f962f2af76ca1204414146d8bc12d45\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
         optimize="true"
-        revision="25.0.2"
-        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
-        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\2\android-support-design_18c02d0c99145dc343d8cda9fcdbc6d2d85ec8f9\classes.dex" />
+        revision="26.0.2"
+        sha1="071364c6fcb3772aef9209b9db621c61a0686197">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\57\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\libs\httpclient-4.2.5.jar"
-        jumboMode="true"
+        jar="C:\Users\Rakesh\.gradle\caches\modules-2\files-2.1\com.android.support.constraint\constraint-layout-solver\1.1.3\bde0667d7414c16ed62d3cfe993cff7f9d732373\constraint-layout-solver-1.1.3.jar"
+        jumboMode="false"
+        min-sdk-version="21"
         optimize="true"
-        revision="25.0.2"
-        sha1="666e26e76f2e87d84e4f16acb546481ae1b8e9a6">
-        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\2\httpclient-4.2.5_46a5acb7bf8ee9201534611a093383ab301ae62d\classes.dex" />
+        revision="26.0.2"
+        sha1="bde0667d7414c16ed62d3cfe993cff7f9d732373">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\81\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\multidex-1.0.3.aar\95162aae78806cc22491c41f7c9cef4e\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9068775bb0941e0fc1d4ff9adbf5d73475794955">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\14\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-vision-common-12.0.1.aar\dad37555aaec472450503500bedaf29a\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="1fddd828aa2365a453562d62b07da4a2d94a24ad">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\52\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\6b76f6e6f7568edc8f4d9dc5297ffc5f\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f97cf85b0fe70d37a705111dafa6b1b418ea1650">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\76\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\firebase-dynamic-links-12.0.1.aar\23f0a4ca6219aa1399ad1732fa1fac7c\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="765aed69cc8a835aa9bdd13f45b8dc903b75bce6">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\36\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-panorama-12.0.1.aar\2585454b968fbc931fa39834c2125332\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="401f6f004df936f5090d176d40928b4e7c110a49">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\48\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\firebase-appindexing-12.0.1.aar\ce795476173d15575c93113c0206fa30\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d0fa5c01bf02012d059c1c84a7458715f88876e8">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\39\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\firebase-auth-12.0.1.aar\d514fbf9cde2ccad8c752c4d97a8276d\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="54c67f87c9eb60be5eca37aa7d1a85f7651c4bc1">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\35\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\3b4dd90a104152d963f6d8bd885d15d8\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7efef32744ca4a436492d5cf28c08698cc2af256">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\74\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-tagmanager-12.0.1.aar\023f131c3504fdb43208bd98182e7c23\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="cbd757155b8f35f02926a7ed26115a3c78df583d">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\23\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-maps-12.0.1.aar\7c7c49367c7442aaf8a3036187de26e3\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="fc421b0511f4e492d097c84702b2a00f101fe08a">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\46\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-location-12.0.1.aar\285b47ac54a6569dffbde27f61208dc5\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="16f423bae182fd81553d109269f7a5e13fd1cb52">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\44\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-vision-12.0.1.aar\43b423b98afecba88699ec7a45612cd8\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="cc95ad466da44800955b79689023485ea39924a3">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\51\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-analytics-12.0.1.aar\f5e687ecc52091789b356964d80ec2e6\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="48782a67d19439b9d65699a389b96dd335cefa36">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\22\classes.dex" />
     </item>
     <item
         is-multidex="true"
         jar="C:\Users\Rakesh\.gradle\caches\modules-2\files-2.1\com.itextpdf.tool\xmlworker\5.5.11\9c943d762b71143823d83cfea65b4a42fa3a4889\xmlworker-5.5.11.jar"
-        jumboMode="true"
+        jumboMode="false"
+        min-sdk-version="21"
         optimize="true"
-        revision="25.0.2"
+        revision="26.0.2"
         sha1="9c943d762b71143823d83cfea65b4a42fa3a4889">
-        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\10\xmlworker-5.5.11_d2d2061f732443252231263628cce8ca4769faa5\classes.dex" />
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\16\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\libs\classes.jar"
-        jumboMode="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\d6a76e0f9877c9fa9b50ed669b6c9612\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
         optimize="true"
-        revision="25.0.2"
-        sha1="14d500eeb7128db6c0f9b55f166c42eacf00f3b6">
-        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\2\classes_2c62a1a59eb395b009b55be3c2c1c2f6ea9b9f88\classes.dex" />
+        revision="26.0.2"
+        sha1="233f60a165ae622c8b36731502ebbda0f65e1930">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\78\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\libs\cardview-v7-21.0.0.jar"
-        jumboMode="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-analytics-impl-12.0.1.aar\45914518a733781fa1da36010d639d0e\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
         optimize="true"
-        revision="25.0.2"
-        sha1="7d2525cba8ed61fff102977caed964fc22061e34">
-        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\2\cardview-v7-21.0.0_751924e8a46b0f0b8d42de8f54e5b5d3b09c7208\classes.dex" />
+        revision="26.0.2"
+        sha1="1b4f94fecd526ee8ab425e20cfe17695549beb01">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\25\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-identity-12.0.1.aar\89a82083a30d066955dc92f939554742\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="86877c708443b19ab64c91727bc9ab02c812a15c">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\41\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\f5c40f6ab87f67448592e6d0bb993f41\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d8ec04dc91c0c90a0ceeca77c94c8b15cb7f3892">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\65\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-basement-12.0.1.aar\f2c015a37c4332f93bf409cdb39bd1eb\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="22569eca3029ab00583c332a2be220cdbf091b35">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\68\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-fitness-12.0.1.aar\7150d7ad91c9989d2ecb1a9f2b5f5b82\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c05b622abb1e290bb30625a3f1a41e72ed9e4d2e">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\37\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-cast-12.0.1.aar\ca014b9c527c9cadf4da93348aff344c\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="1682c8c465ce1a4912cc0f29754360da068d479d">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\10\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-cast-framework-12.0.1.aar\3c3e8313d7a0746d321e353f4ae87532\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6f0fa9b3cef6fc28497a51d125037edb4922cef0">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\palette-v7-26.1.0.aar\1ecabe57d01b12ce0f828ff19858e0dc\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b614956bf77eb8201754ac10109e52c36691cb3f">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\77\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\5a16c29eec3b53dabfd513707336efd8\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b62fdc4cfef174c1e456014195c83fa7de7dc041">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\132\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-ads-12.0.1.aar\aa7c0c2b08728a1f3ae6131ebb140064\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="86d6aa538262141c7dcbc416da1aefad99accbe0">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\20\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-tagmanager-api-12.0.1.aar\a4592a81fc9057653aeb62c7b2fa2263\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="71079fde2d8a466aa77ddd0825892f445c983a98">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\59\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\677148620286e5015588132fff89b4c3\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6f4138a4e065826cb044d49faea4cfd7191773d1">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\73\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\b84d8b785cb9672c46f080c5c929010e\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="508f50705b4fde51a16259f29c854201a3044516">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\75\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-wallet-12.0.1.aar\2d84b620c97943e497596178abcc74a4\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5388b3a068be4420a7a13fde1cfbf034110415e8">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\40\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-iid-12.0.1.aar\ab126b90dac25c718bd7899586df16cb\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b49a35edc3c04e5394bb287a7281d097a12968a7">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\42\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\b8f0b80c088038e70cff2e961cb6b5e0\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f428e2fbc9ed0b297e3a3f420e51e6982f66822d">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\12\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\0b162685251936f3bf99b4d5396116a2\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="43777ad2c3f87b64ced35a875ce2befa178a23da">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\61\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\firebase-database-12.0.1.aar\c9d5dc544663c00ebccaa5ab83316da3\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="410ecd974ba7008f743e611ea7fe749321517231">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\56\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\2dff874b0c71d121300d32eb852fe82a\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\70\classes.dex" />
     </item>
     <item
         is-multidex="true"
         jar="C:\Users\Rakesh\.gradle\caches\modules-2\files-2.1\com.itextpdf\itextpdf\5.5.11\4c66347f10e9dbf062a086e1223a0d0a9eeb3677\itextpdf-5.5.11.jar"
-        jumboMode="true"
+        jumboMode="false"
+        min-sdk-version="21"
         optimize="true"
-        revision="25.0.2"
+        revision="26.0.2"
         sha1="4c66347f10e9dbf062a086e1223a0d0a9eeb3677">
-        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\10\itextpdf-5.5.11_edcb8741f1ee104de7b1093ef279b3640fafdda8\classes.dex" />
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\15\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\libs\httpcore-4.2.3.jar"
-        jumboMode="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\6ec1de6f398c971d6ae8ef6f3c9234d7\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
         optimize="true"
-        revision="25.0.2"
+        revision="26.0.2"
+        sha1="b15c6ded887ad967e20bb335c1a121b253c04dce">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\71\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\jitendra\2018\September\IntraHealth\app\libs\httpclient-4.2.5.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="666e26e76f2e87d84e4f16acb546481ae1b8e9a6">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\modules-2\files-2.1\android.arch.lifecycle\common\1.0.0\e414a4cb28434e25c4f6aa71426eb20cf4874ae9\common-1.0.0.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e414a4cb28434e25c4f6aa71426eb20cf4874ae9">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\133\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\firebase-storage-12.0.1.aar\43782d11875871f04a7b9b2dba367b5f\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b01381b98fecbc99b2b6856c2cef4594ce4b37e8">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\63\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-places-12.0.1.aar\340a66a1faf231f3f6ba2bf9e340aadc\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="df641c4628b6ce1f79624504a0aa8f07180cab0c">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\45\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\firebase-messaging-12.0.1.aar\26c9dc31dd696e6162b0d65b016d4098\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e1086213a85bf2bfc3f6448d66581198ba380f69">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\58\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\firebase-crash-12.0.1.aar\8625ec5c0bd61fa453649de7825aaecb\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="79272e6855744c8c7b262796e63b16f85c9391ee">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\55\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-appinvite-12.0.1.aar\6e1e8a1b5a8dd03ec44e0978da4a6f34\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="1de13aa2352b6b9c32ad14c5bbb2ea772d2c6b3c">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\26\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\5426f424a837b89d0faf7177fa0e6c66\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="40392f30a601db5675cdf18192aab013d6fee6ec">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\72\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-plus-12.0.1.aar\476ca61fae6c73c5a29f4b3335e92784\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e8a71b32591318007ac809940bbcd57f2de5516e">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\49\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-safetynet-12.0.1.aar\3a882bb400688647e21fb8a5b7af1577\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f6e1653c30909598077670f5f144d5c04b916bc9">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\50\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\mediarouter-v7-26.1.0.aar\689a1f78d2b8d1bd42cb7e9d1fa58082\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="71d9511059af6ec9b85408f8f0e16ec0f439185e">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\11\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\firebase-storage-common-12.0.1.aar\4ba214ce88eeb16300bb2f399297a4ee\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="66c2e87b6c3fc49891d1d0c05474a159390b0373">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\64\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\56fd9cf697b16bc8e69bf9d41b30965e\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b12cd9c87c3dfb012a911b6e38d2444ed0a65e1f">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\18\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-awareness-12.0.1.aar\2ef93a136cbbd29d9a5f654e685a56f2\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9e6b8e8482fc919595c625c1484a8cd5206e5af9">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\31\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-nearby-12.0.1.aar\4d5860d289b59005537078e53a3adf23\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="867dd4ee2677d4263337745473eb46e2e7e890e5">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\47\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\581b64c843b6351fd9560f708ea51a1a\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2442771a5590dd4eb4bce00c2e9dca9e22e4c963">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\79\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-base-12.0.1.aar\88628546d0d737ca9d9857bc3f97cd97\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ed8395f343c428cd55c60499f04323083f4ef0db">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\54\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-auth-api-phone-12.0.1.aar\eed5880059a05cd4d6bd22baddb8994e\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="63762d99e25ebfd92f60558dcef8aef334cc6dd3">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\28\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-tasks-12.0.1.aar\8ec07c5f2d57eadc725dbca0cbe6083b\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a38a8974c8d066800237d22a86df2e88cb9e065c">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\67\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-tagmanager-v4-impl-12.0.1.aar\a7a7f85cb3710c6bee8c8a3ff78377fa\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="031cce39c6f4028380fa55bf57e96444093630c7">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\24\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\99fdebcdb5c8ccb0ddc75fa3d6e71b80\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="58b12bdb21a84f22e0dc3b047aeceb0a546b1b44">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\69\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\modules-2\files-2.1\com.android.support\support-annotations\26.1.0\814258103cf26a15fcc26ecce35f5b7d24b73f8\support-annotations-26.1.0.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0814258103cf26a15fcc26ecce35f5b7d24b73f8">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\80\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\98877db247ebde6b97c0b5ecec23129b\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4c9dde3866f60967d73035b3445bb0f703429612">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\60\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\jitendra\2018\September\IntraHealth\app\libs\httpcore-4.2.3.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
         sha1="5e92ec56abe188b865642a14e1a037c1253fc42e">
-        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\2\httpcore-4.2.3_5b7c384bdc82b6b9847c576326fd7bd07a7db516\classes.dex" />
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\2\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Rakesh\.android\build-cache\de7fbe6d3d80b080d7dc2611e4ca1b4a071ab767\output\jars\classes.jar"
-        jumboMode="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-auth-12.0.1.aar\dbebb71d9e4ee98e44a658ad6e53e11f\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
         optimize="true"
-        revision="25.0.2"
-        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
-        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2c65b8d0dc69307b0f1f268a0c13fed95c43632c\classes.dex" />
+        revision="26.0.2"
+        sha1="5824717818f7ac8bd17b200b1b182c0313740c60">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\27\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\libs\java-json.jar"
-        jumboMode="true"
+        jar="C:\Users\Rakesh\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.8.0\c4ba5371a29ac9b2ad6129b1d39ea38750043eff\gson-2.8.0.jar"
+        jumboMode="false"
+        min-sdk-version="21"
         optimize="true"
-        revision="25.0.2"
-        sha1="edad9c5de6fb8df07c535a47045956026011ffa3">
-        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\2\java-json_2938350a1e72d0609e15ac1dd5364acf974c8368\classes.dex" />
+        revision="26.0.2"
+        sha1="c4ba5371a29ac9b2ad6129b1d39ea38750043eff">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\13\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-auth-base-12.0.1.aar\4b9f54ec31d0480618a228ee20d7faaa\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
         optimize="true"
-        revision="25.0.2"
-        sha1="c2d8d0ffd05293461f566f8e6c23195300876649">
-        <dex dex="C:\Users\Rakesh\StudioProjects\IntraHealth\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_c63ff6a2be69304b3d0e58b80d502aa90ebfda2d\classes.dex" />
+        revision="26.0.2"
+        sha1="ba42e6949397668e88ea3d2b188078ddf0143813">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\29\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-games-12.0.1.aar\6df2199edbc291a4fb84933b3e553fa5\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2e486eee01646dae4dd0e63e1318a986496311eb">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\32\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-drive-12.0.1.aar\4f46fea57195a7eb6428ea8d4b959039\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ae7f19b2051f18df4d86ab3ffad2e4e4d15838c3">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\33\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\transforms-1\files-1.1\play-services-instantapps-12.0.1.aar\47edb7f961277637bd44a15b2134e129\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5e06d434af7b23e02dc14ec9cb90beb3489a2231">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\43\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rakesh\.gradle\caches\modules-2\files-2.1\org.jsoup\jsoup\1.10.3\b842f960942503cf1abbcc8c173a7f2c19d43726\jsoup-1.10.3.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b842f960942503cf1abbcc8c173a7f2c19d43726">
+        <dex dex="E:\jitendra\2018\September\IntraHealth\app\build\intermediates\transforms\preDex\release\17\classes.dex" />
     </item>
 
 </items>

@@ -89,7 +89,7 @@ public class NCD_ScreeningAdapter extends BaseAdapter {
             LayoutInflater layoutInflater = (LayoutInflater) context
                     .getSystemService(context.LAYOUT_INFLATER_SERVICE);
             gridview = new View(context);
-            gridview = layoutInflater.inflate(R.layout.ncd_adapter, null);
+            gridview = layoutInflater.inflate(R.layout.ncd_screeningadapter, null);
         } else {
             gridview = convertView;
         }

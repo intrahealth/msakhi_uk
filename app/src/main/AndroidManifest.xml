@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.microware.intrahealth"
-    android:versionCode="31"
-    android:versionName="6.1.2">
+    android:versionCode="39"
+    android:versionName="6.1.8">
 
     <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="25" />
+        android:minSdkVersion="21"
+        android:targetSdkVersion="27" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.READ_PHONE_STATE"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.ACCESS_NETWORK_STATE"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.INTERNET"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.WRITE_EXTERNAL_STORAGE"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.ACCESS_FINE_LOCATION"
+        android:required="false" />
 
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -22,19 +41,23 @@
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
+    <meta-data android:name="com.google.android.gms.version" />
+    <meta-data
+        android:name="com.google.android.gms.analytics.globalConfigResource"
+        android:resource="@xml/global_tracker" />
+
     <application
-        android:name="com.microware.intrahealth.Global"
+        android:name=".Global"
         android:allowBackup="true"
         android:icon="@drawable/msakhi_logo"
         android:label="@string/app_name"
         android:largeHeap="true"
-
         android:theme="@style/MyTheme">
         <service
-            android:name="com.microware.intrahealth.ConnectionService"
+            android:name=".ConnectionService"
             android:enabled="true" />
 
-        <receiver android:name="com.microware.intrahealth.ReceiverPositioningAlarm">
+        <receiver android:name=".ReceiverPositioningAlarm">
 
             <!-- this Broadcast Receiver only listens to the following intent -->
             <!--
@@ -45,7 +68,7 @@
         </receiver>
 
         <activity
-            android:name="com.microware.intrahealth.Login"
+            android:name=".Login"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden">
@@ -56,293 +79,425 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.microware.intrahealth.Delivery"
+            android:name=".Delivery"
             android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.microware.intrahealth.ImunizationChildList"
+            android:name=".ImunizationChildList"
             android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.microware.intrahealth.ListViewActivity"
+            android:name=".ListViewActivity"
             android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.microware.intrahealth.Immunization_Entry"
+            android:name=".Immunization_Entry"
             android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.microware.intrahealth.Dashboard_Activity"
+            android:name=".Dashboard_Activity"
             android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTheme1" />
         <activity
-            android:name="com.microware.intrahealth.Deathform"
+            android:name=".Deathform"
             android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.microware.intrahealth.MigrationForm"
+            android:name=".MigrationForm"
             android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.microware.intrahealth.Synchronization"
+            android:name=".Synchronization"
             android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AncQuestionActivity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Report_Module"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Reportindicator_Hnbclist"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ReportIndicator_anmList"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ReportIndicatorListHH"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ReportIndicator_ashaList"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Reportindicator_anmHnbclist"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AshaDashboardList"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ReportIndicator_anmListHH"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AshaListForAnm"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AshaDashboardListHH"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AshaDashboardListHnbc"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FamilyDetails"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Survey_Activity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Intrahealth_Tab_Activity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PncWomenList"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".homevisitanc1"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".homevisitanc2"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".homevisitanc4"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".homevisit3"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MCH_Dashboard"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AncActivity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".HomeVisitPnc"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".childActivity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Anc"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PregnantWomen"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PregWomenList"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newbornGrid"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ImmunizationQuestionActivity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".WomenListHH"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NewChildActivity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HomeVisit"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".HomeVisitDashboard"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ImmunizationCounselling"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ImmunizationDashboard"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FP_AA"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".FP_MemberVisit"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FP_Follwup"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Anc_duelist"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AncVisit_List"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Incentives"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VHND"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VHND_Record"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VHND_Performance"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VHND_DueList"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VHND_DueList_Report"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VHND_DateRecord"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VHND_DueList_new"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VHND_Report"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MigrationSelf"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NCD_AA"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".NcdScreening"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".NCDFollowUp"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".NCD_Report"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Anm_NCD_Report"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Ncd_Cbac"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".VHND_ANC"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".VHND_Immunizatiom"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".UserDetail"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".AshaListForCHC"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".NcdScreeningCHC"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".NCD_CHC_AA"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".DirectSearch"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PdfReport"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Immunization_DueList"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".AncReport_DueList"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ReportashaHnbclist"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Reportashaimmunizationlist"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".HbncReport"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".CRVSReportASHA"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ReportanmHnbclist"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Reportanmimmunizationlist"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Incentive.AnmashaReport_Activity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Incentive.Anmreport_AA_Activity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Incentive.AnmReport_Activity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Incentive.AnmReport_BB_Activity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Incentive.AshaData"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Incentive.Incentive_Tab_Activity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".AF.AFAncActivity"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".AF.AFHomeVisit"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".AF.AFImmunizationCounselling"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".AF.AFImunizationChildList"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".AF.AFnewbornGrid"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".AF.AFPncWomenList"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".AFAshaList"
+            android:label="@string/app_name1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
 
-        <activity
-            android:name="com.microware.intrahealth.AncQuestionActivity"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.Report_Module"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.Reportindicator_Hnbclist"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.ReportIndicator_anmList"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.ReportIndicatorListHH"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.ReportIndicator_ashaList"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.Reportindicator_anmHnbclist"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.AshaDashboardList"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.ReportIndicator_anmListHH"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.AshaListForAnm"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.AshaDashboardListHH"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.AshaDashboardListHnbc"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.FamilyDetails"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-
-        <activity
-            android:name="com.microware.intrahealth.Survey_Activity"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity
-            android:name="com.microware.intrahealth.Intrahealth_Tab_Activity"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity
-            android:name="com.microware.intrahealth.PncWomenList"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity
-            android:name="com.microware.intrahealth.homevisitanc1"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.homevisitanc2"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.homevisitanc4"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.homevisit3"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.MCH_Dashboard"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.AncActivity"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity
-            android:name="com.microware.intrahealth.HomeVisitPnc"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.childActivity"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-
-        <activity
-            android:name="com.microware.intrahealth.Anc"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.PregnantWomen"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity
-            android:name="com.microware.intrahealth.PregWomenList"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.newbornGrid"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.ImmunizationQuestionActivity"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.WomenListHH"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.NewChildActivity"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.HomeVisit"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"></activity>
-
-        <activity
-            android:name="com.microware.intrahealth.HomeVisitDashboard"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.ImmunizationCounselling"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.ImmunizationDashboard"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.FP_AA"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity
-            android:name="com.microware.intrahealth.FP_MemberVisit"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.FP_Follwup"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.Anc_duelist"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.AncVisit_List"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.Incentives"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.VHND"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.VHND_Record"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.VHND_Performance"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.VHND_DueList"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.VHND_DueList_Report"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.VHND_DateRecord"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.VHND_DueList_new"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.VHND_Report"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.MigrationSelf"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.microware.intrahealth.NCD_AA"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity
-            android:name="com.microware.intrahealth.NcdScreening"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity
-            android:name="com.microware.intrahealth.NCDFollowUp"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity
-            android:name="com.microware.intrahealth.NCD_Report"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity
-            android:name="com.microware.intrahealth.Anm_NCD_Report"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity
-            android:name="com.microware.intrahealth.Ncd_Cbac"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity
-            android:name="com.microware.intrahealth.VHND_ANC"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity
-            android:name="com.microware.intrahealth.VHND_Immunizatiom"
-            android:label="@string/app_name1"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"></activity>
     </application>
-
-    <meta-data android:name="com.google.android.gms.version" />
-    <meta-data
-        android:name="com.google.android.gms.analytics.globalConfigResource"
-        android:resource="@xml/global_tracker" />
 
 </manifest>

@@ -93,7 +93,7 @@ public class PregWomenList extends Activity {
         int ashacode = 0;
         if (global.getsGlobalAshaCode() != null
                 && global.getsGlobalAshaCode().length() > 0) {
-            ashacode = Integer.valueOf(global.getsGlobalAshaCode());
+            ashacode = Validate.returnIntegerValue(global.getsGlobalAshaCode());
         }
         record = dataprovider.getAllWomenName("", 0, ashacode);
         if (record != null) {
@@ -130,7 +130,7 @@ public class PregWomenList extends Activity {
         int ashacode = 0;
         if (global.getsGlobalAshaCode() != null
                 && global.getsGlobalAshaCode().length() > 0) {
-            ashacode = Integer.valueOf(global.getsGlobalAshaCode());
+            ashacode = Validate.returnIntegerValue(global.getsGlobalAshaCode());
         }
         record = dataprovider.getAllWomenName(name, 4, ashacode);
 

@@ -202,17 +202,17 @@ public class FP_User extends Fragment {
     }
 
     public void count() {
-        String sql = "select count(*) from tblFP_followup where methodadopted=1  and uid in(select max(uid) from tblFP_followup group by womenname_guid)";
-        String sql1 = "select count(*) from tblFP_followup where methodadopted=2  and uid in(select max(uid) from tblFP_followup group by womenname_guid)";
-        String sql2 = "select count(*) from tblFP_followup where methodadopted=6  and uid in(select max(uid) from tblFP_followup group by womenname_guid)";
-        String sql3 = "select count(*) from tblFP_followup where methodadopted=4  and uid in(select max(uid) from tblFP_followup group by womenname_guid)";
-        String sql4 = "select count(*) from tblFP_followup where methodadopted=5  and uid in(select max(uid) from tblFP_followup group by womenname_guid)";
-        String sql5 = "select count(*) from tblFP_followup where methodadopted=7  and uid in(select max(uid) from tblFP_followup group by womenname_guid)";
-        String sql6 = "select count(*) from tblFP_followup where methodadopted=9  and uid in(select max(uid) from tblFP_followup group by womenname_guid)";
-        String sql41 = "select count(distinct(womenname_guid)) from tblFP_visit where q61=1 and womenname_guid not in(select distinct(womenname_guid) from tblFP_followup)";
+        String sql = "select count(*) from tblFP_followup where AshaID='"+global.getsGlobalAshaCode()+"' and methodadopted=1  and uid in(select max(uid) from tblFP_followup group by womenname_guid)";
+        String sql1 = "select count(*) from tblFP_followup where AshaID='"+global.getsGlobalAshaCode()+"' and methodadopted=2  and uid in(select max(uid) from tblFP_followup group by womenname_guid)";
+        String sql2 = "select count(*) from tblFP_followup where AshaID='"+global.getsGlobalAshaCode()+"' and methodadopted=6  and uid in(select max(uid) from tblFP_followup group by womenname_guid)";
+        String sql3 = "select count(*) from tblFP_followup where AshaID='"+global.getsGlobalAshaCode()+"' and methodadopted=4  and uid in(select max(uid) from tblFP_followup group by womenname_guid)";
+        String sql4 = "select count(*) from tblFP_followup where AshaID='"+global.getsGlobalAshaCode()+"' and methodadopted=5  and uid in(select max(uid) from tblFP_followup group by womenname_guid)";
+        String sql5 = "select count(*) from tblFP_followup where AshaID='"+global.getsGlobalAshaCode()+"' and methodadopted=7  and uid in(select max(uid) from tblFP_followup group by womenname_guid)";
+        String sql6 = "select count(*) from tblFP_followup where AshaID='"+global.getsGlobalAshaCode()+"' and methodadopted=9  and uid in(select max(uid) from tblFP_followup group by womenname_guid)";
+        String sql41 = "select count(distinct(womenname_guid)) from tblFP_visit where AshaID='"+global.getsGlobalAshaCode()+"' and  q61=1 and womenname_guid not in(select distinct(womenname_guid) from tblFP_followup)";
 
-        String sql51 = "select count(distinct(womenname_guid)) from tblFP_visit where q61=2 and womenname_guid not in(select distinct(womenname_guid) from tblFP_followup)";
-        String sql61 = "select count(distinct(womenname_guid)) from tblFP_visit where q61=3 and womenname_guid not in(select distinct(womenname_guid) from tblFP_followup )";
+        String sql51 = "select count(distinct(womenname_guid)) from tblFP_visit where  AshaID='"+global.getsGlobalAshaCode()+"' and q61=2 and womenname_guid not in(select distinct(womenname_guid) from tblFP_followup)";
+        String sql61 = "select count(distinct(womenname_guid)) from tblFP_visit where  AshaID='"+global.getsGlobalAshaCode()+"' and q61=3 and womenname_guid not in(select distinct(womenname_guid) from tblFP_followup )";
         cocount = dataProvider.getMaxRecord(sql);
         occount = dataProvider.getMaxRecord(sql1);
         eccount = dataProvider.getMaxRecord(sql2);

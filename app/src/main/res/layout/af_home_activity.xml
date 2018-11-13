@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:keepScreenOn="true"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_pagename"
+        style="@style/SimpleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="10dp"
+        android:text=""
+        android:textColor="@color/orangedark"
+        android:textSize="22dp" />
+
+    <TableRow
+        android:id="@+id/tbl_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp">
+
+
+        <TextView
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/sVillage" />
+
+        <Spinner
+            android:id="@+id/spinVillageName"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:imeOptions="actionNext"
+            android:inputType="textCapSentences"
+            android:maxLength="50" />
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp">
+
+
+        <EditText
+            android:id="@+id/etFamilyIDSearch"
+            style="@style/SimpleText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.2"
+            android:gravity="center_vertical"
+            android:hint="@string/women_name"
+            android:inputType="text"
+            android:maxLength="50" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".03" />
+
+        <Button
+            android:id="@+id/btnsearchFilter"
+            style="@style/ButtonText"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/search_icon" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".45" />
+
+        <ImageView
+            android:id="@+id/Img_info"
+            style="@style/ButtonText"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/information"
+            android:visibility="gone" />
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/ltvWomenName"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:background="@drawable/textsheet"
+            android:text="@string/pwname"
+            android:textColor="@color/White" />
+
+        <TextView
+            android:id="@+id/tv_stat"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.05"
+            android:background="@drawable/textsheet"
+            android:visibility="gone" />
+    </TableRow>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:orientation="vertical">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+            <GridView
+                android:id="@+id/gridanc"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/White"></GridView>
+        </TableRow>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/totalcount"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:background="@color/SkyBlue"
+            android:gravity="center"
+            android:textColor="@color/White" />
+    </LinearLayout>
+
+</LinearLayout>

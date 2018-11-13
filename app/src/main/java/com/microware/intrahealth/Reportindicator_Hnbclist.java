@@ -14,6 +14,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
@@ -39,13 +41,14 @@ public class Reportindicator_Hnbclist extends Activity {
     Spinner spinVillageName;
     ArrayList<MstVillage> Village = new ArrayList<MstVillage>();
     ArrayAdapter<String> adapter;
-
+Validate validate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.report_indicatore_hnbclist);
         dataprovider = new DataProvider(this);
+        validate = new Validate(this);
 
         global = (Global) getApplication();
         setTitle(global.getVersionName());
@@ -651,7 +654,37 @@ public class Reportindicator_Hnbclist extends Activity {
 
 
     }
+    public boolean onCreateOptionsMenu(Menu menu) {
 
+        menu.add(0, 0, 1, validate.RetriveSharepreferenceString("name")).setShowAsAction(
+                MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
+
+        return true;
+    }
+
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getOrder()) {
+
+            case 1:
+                if (item.getTitle().equals(validate.RetriveSharepreferenceString("Username"))) {
+                    item.setTitle(validate.RetriveSharepreferenceString("name"));
+
+                } else {
+                    item.setTitle(validate.RetriveSharepreferenceString("Username"));
+
+                }
+                break;
+
+
+            default:
+                break;
+        }
+
+        return true;
+    }
     public int countAllchild(int day, int ashaid) {
         String Sql11child = "";
         Sql11child = "select  count(*) from tblChild   inner join Tbl_HHSurvey on tblChild.HHGUID=Tbl_HHSurvey.HHSurveyGUID  where cast(round(julianday('Now')-julianday(tblChild.CHILD_dob) ) as int)>=" + day + " and   tblChild.AshaID = " + ashaid + "";

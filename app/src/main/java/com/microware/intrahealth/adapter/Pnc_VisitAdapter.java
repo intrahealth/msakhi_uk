@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 import android.annotation.SuppressLint;
@@ -111,6 +112,22 @@ public class Pnc_VisitAdapter extends BaseAdapter {
         Date d2 = null;
 
         try {
+//            ArrayList<HashMap<String, String>> data = null;
+//            String sql = "";
+//            sql = "Select max(VisitNo) as VisitNo,Q_0 from tblPNChomevisit_ANS where ChildGUID='" + childguid + "' and (Q_0 is not null and Q_0!='')";
+//            data = dataProvider.getDynamicVal(sql);
+//            if (position < Validate.returnIntegerValue(data.get(0).get("VisitNo"))) {
+//                imageedit.setEnabled(false);
+//                tvlastvisit.setBackgroundResource(R.drawable.childgraysheet);
+//            } else if (Validate.returnIntegerValue(data.get(0).get("VisitNo")) == 0 && data.get(0).get("Q_0").length() > 0) {
+//                imageedit.setEnabled(false);
+//                tvlastvisit.setBackgroundResource(R.drawable.childgraysheet);
+//            } else if (Validate.returnIntegerValue(data.get(0).get("VisitNo")) == position+1 && data.get(0).get("Q_0").length() > 0) {
+//                imageedit.setEnabled(false);
+//                tvlastvisit.setBackgroundResource(R.drawable.childgraysheet);
+//            }else{
+//                tvlastvisit.setBackgroundResource(R.drawable.whitesheet);
+//            }
             d1 = dateFormat.parse(dob);
             d2 = dateFormat.parse(datenew);
 
@@ -131,7 +148,7 @@ public class Pnc_VisitAdapter extends BaseAdapter {
 
                 }
             } else if (position == 1) {
-                if (diffDays >= 2 && diffDays <= 3) {
+                if (diffDays >= 2 && diffDays <= 5) {
                     imageedit.setEnabled(true);
                 } else {
                     imageedit.setEnabled(false);
@@ -139,7 +156,7 @@ public class Pnc_VisitAdapter extends BaseAdapter {
                             .getColor(R.color.WhiteSmoke));
                 }
             } else if (position == 2) {
-                if (diffDays >= 6 && diffDays <= 7) {
+                if (diffDays >= 6 && diffDays <= 12) {
                     imageedit.setEnabled(true);
                 } else {
                     imageedit.setEnabled(false);
@@ -147,7 +164,7 @@ public class Pnc_VisitAdapter extends BaseAdapter {
                             .getColor(R.color.WhiteSmoke));
                 }
             } else if (position == 3) {
-                if (diffDays >= 13 && diffDays <= 14) {
+                if (diffDays >= 13 && diffDays <= 19) {
                     imageedit.setEnabled(true);
                 } else {
                     imageedit.setEnabled(false);
@@ -155,7 +172,7 @@ public class Pnc_VisitAdapter extends BaseAdapter {
                             .getColor(R.color.WhiteSmoke));
                 }
             } else if (position == 4) {
-                if (diffDays >= 20 && diffDays <= 21) {
+                if (diffDays >= 20 && diffDays <= 26) {
                     imageedit.setEnabled(true);
                 } else {
                     imageedit.setEnabled(false);
@@ -163,7 +180,7 @@ public class Pnc_VisitAdapter extends BaseAdapter {
                             .getColor(R.color.WhiteSmoke));
                 }
             } else if (position == 5) {
-                if (diffDays >= 27 && diffDays <= 28) {
+                if (diffDays >= 27 && diffDays <= 40) {
                     imageedit.setEnabled(true);
                 } else {
                     imageedit.setEnabled(false);
@@ -189,6 +206,7 @@ public class Pnc_VisitAdapter extends BaseAdapter {
 
                     tvlastvisit.setText(Validate.changeDateFormat(child.get(0).getChild_dob()));
                     imageedit.setEnabled(false);
+                    tvlastvisit.setBackgroundResource(R.drawable.childgraysheet);
                 }
             }
         }

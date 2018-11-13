@@ -4,8 +4,45 @@
     android:layout_height="match_parent"
     android:background="@color/White"
     android:orientation="vertical">
+<!--
+    <LinearLayout
+        android:id="@+id/llVerification"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/Pink"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnNotverified"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.4"
+            android:background="@color/buttonorange"
+            android:text="@string/not_verified" />
+
+        <Button
+            android:id="@+id/btnVerifiedOk"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.4"
+            android:background="@color/lightgray"
+            android:text="@string/verified_ok" />
+
+        <Button
+            android:id="@+id/btnVerifiedNotOk"
+            style="@style/ButtonText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.4"
+            android:background="@color/lightgray"
+            android:text="@string/verified_not_ok" />
+    </LinearLayout>
+-->
 
     <LinearLayout
+        android:id="@+id/llSave"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginTop="5dp"

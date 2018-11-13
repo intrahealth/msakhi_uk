@@ -14,6 +14,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -25,7 +27,7 @@ import android.widget.TextView;
 
 public class ReportIndicator_anmList extends Activity {
 
-    TextView tvCurrentlypregnant, tvinfirsttrimester, tvinsecondtrimester, tvinthirdtrimester, tv1stAnc, tv2ndAnc, tv3rdAnc, tv4rthAnc, tvTT2Boster, tvHRP;
+    TextView tvCurrentlypregnant, tvinfirsttrimester, tvinsecondtrimester, tvinthirdtrimester, tv1stAnc, tv2ndAnc, tv3rdAnc, tv4rthAnc, tvTT2Boster, tvHRP, tv_9month;
 
     Button btndetails;
     Global global;
@@ -34,13 +36,14 @@ public class ReportIndicator_anmList extends Activity {
     ArrayList<MstVillage> Village = new ArrayList<MstVillage>();
     ArrayAdapter<String> adapter;
     int anmid = 0, VillageID = 0;
-
+Validate validate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reportindicator_anm_list);
         dataprovider = new DataProvider(this);
+        validate = new Validate(this);
 
         global = (Global) getApplication();
         setTitle(global.getVersionName());
@@ -55,6 +58,7 @@ public class ReportIndicator_anmList extends Activity {
         tv4rthAnc = (TextView) findViewById(R.id.tv4rthAnc);
         tvTT2Boster = (TextView) findViewById(R.id.tvTT2Boster);
         tvHRP = (TextView) findViewById(R.id.tvHRP);
+        tv_9month = (TextView) findViewById(R.id.tv_9month);
 
         btndetails = (Button) findViewById(R.id.btndetails);
 
@@ -73,7 +77,7 @@ public class ReportIndicator_anmList extends Activity {
 
         if (global.getsGlobalANMCODE() != null
                 && global.getsGlobalANMCODE().length() > 0) {
-            anmid = Integer.valueOf(global.getsGlobalANMCODE());
+            anmid = Validate.returnIntegerValue(global.getsGlobalANMCODE());
         }
 
 //        radio1Month.setChecked(true);
@@ -105,7 +109,9 @@ public class ReportIndicator_anmList extends Activity {
 
             }
         });
+        showAlldata();
     }
+
     public void showdata(int VillageId) {
         String sql1 = "";
         sql1 = "select  count(*) from tblPregnant_woman  inner join Tbl_HHSurvey on tblPregnant_woman.HHGUID=Tbl_HHSurvey.HHSurveyGUID   where IsPregnant=1 and Tbl_HHSurvey.VillageID=" + VillageId + " and tblPregnant_woman.ANMID ="
@@ -124,7 +130,7 @@ public class ReportIndicator_anmList extends Activity {
         String sql3 = "";
         sql3 = "select  count(*) from tblPregnant_woman  inner join Tbl_HHSurvey on tblPregnant_woman.HHGUID=Tbl_HHSurvey.HHSurveyGUID   where cast(round(julianday('Now')-julianday(tblPregnant_woman.LMPDate) ) as int)<=180 and IsPregnant=1 and Tbl_HHSurvey.VillageID=" + VillageId + " and tblPregnant_woman.ANMID ="
                 + anmid
-                +"";
+                + "";
         int ivalue3 = 0;
         ivalue3 = dataprovider.getMaxRecord(sql3);
         tvinsecondtrimester.setText(String.valueOf(ivalue3));
@@ -135,6 +141,13 @@ public class ReportIndicator_anmList extends Activity {
         int ivalue4 = 0;
         ivalue4 = dataprovider.getMaxRecord(sql4);
         tvinthirdtrimester.setText(String.valueOf(ivalue4));
+        String sql49month = "";
+        sql49month = "select  count(*) from tblPregnant_woman  inner join Tbl_HHSurvey on tblPregnant_woman.HHGUID=Tbl_HHSurvey.HHSurveyGUID   where cast(round(julianday('Now')-julianday(tblPregnant_woman.LMPDate) ) as int) > 270 and IsPregnant=1 and Tbl_HHSurvey.VillageID=" + VillageId + " and tblPregnant_woman.ANMID  ="
+                + anmid
+                + "";
+        int ivalue49month = 0;
+        ivalue49month = dataprovider.getMaxRecord(sql49month);
+        tv_9month.setText(String.valueOf(ivalue49month));
         String sql5 = "";
         sql5 = "select  count(*) from tblPregnant_woman  inner join Tbl_HHSurvey on tblPregnant_woman.HHGUID=Tbl_HHSurvey.HHSurveyGUID  inner join tblancvisit  on  tblancvisit.PWGUID =tblPregnant_woman.PWGUID where tblancvisit.Visit_No=1 and tblancvisit.CheckupVisitDate is not null and tblancvisit.CheckupVisitDate!=''  and IsPregnant=1 and Tbl_HHSurvey.VillageID=" + VillageId + " and tblPregnant_woman.ANMID ="
                 + anmid
@@ -166,21 +179,21 @@ public class ReportIndicator_anmList extends Activity {
         String sql9 = "";
         sql9 = "select  count(*) from tblPregnant_woman  inner join Tbl_HHSurvey on tblPregnant_woman.HHGUID=Tbl_HHSurvey.HHSurveyGUID  inner join tblancvisit  on  tblancvisit.PWGUID =tblPregnant_woman.PWGUID where  ((tblancvisit.TTsecondDoseDate is not null and tblancvisit.TTsecondDoseDate!='') or(tblancvisit.TTBoosterDate is not null and tblancvisit.TTBoosterDate!=''))  and IsPregnant=1 and Tbl_HHSurvey.VillageID=" + VillageId + " and tblPregnant_woman.ANMID ="
                 + anmid
-                +  " Group By tblPregnant_woman.PWGUID ";
+                + " Group By tblPregnant_woman.PWGUID ";
         int ivalue9 = 0;
         ivalue9 = dataprovider.getMaxRecord(sql9);
         tvTT2Boster.setText(String.valueOf(ivalue9));
         String sql10 = "";
-        sql10 = "select  count(*) from tblPregnant_woman  inner join Tbl_HHSurvey on tblPregnant_woman.HHGUID=Tbl_HHSurvey.HHSurveyGUID  where  tblPregnant_woman.HighRisk=1 and IsPregnant=1 and Tbl_HHSurvey.VillageID=" + VillageId + " and tblPregnant_woman.ANMID ="
+        sql10 = "select  count(DISTINCT(tblPregnant_woman.PWGUID)) from tblPregnant_woman  inner join Tbl_HHSurvey on tblPregnant_woman.HHGUID=Tbl_HHSurvey.HHSurveyGUID inner join tblancvisit  on  tblancvisit.PWGUID =tblPregnant_woman.PWGUID  where  (tblPregnant_woman.HighRisk=1 or tblancvisit.HighRisk=1) and IsPregnant=1 and Tbl_HHSurvey.VillageID=" + VillageId + " and tblPregnant_woman.ANMID ="
                 + anmid
-                +  " ";
+                + " ";
         int ivalue10 = 0;
         ivalue10 = dataprovider.getMaxRecord(sql10);
         tvHRP.setText(String.valueOf(ivalue10));
     }
 
     private void fillVillageName(int Language) {
-        Village = dataprovider.getMstVillageName(global.getsGlobalANMCODE(), Language,1);
+        Village = dataprovider.getMstVillageName(global.getsGlobalANMCODE(), Language, 1);
 
         String sValue[] = new String[Village.size() + 1];
         sValue[0] = getResources().getString(R.string.select);
@@ -212,7 +225,7 @@ public class ReportIndicator_anmList extends Activity {
         String sql3 = "";
         sql3 = "select  count(*) from tblPregnant_woman  inner join Tbl_HHSurvey on tblPregnant_woman.HHGUID=Tbl_HHSurvey.HHSurveyGUID   where cast(round(julianday('Now')-julianday(tblPregnant_woman.LMPDate) ) as int)<=180 and IsPregnant=1 and tblPregnant_woman.ANMID ="
                 + anmid
-                +"";
+                + "";
         int ivalue3 = 0;
         ivalue3 = dataprovider.getMaxRecord(sql3);
         tvinsecondtrimester.setText(String.valueOf(ivalue3));
@@ -223,6 +236,13 @@ public class ReportIndicator_anmList extends Activity {
         int ivalue4 = 0;
         ivalue4 = dataprovider.getMaxRecord(sql4);
         tvinthirdtrimester.setText(String.valueOf(ivalue4));
+        String sql49month = "";
+        sql49month = "select  count(*) from tblPregnant_woman  inner join Tbl_HHSurvey on tblPregnant_woman.HHGUID=Tbl_HHSurvey.HHSurveyGUID   where cast(round(julianday('Now')-julianday(tblPregnant_woman.LMPDate) ) as int) > 270 and IsPregnant=1  and tblPregnant_woman.ANMID  ="
+                + anmid
+                + "";
+        int ivalue49month = 0;
+        ivalue49month = dataprovider.getMaxRecord(sql49month);
+        tv_9month.setText(String.valueOf(ivalue49month));
         String sql5 = "";
         sql5 = "select  count(*) from tblPregnant_woman  inner join Tbl_HHSurvey on tblPregnant_woman.HHGUID=Tbl_HHSurvey.HHSurveyGUID  inner join tblancvisit  on  tblancvisit.PWGUID =tblPregnant_woman.PWGUID where tblancvisit.Visit_No=1 and tblancvisit.CheckupVisitDate is not null and tblancvisit.CheckupVisitDate!=''  and IsPregnant=1 and tblPregnant_woman.ANMID ="
                 + anmid
@@ -254,19 +274,51 @@ public class ReportIndicator_anmList extends Activity {
         String sql9 = "";
         sql9 = "select  count(*) from tblPregnant_woman  inner join Tbl_HHSurvey on tblPregnant_woman.HHGUID=Tbl_HHSurvey.HHSurveyGUID  inner join tblancvisit  on  tblancvisit.PWGUID =tblPregnant_woman.PWGUID where  ((tblancvisit.TTsecondDoseDate is not null and tblancvisit.TTsecondDoseDate!='') or(tblancvisit.TTBoosterDate is not null and tblancvisit.TTBoosterDate!=''))  and IsPregnant=1 and tblPregnant_woman.ANMID ="
                 + anmid
-                +  " Group By tblPregnant_woman.PWGUID ";
+                + " Group By tblPregnant_woman.PWGUID ";
         int ivalue9 = 0;
         ivalue9 = dataprovider.getMaxRecord(sql9);
         tvTT2Boster.setText(String.valueOf(ivalue9));
         String sql10 = "";
-        sql10 = "select  count(*) from tblPregnant_woman  inner join Tbl_HHSurvey on tblPregnant_woman.HHGUID=Tbl_HHSurvey.HHSurveyGUID  where  tblPregnant_woman.HighRisk=1 and IsPregnant=1 and tblPregnant_woman.ANMID ="
+        sql10 = "select  count(DISTINCT(tblPregnant_woman.PWGUID)) from tblPregnant_woman  inner join Tbl_HHSurvey on tblPregnant_woman.HHGUID=Tbl_HHSurvey.HHSurveyGUID inner join tblancvisit  on  tblancvisit.PWGUID =tblPregnant_woman.PWGUID where  (tblPregnant_woman.HighRisk=1 or tblancvisit.HighRisk=1) and IsPregnant=1  and tblPregnant_woman.ANMID ="
                 + anmid
-                +  " ";
+                + " ";
         int ivalue10 = 0;
         ivalue10 = dataprovider.getMaxRecord(sql10);
         tvHRP.setText(String.valueOf(ivalue10));
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+            menu.add(0, 0, 1, validate.RetriveSharepreferenceString("name")).setShowAsAction(
+                    MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
+
+
+        return true;
+    }
+
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getOrder()) {
+
+            case 1:
+                if(item.getTitle().equals(validate.RetriveSharepreferenceString("Username"))) {
+                    item.setTitle(validate.RetriveSharepreferenceString("name"));
+
+                } else {
+                    item.setTitle(validate.RetriveSharepreferenceString("Username"));
+
+                }
+                break;
+
+
+            default:
+                break;
+        }
+
+        return true;
+    }
 
     @Override
     public void onBackPressed() {

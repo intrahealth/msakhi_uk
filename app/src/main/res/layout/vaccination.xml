@@ -3,793 +3,900 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:orientation="vertical"
-    android:background="@color/White">
+    android:background="@color/White"
+    android:orientation="vertical">
 
- <!-- <TextView
-     android:layout_width="400dp"
-     android:layout_height="wrap_content"
-     android:gravity="center"
-     android:padding="5dp"
-     android:textColor="@color/Black"
-     android:textSize="19sp"
-     android:textStyle="bold"
-     android:visibility="invisible" /> -->
+    <!-- <TextView
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textColor="@color/Black"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        android:visibility="invisible" /> -->
 
- <TextView
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_gravity="center"
-     android:padding="5dp"
-     android:text="@string/Immunization"
-     android:textColor="@color/Black"
-     android:textSize="19sp"
-     android:textStyle="bold" />
- <LinearLayout
-     android:layout_width="match_parent"
-     android:layout_height="0dp"
-     android:layout_weight="1"
-     android:padding="5dp"
-     android:layout_marginBottom="5dp"
-     android:orientation="vertical" >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:text="@string/Immunization"
+        android:textColor="@color/Black"
+        android:textSize="19sp"
+        android:textStyle="bold" />
 
-  <ScrollView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent" >
-
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:orientation="vertical" >
-
-
-    <TableRow
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/bcg"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/bcg"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+        android:layout_height="0dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/hep1"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/hep"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/bcg" />
+
+                    <TextView
+                        android:id="@+id/bcg"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
 
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/opv1"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/opv0"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/hep1" />
+
+                    <TextView
+                        android:id="@+id/hep"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
 
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/opv2"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/opv1"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                </TableRow>
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/opv3"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/opv2"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/opv1" />
+
+                    <TextView
+                        android:id="@+id/opv0"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
 
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/opv4"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/opv3"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                </TableRow>
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/dpt1"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/dpt1"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/opv2" />
 
-     <TextView
-         android:id="@+id/textView5"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"
-         android:text="@string/dpt2" />
+                    <TextView
+                        android:id="@+id/opv1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
 
-     <TextView
-         android:id="@+id/dpt2"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                </TableRow>
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/dpt3"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/dpt3"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/hep0"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/hep0"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/opv3" />
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/hep2"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/hep2"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/hep3"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/hep3"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/Pentavalent1"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/Pentavalent1"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/Pentavalent2"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/Pentavalent2"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/Pentavalent3"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/Pentavalent3"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/ipv"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/tv_ipv"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/measles"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/measles"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-     <TextView
-         android:id="@+id/textView6"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"
-         android:text="@string/vitamin" />
-
-     <TextView
-         android:id="@+id/vitamin"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-
-    </TableRow>
+                    <TextView
+                        android:id="@+id/opv2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
 
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/JEVaccine1"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/tv_JEVaccine1"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                </TableRow>
 
-    </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/opvbooster"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/tv_opvbooster"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/opv4" />
 
-    </TableRow>
+                    <TextView
+                        android:id="@+id/opv3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+                </TableRow>
 
-     <TextView
-         android:id="@+id/textView3"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"
-         android:text="@string/dptbooster" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-     <TextView
-         android:id="@+id/tv_DPTBooster"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/dpt1" />
 
-    </TableRow>
+                    <TextView
+                        android:id="@+id/dpt1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+                </TableRow>
 
-     <TextView
-         android:id="@+id/textView4"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"
-         android:text="@string/measles2" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-     <TextView
-         android:id="@+id/tv_measles2"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/textView5"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/dpt2" />
 
-    </TableRow>
+                    <TextView
+                        android:id="@+id/dpt2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+                </TableRow>
 
-     <TextView
-         android:id="@+id/textView2"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"
-         android:text="@string/JEVaccine2" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-     <TextView
-         android:id="@+id/tv_JEVaccine2"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/dpt3" />
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+                    <TextView
+                        android:id="@+id/dpt3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
 
-     <TextView
-         android:id="@+id/textView"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"
-         android:text="@string/vitamintwo" />
+                </TableRow>
 
-     <TextView
-         android:id="@+id/tv_vitamintwo"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    </TableRow>
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/hep0" />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/vitamin3"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/tv_vitamin3"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/hep0"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/vitamin4"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/tv_vitamin4"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                </TableRow>
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/vitamin5"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/tv_vitamin5"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/vitamin6"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/tv_vitamin6"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/hep2" />
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/vitamin7"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/tv_vitamin7"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/hep2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/vitamin8"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/tv_vitamin8"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                </TableRow>
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/vitamin9"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/tv_vitamin9"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/dptboostersecond"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/tv_DPTBoostersecond"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/hep3" />
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/tt"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/tv_tt"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/hep3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-     <TextView
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:text="@string/TT2"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
-     <TextView
-         android:id="@+id/tv_tt2"
-         style="@style/SimpleText"
-         android:layout_width="0dp"
-         android:layout_height="fill_parent"
-         android:layout_weight=".2"
-         android:background="@drawable/textbox"
-         android:gravity="center"/>
+                </TableRow>
 
-    </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/Pentavalent1" />
+
+                    <TextView
+                        android:id="@+id/Pentavalent1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/Pentavalent2" />
+
+                    <TextView
+                        android:id="@+id/Pentavalent2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/Pentavalent3" />
+
+                    <TextView
+                        android:id="@+id/Pentavalent3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/ipv" />
+
+                    <TextView
+                        android:id="@+id/tv_ipv"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/measles_rubella1" />
+
+                    <TextView
+                        android:id="@+id/measles"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/vitamin" />
+
+                    <TextView
+                        android:id="@+id/vitamin"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
 
 
-   </LinearLayout>
-  </ScrollView>
- </LinearLayout>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/JEVaccine1" />
+
+                    <TextView
+                        android:id="@+id/tv_JEVaccine1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/opvbooster" />
+
+                    <TextView
+                        android:id="@+id/tv_opvbooster"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/dptbooster" />
+
+                    <TextView
+                        android:id="@+id/tv_DPTBooster"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/measles_rubella2" />
+
+                    <TextView
+                        android:id="@+id/tv_measles2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/JEVaccine2" />
+
+                    <TextView
+                        android:id="@+id/tv_JEVaccine2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/vitamintwo" />
+
+                    <TextView
+                        android:id="@+id/tv_vitamintwo"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/vitamin3" />
+
+                    <TextView
+                        android:id="@+id/tv_vitamin3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/vitamin4" />
+
+                    <TextView
+                        android:id="@+id/tv_vitamin4"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/vitamin5" />
+
+                    <TextView
+                        android:id="@+id/tv_vitamin5"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/vitamin6" />
+
+                    <TextView
+                        android:id="@+id/tv_vitamin6"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/vitamin7" />
+
+                    <TextView
+                        android:id="@+id/tv_vitamin7"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/vitamin8" />
+
+                    <TextView
+                        android:id="@+id/tv_vitamin8"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/vitamin9" />
+
+                    <TextView
+                        android:id="@+id/tv_vitamin9"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/dptboostersecond" />
+
+                    <TextView
+                        android:id="@+id/tv_DPTBoostersecond"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/tt" />
+
+                    <TextView
+                        android:id="@+id/tv_tt"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/TT2" />
+
+                    <TextView
+                        android:id="@+id/tv_tt2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center"
+                        android:text="@string/ipv2" />
+
+                    <TextView
+                        android:id="@+id/tv_IPV2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".2"
+                        android:background="@drawable/textbox"
+                        android:gravity="center" />
+
+                </TableRow>
+
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 </LinearLayout>

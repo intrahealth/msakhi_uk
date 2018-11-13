@@ -35,7 +35,7 @@ public class Ncd_Cbac extends Activity {
 
     TextView tv_name, tv_score, tv_age, tv_Age_score, tv_Consumegutka_score, tv_Consumealcohol_score, tv_Waist_score, tv_Physicalactivity, tv_Familyhistory;
     Spinner spin_Consumegutka, spin_Consumealcohol, spin_Physicalactivity, spin_Familyhistory, spin_shortnessbreath, spin_coughing,
-            spin_Bloodsputum, spin_historyfits, spin_Openingmouth, spin_Ulcers, spin_Toneofvoice, spin_Lumpinbreast, spin_stainednipple,
+            spin_Bloodsputum, spin_historyfits, spin_Openingmouth, spin_Ulcers, spin_Toneofvoice,spin_industrialRisk, spin_Lumpinbreast, spin_stainednipple,
             spin_shapesizebreast, spin_bleedingbwperiods, spin_Bleedingmenopause, spin_Bleedingintercourse, spin_Foulsmelling;
     EditText et_Waist, et_Waistinch;
     Button btnSave;
@@ -75,6 +75,7 @@ public class Ncd_Cbac extends Activity {
         spin_Openingmouth = (Spinner) findViewById(R.id.spin_Openingmouth);
         spin_Ulcers = (Spinner) findViewById(R.id.spin_Ulcers);
         spin_Toneofvoice = (Spinner) findViewById(R.id.spin_Toneofvoice);
+        spin_industrialRisk = (Spinner) findViewById(R.id.spin_industrialRisk);
         spin_Lumpinbreast = (Spinner) findViewById(R.id.spin_Lumpinbreast);
         spin_stainednipple = (Spinner) findViewById(R.id.spin_stainednipple);
         spin_shapesizebreast = (Spinner) findViewById(R.id.spin_shapesizebreast);
@@ -94,6 +95,7 @@ public class Ncd_Cbac extends Activity {
         fillCommonRecord(spin_Openingmouth, 7, global.getLanguage());
         fillCommonRecord(spin_Ulcers, 7, global.getLanguage());
         fillCommonRecord(spin_Toneofvoice, 7, global.getLanguage());
+        fillCommonRecord(spin_industrialRisk, 51, global.getLanguage());
         fillCommonRecord(spin_Lumpinbreast, 7, global.getLanguage());
         fillCommonRecord(spin_stainednipple, 7, global.getLanguage());
         fillCommonRecord(spin_shapesizebreast, 7, global.getLanguage());
@@ -165,10 +167,10 @@ public class Ncd_Cbac extends Activity {
             public void onItemSelected(AdapterView<?> parent,
                                        View view, int pos, long id) {
                 if (pos == 1) {
-                    tv_Physicalactivity.setText("" + 0);
+                    tv_Physicalactivity.setText("" + 1);
 
                 } else if (pos == 2) {
-                    tv_Physicalactivity.setText("" + 1);
+                    tv_Physicalactivity.setText("" + 0);
                 } else {
                     tv_Physicalactivity.setText("" + 0);
                 }
@@ -296,7 +298,7 @@ public class Ncd_Cbac extends Activity {
         double height = 0;
         try {
             if (et_Waistinch.getText().toString().length() > 0) {
-                int inch = Integer.valueOf(et_Waistinch.getText().toString());
+                int inch = Validate.returnIntegerValue(et_Waistinch.getText().toString());
                 height = (inch) * 2.54;
             }
         } catch (Exception e) {
@@ -323,12 +325,12 @@ public class Ncd_Cbac extends Activity {
                 + global.getGlobalHHFamilyMemberGUID()
                 + "'";
         String aa = dataProvider.getRecord(sql);
-        String sqlage = "select  case   DOBAvailable when 1 then  cast(round((julianday('NOW')-julianday(DateOfBirth))/365+.5)  as int) when 2 then AprilAgeYear+(strftime('%Y', 'now')-AgeAsOnYear) end age from Tbl_hhfamilymember  where HHFamilyMemberGUID='"
+        String sqlage = "select  case   DOBAvailable when 1 then  cast(round((julianday('NOW')-julianday(DateOfBirth))/365)  as int) when 2 then AprilAgeYear+(strftime('%Y', 'now')-AgeAsOnYear) end age from Tbl_hhfamilymember  where HHFamilyMemberGUID='"
                 + global.getGlobalHHFamilyMemberGUID()
                 + "'";
         String age = dataProvider.getRecord(sqlage);
         if (age != null && age.length() > 0) {
-            int iage = Integer.valueOf(age);
+            int iage = Validate.returnIntegerValue(age);
             if (iage > 29 && iage < 40) {
                 tv_Age_score.setText("" + 0);
             } else if (iage > 39 && iage < 50) {
@@ -346,23 +348,23 @@ public class Ncd_Cbac extends Activity {
     private int totalscore() {
         int score = 0;
         if (tv_Age_score.getText().length() > 0) {
-            score = score + Integer.valueOf(tv_Age_score.getText().toString());
+            score = score + Validate.returnIntegerValue(tv_Age_score.getText().toString());
         }
 
         if (tv_Consumegutka_score.getText().length() > 0) {
-            score = score + Integer.valueOf(tv_Consumegutka_score.getText().toString());
+            score = score + Validate.returnIntegerValue(tv_Consumegutka_score.getText().toString());
         }
         if (tv_Consumealcohol_score.getText().length() > 0) {
-            score = score + Integer.valueOf(tv_Consumealcohol_score.getText().toString());
+            score = score + Validate.returnIntegerValue(tv_Consumealcohol_score.getText().toString());
         }
         if (tv_Waist_score.getText().length() > 0) {
-            score = score + Integer.valueOf(tv_Waist_score.getText().toString());
+            score = score + Validate.returnIntegerValue(tv_Waist_score.getText().toString());
         }
         if (tv_Physicalactivity.getText().length() > 0) {
-            score = score + Integer.valueOf(tv_Physicalactivity.getText().toString());
+            score = score + Validate.returnIntegerValue(tv_Physicalactivity.getText().toString());
         }
         if (tv_Familyhistory.getText().length() > 0) {
-            score = score + Integer.valueOf(tv_Familyhistory.getText().toString());
+            score = score + Validate.returnIntegerValue(tv_Familyhistory.getText().toString());
         }
 
         return score;
@@ -415,6 +417,7 @@ public class Ncd_Cbac extends Activity {
             int OpeningMouth = 0;
             int Ulcers = 0;
             int AnyChangeTone = 0;
+            int IPRisk = 0;
             int LumpinBreast = 0;
             int BloodStainedNipple = 0;
             int BreastSize = 0;
@@ -433,16 +436,16 @@ public class Ncd_Cbac extends Activity {
 
             if (global.getsGlobalANMCODE() != null
                     && global.getsGlobalANMCODE().length() > 0) {
-                ANMID = Integer.valueOf(global.getsGlobalANMCODE());
+                ANMID = Validate.returnIntegerValue(global.getsGlobalANMCODE());
             }
 
             if (global.getsGlobalAshaCode() != null
                     && global.getsGlobalAshaCode().length() > 0) {
-                AshaID = Integer.valueOf(global.getsGlobalAshaCode());
+                AshaID = Validate.returnIntegerValue(global.getsGlobalAshaCode());
             }
-            if (tv_age.getText().toString().length() > 0) {
-                Age = Integer.valueOf(tv_age.getText().toString());
-            }
+//            if (tv_age.getText().toString().length() > 0) {
+//                Age = Validate.returnIntegerValue(tv_age.getText().toString());
+//            }
             if (spin_Consumegutka.getSelectedItemPosition() > 0) {
                 Smoke = returnid(
                         spin_Consumegutka.getSelectedItemPosition() - 1, 45,
@@ -457,10 +460,10 @@ public class Ncd_Cbac extends Activity {
                 Waist = et_Waist.getText().toString();
             }
             if (tv_age.getText().toString().length() > 0) {
-                Age = Integer.valueOf(tv_age.getText().toString());
+                Age = Validate.returnIntegerValue(tv_age.getText().toString());
             }
             if (tv_score.getText().toString().length() > 0) {
-                Score = Integer.valueOf(tv_score.getText().toString());
+                Score = Validate.returnIntegerValue(tv_score.getText().toString());
             }
 
 
@@ -515,6 +518,11 @@ public class Ncd_Cbac extends Activity {
             if (spin_Toneofvoice.getSelectedItemPosition() > 0) {
                 AnyChangeTone = returnid(
                         spin_Toneofvoice.getSelectedItemPosition() - 1, 7,
+                        global.getLanguage());
+            }
+            if (spin_industrialRisk.getSelectedItemPosition() > 0) {
+                IPRisk = returnid(
+                        spin_industrialRisk.getSelectedItemPosition() - 1, 51,
                         global.getLanguage());
             }
 
@@ -582,7 +590,7 @@ public class Ncd_Cbac extends Activity {
             ireturn = dataProvider.InsertNCDCBAC(VillageID, HHFamilyMemberGUID, HHSurveyGUID, NCDCBACGUID, Age,
                     Smoke, Alcohol, Waist, PhysicalActivity, FamilyHistory, Score,
                     Breath, Coughing, BloodinSputum, Fits, OpeningMouth, Ulcers,
-                    AnyChangeTone, LumpinBreast, BloodStainedNipple, BreastSize, BleedingPeriods, BleedingMenopause,
+                    AnyChangeTone,IPRisk, LumpinBreast, BloodStainedNipple, BreastSize, BleedingPeriods, BleedingMenopause,
                     BleedingIntercourse, VaginalDischarge,
                     Status, AshaID, ANMID, global.getUserID(), flag);
             if (ireturn > 0) {

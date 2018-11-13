@@ -4,7 +4,7 @@
     <string name="str">Sterilization</string>
     <string name="IUCDCU"> IUCDCU User</string>
     <string name="app_name">mSakhi</string>
-    <string name="app_name1">mSakhi 6.1.2</string>
+    <string name="app_name1">mSakhi 6.1.8</string>
     <string name="Visitdatelmp">Visit date must be greater than LMP date</string>
     <string name="mustbegreater"> must be greater than atleast a month from previous Visit date </string>
     <string name="login">Login</string>
@@ -172,7 +172,7 @@
     <string name="discharge">Date and time of discharge  </string>
     <!-- <string name="newborn"> New Born</string> -->
     <string name="ancPregnant">ANC </string>
-    <string name="immunized">Immunization</string>
+    <string name="immunized">Immunization(upto 14 year)</string>
     <string name="rd">Report/Dashboard</string>
     <string name="homevisit">Home Visit</string>
     <string name="iycf">IYCF</string>
@@ -214,6 +214,8 @@
     <string name="ttseconddate">TT second dose date</string>
     <string name="ttboosterdate">TT Booster dose date</string>
     <string name="tt">TT </string>
+    <string name="TT10">TT 10</string>
+    <string name="TT16">TT 16</string>
     <string name="ifatablet">How many tablets are given to pregnant IFA</string>
     <string name="dangersigns">Danger Sign</string>
     <string name="refer">रेफेर किया गया</string>
@@ -292,10 +294,10 @@
     <string name="enterplacedate">Select place of date </string>
     <string name="enterDieddate">Select Died in this village? </string>
     <string name="enterDiedvillage">Place of death </string>
-    <string name="enter16digituid">Enter 16 digit MCTS ID </string>
-    <string name="enter16digituid1">Enter 16 digit MCTS ID of child first </string>
-    <string name="enter16digituid2">Enter 16 digit MCTS ID of child second</string>
-    <string name="enter16digituid3">Enter 16 digit MCTS ID of child third</string>
+    <string name="enter16digituid">Enter 18 digit MCTS ID </string>
+    <string name="enter16digituid1">Enter 18 digit MCTS ID of child first </string>
+    <string name="enter16digituid2">Enter 18 digit MCTS ID of child second</string>
+    <string name="enter16digituid3">Enter 18 digit MCTS ID of child third</string>
     <string name="ifsc">Enter Valid IFSC code </string>
     <string name="enteragevalid">Enter Valid age </string>
     <string name="validdate">Year cannot be future year</string>
@@ -318,7 +320,7 @@
     <string name="visitcomplete">Visit complete</string>
     <string name="pregnantwomenre">Pregnant Woman Registration</string>
     <string name="dateabortion">Date of abortion</string>
-    <string name="np">Newborn/Post Natal Care</string>
+    <string name="np">Newborn/Post Natal Care(upto 1 year)</string>
     <string name="calcium">Calcium received</string>
     <string name="tt1yr">TT1 / TT2 has been given in last 2-3 years</string>
     <string name="calciumno">No. of calcium tablet</string>
@@ -361,7 +363,8 @@
     <string name="measles2">Measles(Second Dose)</string>
     <string name="vitamin">Vitamin A/ First Dose</string>
     <string name="vitamintwo">Vitamin A/ Second Dose</string>
-    <string name="ipv">IPV</string>
+    <string name="ipv">IPV 1</string>
+    <string name="ipv2">IPV 2</string>
     <string name="agechild">Age(in Days)</string>
     <string name="backpress">Do you want to exit?</string>
     <string name="childGender">Child gender</string>
@@ -482,7 +485,7 @@
     <string name="Uploadingdata">Uploading data...</string>
     <string name="downloadNCD">Download NCD</string>
     <string name="uploadNCD">Upload NCD</string>
-    <string name="downloaddata">do you want data download ?</string>
+    <string name="downloaddata">do you want to download data?</string>
     <string name="uploaddata">do you want data Upload ?</string>
     <string name="methodadopteddate">Method adopted Date</string>
     <string name="Doyouwanttologout">Do you want to logout?</string>
@@ -915,5 +918,235 @@ Cephalo -pelvic disproportion=9
     <string name="Valuelessthan8kg">value must be less  than 8kg</string>
     <string name="Valuelessthan106F">value must be less  than 106F</string>
     <string name="Valuegreaterthan91f">value must be greater than 91F</string>
+    <string name="measles_rubella1"> Measles-Rubella 1</string>
+    <string name="measles_rubella2"> Measles-Rubella 2</string>
+    <string name="DoyouwanttodeleteUser">Do you want to delete the user?</string>
+    <string name="firstupoloadthendelete">Please First upload Data and then delete User</string>
+    <string name="loginotheruser">After this process, the app will automatically shut down. Please login again with the other User</string>
+    <string name="notatemporaryuser">this is not a temporary user</string>
+    <string name="addanotheruser">Do you want add another user?</string>
+    <string name="user">User</string>
+    <string name="PleaseselectMaritalStatus">Please select Marital Status</string>
+    <string name="status">Status</string>
+    <string name="cbacalreadydone">Their CBAC has already Done, do you want to do it again?</string>
+    <string name="plreaseenterhousehold">please first enter household Detail ?</string>
+    <string name="childdoesnotexist">this child does not exist in this ASHA record.</string>
+    <string name="QRCodeisinvalid">This QR Code is invalid</string>
+    <string name="scan_anc_qr_code">Scan ANC QR code</string>
+    <string name="ancrecorddoesnotexist">This anc record does not exist in this asha</string>
+    <string name="scan_child_qr_code">Scan Child QR code</string>
+    <string name="fasting_blood_sugar_test">Fasting Blood Sugar Test</string>
+    <string name="post_prandial_glucose_test">Post Prandial Glucose Test</string>
+    <string name="HbA1C">HbA1C</string>
+    <string name="Urine_Test">Urine Test</string>
+    <string name="Outsidepatient">Outside patient</string>
+    <string name="Referredpaitent">Referred patient</string>
+    <string name="referred_patient_name">Referred patient name</string>
+    <string name="Name">Name</string>
+    <string name="Diabetic">advice for treatment</string>
+    <string name="download_referal_data">Download Referal Data</string>
+    <string name="Quantity">Quantity</string>
+    <string name="Pleaseentername">Please Enter name</string>
+    <string name="select_subcenter">Select Subcenter</string>
+    <string name="select_asha">Select ASHA</string>
+    <string name="normaladvice">Normal advice and screening after one year</string>
+    <string name="adequatefood">Taking balanced and adequate food</string>
+    <string name="Physicalactivity">Physical activity - Being active or agile</string>
+    <string name="Reducingphysical">Reducing physical and mental stress</string>
+    <string name="reduceexcessiveweight"> To reduce excessive weight or obesity</string>
+    <string name="medicineshavebeengiven">If any medicines have been given, take it regularly and check from time to time as per medical advice.</string>
+    <string name="adhar_card_no">Adhar Card No</string>
+    <string name="PleaseenterAddress">Please enter Address</string>
+    <string name="PleasevalidphoneNo">Please enter valid phone No.</string>
+    <string name="patientname">patient name</string>
+    <string name="MigratedHouseholds">Migrated Households</string>
+    <string name="MigratedMembers">Migrated Members</string>
+    <string name="PleaseEnterFBSvalue">Please Enter FBS value from 40 to 400</string>
+    <string name="PleaseEnterpptvalue">Please Enter FBS value from 50 to 500</string>
+    <string name="PleaseEnterHbA1cvalue">Please Enter FBS value from 3 to 12</string>
+    <string name="expected_delivery_date_next_five_day">Expected delivery date next five day</string>
+    <string name="Populationinherarea">30+ Population in her area</string>
+    <string name="CBACcompletedfortotalpersontilldate">CBAC completed for total person till date</string>
+    <string name="TotalpersonscreenedforNCDtilldate">Total person screened for NCD till date</string>
+    <string name="Totalsuspectedpersonreferredfortreatment">Total suspected person referred for treatment</string>
+    <string name="Totalpersonhavingcontinued">Total person having continued treatment/dropped treatment/alternate medicine</string>
+    <string name="counselling_going_on_for_how_many_patient">Counselling going on for how many patient</string>
+    <string name="convertedashealthyperson">How many people have controlled the disease with the support of ASHA</string>
+    <string name="pdf_id">PDF ID</string>
+    <string name="PDFName">PDF Name</string>
+    <string name="ReportName">Report Name</string>
+    <string name="current_month">Current Month</string>
+    <string name="download_report">Download Report</string>
+    <string name="Downloadingreport">Downloading report ..</string>
+    <string name="ReportDowloadSuccessfully">Report Downloaded Successfully.</string>
+    <string name="ErrorinReportDowload">Error in Report Download!</string>
+    <string name="PleaseenternameorAadharno">Please enter name or Aadhar no</string>
+    <string name="show_data">Show Data</string>
+    <string name="from_date">From Date</string>
+    <string name="ToDate">To Date</string>
+    <string name="PleaseenterDaterange">Please enter Date range</string>
+    <string name="for_diabetes">For diabetes</string>
+    <string name="for_blood_pressure">For blood pressure</string>
+    <string name="DeliveryType">Mode of Delivery</string>
+    <string name="PleaseselectDeliveryType">Please select Delivery Type</string>
+    <string name="Householdstatusmigrated">Please change HouseHold Status then add the member ,Currently Household not Active.</string>
+    <string name="NewbornInfant">Children (Newborn/Infant/upto 5yrs)</string>
+    <string name="upto14year">(upto 14 year)</string>
+    <string name="women_name">Women Name</string>
+    <string name="_0_6_months">0 - 6 months</string>
+    <string name="_7_12_months">7-12 months</string>
+    <string name="_1_2_yrs">1 - 2 Yrs</string>
+    <string name="_3_5_yrs">3 - 5 Yrs</string>
+    <string name="_5_6_yrs">5 - 6 Yrs</string>
+    <string name="_7_14_yrs">7 - 14 Yrs</string>
+    <string name="_15_49_yrs">15 - 49 Yrs</string>
+    <string name="_50_60_yrs">50 - 60 Yrs</string>
+    <string name="VHNDImmunizationduelist">VHND Immunization due list</string>
+    <string name="VHNDANCduelist">VHND ANC due list</string>
+    <string name="Children0to28">Children (0 to 28 days)</string>
+    <string name="Children29to365">Children (29 days to 1 Yrs)</string>
+    <string name="Children1to2">Children (1 to 2 yrs)</string>
+    <string name="Children3to5">Children (2 to 5 yrs)</string>
+    <string name="Children5">Children (5 yrs above)</string>
+    <string name="supervising_anm">Supervising ANM :</string>
+    <string name="villages_served">Villages Served :</string>
+    <string name="subcenter">Subcenter :</string>
+    <string name="hrprep">HRP :</string>
+    <string name="reason_for_hrp">Reason for HRP</string>
+    <string name="Visit_Done">Visit Done</string>
+    <string name="visit_not_done">Visit not Done</string>
+    <string name="hbnc_visit_children_42_days_and_2yrs"><![CDATA[HBNC Visit (Children > 42 days and <= 2yrs)]]></string>
+    <string name="hbnc_visit_children_42_days"><![CDATA[HBNC Visit (Children <= 42 days)]]></string>
+    <string name="visit_done">% Visit Done</string>
+    <string name="immunisation_children_1yr"><![CDATA[Immunisation (Children < 1yr)]]></string>
+    <string name="Children1to2yrs"><![CDATA[Immunisation (Children >=1yr and <2 yrs)]]></string>
+    <string name="MR">MR</string>
+    <string name="child_report_immunisation">Child Report Immunisation</string>
+    <string name="ChildReportHBNC">Child Report HBNC</string>
+    <string name="EligibleChildren">EligibleChildren</string>
+    <string name="DosenotGiven">Dose not Given</string>
+    <string name="crvs">CRVS</string>
+    <string name="Births">Births</string>
+    <string name="_9_month">9 month +</string>
+    <string name="dose">Dose</string>
+    <!-- Incentive app string-->
+    <string-array name="monthincentive">
+        <item>--All--</item>
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+
+    </string-array>
+    <string-array name="globalyear">
+        <item>--All--</item>
+        <item>2016</item>
+        <item>2017</item>
+        <item>2018</item>
+        <item>2019</item>
+        <item>2020</item>
+    </string-array>
+
+
+    <string name="approvedsuccessfully">approved Successfully</string>
+    <string name="partiallyapproved">partially approved</string>
+    <string name="rejected">Rejected</string>
+
+
+    <string name="selectmonth">Please select month</string>
+    <string name="selectyear">Please select year</string>
+    <string name="Number">Number</string>
+    <string name="Report">Report</string>
+    <string name="DataEntry">Data Entry</string>
+    <string name="y">Y</string>
+    <string name="m1">M</string>
+    <string name="claim">Claim</string>
+    <string name="status1">Status</string>
+    <string name="amount_recieved">Amount Recieved</string>
+    <string name="claimed">Claimed</string>
+    <string name="not_approved">Not approved</string>
+    <string name="pending">pending</string>
+
+
+    <string name="notapproved">Not approved</string>
+    <string name="Amountreceived">Amount received</string>
+    <string name="Pending">Pending</string>
+    <string name="Totalasha">Total ASHA</string>
+
+    <string name="reason_for_not_approving">Reason for not approving</string>
+
+    <string name="reason_for_not_approvingshow">Click  claim to see the Reason for not approving</string>
+    <string name="thisrecordexist">You have already submited details for this month</string>
+    <string name="SaveSuccessfully">Save Successfully</string>
+    <string name="Approveall">Approve All</string>
+    <string name="Approveselected">Approve selected</string>
+
+    <string name="Area">Area</string>
+    <string name="Claime">Claime</string>
+    <string name="Approval">Approval</string>
+    <string name="TotalClaimed">Total Claimed</string>
+    <string name="TotalApproved">Total Approved</string>
+    <string name="Activitycode">Activity code</string>
+    <string name="AF">AF</string>
+    <string name="ANM">ANM</string>
+    <string name="BCM">BCM</string>
+    <string name="BAM">BAM</string>
+
+    <string name="incentive">Incentive</string>
+
+    <string name="downloadmaster">Download Master</string>
+
+
+    <string name="upload_incentive">Upload Incentive</string>
+    <string name="download_incentive">Download Incentive</string>
+    <string name="pleaseselectoneasha">Please select atleast one ASHA</string>
+    <string name="enter_reason">Enter Reason</string>
+    <string name="selectatleast">Please select atleast one Activity</string>
+    <string name="pleaseselectashaforapproved">Please select only one ASHA for not Approved</string>
+    <string name="enter_reason_for_not_approved">Enter Reason for not Approved</string>
+    <string name="asha_wise_details">ASHA wise Details</string>
+    <string name="summury">Summury</string>
+    <string name="about_msakhi">About mSakhi</string>
+    <string name="AreyousureforDeleteRecord">Are you sure for Delete Record?</string>
+    <string name="RecordDeletedSuccessfully">Record  Deleted Successfully</string>
+    <string name="RecordDeleted">this Record can not be Deleted</string>
+    <string name="Cropremains">Crop remains</string>
+    <string name="Cowdungcake">Cowdung cake</string>
+    <string name="oralcancer">Oral cancer</string>
+    <string name="cervix_cancer">cervix cancer</string>
+    <string name="breast_cancer">Breast cancer</string>
+    <string name="COPD">COPD</string>
+    <string name="Treatmentcompliance">Treatment compliance</string>
+    <string name="HealthCenter">Health Center</string>
+    <string name="Availabilityofmedicines">Availability of medicines monthly</string>
+    <string name="Sideeffect">Side effect</string>
+    <string name="ReasonforClosing">Reason for Closing</string>
+    <string name="test_results">Test results</string>
+    <string name="Primarycheck">Primary check</string>
+    <string name="Preinformation">Pre-information (about non-communicable diseases)</string>
+    <string name="Datediagnosis">Date of diagnosis of disease</string>
+    <string name="treatment">treatment</string>
+    <string name="industrialRisk">Industrial pollution risk</string>
+    <string name="not_verified">Not Verified</string>
+    <string name="verified_ok">Verified Ok</string>
+    <string name="verified_not_ok">Verified Not Ok</string>
+    <string name="downloadashadata">Do you want to download Asha Data?</string>
+    <string name="select_ashadown">Select ASHA to download Data</string>
+    <string name="ChangeASHA">Change ASHA</string>
+    <string name="continue1">Continue</string>
+    <string name="datacontinue">Please First Download Data and then Continue</string>
+    <string name="informationofasha">There is information of asha </string>
+    <string name="inyourphone"> in your phone, to change asha select asha and then download data.</string>
+    <string name="upload_verification_detail">Upload Verification Detail</string>
+    <string name="ThisUserNotAllow">This User Not Allow</string>
+    <string name="PleasefirstUploadData">Please first Upload Data then Download Data.</string>
 
 </resources>

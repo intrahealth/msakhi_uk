@@ -311,10 +311,21 @@ public class Intrahealth_Tab_Activity extends FragmentActivity implements
             }
         }
     }
+    public void showfragmentdata() {
+        Family_Fragment aa = (Family_Fragment) getSupportFragmentManager()
+                .findFragmentByTag(
+                        "android:switcher:" + String.valueOf(mViewPager.getId())
+                                + ":1");
 
+        aa.fillGrid();
+
+    }
     public void swapscreen(final int pos) {
         mActionBar.setSelectedNavigationItem(pos);
         mViewPager.setCurrentItem(pos);
+        if(pos==1){
+            showfragmentdata();
+        }
 
     }
 

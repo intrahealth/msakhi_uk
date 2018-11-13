@@ -27,6 +27,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 @SuppressLint({"SimpleDateFormat", "InflateParams"})
@@ -40,14 +41,16 @@ public class Immunization_Entry extends Activity {
             txtVitaminAtwo, txtMeasles2, txtDPTBooster, txtopvbooster,
             txtDPTBoostertwo, tv_JEVaccine1, tv_JEVaccine2, tv_vitamin3,
             tv_vitamin4, tv_vitamin5, tv_vitamin6, tv_vitamin7, tv_vitamin8,
-            tv_vitamin9, tv_TT2;
+            tv_vitamin9, tv_TT2, tv_MeaslesRubella, txtipv2;
     ArrayList<Child_Imunization_Object> ChildImmun = new ArrayList<Child_Imunization_Object>();
     Dialog datepic;
-    Button btnSubmit;
+    Button btnSubmit,btnNotverified, btnVerifiedOk, btnVerifiedNotOk;
     String sChildGUID;
     DataProvider dataProvider;
+    Validate validate;
     String sDOBCHILD = "", textdate = "";
     Global g;
+    LinearLayout llVerification, llSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +59,15 @@ public class Immunization_Entry extends Activity {
         setContentView(R.layout.imunization_entery);
 
         btnSubmit = (Button) findViewById(R.id.btnSave);
+        btnNotverified = (Button) findViewById(R.id.btnNotverified);
+        btnVerifiedOk = (Button) findViewById(R.id.btnVerifiedOk);
+        btnVerifiedNotOk = (Button) findViewById(R.id.btnVerifiedNotOk);
         dataProvider = new DataProvider(this);
+        validate = new Validate(this);
         g = (Global) getApplicationContext();
         tvfathername = (TextView) findViewById(R.id.tvfathername);
         txtMeasles2 = (TextView) findViewById(R.id.txtMeasles2);
+        tv_MeaslesRubella = (TextView) findViewById(R.id.tv_MeaslesRubella);
         txtDPTBooster = (TextView) findViewById(R.id.txtDPTBooster);
         txtopvbooster = (TextView) findViewById(R.id.txtopvbooster);
         txtDPTBoostertwo = (TextView) findViewById(R.id.txtDPTBoostertwo);
@@ -85,6 +93,7 @@ public class Immunization_Entry extends Activity {
         txtopv0 = (TextView) findViewById(R.id.txtopv0);
         tvHepatitisB = (TextView) findViewById(R.id.tvHepatitisB);
         txtipv = (TextView) findViewById(R.id.txtipv);
+        txtipv2 = (TextView) findViewById(R.id.txtipv2);
         tv_JEVaccine1 = (TextView) findViewById(R.id.tv_JEVaccine1);
         tv_JEVaccine2 = (TextView) findViewById(R.id.tv_JEVaccine2);
         tv_vitamin3 = (TextView) findViewById(R.id.tv_vitamin3);
@@ -95,6 +104,17 @@ public class Immunization_Entry extends Activity {
         tv_vitamin8 = (TextView) findViewById(R.id.tv_vitamin8);
         tv_vitamin9 = (TextView) findViewById(R.id.tv_vitamin9);
         tv_TT2 = (TextView) findViewById(R.id.tv_TT2);
+        llVerification = (LinearLayout) findViewById(R.id.llVerification);
+        llSave = (LinearLayout) findViewById(R.id.llSave);
+        llVerification.setVisibility(View.GONE);
+        llSave.setVisibility(View.GONE);
+        if (g.getiGlobalRoleID() == 4) {
+            llVerification.setVisibility(View.VISIBLE);
+            llSave.setVisibility(View.GONE);
+        } else {
+            llVerification.setVisibility(View.GONE);
+            llSave.setVisibility(View.VISIBLE);
+        }
         btnSubmit.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -106,7 +126,34 @@ public class Immunization_Entry extends Activity {
 
             }
         });
+        btnNotverified.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnNotverified.setBackgroundColor(getResources().getColor(R.color.buttonorange));
+                btnVerifiedOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedNotOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                Validate.verification(g.getUserID(), 3, g.getsGlobalChildGUID(), 1, g.getsGlobalAshaCode(), g.getAnmidasAnmCode(), validate.RetriveSharepreferenceString("AFID"), btnNotverified, btnVerifiedOk, btnVerifiedNotOk);
+            }
+        });
 
+        btnVerifiedOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnNotverified.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedOk.setBackgroundColor(getResources().getColor(R.color.DarkGreen));
+                btnVerifiedNotOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                Validate.verification(g.getUserID(), 3, g.getsGlobalChildGUID(), 2, g.getsGlobalAshaCode(), g.getAnmidasAnmCode(), validate.RetriveSharepreferenceString("AFID"), btnNotverified, btnVerifiedOk, btnVerifiedNotOk);
+            }
+        });
+        btnVerifiedNotOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnNotverified.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedNotOk.setBackgroundColor(getResources().getColor(R.color.DarkRed));
+                Validate.verification(g.getUserID(), 3, g.getsGlobalChildGUID(), 3, g.getsGlobalAshaCode(), g.getAnmidasAnmCode(), validate.RetriveSharepreferenceString("AFID"), btnNotverified, btnVerifiedOk, btnVerifiedNotOk);
+            }
+        });
         txtopv1.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -1803,22 +1850,26 @@ public class Immunization_Entry extends Activity {
             }
 
         });
-        Intent intent = getIntent();
-        String smothername = "";
-        smothername = intent.getExtras().getString("MotherName");
-        String sfathername = "";
-        String sChildName = "";
-        sfathername = intent.getExtras().getString("HusbandName");
-        sChildName = intent.getExtras().getString("ChildName");
-        sChildGUID = intent.getExtras().getString("ChildGUID");
-        sDOBCHILD = intent.getExtras().getString("DOB");
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String smothername = "";
+            smothername = extras.getString("MotherName");
+            String sfathername = "";
+            String sChildName = "";
+            sfathername = extras.getString("HusbandName");
+            sChildName = extras.getString("ChildName");
+            sChildGUID = extras.getString("ChildGUID");
+            sDOBCHILD = extras.getString("DOB");
 
-        tvChildname.setText(sChildName);
+            tvChildname.setText(Validate.returnStringValue(sChildName));
 
-        tvfathername.setText(sfathername);
-        tVmothername.setText(smothername);
-        showDateCheckValidation();
-        showData();
+            tvfathername.setText(sfathername);
+            tVmothername.setText(smothername);
+            showDateCheckValidation();
+            showData();
+        }
+
+
     }
 
     public void txtclick(View view) {
@@ -1910,6 +1961,10 @@ public class Immunization_Entry extends Activity {
                 // do your code
                 ShowDatePicker(txtipv, 0);
                 break;
+            case R.id.txtipv2:
+                // do your code
+                ShowDatePicker(txtipv2, 0);
+                break;
             case R.id.txttt:
                 // do your code
                 ShowDatePicker(txttt, 0);
@@ -1964,6 +2019,9 @@ public class Immunization_Entry extends Activity {
             case R.id.tv_TT2:
                 ShowDatePicker(tv_TT2, 0);
                 break;
+            case R.id.tv_MeaslesRubella:
+                ShowDatePicker(tv_MeaslesRubella, 0);
+                break;
 
             default:
                 break;
@@ -1979,13 +2037,13 @@ public class Immunization_Entry extends Activity {
         SimpleDateFormat dfDate = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         String formattedDate = dfDate.format(c.getTime());
 
-        java.util.Date d = null;
-        java.util.Date d1 = null;
+        Date d = null;
+        Date d1 = null;
         // Calendar cal = Calendar.getInstance();
         try {
             d = dfDate.parse(sDOBCHILD);
             d1 = dfDate.parse(formattedDate);
-        } catch (java.text.ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         }
 
@@ -2019,26 +2077,32 @@ public class Immunization_Entry extends Activity {
 
             txtopv1.setEnabled(true);
         }
-        if (diffInDays >= 98) {
+        if (diffInDays >= 45) {
             txtipv.setEnabled(true);
         } else {
             txtipv.setEnabled(false);
         }
+        if (diffInDays >= 105) {
+            txtipv2.setEnabled(true);
+        } else {
+            txtipv2.setEnabled(false);
+        }
         // /////********For Date dpt*********/////
 
-        if (diffInDays >= 42 && diffInDays >= 70 && diffInDays >= 98) {
-            tvDPT3Pentavalent3.setEnabled(true);
-            tvDPT2Pentavalent2.setEnabled(true);
-            txtDPT1Pentavalent1.setEnabled(true);
-
-        } else if (diffInDays >= 42 && diffInDays >= 70) {
-            tvDPT2Pentavalent2.setEnabled(true);
-            txtDPT1Pentavalent1.setEnabled(true);
-        } else if (diffInDays >= 42) {
-
-            txtDPT1Pentavalent1.setEnabled(true);
-
-        }
+//        if (diffInDays >= 42 && diffInDays >= 70 && diffInDays >= 98) {
+//            tvDPT3Pentavalent3.setEnabled(true);
+//            tvDPT2Pentavalent2.setEnabled(true);
+//            txtDPT1Pentavalent1.setEnabled(true);
+//
+//        } else if (diffInDays >= 42 && diffInDays >= 70) {
+//            tvDPT2Pentavalent2.setEnabled(true);
+//            txtDPT1Pentavalent1.setEnabled(true);
+//        } else if (diffInDays >= 42) {
+//
+//            txtDPT1Pentavalent1.setEnabled(true);
+//
+//        }
+//
 
         // /////********For Date hep*********/////
         if (diffInDays >= 42 && diffInDays >= 70 && diffInDays >= 98) {
@@ -2073,6 +2137,7 @@ public class Immunization_Entry extends Activity {
 
         if (diffInDays >= 270) {
             txtMeasles1.setEnabled(true);
+            tv_MeaslesRubella.setEnabled(true);
 
         }
 
@@ -2151,7 +2216,7 @@ public class Immunization_Entry extends Activity {
         String sPentavalent3 = "";
         String sopv0 = "";
         String sHepatitisB = "";
-        String IPV = "";
+        String IPV = "", IPV2 = "";
         String Pentavalent1 = "";
         String DPTBooster = "";
         String OPVBooster = "";
@@ -2170,6 +2235,7 @@ public class Immunization_Entry extends Activity {
         String VitaminA8 = "";
         String VitaminA9 = "";
         String TT2 = "";
+        String MeaslesRubella = "";
 
         sBCGDATE = Validate.changeDateFormat(TXTBCG.getText().toString());
         stxtopv1 = Validate.changeDateFormat(txtopv1.getText().toString());
@@ -2213,6 +2279,7 @@ public class Immunization_Entry extends Activity {
                 .toString());
         ChildTT = Validate.changeDateFormat(txttt.getText().toString());
         IPV = Validate.changeDateFormat(txtipv.getText().toString());
+        IPV2 = Validate.changeDateFormat(txtipv2.getText().toString());
 
         JEVaccine1 = Validate.changeDateFormat(tv_JEVaccine1.getText()
                 .toString());
@@ -2226,6 +2293,7 @@ public class Immunization_Entry extends Activity {
         VitaminA8 = Validate.changeDateFormat(tv_vitamin8.getText().toString());
         VitaminA9 = Validate.changeDateFormat(tv_vitamin9.getText().toString());
         TT2 = Validate.changeDateFormat(tv_TT2.getText().toString());
+        MeaslesRubella = Validate.changeDateFormat(tv_MeaslesRubella.getText().toString());
         try {
 
             String Sql = "";
@@ -2250,9 +2318,11 @@ public class Immunization_Entry extends Activity {
                     + "',VitaminAtwo = '" + VitaminAtwo
                     + "',MeaslesTwoDose = '" + MeaslesTwoDose
                     + "',OPVBooster='" + OPVBooster + "',DPTBooster = '"
-                    + DPTBooster + "',modified_by='"
+                    + DPTBooster + "',MeaslesRubella = '"
+                    + MeaslesRubella + "',modified_by='"
                     + g.getsGlobalUserID() + "',modified_on='"
-                    + Validate.getcurrentdate() + "' where ChildGUID='" + sChildGUID + "'";
+                    + Validate.getcurrentdate() + "',IPV2='"
+                    + IPV2 + "' where ChildGUID='" + sChildGUID + "'";
             dataProvider.executeSql(Sql);
 
         } catch (Exception e) {
@@ -2280,7 +2350,7 @@ public class Immunization_Entry extends Activity {
         txtTitle.setText(msg);
 
         Button btnok = (Button) dialog.findViewById(R.id.btn_ok);
-        btnok.setOnClickListener(new android.view.View.OnClickListener() {
+        btnok.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 dialog.dismiss();
@@ -2316,7 +2386,7 @@ public class Immunization_Entry extends Activity {
         txtTitle.setText(msg);
 
         Button btnok = (Button) dialog.findViewById(R.id.btn_ok);
-        btnok.setOnClickListener(new android.view.View.OnClickListener() {
+        btnok.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 dialog.dismiss();
@@ -2352,7 +2422,7 @@ public class Immunization_Entry extends Activity {
                             + msg2 + " "
                             + getResources().getString(R.string.msgdate));
                 }
-            } catch (java.text.ParseException e) {
+            } catch (ParseException e) {
                 e.printStackTrace();
             }
 
@@ -2380,7 +2450,7 @@ public class Immunization_Entry extends Activity {
                     diffInDays = 0;
                 }
 
-            } catch (java.text.ParseException e) {
+            } catch (ParseException e) {
                 e.printStackTrace();
             }
 
@@ -2429,10 +2499,14 @@ public class Immunization_Entry extends Activity {
                     .get(0).getOpv1())));
             tvHepatitisB.setText(String.valueOf(Validate
                     .changeDateFormat(ChildImmun.get(0).getHepb1())));
+            txtipv.setText(String.valueOf(Validate
+                    .changeDateFormat(ChildImmun.get(0).getIPV())));
+            txtipv2.setText(String.valueOf(Validate
+                    .changeDateFormat(ChildImmun.get(0).getIPV2())));
             if (String.valueOf(ChildImmun.get(0).getDpt1()).length() > 0
                     || String.valueOf(ChildImmun.get(0).getHepb2()).length() > 0) {
                 txtPentavalent1.setEnabled(false);
-                txtDPT1Pentavalent1.setEnabled(true);
+                //   txtDPT1Pentavalent1.setEnabled(true);
                 tvHepatitisB1.setEnabled(true);
             } else if (String.valueOf(ChildImmun.get(0).getPentavalent1())
                     .length() > 0) {
@@ -2444,7 +2518,7 @@ public class Immunization_Entry extends Activity {
             if (String.valueOf(ChildImmun.get(0).getDpt2()).length() > 0
                     || String.valueOf(ChildImmun.get(0).getHepb3()).length() > 0) {
                 txtPentavalent2.setEnabled(false);
-                tvDPT2Pentavalent2.setEnabled(true);
+                //tvDPT2Pentavalent2.setEnabled(true);
                 tvHepatitisB2.setEnabled(true);
             } else if (String.valueOf(ChildImmun.get(0).getPentavalent2())
                     .length() > 0) {
@@ -2456,7 +2530,7 @@ public class Immunization_Entry extends Activity {
             if (String.valueOf(ChildImmun.get(0).getDpt3()).length() > 0
                     || String.valueOf(ChildImmun.get(0).getHepb4()).length() > 0) {
                 txtPentavalent3.setEnabled(false);
-                tvDPT3Pentavalent3.setEnabled(true);
+                ///  tvDPT3Pentavalent3.setEnabled(true);
                 tvHepatitisB3.setEnabled(true);
             } else if (String.valueOf(ChildImmun.get(0).getPentavalent3())
                     .length() > 0) {
@@ -2488,8 +2562,28 @@ public class Immunization_Entry extends Activity {
                     .getVitaminA9()));
             tv_TT2.setText(Validate
                     .changeDateFormat(ChildImmun.get(0).getTT2()));
+            tv_MeaslesRubella.setText(Validate
+                    .changeDateFormat(ChildImmun.get(0).getMeaslesRubella()));
 
         }
+
+        if (g.getiGlobalRoleID() == 4) {
+            String sVerify = "Select Verify from tblAFVerify where ModuleGUID='" + g.getsGlobalChildGUID() + "'";
+            if (dataProvider.getRecord(sVerify).equals("1")) {
+                btnNotverified.setBackgroundColor(getResources().getColor(R.color.buttonorange));
+                btnVerifiedOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedNotOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+            } else if (dataProvider.getRecord(sVerify).equals("2")) {
+                btnNotverified.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedOk.setBackgroundColor(getResources().getColor(R.color.DarkGreen));
+                btnVerifiedNotOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+            }  else if (dataProvider.getRecord(sVerify).equals("3"))  {
+                btnNotverified.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedNotOk.setBackgroundColor(getResources().getColor(R.color.DarkRed));
+            }
+        }
+
     }
 
     public void ShowDatePicker(final TextView tVvisit, final int itextboxvalue) {
@@ -2540,9 +2634,7 @@ public class Immunization_Entry extends Activity {
 
             public void onClick(View v) {
                 @SuppressWarnings("unused")
-                String[] monthName = {"January", "February", "March", "April",
-                        "May", "June", "July", "August", "September",
-                        "October", "November", "December"};
+
                 int dt = datetext.getDayOfMonth();
                 int month = datetext.getMonth() + 1;
                 int year = datetext.getYear();
@@ -2568,7 +2660,7 @@ public class Immunization_Entry extends Activity {
                             || tvHepatitisB1.getText().toString().length() > 0) {
 
                         txtPentavalent1.setEnabled(false);
-                        txtDPT1Pentavalent1.setEnabled(true);
+                        //    txtDPT1Pentavalent1.setEnabled(true);
                         tvHepatitisB1.setEnabled(true);
                     } else if (txtPentavalent1.getText().toString().length() > 0) {
                         txtDPT1Pentavalent1.setEnabled(false);
@@ -2582,7 +2674,7 @@ public class Immunization_Entry extends Activity {
                             || tvHepatitisB2.getText().toString().length() > 0) {
 
                         txtPentavalent2.setEnabled(false);
-                        tvDPT2Pentavalent2.setEnabled(true);
+                        //   tvDPT2Pentavalent2.setEnabled(true);
                         tvHepatitisB2.setEnabled(true);
                     } else if (txtPentavalent2.getText().toString().length() > 0) {
                         tvDPT2Pentavalent2.setEnabled(false);
@@ -2597,7 +2689,7 @@ public class Immunization_Entry extends Activity {
                             || tvHepatitisB3.getText().toString().length() > 0) {
 
                         txtPentavalent3.setEnabled(false);
-                        tvDPT3Pentavalent3.setEnabled(true);
+                        // tvDPT3Pentavalent3.setEnabled(true);
                         tvHepatitisB3.setEnabled(true);
                     } else if (txtPentavalent3.getText().toString().length() > 0) {
                         tvDPT3Pentavalent3.setEnabled(false);
@@ -2625,7 +2717,7 @@ public class Immunization_Entry extends Activity {
                     }
 
                 } else if (itextboxvalue == 3) {
-                    txtDPT1Pentavalent1.setEnabled(true);
+                    // txtDPT1Pentavalent1.setEnabled(true);
                     tvHepatitisB1.setEnabled(true);
                 }
 
@@ -2636,7 +2728,7 @@ public class Immunization_Entry extends Activity {
                     }
 
                 } else if (itextboxvalue == 6) {
-                    tvDPT2Pentavalent2.setEnabled(true);
+                    //  tvDPT2Pentavalent2.setEnabled(true);
                     tvHepatitisB2.setEnabled(true);
                 }
 
@@ -2647,7 +2739,7 @@ public class Immunization_Entry extends Activity {
                     }
 
                 } else if (itextboxvalue == 9) {
-                    tvDPT3Pentavalent3.setEnabled(true);
+                    // tvDPT3Pentavalent3.setEnabled(true);
                     tvHepatitisB3.setEnabled(true);
                 }
 
@@ -2668,11 +2760,20 @@ public class Immunization_Entry extends Activity {
     public void onBackPressed() {
         // TODO Auto-generated method stub
         super.onBackPressed();
-
-        Intent i = new Intent(Immunization_Entry.this,
-                ImunizationChildList.class);
-        finish();
-        startActivity(i);
+        if (validate.RetriveSharepreferenceInt("QR") == 1) {
+            validate.SaveSharepreferenceInt("QR", 0);
+            Intent i = new Intent(Immunization_Entry.this,
+                    Dashboard_Activity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            finish();
+            startActivity(i);
+        } else {
+            Intent i = new Intent(Immunization_Entry.this,
+                    ImunizationChildList.class);
+            finish();
+            startActivity(i);
+        }
     }
+
 
 }

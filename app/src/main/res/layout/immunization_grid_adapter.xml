@@ -43,14 +43,43 @@
                 android:gravity="center" />
         </TableRow>
 
-        <TextView
-            android:id="@+id/tvGendername"
-            style="@style/Textview"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight=".6"
-            android:background="@drawable/textbox"
-            android:gravity="center" />
+
+        <TableRow
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/textbox">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".05" />
+
+            <ImageView
+                android:id="@+id/btn_gender"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".05" />
+
+            <ImageView
+                android:id="@+id/btn_status"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".05" />
+        </TableRow>
 
         <TextView
             android:id="@+id/tvChildDob"

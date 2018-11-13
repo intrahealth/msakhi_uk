@@ -36,16 +36,24 @@
 
 
 
-        <TextView
-            android:id="@+id/tvChild"
-            style="@style/Textview"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="@drawable/textbox"
-            android:gravity="center" />
+            <TextView
+                android:id="@+id/tvChild"
+                style="@style/Textview"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textbox"
+                android:gravity="center" />
+            <ImageView
+                android:id="@+id/report"
+                style="@style/Textview"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/ancreport" />
 
-        <TableRow
+
+            <TableRow
             android:id="@+id/Gridimage"
             android:layout_width="45dp"
             android:layout_height="match_parent"

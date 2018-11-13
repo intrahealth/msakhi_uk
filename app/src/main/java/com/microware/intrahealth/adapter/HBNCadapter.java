@@ -110,7 +110,7 @@ public class HBNCadapter extends BaseAdapter {
         tv4.setText("" + visit);
         if (position % 2 == 0) {
             GridRow.setBackgroundColor(context.getResources().getColor(
-                    R.color.lightgray));
+                    R.color.LightPowderBlue));
         }
         GridRow.setOnClickListener(new View.OnClickListener() {
             @Override

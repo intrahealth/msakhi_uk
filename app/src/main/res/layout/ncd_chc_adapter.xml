@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TableRow
+        android:id="@+id/GridRow"
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="1dp">
+
+        <TextView
+            android:id="@+id/tvHHCode"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".5"
+            android:background="@drawable/textbox"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tvHHHeadName"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tvhusbandname"
+            style="@style/Textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox"
+            android:gravity="center" />
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/textbox">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".2" />
+
+
+
+
+
+
+            <ImageView
+                android:id="@+id/btnEdit"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/search"
+                android:gravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/addicon" />
+
+
+            <TextView
+                android:id="@+id/tv_score"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:layout_weight=".2" />
+        </TableRow>
+    </TableRow>
+
+</LinearLayout>

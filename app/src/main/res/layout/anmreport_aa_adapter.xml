@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:paddingBottom="2dp"
+
+    android:paddingTop="2dp">
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+
+
+                <TableRow style="@style/tablerow">
+
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".02" />
+
+                    <TextView
+                        android:id="@+id/tv_year"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight=".4"
+                        android:text="2017" />
+
+                    <TextView
+                        android:id="@+id/tv_month"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".4"
+                        android:gravity="center"
+                        android:text="jan" />
+                    <TextView
+                        android:id="@+id/tv_totalasha"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".5"
+                        android:gravity="center"
+                        android:text="15" />
+                    <TextView
+                        android:id="@+id/tv_Claimed"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".5"
+                        android:gravity="center"
+                        android:text="35200" />
+                    <TableRow
+                        android:id="@+id/tbl_image"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".7">
+                    <TextView
+                        android:id="@+id/tv_approved"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".5"
+                        android:gravity="center"
+                        android:text="6000" />
+                    <ImageView
+
+                        android:id="@+id/imageadd"
+                        style="@style/Textview"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:background="@drawable/addgrey"
+                       />
+                    </TableRow>
+                    <TextView
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".02" />
+
+                </TableRow>
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+
+        </LinearLayout>
+
+
+</LinearLayout>

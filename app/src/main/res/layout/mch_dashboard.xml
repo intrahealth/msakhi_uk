@@ -117,7 +117,7 @@
                         android:singleLine="false"
                         android:text="@string/ancPregnant"
                         android:textColor="#ffffff"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -144,9 +144,9 @@
                         android:gravity="center|bottom"
                         android:paddingBottom="10dp"
                         android:singleLine="false"
-                        android:text="@string/newborn"
+                        android:text="@string/NewbornInfant"
                         android:textColor="#ffffff"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -175,7 +175,7 @@
                         android:singleLine="false"
                         android:text="@string/immunized"
                         android:textColor="#ffffff"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -206,7 +206,7 @@
                         android:paddingBottom="10dp"
                         android:text="@string/homevisit"
                         android:textColor="#ffffff"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -234,7 +234,7 @@
                         android:paddingBottom="10dp"
                         android:text="@string/iycf"
                         android:textColor="#ffffff"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
                     <ImageView
                         android:layout_width="wrap_content"

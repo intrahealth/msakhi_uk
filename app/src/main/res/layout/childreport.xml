@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/White"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:text="@string/Anccheckup"
+        android:textColor="@color/Black"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:id="@+id/tv_visit1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:gravity="left"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_visitdate1"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:gravity="center"
+                        android:textStyle="bold" />
+
+
+                </TableRow>
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:id="@+id/tv_visit2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:gravity="left"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_visitdate2"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:gravity="center"
+                        android:textStyle="bold" />
+
+
+                </TableRow>
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:id="@+id/tv_visit3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:gravity="left"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_visitdate3"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:gravity="center"
+                        android:textStyle="bold" />
+
+
+                </TableRow>
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:id="@+id/tv_visit4"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:gravity="left"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_visitdate4"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:gravity="center"
+                        android:textStyle="bold" />
+
+
+                </TableRow>
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:id="@+id/tv_visit5"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:gravity="left"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_visitdate5"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:gravity="center"
+                        android:textStyle="bold" />
+
+
+                </TableRow>
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:id="@+id/tv_visit6"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:gravity="left"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_visitdate6"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:gravity="center"
+                        android:textStyle="bold" />
+
+
+                </TableRow>
+
+                <TableRow style="@style/tbl_SimpleText">
+
+                    <TextView
+                        android:id="@+id/tv_visit7"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:gravity="left"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_visitdate7"
+                        style="@style/SimpleText"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".5"
+                        android:gravity="center"
+                        android:textStyle="bold" />
+
+
+                </TableRow>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

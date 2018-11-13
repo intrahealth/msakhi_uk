@@ -1,6 +1,7 @@
 package com.microware.intrahealth;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,8 +36,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.ParseException;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v4.view.ViewPager.LayoutParams;
 import android.text.Editable;
@@ -58,6 +61,7 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TableRow;
@@ -85,7 +89,7 @@ public class PregnantWomen extends Activity {
     CheckBox chk1, chk2, chk3, chk4, chk5, chk6, chk7, chk8, chk9, chk10,
             chk11;
     ImageView Imgview;
-    Button btnSave;
+    Button btnSave, btnNotverified, btnVerifiedOk, btnVerifiedNotOk;
     ImageView btnCapture;
     Dialog datepic;
     DatePicker datetext;
@@ -116,14 +120,17 @@ public class PregnantWomen extends Activity {
     ArrayList<MstCommon> Common = new ArrayList<MstCommon>();
     ArrayList<Tbl_HHFamilyMember> data = new ArrayList<Tbl_HHFamilyMember>();
     ArrayList<tbl_pregnantwomen> record = new ArrayList<tbl_pregnantwomen>();
+    LinearLayout llVerification, llSave;
+    Validate validate;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-
         // requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.preg_reg1);
         dataProvider = new DataProvider(this);
+        validate = new Validate(this);
         global = (Global) getApplication();
         spinBeneficiary = (Spinner) findViewById(R.id.spinBeneficiary);
         spinEducation = (Spinner) findViewById(R.id.spinEducation);
@@ -167,6 +174,9 @@ public class PregnantWomen extends Activity {
         tblpay = (TableRow) findViewById(R.id.tblpay);
         btnCapture = (ImageView) findViewById(R.id.btnCapture);
         btnSave = (Button) findViewById(R.id.btnSave);
+        btnNotverified = (Button) findViewById(R.id.btnNotverified);
+        btnVerifiedOk = (Button) findViewById(R.id.btnVerifiedOk);
+        btnVerifiedNotOk = (Button) findViewById(R.id.btnVerifiedNotOk);
         tvimage = (TextView) findViewById(R.id.tvimage);
         Imgview = (ImageView) findViewById(R.id.Imgview);
         tvDate = (TextView) findViewById(R.id.tvDate);
@@ -197,7 +207,18 @@ public class PregnantWomen extends Activity {
         etanyother = (EditText) findViewById(R.id.etanyother);
         etAnyotherCompl2 = (EditText) findViewById(R.id.etAnyotherCompl2);
         etAnyotherCompl = (EditText) findViewById(R.id.etAnyotherCompl);
+        llVerification = (LinearLayout) findViewById(R.id.llVerification);
+        llSave = (LinearLayout) findViewById(R.id.llSave);
+        llVerification.setVisibility(View.GONE);
+        llSave.setVisibility(View.GONE);
         tblanyother.setVisibility(View.GONE);
+        if (global.getiGlobalRoleID() == 4) {
+            llVerification.setVisibility(View.VISIBLE);
+            llSave.setVisibility(View.GONE);
+        } else {
+            llVerification.setVisibility(View.GONE);
+            llSave.setVisibility(View.VISIBLE);
+        }
         if (networkInfoCheckConnection != null
                 && networkInfoCheckConnection.isConnected()
                 && networkInfoCheckConnection.isAvailable()) {
@@ -235,6 +256,36 @@ public class PregnantWomen extends Activity {
         fillCommonRecord(spinLastPregoutcome, 16, global.getLanguage());
         fillCommonRecord(spinLasttoLastPregoutcome, 16, global.getLanguage());
         fillCommonRecord(spinEducation, 104, global.getLanguage());
+
+//        Validate.verification(global.getUserID(),1,  global.getsGlobalPWGUID(), 1,  global.getsGlobalAshaCode(), global.getAnmidasAnmCode(),  validate.RetriveSharepreferenceString("AFID"),btnNotverified,btnVerifiedOk,btnVerifiedNotOk);
+        btnNotverified.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnNotverified.setBackgroundColor(getResources().getColor(R.color.buttonorange));
+                btnVerifiedOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedNotOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                Validate.verification(global.getUserID(), 1, global.getsGlobalPWGUID(), 1, global.getsGlobalAshaCode(), global.getAnmidasAnmCode(), validate.RetriveSharepreferenceString("AFID"), btnNotverified, btnVerifiedOk, btnVerifiedNotOk);
+            }
+        });
+
+        btnVerifiedOk.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnNotverified.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedOk.setBackgroundColor(getResources().getColor(R.color.DarkGreen));
+                btnVerifiedNotOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                Validate.verification(global.getUserID(), 1, global.getsGlobalPWGUID(), 2, global.getsGlobalAshaCode(), global.getAnmidasAnmCode(), validate.RetriveSharepreferenceString("AFID"), btnNotverified, btnVerifiedOk, btnVerifiedNotOk);
+            }
+        });
+        btnVerifiedNotOk.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnNotverified.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedNotOk.setBackgroundColor(getResources().getColor(R.color.DarkRed));
+                Validate.verification(global.getUserID(), 1, global.getsGlobalPWGUID(), 3, global.getsGlobalAshaCode(), global.getAnmidasAnmCode(), validate.RetriveSharepreferenceString("AFID"), btnNotverified, btnVerifiedOk, btnVerifiedNotOk);
+            }
+        });
         spinfacility.setOnItemSelectedListener(new OnItemSelectedListener() {
 
             @Override
@@ -697,7 +748,7 @@ public class PregnantWomen extends Activity {
                         spinlasttolastPregPlace.setSelection(0);
 
                     } else {
-                        if (Integer.valueOf(etnoofpregnancy.getText()
+                        if (Validate.returnIntegerValue(etnoofpregnancy.getText()
                                 .toString()) == 1) {
                             lastPreg.setVisibility(View.VISIBLE);
                             lasttolastPreg.setVisibility(View.GONE);
@@ -713,7 +764,7 @@ public class PregnantWomen extends Activity {
                             spinLasttoLastPregComplications.setSelection(0);
                             spinLasttoLastPregoutcome.setSelection(0);
                             spinlasttolastPregPlace.setSelection(0);
-                        } else if (Integer.valueOf(etnoofpregnancy.getText()
+                        } else if (Validate.returnIntegerValue(etnoofpregnancy.getText()
                                 .toString()) >= 2) {
                             lastPreg.setVisibility(View.VISIBLE);
                             lasttolastPreg.setVisibility(View.VISIBLE);
@@ -1196,7 +1247,7 @@ public class PregnantWomen extends Activity {
         int age2 = 0;
         if (tvage.getText().toString() != null
                 && tvage.getText().toString().length() > 0) {
-            age2 = Integer.valueOf(tvage.getText().toString());
+            age2 = Validate.returnIntegerValue(tvage.getText().toString());
         }
         if (tvage.getText().toString().length() > 0 && age2 < 19) {
             condition = getResources().getString(R.string.lessage);
@@ -1210,7 +1261,7 @@ public class PregnantWomen extends Activity {
         int age = 0;
         if (tvage.getText().toString() != null
                 && tvage.getText().toString().length() > 0) {
-            age = Integer.valueOf(tvage.getText().toString());
+            age = Validate.returnIntegerValue(tvage.getText().toString());
         }
         if (tvage.getText().toString().length() > 0 && age > 40) {
             condition = getResources().getString(R.string.overage);
@@ -1295,10 +1346,10 @@ public class PregnantWomen extends Activity {
     public int sCheckValidation() {
         int age = 0;
         if (tvage.getText().toString().length() > 0) {
-            age = Integer.valueOf(tvage.getText().toString());
+            age = Validate.returnIntegerValue(tvage.getText().toString());
         }
-        if (etmobileno.getText().toString().length() > 0
-                && Validate.checkmobileno(etmobileno.getText().toString()) == 0) {
+        if ((etmobileno.getText().toString().length() > 0
+                && Validate.checkmobileno(etmobileno.getText().toString()) == 0) || (etmobileno.getText().toString().length() == 0)) {
             return 2;
         } else if (etmctsid.getText().toString().length() > 0
                 && etmctsid.getText().toString().length() != 18) {
@@ -1315,9 +1366,9 @@ public class PregnantWomen extends Activity {
         } else if (age < 10 || age > 50) {
             return 6;
             /*
-			 * } else { return 1;
-			 */
-			/* } */
+             * } else { return 1;
+          */
+            /* } */
         } else if (etaltmobileno.getText().toString().length() > 0
                 && Validate.checkmobileno(etaltmobileno.getText().toString()) == 0) {
             return 7;
@@ -1410,7 +1461,8 @@ public class PregnantWomen extends Activity {
         LayoutInflater inflater = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.dialog_layout, null, false);
-        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
         dialog.setContentView(view);
         // pwindo = new PopupWindow(view, 700, 1000, true);
         // pwindo.showAtLocation(view, Gravity.CENTER, 0, 0);
@@ -1467,6 +1519,7 @@ public class PregnantWomen extends Activity {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.dialog_layout, null, false);
         dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
         dialog.setContentView(view);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         TextView txtTitle = (TextView) dialog
@@ -1629,7 +1682,7 @@ public class PregnantWomen extends Activity {
         PastIllnessYN = savecheckbox();
 
         if (etnoofpregnancy.getText().toString().length() > 0) {
-            TotalPregnancy = Integer.valueOf(etnoofpregnancy.getText()
+            TotalPregnancy = Validate.returnIntegerValue(etnoofpregnancy.getText()
                     .toString());
         }
 
@@ -1694,24 +1747,22 @@ public class PregnantWomen extends Activity {
                 && etAnyotherCompl2.getText().toString().length() > 0) {
             AnyOtherLTLPregCom = etAnyotherCompl2.getText().toString();
         }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd",
-                Locale.US);
-        Date date = new Date();
+
         String flag = "";
         int ANMID = 0;
         int AshaID = 0;
         if (global.getsGlobalANMCODE() != null
                 && global.getsGlobalANMCODE().length() > 0) {
-            ANMID = Integer.valueOf(global.getsGlobalANMCODE());
+            ANMID = Validate.returnIntegerValue(global.getsGlobalANMCODE());
         }
         if (global.getsGlobalAshaCode() != null
                 && global.getsGlobalAshaCode().length() > 0) {
-            AshaID = Integer.valueOf(global.getsGlobalAshaCode());
+            AshaID = Validate.returnIntegerValue(global.getsGlobalAshaCode());
         }
-        String CreatedOn = String.valueOf(dateFormat.format(date));
+        String CreatedOn = Validate.getcurrentdate();
         String UpdatedOn = CreatedOn;
-        int CreatedBy = Integer.valueOf(global.getsGlobalUserID());
-        int UpdatedBy = Integer.valueOf(global.getsGlobalUserID());
+        int CreatedBy = Validate.returnIntegerValue(global.getsGlobalUserID());
+        int UpdatedBy = Validate.returnIntegerValue(global.getsGlobalUserID());
         PWRegistrationDate = CreatedOn;
         if (global.getsGlobalPWGUID() != null
                 && global.getsGlobalPWGUID().length() > 0) {
@@ -1797,7 +1848,7 @@ public class PregnantWomen extends Activity {
         int ashaid = 0;
         if (global.getsGlobalAshaCode() != null
                 && global.getsGlobalAshaCode().length() > 0) {
-            ashaid = Integer.valueOf(global.getsGlobalAshaCode());
+            ashaid = Validate.returnIntegerValue(global.getsGlobalAshaCode());
         }
 
         record = dataProvider.getPregnantWomendata(global.getsGlobalPWGUID(),
@@ -2017,17 +2068,9 @@ public class PregnantWomen extends Activity {
             if (ImageName.length() > 10) {
                 try {
                     BitmapFactory.Options options = new BitmapFactory.Options();
-
-                    // downsizing image as it throws OutOfMemory Exception for
-                    // larger
-                    // images
-                    // options.inSampleSize = 2;
-
                     final Bitmap bitmap = BitmapFactory.decodeFile(ImageName,
                             options);
-
                     if (bitmap != null) {
-
                         Bitmap b = bitmap;
                         Bitmap bMapRotate = null;
                         Matrix mat = new Matrix();
@@ -2075,6 +2118,22 @@ public class PregnantWomen extends Activity {
                 }
             }
         }
+        if (global.getiGlobalRoleID() == 4) {
+            String sVerify = "Select Verify from tblAFVerify where ModuleGUID='" + global.getsGlobalPWGUID() + "'";
+            if (dataProvider.getRecord(sVerify).equals("1")) {
+                btnNotverified.setBackgroundColor(getResources().getColor(R.color.buttonorange));
+                btnVerifiedOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedNotOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+            } else if (dataProvider.getRecord(sVerify).equals("2")) {
+                btnNotverified.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedOk.setBackgroundColor(getResources().getColor(R.color.DarkGreen));
+                btnVerifiedNotOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+            } else if (dataProvider.getRecord(sVerify).equals("3")) {
+                btnNotverified.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedOk.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                btnVerifiedNotOk.setBackgroundColor(getResources().getColor(R.color.DarkRed));
+            }
+        }
     }
 
     private void fillCommonRecord(Spinner spin, int iflag, int Language) {
@@ -2088,6 +2147,13 @@ public class PregnantWomen extends Activity {
         adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_dropdown_item, sValue);
         spin.setAdapter(adapter);
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(this, AncActivity.class);
+        finish();
+        startActivity(i);
     }
 
     private void fillCheckboxValues(CheckBox check, int pos, int iflag,
@@ -2127,6 +2193,14 @@ public class PregnantWomen extends Activity {
     }
 
     public void captureImage() {
+        if (Build.VERSION.SDK_INT >= 24) {
+            try {
+                Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
+                m.invoke(null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
@@ -2322,6 +2396,21 @@ public class PregnantWomen extends Activity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        if (tVvisit != null && tVvisit.getText() != "" && tVvisit.getText().toString().length() > 0) {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+            java.util.Date date1;
+            Calendar c = Calendar.getInstance(Locale.US);
+            try {
+                date1 = sdf.parse(tVvisit.getText().toString());
+                c.setTime(date1);
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                datetext.init(year, month, day, null);
+            } catch (java.text.ParseException e) {
+                e.printStackTrace();
+            }
+        }
 
         btncancel.setOnClickListener(new View.OnClickListener() {
 
@@ -2399,6 +2488,19 @@ public class PregnantWomen extends Activity {
         return ss;
     }
 
+    public void verification(int ModuleID, String ModuleGUID, int Verify, int AshaID, int ANMID, int AFID) {
 
+        String sCount = "Select * from tblAFVerify where ModuleGUID='" + ModuleGUID + "'";
+        int iCount = dataProvider.getMaxRecord(sCount);
+        if (iCount == 0) {
+            String sqlInsert = "Insert into tblAFVerify (ModuleID,ModuleGUID,Verify,AshaID,ANMID,AFID,CreatedBy,CreatedOn,UpdatedBy,UpdatedOn) values (" + ModuleID + ",'" + ModuleGUID + "'," + Verify + "," + AshaID + "," +
+                    ANMID + "," + AFID + "," + "2444424234" + "," + Validate.getcurrentdate() + "," + "asjdgsaj" + "," + Validate.getcurrentdate() + "";
+            dataProvider.executeSql(sqlInsert);
+
+        } else {
+            String sqlUpdate = "Update tblAFVerify set Verify=" + Verify + " and UpdatedOn=" + Validate.getcurrentdate() + " where ModuleGUID='" + ModuleGUID + "'";
+            dataProvider.executeSql(sqlUpdate);
+        }
+    }
 
 }
